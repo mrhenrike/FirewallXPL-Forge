@@ -1,0 +1,121 @@
+{
+  "version": "2.0.0-firewall",
+  "description": "FirewallXPL-Forge: NGFW, UTM, WAF, and cloud perimeter lab classes (fw, ngfw, utm, waf, cloud_fw). Placeholder prefixes for AWS/Azure/GCP WAF map to future modules under exploits/cloud/.",
+  "operational_policy": {
+    "prohibited_in_project_scope": [
+      "operational_botnets_and_c2_infrastructure",
+      "malware_persistence_campaigns_against_third_parties",
+      "intentional_device_bricking_or_destructive_floods_outside_authorized_lab"
+    ],
+    "note": "FirewallXPL-Forge does not provide turnkey botnet/C2, zombie recruitment, or bricking modules. Use authorized lab tooling for controlled resilience tests."
+  },
+  "default_allow_classes": [
+    "fw",
+    "ngfw",
+    "utm",
+    "waf",
+    "cloud_fw"
+  ],
+  "domain_defaults": {
+    "exploits": [
+      "fw",
+      "ngfw",
+      "utm",
+      "waf",
+      "cloud_fw"
+    ],
+    "creds": [
+      "fw",
+      "ngfw",
+      "utm",
+      "waf",
+      "cloud_fw"
+    ]
+  },
+  "prefix_rules": [
+    {
+      "prefix": "generic/",
+      "allow": [
+        "router",
+        "switch",
+        "fw",
+        "ngfw",
+        "isp_cpe"
+      ]
+    },
+    {
+      "prefix": "routers/fortinet/",
+      "allow": [
+        "fw",
+        "ngfw"
+      ]
+    },
+    {
+      "prefix": "routers/paloalto/",
+      "allow": [
+        "fw",
+        "ngfw"
+      ]
+    },
+    {
+      "prefix": "routers/checkpoint/",
+      "allow": [
+        "fw",
+        "ngfw"
+      ]
+    },
+    {
+      "prefix": "routers/sonicwall/",
+      "allow": [
+        "fw",
+        "ngfw"
+      ]
+    },
+    {
+      "prefix": "routers/sophos/",
+      "allow": [
+        "fw",
+        "ngfw"
+      ]
+    },
+    {
+      "prefix": "routers/watchguard/",
+      "allow": [
+        "fw",
+        "ngfw"
+      ]
+    },
+    {
+      "prefix": "misc/watchguard/",
+      "allow": [
+        "fw",
+        "ngfw"
+      ]
+    },
+    {
+      "prefix": "routers/cisco/firepower",
+      "allow": [
+        "fw",
+        "ngfw"
+      ]
+    },
+    {
+      "prefix": "routers/juniper/",
+      "allow": [
+        "switch",
+        "router",
+        "fw",
+        "ngfw"
+      ]
+    }
+  ],
+  "file_overrides": {
+    "generic/http_form_char_by_char_oracle.py": [
+      "router",
+      "switch",
+      "fw",
+      "ngfw",
+      "isp_cpe"
+    ]
+  }
+}

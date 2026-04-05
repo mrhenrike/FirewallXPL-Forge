@@ -1,0 +1,28 @@
+%% RouterXPL-Forge — ISP CPE / residential gateway (en-US)
+flowchart TB
+  CORE(("ISP CPE modem/router<br/>Broadcom/ECONET SoC<br/>Firmware from ISP + OEM"))
+
+  DOCSIS["DOCSIS / PON optics<br/>◐ L1/L2 — out of RXF process scope"]
+
+  TR69["TR-069 / CWMP from ACS<br/>◐ no dedicated ACS simulator in Forge"]
+
+  LAN["LAN Wi‑Fi + DHCP<br/>✓ same as SOHO vectors"]
+
+  HTTP["Remote admin HTTP<br/>✓ Technicolor / ZTE / Huawei style exploits"]
+
+  SSH["SSH / Telnet sometimes disabled<br/>✓ when open — creds"]
+
+  SNMP["SNMP<br/>✓ when exposed"]
+
+  GPON["OMCI / GPON ONU — ◐ limited"]
+
+  CVE["CVE-class: config disclosure • DNS hijack via CSRF • RCE in HTTP<br/>✓ isp_cpe + router overlap in module_target_scope"]
+
+  DOCSIS --- CORE
+  TR69 --- CORE
+  LAN --- CORE
+  CORE --- HTTP
+  CORE --- SSH
+  CORE --- SNMP
+  CORE --- GPON
+  HTTP --- CVE
