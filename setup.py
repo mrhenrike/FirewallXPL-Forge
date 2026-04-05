@@ -6,7 +6,7 @@ with open("README.md", "r") as f:
 
 setup(
     name="firewallxpl",
-    version="3.4.9",
+    version="3.5.0",
     description="Perimeter-focused exploitation framework (NGFW, UTM, WAF, cloud FW) — FirewallXPL-Forge",
     long_description=long_description,
     author="Threat9",
