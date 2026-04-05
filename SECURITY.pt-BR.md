@@ -1,4 +1,4 @@
-# Política de segurança — RouterXPL-Forge
+# Política de segurança — FirewallXPL-Forge
 
 **Idioma:** **Português (pt-BR).** **English (en-US, padrão):** [SECURITY.md](SECURITY.md)
 
@@ -6,13 +6,13 @@
 
 ## Versões e escopo suportados
 
-- **Em escopo:** falhas no **próprio RouterXPL-Forge** (código Python, dependências declaradas, scripts em `tools/`) que afetem quem **executa** o framework (RCE no operador, execução insegura de entradas, etc.).
+- **Em escopo:** falhas no **próprio FirewallXPL-Forge** (código Python, dependências declaradas, scripts em `tools/`) que afetem quem **executa** o framework (RCE no operador, execução insegura de entradas, etc.).
 - **Fora de escopo:** “0-day” em equipamentos de terceiros descobertos *usando* o framework; use canais do fabricante ou programas de *bug bounty* deles.
-- **Escopo funcional do repositório:** roteadores, switches, TAPs, firewalls e NGFW. Módulos focados em câmera/impressora/DVR como alvo principal não são prioridade deste fork.
+- **Escopo funcional do repositório:** **NGFW, UTM, WAF**, firewalls de **cloud** e concentradores SSL-VPN — laboratório de perímetro; módulos focados em câmera/impressora/DVR como alvo principal não são prioridade deste fork.
 
 ## Como reportar vulnerabilidades
 
-1. Abra um **reporte privado de vulnerabilidade** no GitHub: **Security → Report a vulnerability** no repositório `mrhenrike/RouterXPL-Forge`.
+1. Abra um **reporte privado de vulnerabilidade** no GitHub: **Security → Report a vulnerability** no repositório `mrhenrike/FirewallXPL-Forge`.
 2. Não abra issue pública com *exploit* completo antes da triagem.
 3. Inclua:
    - commit ou tag afetada

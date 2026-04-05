@@ -1,4 +1,4 @@
-# Código de Conduta — RouterXPL-Forge
+# Código de Conduta — FirewallXPL-Forge
 
 **Idioma:** **Português (pt-BR).** **English (en-US, padrão):** [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
 
@@ -6,7 +6,7 @@
 
 ## Nosso compromisso
 
-Para manter um ambiente aberto e respeitoso, pessoas que mantêm, contribuem e utilizam o RouterXPL-Forge comprometem-se a participar sem assédio, independentemente de idade, corpo, deficiência, etnia, identidade de gênero, nível de experiência, educação, situação socioeconômica, nacionalidade, aparência, raça, religião ou orientação sexual.
+Para manter um ambiente aberto e respeitoso, pessoas que mantêm, contribuem e utilizam o FirewallXPL-Forge comprometem-se a participar sem assédio, independentemente de idade, corpo, deficiência, etnia, identidade de gênero, nível de experiência, educação, situação socioeconômica, nacionalidade, aparência, raça, religião ou orientação sexual.
 
 ## Escopo
 
@@ -51,7 +51,7 @@ Dependendo da gravidade, as ações podem incluir aviso privado, ocultação de 
 
 ## Atribuição
 
-Texto inspirado nas boas práticas de códigos de conduta de projetos open source; adaptado ao escopo e à governança do RouterXPL-Forge.
+Texto inspirado nas boas práticas de códigos de conduta de projetos open source; adaptado ao escopo e à governança do FirewallXPL-Forge.
 
 ---
 

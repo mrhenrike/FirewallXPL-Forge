@@ -8,7 +8,7 @@
 
 - **In scope:** flaws in **FirewallXPL-Forge itself** (Python code, declared dependencies, `tools/` scripts) affecting the **operator** (RCE on the analyst machine, unsafe input handling, etc.).
 - **Out of scope:** “0-day” on third-party **devices** found while using the framework; report through vendor or their bug bounty.
-- **Functional scope:** routers, switches, TAPs, firewalls, NGFW. Camera/printer/DVR-primary modules are not the focus of this fork.
+- **Functional scope:** **NGFW, UTM, WAF**, **cloud firewalls**, and SSL-VPN concentrators (perimeter lab). Camera/printer/DVR-primary modules are not the focus of this fork.
 
 ## Reporting a vulnerability
 
