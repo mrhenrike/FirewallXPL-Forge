@@ -1,4 +1,4 @@
-# Contribuidores — RouterXPL-Forge
+# Contribuidores — FirewallXPL-Forge
 
 **Idioma:** **Português (pt-BR).** **English (en-US, padrão):** [CONTRIBUTORS.md](CONTRIBUTORS.md)
 
@@ -13,7 +13,7 @@
 
 ## Linhagem e créditos upstream
 
-O RouterXPL-Forge deriva do projeto **RouterSploit** ([threat9/routersploit](https://github.com/threat9/routersploit)), mantido historicamente pela **Threat9**. Muitos módulos preservam autores e referências originais no campo `__info__["authors"]`.
+O FirewallXPL-Forge deriva do projeto **RouterSploit** ([threat9/routersploit](https://github.com/threat9/routersploit)), mantido historicamente pela **Threat9**. Muitos módulos preservam autores e referências originais no campo `__info__["authors"]`.
 
 Componentes e ideias de terceiros continuam creditados nos próprios arquivos (Riposte, advisories, CVEs, *pull requests* originais).
 

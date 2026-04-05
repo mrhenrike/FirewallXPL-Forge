@@ -1,4 +1,4 @@
-# Contributors — RouterXPL-Forge
+# Contributors — FirewallXPL-Forge
 
 **Author:** André Henrique ([@mrhenrike](https://github.com/mrhenrike)) \| **União Geek** — [https://github.com/Uniao-Geek](https://github.com/Uniao-Geek)
 
@@ -13,7 +13,7 @@
 
 ## Upstream lineage and credits
 
-RouterXPL-Forge derives from **RouterSploit** ([threat9/routersploit](https://github.com/threat9/routersploit)), historically maintained by **Threat9**. Many modules preserve original authors in `__info__["authors"]`.
+FirewallXPL-Forge derives from **RouterSploit** ([threat9/routersploit](https://github.com/threat9/routersploit)), historically maintained by **Threat9**. Many modules preserve original authors in `__info__["authors"]`.
 
 Third-party components and ideas remain credited in source files (Riposte, advisories, CVEs, original pull requests).
 
