@@ -40,7 +40,7 @@
 
 | Topic | Links |
 |-------|--------|
-| License | [LICENSE](../../LICENSE) |
+| License | [LICENSE](../../LICENSE) (BSD; upstream Threat9 notice retained) |
 | Code of Conduct | [CODE_OF_CONDUCT.md](../../CODE_OF_CONDUCT.md) · [CODE_OF_CONDUCT.pt-BR.md](../../CODE_OF_CONDUCT.pt-BR.md) |
 | Security | [SECURITY.md](../../SECURITY.md) · [SECURITY.pt-BR.md](../../SECURITY.pt-BR.md) |
 | Contributing | [CONTRIBUTING.md](../../CONTRIBUTING.md) · [CONTRIBUTING.pt-BR.md](../../CONTRIBUTING.pt-BR.md) |
