@@ -1,7 +1,7 @@
 # FirewallXPL-Forge
 
 Fork focado em **perímetro e caixa de estado**: **NGFW, UTM, WAF**, firewalls de **cloud** (AWS/Azure/GCP/OCI, Cloudflare, ELB/WAF labels em catálogo), e SSL-VPN concentrators — laboratório autorizado.  
-O ramo **RouterXPL-Forge** permanece para **roteadores, switches L2/L3, TAPs e CPE ISP** (menor superfície; sem o mirror PoC multi‑GiB por omissão).
+O ramo **RouterXPL-Forge** permanece para **roteadores, switches L2/L3, TAPs e CPE ISP**. **Wi‑Fi/BLE/PCAP** ficam em [**WirelessXPL-Forge**](https://github.com/mrhenrike/WirelessXPL-Forge) (private).
 
 **Maintainer:** André Henrique ([@mrhenrike](https://github.com/mrhenrike)) \| [União Geek](https://github.com/Uniao-Geek)  
 **Upstream lineage:** [threat9/routersploit](https://github.com/threat9/routersploit) → [RouterXPL-Forge](https://github.com/mrhenrike/RouterXPL-Forge)
@@ -22,7 +22,7 @@ FirewallXPL-Forge fornece **módulos** para ensaios **autorizados** contra super
 | **exploits** | Abuse known vulnerabilities (with `check()` where implemented) |
 | **creds** | Default credentials and brute force against network services |
 | **scanners** | Weakness identification; **autopwn** orchestrates modules with Nmap-like timing profiles |
-| **generic** | Cross-cutting utilities: SNMP, SSDP, offline PCAP/Wi‑Fi, **CVE lookup**, wordlist generator, Bluetooth LE |
+| **generic** | Cross-cutting utilities: SNMP, SSDP, **CVE lookup**, wordlist, external bridges *(802.11 PCAP → WirelessXPL-Forge)* |
 | **payloads** | Payload generation by architecture (ARM/MIPS/x86, reverse/bind shells) |
 | **encoders** | Payload encoding (Python, PHP, Perl) |
 
