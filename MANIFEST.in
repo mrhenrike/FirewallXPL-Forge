@@ -1,0 +1,7 @@
+recursive-include firewallxpl/resources/ssh_keys *.json *.key
+recursive-include firewallxpl/resources/vendors *.dat *.csv
+recursive-include firewallxpl/resources/wordlists *.txt
+recursive-include firewallxpl/resources/mibs *.*
+recursive-include firewallxpl/resources/catalogs *.json
+recursive-include firewallxpl/resources/arsenal *.*
+recursive-include firewallxpl/resources/ml *.json
