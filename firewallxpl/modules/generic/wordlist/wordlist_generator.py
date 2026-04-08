@@ -59,7 +59,7 @@ class Exploit(Exploit):
                        "generating the file. Output is ready to use as file:// in any "
                        "bruteforce module.",
         "authors": (
-            "André Henrique (@mrhenrike)",
+            "André Henrique (@mrhenrike) | União Geek",
         ),
         "references": (
             "https://github.com/Mebus/cupp",

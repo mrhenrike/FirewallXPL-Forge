@@ -21,5 +21,5 @@ Description:
 Module encodes Python payload to Hex format.
 
 Authors:
--  Marcin Bury <marcin[at]threat9.com>
+-  André Henrique (@mrhenrike) <mrhenrike@users.noreply.github.com>
 ```

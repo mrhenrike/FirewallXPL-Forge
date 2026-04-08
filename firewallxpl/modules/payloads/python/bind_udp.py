@@ -12,8 +12,7 @@ class Payload(BindTCPPayloadMixin, GenericPayload):
         "name": "Python Bind UDP",
         "description": "Creates interactive udp bind shell by using python.",
         "authors": (
-            "Andre Marques (zc00l)",  # shellpop
-            "Marcin Bury <marcin[at]threat9.com>",  # firewallxpl module
+            "André Henrique (@mrhenrike) | União Geek",
         ),
     }
 

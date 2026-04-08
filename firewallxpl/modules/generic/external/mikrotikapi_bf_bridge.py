@@ -26,7 +26,7 @@ class Exploit(Exploit):
         "description": "Runs MikrotikAPI-BF (https://github.com/mrhenrike/MikrotikAPI-BF) via subprocess. "
         "Set script_path to your repo's mikrotikapi-bf.py or leave empty to use PATH (mikrotikapi-bf).",
         "authors": (
-            "André Henrique (@mrhenrike)",
+            "André Henrique (@mrhenrike) | União Geek",
         ),
         "references": (
             "https://github.com/mrhenrike/MikrotikAPI-BF",

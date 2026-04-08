@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Author: André Henrique (@mrhenrike) | União Geek — https://github.com/Uniao-Geek
-"""Build a curated arsenal index for RouterXPL-Forge."""
+"""Build a curated arsenal index for FirewallXPL-Forge."""
 
 from __future__ import annotations
 
@@ -51,7 +51,7 @@ def main() -> int:
 
     index: Dict[str, object] = {
         "metadata": {
-            "name": "RouterXPL-Forge Arsenal Index",
+            "name": "FirewallXPL-Forge Arsenal Index",
             "scope": ["routers", "switches", "taps", "fw", "ngfw"],
             "out_of_scope": ["cameras", "printers", "dvr", "dvrs"],
             "generated_by": "tools/build_arsenal_index.py",

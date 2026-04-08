@@ -12,8 +12,7 @@ class Payload(ReverseTCPPayloadMixin, GenericPayload):
         "name": "Python Reverse UDP",
         "description": "Creates interactive udp reverse shell by using python.",
         "authors": (
-            "Andre Marques (zc00l)",  # shellpop
-            "Marcin Bury <marcin[at]threat9.com>"  # firewallxpl module
+            "André Henrique (@mrhenrike) | União Geek",
         ),
     }
 

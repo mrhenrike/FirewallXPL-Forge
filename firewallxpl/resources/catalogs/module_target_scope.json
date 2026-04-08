@@ -1,6 +1,6 @@
 {
-  "version": "2.0.0-firewall",
-  "description": "FirewallXPL-Forge: NGFW, UTM, WAF, and cloud perimeter lab classes (fw, ngfw, utm, waf, cloud_fw). Placeholder prefixes for AWS/Azure/GCP WAF map to future modules under exploits/cloud/.",
+  "version": "3.0.0-firewall",
+  "description": "FirewallXPL-Forge: module-to-device-class mapping for perimeter/waf/vpn/nac/lb hierarchy.",
   "operational_policy": {
     "prohibited_in_project_scope": [
       "operational_botnets_and_c2_infrastructure",
@@ -10,112 +10,101 @@
     "note": "FirewallXPL-Forge does not provide turnkey botnet/C2, zombie recruitment, or bricking modules. Use authorized lab tooling for controlled resilience tests."
   },
   "default_allow_classes": [
-    "fw",
-    "ngfw",
-    "utm",
+    "perimeter",
     "waf",
-    "cloud_fw"
+    "vpn",
+    "nac",
+    "lb"
   ],
   "domain_defaults": {
     "exploits": [
-      "fw",
-      "ngfw",
-      "utm",
+      "perimeter",
       "waf",
-      "cloud_fw"
+      "vpn",
+      "nac",
+      "lb"
     ],
     "creds": [
-      "fw",
-      "ngfw",
-      "utm",
+      "perimeter",
       "waf",
-      "cloud_fw"
+      "vpn",
+      "nac",
+      "lb"
     ]
   },
   "prefix_rules": [
     {
-      "prefix": "generic/",
-      "allow": [
-        "router",
-        "switch",
-        "fw",
-        "ngfw",
-        "isp_cpe"
-      ]
+      "prefix": "perimeter/generic/",
+      "allow": ["perimeter", "waf", "vpn", "nac", "lb"]
     },
     {
-      "prefix": "routers/fortinet/",
-      "allow": [
-        "fw",
-        "ngfw"
-      ]
+      "prefix": "perimeter/fortinet/",
+      "allow": ["perimeter"]
     },
     {
-      "prefix": "routers/paloalto/",
-      "allow": [
-        "fw",
-        "ngfw"
-      ]
+      "prefix": "perimeter/cisco/",
+      "allow": ["perimeter"]
     },
     {
-      "prefix": "routers/checkpoint/",
-      "allow": [
-        "fw",
-        "ngfw"
-      ]
+      "prefix": "perimeter/paloalto/",
+      "allow": ["perimeter"]
     },
     {
-      "prefix": "routers/sonicwall/",
-      "allow": [
-        "fw",
-        "ngfw"
-      ]
+      "prefix": "perimeter/checkpoint/",
+      "allow": ["perimeter"]
     },
     {
-      "prefix": "routers/sophos/",
-      "allow": [
-        "fw",
-        "ngfw"
-      ]
+      "prefix": "perimeter/sonicwall/",
+      "allow": ["perimeter"]
     },
     {
-      "prefix": "routers/watchguard/",
-      "allow": [
-        "fw",
-        "ngfw"
-      ]
+      "prefix": "perimeter/sophos/",
+      "allow": ["perimeter"]
     },
     {
-      "prefix": "misc/watchguard/",
-      "allow": [
-        "fw",
-        "ngfw"
-      ]
+      "prefix": "perimeter/watchguard/",
+      "allow": ["perimeter"]
     },
     {
-      "prefix": "routers/cisco/firepower",
-      "allow": [
-        "fw",
-        "ngfw"
-      ]
+      "prefix": "perimeter/juniper/",
+      "allow": ["perimeter"]
     },
     {
-      "prefix": "routers/juniper/",
-      "allow": [
-        "switch",
-        "router",
-        "fw",
-        "ngfw"
-      ]
+      "prefix": "perimeter/pfsense/",
+      "allow": ["perimeter"]
+    },
+    {
+      "prefix": "perimeter/ipfire/",
+      "allow": ["perimeter"]
+    },
+    {
+      "prefix": "perimeter/zyxel/",
+      "allow": ["perimeter"]
+    },
+    {
+      "prefix": "waf/",
+      "allow": ["waf"]
+    },
+    {
+      "prefix": "vpn/",
+      "allow": ["vpn"]
+    },
+    {
+      "prefix": "nac/",
+      "allow": ["nac"]
+    },
+    {
+      "prefix": "lb/",
+      "allow": ["lb"]
     }
   ],
   "file_overrides": {
-    "generic/http_form_char_by_char_oracle.py": [
-      "router",
-      "switch",
-      "fw",
-      "ngfw",
-      "isp_cpe"
+    "perimeter/generic/http_form_char_by_char_oracle.py": [
+      "perimeter",
+      "waf",
+      "vpn",
+      "nac",
+      "lb"
     ]
   },
   "note": "Wi-Fi/BLE tooling: WirelessXPL-Forge."

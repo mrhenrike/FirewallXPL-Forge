@@ -1,0 +1,5 @@
+# Secomea GateManager/SiteManager default credentials
+# Author: André Henrique (@mrhenrike) | União Geek
+admin:admin
+admin:1234
+admin:GateManager

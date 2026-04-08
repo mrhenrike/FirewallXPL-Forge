@@ -117,7 +117,7 @@ jobs:
       - name: Refresh deep intel and honeypot snapshots (non-gating)
         run: |
           python tools/deep_intel_backlog.py
-          python tools/phase6b_honeypot_validation.py
+          python tools/validate_honeypot_traps.py
 
   dependency-review:
     name: "dependency-review / pull_request"

@@ -8,7 +8,7 @@ class Encoder(BaseEncoder):
         "name": "Python Base64 Encoder",
         "description": "Module encodes Python payload to Base64 format.",
         "authors": (
-            "Marcin Bury <marcin[at]threat9.com>",  # firewallxpl module
+            "André Henrique (@mrhenrike) | União Geek",
         ),
     }
 

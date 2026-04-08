@@ -10,10 +10,7 @@ class Exploit(HTTPClient):
         "name": "HTTP/HTTPS Multi-Auth Default Creds",
         "description": "Module validates multiple HTTP auth methods (basic, digest, bearer, custom headers, form).",
         "authors": (
-            "Marcin Bury <marcin[at]threat9.com>",  # firewallxpl module
-        ),
-        "subcredits": (
-            "FirewallXPL-Forge modifications by André Henrique (@mrhenrike) | União Geek",
+            "André Henrique (@mrhenrike) | União Geek",
         ),
         "devices": (
             "Routers",

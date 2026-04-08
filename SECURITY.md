@@ -7,8 +7,8 @@
 ## Supported scope
 
 - **In scope:** flaws in **FirewallXPL-Forge itself** (Python code, declared dependencies, `tools/` scripts) affecting the **operator** (RCE on the analyst machine, unsafe input handling, etc.).
-- **Out of scope:** “0-day” on third-party **devices** found while using the framework; report through vendor or their bug bounty.
-- **Functional scope:** **NGFW, UTM, WAF**, **cloud firewalls**, and SSL-VPN concentrators (perimeter lab). Camera/printer/DVR-primary modules are not the focus of this fork.
+- **Out of scope:** “0-day” on target **devices** found while using the framework; report through vendor or their bug bounty.
+- **Functional scope:** **NGFW, UTM, WAF**, **cloud firewalls**, and SSL-VPN concentrators (perimeter lab). Camera/printer/DVR-primary modules are not the focus of this project.
 
 ## Reporting a vulnerability
 
@@ -19,7 +19,7 @@
    - Minimal reproduction steps
    - Impact (confidentiality, integrity, availability)
    - Suggested patch (optional)
-   - Logs without third-party secrets
+   - Logs without sensitive data
 
 ## Response targets (best effort)
 

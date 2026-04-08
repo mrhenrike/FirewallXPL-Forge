@@ -10,6 +10,17 @@ from firewallxpl.core.exploit.module_target_scope import (
 )
 from firewallxpl.core.ml.advisor import AttackAdvisor, advisor_context_from_autopwn
 from firewallxpl.core.ml.gpu import gpu_capability_summary
+from firewallxpl.core.ml.fingerprinter import ServiceFingerprinter
+from firewallxpl.core.ml.anomaly_detector import AnomalyDetector
+from firewallxpl.core.ml.attack_optimizer import AttackOptimizer
+from firewallxpl.core.ml.auto_tuner import AutoTuner
+from firewallxpl.core.ml.credential_mutator import CredentialMutator
+
+try:
+    from firewallxpl.core.gpu import HardwareDiscovery, GPUDeviceManager
+    _HAS_GPU = True
+except ImportError:
+    _HAS_GPU = False
 
 
 class Exploit(Exploit):
@@ -17,21 +28,20 @@ class Exploit(Exploit):
         "name": "AutoPwn",
         "description": "Module scans for vulnerabilities and weaknesses. Supports timing templates T0..T5 (default: balanced/T3).",
         "authors": (
-            "Marcin Bury <marcin[at]threat9.com>",  # firewallxpl module
-        ),
-        "subcredits": (
-            "FirewallXPL-Forge modifications by André Henrique (@mrhenrike) | União Geek",
+            "André Henrique (@mrhenrike) | União Geek",
         ),
         "devices": (
-            "Routers",
-            "Switches",
-            "TAPs",
             "FW",
             "NGFW",
+            "UTM",
+            "WAF",
+            "SSL-VPN",
+            "NAC",
+            "ELB",
         ),
     }
 
-    modules = ["generic", "routers", "misc"]
+    modules = ["perimeter", "waf", "vpn", "nac", "lb", "generic"]
     MIN_THREADS = 1
     MAX_THREADS = 300
     TIMING_PROFILES = {
@@ -57,7 +67,7 @@ class Exploit(Exploit):
     vendor = OptString("any", "Vendor concerned (default: any)")
     target_device_class = OptString(
         "multi",
-        "Target class filter: multi|router|switch|tap|fw|ngfw|isp_cpe (see resources/catalogs/module_target_scope.json)",
+        "Target class filter: multi|perimeter|waf|vpn|nac|lb (see resources/catalogs/module_target_scope.json)",
         advanced=True,
     )
     timing_template = OptString(
@@ -117,7 +127,37 @@ class Exploit(Exploit):
     )
     ml_use_gpu = OptBool(
         False,
-        "When ml_advisor true: run timing logits on PyTorch CUDA if installed (marginal; network checks stay I/O bound)",
+        "When ml_advisor true: run timing logits on PyTorch CUDA if installed",
+        advanced=True,
+    )
+    ml_fingerprint = OptBool(
+        False,
+        "Use ML service fingerprinting to filter modules by detected vendor/product",
+        advanced=True,
+    )
+    ml_anomaly_detection = OptBool(
+        False,
+        "Detect honeypots/WAF via response anomaly analysis before exploit phase",
+        advanced=True,
+    )
+    ml_attack_optimizer = OptBool(
+        False,
+        "Use RL-based Thompson Sampling to optimize module execution order",
+        advanced=True,
+    )
+    ml_auto_tune = OptBool(
+        False,
+        "Auto-tune threads/timeout/timing based on measured target latency",
+        advanced=True,
+    )
+    ml_smart_mutation = OptBool(
+        False,
+        "Use ML-driven credential mutation (Markov + leet rules) for brute-force",
+        advanced=True,
+    )
+    compute_mode = OptString(
+        "cpu",
+        "Compute mode: cpu|gpu|hybrid (gpu accelerates hash cracking and pattern matching)",
         advanced=True,
     )
 
@@ -128,6 +168,12 @@ class Exploit(Exploit):
         self._active_profile = self.TIMING_PROFILES["t3"]
         self._exploits_directories = [os.path.join(utils.MODULES_DIR, "exploits", module) for module in self.modules]
         self._creds_directories = [os.path.join(utils.MODULES_DIR, "creds", module) for module in self.modules]
+        self._fingerprinter = ServiceFingerprinter()
+        self._anomaly_detector = AnomalyDetector()
+        self._attack_optimizer = AttackOptimizer()
+        self._auto_tuner = AutoTuner()
+        self._credential_mutator = CredentialMutator()
+        self._gpu_manager = None
 
     def _resolve_timing_template(self) -> dict:
         template = str(self.timing_template).strip().lower()
@@ -252,6 +298,57 @@ class Exploit(Exploit):
             if not future.cancelled():
                 executor.shutdown(wait=False, cancel_futures=True)
 
+    def _init_gpu_manager(self):
+        """Initialize GPU device manager if compute_mode != cpu."""
+        if not _HAS_GPU or self.compute_mode == "cpu":
+            return
+        try:
+            discovery = HardwareDiscovery()
+            self._gpu_manager = GPUDeviceManager(discovery=discovery, compute_mode=str(self.compute_mode))
+            self._gpu_manager.initialize()
+            backends = self._gpu_manager.available_backends
+            print_status("GPU compute: mode={} backends={}".format(self.compute_mode, ", ".join(backends)))
+        except Exception as exc:
+            print_error("GPU initialization failed: {} — falling back to CPU".format(exc))
+            self._gpu_manager = None
+
+    def _ml_pre_scan(self):
+        """Run ML pre-scan analysis: fingerprint, anomaly baseline, auto-tune."""
+        if self.ml_fingerprint:
+            print_status("ML fingerprinting target {}...".format(self.target))
+            try:
+                import requests
+                resp = requests.get("https://{}:{}/".format(self.target, 443), verify=False, timeout=5)
+                banner = resp.headers.get("Server", "") + " " + resp.text[:500]
+                preds = self._fingerprinter.predict(banner)
+                if preds:
+                    best = preds[0]
+                    print_status("ML fingerprint: {}/{} (confidence: {:.0%})".format(
+                        best.vendor, best.product, best.confidence))
+                    if best.confidence > 0.5 and self.vendor == "any":
+                        self.vendor = best.vendor
+                        print_status("Auto-setting vendor={} based on ML fingerprint".format(best.vendor))
+            except Exception as exc:
+                print_status("ML fingerprint skipped: {}".format(exc))
+
+        if self.ml_auto_tune:
+            print_status("ML auto-tuning: measuring target latency...")
+            try:
+                import requests
+                for _ in range(3):
+                    start = time.time()
+                    requests.get("https://{}:{}/".format(self.target, 443), verify=False, timeout=5)
+                    latency = (time.time() - start) * 1000
+                    self._auto_tuner.record_latency(latency)
+                rec = self._auto_tuner.recommend()
+                print_status("ML auto-tune: {} (threads={}, timeout={}s) — {}".format(
+                    rec.timing_template, rec.threads, rec.timeout_s, rec.reasoning))
+                if self.threads == 8:
+                    self.threads = rec.threads
+                    self.module_timeout_s = int(rec.timeout_s)
+            except Exception as exc:
+                print_status("ML auto-tune skipped: {}".format(exc))
+
     def run(self):
         self.vulnerabilities = []
         self.creds = []
@@ -259,28 +356,31 @@ class Exploit(Exploit):
         self._scope_skipped = 0
         self._print_timing_help()
         self._configure_runtime_profile()
+        self._init_gpu_manager()
+
+        advisor = None
+        advisor_ctx = None
+        if self.ml_advisor:
+            try:
+                advisor = AttackAdvisor()
+                advisor_ctx = advisor_context_from_autopwn(self)
+                print_status("ML advisor initialized (scoring {} features).".format(12))
+            except Exception as exc:
+                print_error("ML advisor failed to initialize: {}".format(exc))
+
+        self._ml_pre_scan()
 
         tcls = normalize_target_class(str(self.target_device_class))
-        if tcls == "tap":
-            print_info(
-                "\033[93m[!]\033[0m",
-                (
-                    "target_device_class=tap: passive TAPs usually have no in-scope management plane; "
-                    "most modules will be skipped. Use multi only for lab misconfiguration scenarios."
-                ),
-            )
-        elif tcls not in ("multi",):
+        if tcls not in ("multi",):
             print_info(
                 "\033[94m[*]\033[0m",
-                "Device class filter active: {} (modules outside module_target_scope.json rules are skipped)".format(tcls),
+                "Device class filter active: {} (modules outside scope are skipped)".format(tcls),
             )
 
-        # Update list of directories with specific vendor if needed
         if self.vendor != 'any':
             self._exploits_directories = [os.path.join(utils.MODULES_DIR, "exploits", module, self.vendor) for module in self.modules]
 
         if self.check_exploits:
-            # vulnerabilities
             print_info()
             print_info("\033[94m[*]\033[0m", "{} Starting vulnerability check...".format(self.target))
 
@@ -293,11 +393,17 @@ class Exploit(Exploit):
                 modules = advisor.prioritize_modules(modules, advisor_ctx)
                 print_status("ML advisor reordered {} exploit modules (higher expected yield first).".format(len(modules)))
 
+            if self.ml_attack_optimizer:
+                module_names = [getattr(m, "__module__", str(m)) for m in modules]
+                ordered_names = self._attack_optimizer.prioritize(module_names)
+                name_to_mod = {getattr(m, "__module__", str(m)): m for m in modules}
+                modules = [name_to_mod[n] for n in ordered_names if n in name_to_mod]
+                print_status("Attack optimizer reordered {} modules via Thompson Sampling.".format(len(modules)))
+
             data = LockedIterator(modules)
             self.run_threads(self.threads, self.exploits_target_function, data)
 
         if self.check_creds:
-            # default creds
             print_info()
             print_info("\033[94m[*]\033[0m", "{} Starting default credentials check...".format(self.target))
             modules = []
@@ -307,7 +413,7 @@ class Exploit(Exploit):
 
             if advisor is not None and advisor_ctx is not None:
                 modules = advisor.prioritize_modules(modules, advisor_ctx)
-                print_status("ML advisor reordered {} credential modules (higher expected yield first).".format(len(modules)))
+                print_status("ML advisor reordered {} credential modules.".format(len(modules)))
 
             data = LockedIterator(modules)
             self.run_threads(self.threads, self.creds_target_function, data)

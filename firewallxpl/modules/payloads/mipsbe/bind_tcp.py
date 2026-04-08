@@ -11,7 +11,7 @@ class Payload(BindTCPPayloadMixin, ArchitectureSpecificPayload):
         "name": "MIPSBE Bind TCP",
         "description": "Creates interactive tcp bind shell for MIPSBE architecture.",
         "authors": (
-            "Marcin Bury <marcin[at]threat9.com>",  # firewallxpl module
+            "André Henrique (@mrhenrike) | União Geek",
         ),
     }
 

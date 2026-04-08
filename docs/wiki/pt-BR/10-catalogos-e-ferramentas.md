@@ -12,9 +12,9 @@
 | `discord_requested_devices.json` | Pedidos da comunidade / Discord |
 | `external_tool_intel_sources.json` | Fontes externas para roadmap (RouterPwn, EDB, Metasploit, …) |
 | `external_framework_clones.json` | URLs oficiais para clonar Metasploit / Exploit-DB / MikrotikAPI-BF (licenças e pontes `generic/external/*`) |
-| `incorporated_third_party_index.json` | Índice dos espelhos PoC em `arsenal/pocs/incorporated_third_party/` |
+| `integrated_modules_index.json` | Índice dos espelhos PoC em `arsenal/pocs/integrated_modules/` |
 | `soho_catalog_js_index.json` | Metadados da *build* do catálogo SOHO HTML/JS |
-| `third_party_upstream_open_work.json` | *Snapshot* de PRs/issues abertos nos *mirrors* upstream |
+| `# (removed catalog)` | *Snapshot* de PRs/issues abertos nos *mirrors* de referencia |
 | `deep_intel_backlog.json` | Itens de intel pendentes de triagem |
 
 ## Diagramas de arquitetura
@@ -42,11 +42,11 @@ python tools/generate_full_catalog.py
 | `tools/validate_market_priority_minimums.py` | Valida catálogo de prioridade |
 | `tools/report_market_priority_gaps.py` | Gera `.log/market_priority_gaps.csv` |
 | `tools/gen_wiki_module_index.py` | Regenera `docs/wiki/ANEXO-INDICE-MODULOS.md` |
-| `tools/phase6_sync_external_intel.py` | *Snapshots* de intel externa (rede / `gh` conforme ambiente) |
+| `tools/sync_intel_sources.py` | *Snapshots* de intel externa (rede / `gh` conforme ambiente) |
 | `tools/generate_full_catalog.py` | Regenera `docs/FULL_CATALOG.*` (pegada em disco + estatísticas) |
 | `tools/refresh_cve_extended_catalog.py` | Regenera `cve_extended_catalog.json` (merge + URLs PoC tg12) |
-| `tools/embed_local_third_party_poc_intel.py` | Actualiza JSON de intel PoC embutido |
-| `tools/incorporate_third_party_poc_tree.py` | Copia/sincroniza árvores PoC para `incorporated_third_party/` |
+| `# (removed tool)` | Actualiza JSON de intel PoC embutido |
+| `# (removed tool)` | Copia/sincroniza árvores PoC para `integrated_modules/` |
 | `tools/build_soho_catalog_js_index.py` | Reconstrói índice JS do catálogo SOHO |
 | `tools/compile_first_party.py` | Helper de empacotamento (*first-party*) |
 

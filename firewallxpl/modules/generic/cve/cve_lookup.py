@@ -23,7 +23,7 @@ class Exploit(Exploit):
                        "Use after banner grabbing or service discovery to enumerate "
                        "attack surface.",
         "authors": (
-            "André Henrique (@mrhenrike)",
+            "André Henrique (@mrhenrike) | União Geek",
         ),
         "references": (
             "https://nvd.nist.gov/",

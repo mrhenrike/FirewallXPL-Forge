@@ -1,13 +1,7 @@
-"""Optional attack advisor (lightweight ML/heuristics + GPU hints).
+"""Machine Learning engine for FirewallXPL-Forge.
 
-Author: André Henrique (@mrhenrike) | União Geek — https://github.com/Uniao-Geek
+Provides trained models for attack prioritization, service fingerprinting,
+credential mutation, anomaly detection, and attack path optimization.
+
+Author: André Henrique (@mrhenrike) | União Geek
 """
-
-from firewallxpl.core.ml.advisor import AttackAdvisor, AdvisorContext
-from firewallxpl.core.ml.gpu import gpu_capability_summary
-
-__all__ = (
-    "AttackAdvisor",
-    "AdvisorContext",
-    "gpu_capability_summary",
-)

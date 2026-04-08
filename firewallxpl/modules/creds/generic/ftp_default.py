@@ -9,10 +9,7 @@ class Exploit(FTPClient):
         "description": "Module performs dictionary attack with default credentials against FTP service."
                        "If valid credentials are found, the are displayed to the user.",
         "authors": (
-            "Marcin Bury <marcin[at]threat9.com>",  # firewallxpl module
-        ),
-        "subcredits": (
-            "FirewallXPL-Forge modifications by André Henrique (@mrhenrike) | União Geek",
+            "André Henrique (@mrhenrike) | União Geek",
         ),
         "devices": (
             "Multiple devices",

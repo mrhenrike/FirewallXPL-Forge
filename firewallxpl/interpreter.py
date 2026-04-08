@@ -9,7 +9,7 @@ import signal
 import traceback
 from collections import Counter
 
-# Adaptation credits: André Henrique (@mrhenrike) | União Geek — https://github.com/Uniao-Geek
+# Author: André Henrique (@mrhenrike) | União Geek — https://github.com/Uniao-Geek
 
 from firewallxpl.core.exploit.exceptions import FirewallXPLException
 from firewallxpl.core.exploit.utils import (
@@ -96,10 +96,7 @@ class BaseInterpreter:
         self.banner = ""
 
     def setup(self):
-        """ Initialization of third-party libraries
-
-        Setting interpreter history.
-        Setting appropriate completer function.
+        """Initialize interpreter history and completer.
 
         :return:
         """
@@ -242,7 +239,7 @@ class BaseInterpreter:
 
 
 class FirewallXPLInterpreter(BaseInterpreter):
-    history_file = os.path.expanduser("~/.rxf_history")
+    history_file = os.path.expanduser("~/.fxf_history")
     global_help = """Global commands:
     help                        Print this help menu
     use <module>                Select a module for usage
@@ -266,8 +263,8 @@ class FirewallXPLInterpreter(BaseInterpreter):
         self.current_module = None
         self.raw_prompt_template = None
         self.module_prompt_template = None
-        self.prompt_hostname = "rxf"
-        self.show_sub_commands = ("info", "options", "advanced", "devices", "all", "encoders", "creds", "exploits", "scanners", "wordlists")
+        self.prompt_hostname = "fxf"
+        self.show_sub_commands = ("info", "options", "advanced", "devices", "all", "encoders", "creds", "exploits", "scanners", "wordlists", "perimeter", "waf", "vpn", "nac", "lb")
         self.search_sub_commands = ("type", "device", "language", "payload", "vendor")
 
         self.global_commands = sorted(["use ", "exec ", "help", "exit", "show ", "search "])
@@ -290,12 +287,11 @@ class FirewallXPLInterpreter(BaseInterpreter):
  \\_| \\_\\___/ \\__,_|\\__\\___|_|  \\____/| .__/|_|\\___/|_|\\__|
                                      | |
        Exploitation Framework for    |_|    FirewallXPL-Forge
-            Embedded Devices
+         Perimeter Security Devices
 
  Codename   : I Knew You Were Trouble
- Version    : 3.4.7
- Maintained : André Henrique (@mrhenrike) | União Geek — https://github.com/Uniao-Geek
- Upstream   : threat9/routersploit (legacy lineage)
+ Version    : 2.0.0
+ Author     : André Henrique (@mrhenrike) | União Geek — https://github.com/Uniao-Geek
 
  Exploits: {exploits_count} Scanners: {scanners_count} Creds: {creds_count} Generic: {generic_count} Payloads: {payloads_count} Encoders: {encoders_count}
 """.format(exploits_count=self.modules_count["exploits"],
@@ -686,7 +682,7 @@ class FirewallXPLInterpreter(BaseInterpreter):
 
         if not (len(keyword) or len(kwargs.keys())):
             print_error("Please specify at least search keyword. e.g. 'search cisco'")
-            print_error("You can specify options. e.g. 'search type=exploits device=routers vendor=linksys WRT100 rce'")
+            print_error("You can specify options. e.g. 'search type=exploits device=perimeter vendor=fortinet fortigate rce'")
             return
 
         for (key, value) in kwargs.items():

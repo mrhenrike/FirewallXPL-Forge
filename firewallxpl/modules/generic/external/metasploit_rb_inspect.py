@@ -22,7 +22,7 @@ class Exploit(Exploit):
         "description": "Loads a .rb path from your Metasploit tree and prints Name/Author/References heuristics. "
         "Does not run Ruby or MSF; original file is not modified. Credit remains with module authors and Rapid7 license.",
         "authors": (
-            "André Henrique (@mrhenrike)",
+            "André Henrique (@mrhenrike) | União Geek",
         ),
         "references": (
             "https://github.com/rapid7/metasploit-framework",

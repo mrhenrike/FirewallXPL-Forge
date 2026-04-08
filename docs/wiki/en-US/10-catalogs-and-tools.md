@@ -12,9 +12,9 @@
 | `discord_requested_devices.json` | Community requests |
 | `external_tool_intel_sources.json` | External intel URLs (incl. MSF / Exploit-DB bridges) |
 | `external_framework_clones.json` | Curated official clone URLs + license notes; pairs with `generic/external/*` bridges |
-| `incorporated_third_party_index.json` | Index of vendored PoC mirrors under `arsenal/pocs/incorporated_third_party/` |
+| `integrated_modules_index.json` | Index of vendored PoC mirrors under `arsenal/pocs/integrated_modules/` |
 | `soho_catalog_js_index.json` | Build stamp / mapping for the bundled SOHO HTML catalog |
-| `third_party_upstream_open_work.json` | Upstream PR/issue tracking snapshot for third-party mirrors |
+| `# (removed catalog)` | Upstream PR/issue tracking snapshot for PoC mirrors |
 | `deep_intel_backlog.json` | Intel backlog items |
 
 ## Architecture diagrams
@@ -40,11 +40,11 @@ python tools/generate_full_catalog.py
 | `tools/validate_market_priority_minimums.py` | Market catalog validation |
 | `tools/report_market_priority_gaps.py` | Gap CSV |
 | `tools/gen_wiki_module_index.py` | Regenerate [../ANEXO-INDICE-MODULOS.md](../ANEXO-INDICE-MODULOS.md) |
-| `tools/phase6_sync_external_intel.py` | External intel snapshot (environment-dependent) |
+| `tools/sync_intel_sources.py` | External intel snapshot (environment-dependent) |
 | `tools/generate_full_catalog.py` | Regenerate [../../FULL_CATALOG.md](../../FULL_CATALOG.md) / `.txt` (footprint + stats) |
 | `tools/refresh_cve_extended_catalog.py` | Regenerate `cve_extended_catalog.json` (merge + tg12 PoC URLs) |
-| `tools/embed_local_third_party_poc_intel.py` | Refresh embedded PoC intel JSON from local mirrors |
-| `tools/incorporate_third_party_poc_tree.py` | Copy/sync third-party PoC trees into `incorporated_third_party/` |
+| `# (removed tool)` | Refresh embedded PoC intel JSON from local mirrors |
+| `# (removed tool)` | Copy/sync PoC trees into `integrated_modules/` |
 | `tools/build_soho_catalog_js_index.py` | Rebuild SOHO catalog JS index metadata |
 | `tools/compile_first_party.py` | Packaging helper for first-party artifacts |
 
