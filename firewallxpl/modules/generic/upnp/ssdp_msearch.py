@@ -10,7 +10,7 @@ class Exploit(UDPClient):
         "description": "Sends M-SEARCH request to target and retrieve information from UPnP "
                        "enabled systems.",
         "authors": (
-            "Marcin Bury <marcin[at]threat9.com>",  # firewallxpl module
+            "André Henrique (@mrhenrike) | União Geek",
         ),
         "references": (
             "http://www.upnp-hacks.org/upnp.html",

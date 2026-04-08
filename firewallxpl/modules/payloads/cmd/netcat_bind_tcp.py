@@ -7,7 +7,7 @@ class Payload(BindTCPPayloadMixin, GenericPayload):
         "name": "Netcat Bind TCP",
         "description": "Creates interactive tcp bind shell by using netcat.",
         "authors": (
-            "Marcin Bury <marcin[at]threat9.com>",  # firewallxpl module
+            "André Henrique (@mrhenrike) | União Geek",
         ),
     }
 

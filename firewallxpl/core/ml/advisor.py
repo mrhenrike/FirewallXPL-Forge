@@ -147,20 +147,24 @@ class AttackAdvisor:
 
         if vendor_specific and vendor in path:
             score += float(mw["vendor_in_module_path"])
-            if ".creds.routers." in path:
-                score += float(mw["creds_routers_when_vendor_specific"])
-            if ".exploits.routers." in path:
-                score += float(mw["exploits_routers_when_vendor_specific"])
+            for domain in (".creds.perimeter.", ".creds.waf.", ".creds.vpn.", ".creds.nac.", ".creds.lb."):
+                if domain in path:
+                    score += float(mw.get("creds_routers_when_vendor_specific", 0))
+                    break
+            for domain in (".exploits.perimeter.", ".exploits.waf.", ".exploits.vpn.", ".exploits.nac.", ".exploits.lb."):
+                if domain in path:
+                    score += float(mw.get("exploits_routers_when_vendor_specific", 0))
+                    break
         else:
             if ".creds.generic." in path:
                 leaf = path.rsplit(".", 1)[-1]
                 if leaf.endswith("default"):
                     score += float(mw.get("creds_generic_default_when_vendor_any", 0))
-            if ".exploits.generic." in path:
+            if ".exploits.perimeter.generic." in path:
                 score += float(mw.get("exploits_generic_when_vendor_any", 0))
 
-        if ".misc." in path or "modules.exploits.misc" in path or "modules.creds.misc" in path:
-            score += float(mw["misc_directory_penalty"])
+        if "cve_20" in path:
+            score += 2.0
 
         proto = getattr(exploit_class, "target_protocol", None)
         boost = float(mw["protocol_enabled_boost"])

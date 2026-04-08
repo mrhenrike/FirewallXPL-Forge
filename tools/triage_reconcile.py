@@ -27,8 +27,8 @@ RESOLVED_PATTERNS: Tuple[str, ...] = (
     "error using scanner/autopwn",
     "issue with autopwn",
     "can't start scanners/autopwn",
-    "problem installing routersploit",
-    "issue with routersploit in parrotsec",
+    "problem installing firewallxpl",
+    "issue with firewallxpl in parrotsec",
     "need help im using termux",
     "error on termux",
     "termux",
@@ -37,7 +37,7 @@ RESOLVED_PATTERNS: Tuple[str, ...] = (
     "py3",
     "use is_alive in favour of isalive",
     "updated exploit.py for compatibility with python 3.9",
-    "fix exploit check for routers/linksys/test_eseries_themoon_rce",
+    "fix exploit check for perimeter/linksys/test_eseries_themoon_rce",
     "[hootoo] multiple unauth exploits for tripmate series",
 )
 
@@ -46,11 +46,11 @@ INSUFFICIENT_CONTEXT_PATTERNS: Tuple[str, ...] = (
     "not working",
     "error after run",
     "error while using the tool",
-    "issue with routersploit",
-    "routersploit run command error",
+    "issue with firewallxpl",
+    "firewallxpl run command error",
     "can't start scanners/autopwn",
     "terminal transcript",
-    "problem installing routersploit",
+    "problem installing firewallxpl",
     "functionality question",
 )
 
@@ -105,14 +105,14 @@ def _reconcile_row(row: Dict[str, str]) -> Dict[str, str]:
         row["classification"] = "needs_repro_context"
         row["reconcile_reason"] = "insufficient_repro_context"
     elif classification in {"adapt_candidate", "backlog"} and any(pattern in title for pattern in DEFER_PHASE6_PATTERNS):
-        row["classification"] = "deferred_phase6_deep_intel"
-        row["reconcile_reason"] = "deferred_to_phase6"
+        row["classification"] = "deferred_deep_intel"
+        row["reconcile_reason"] = "deferred_to_deep_intel"
     elif classification in {"adapt_candidate", "backlog"} and item_type == "pr" and any(pattern in title for pattern in NON_CORE_PATTERNS):
         row["classification"] = "non_core_reference"
         row["reconcile_reason"] = "non_core_pr"
     elif classification in {"adapt_candidate", "backlog"}:
-        row["classification"] = "deferred_phase6_deep_intel"
-        row["reconcile_reason"] = "deferred_to_phase6_default"
+        row["classification"] = "deferred_deep_intel"
+        row["reconcile_reason"] = "deferred_to_deep_intel_default"
     else:
         row["reconcile_reason"] = "no_change"
 

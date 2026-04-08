@@ -7,7 +7,7 @@ class Encoder(BaseEncoder):
         "name": "PHP ROT13 Encoder",
         "description": "Module encodes PHP payload to ROT13 format.",
         "authors": (
-            "André Henrique (@mrhenrike) | União Geek",  # FirewallXPL-Forge encoder
+            "André Henrique (@mrhenrike) | União Geek",
         ),
     }
 

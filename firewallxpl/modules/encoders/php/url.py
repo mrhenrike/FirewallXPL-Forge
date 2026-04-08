@@ -9,7 +9,7 @@ class Encoder(BaseEncoder):
         "name": "PHP URL Encoder",
         "description": "Module encodes PHP payload to URL-encoded format.",
         "authors": (
-            "André Henrique (@mrhenrike) | União Geek",  # FirewallXPL-Forge encoder
+            "André Henrique (@mrhenrike) | União Geek",
         ),
     }
 

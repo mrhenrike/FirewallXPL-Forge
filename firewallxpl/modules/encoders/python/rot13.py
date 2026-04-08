@@ -9,7 +9,7 @@ class Encoder(BaseEncoder):
         "name": "Python ROT13 Encoder",
         "description": "Module encodes Python payload to ROT13 format.",
         "authors": (
-            "André Henrique (@mrhenrike) | União Geek",  # FirewallXPL-Forge encoder
+            "André Henrique (@mrhenrike) | União Geek",
         ),
     }
 

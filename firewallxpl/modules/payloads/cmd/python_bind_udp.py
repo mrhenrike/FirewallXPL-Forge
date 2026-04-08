@@ -7,7 +7,7 @@ class Payload(PythonBindUDP):
         "name": "Python Bind UDP One-Liner",
         "description": "Creates interactive udp bind shell by using python one-liner.",
         "authors": (
-            "Marcin Bury <marcin[at]threat9.com>",  # firewallxpl module
+            "André Henrique (@mrhenrike) | União Geek",
         )
     }
 

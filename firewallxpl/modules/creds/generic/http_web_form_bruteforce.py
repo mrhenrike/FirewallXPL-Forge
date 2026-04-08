@@ -46,10 +46,7 @@ class Exploit(HTTPClient):
         "body substrings, status codes, or Location fragments—similar to Hydra/JtR web modules. "
         "Respect rate limits and authorization; for lab targets only.",
         "authors": (
-            "André Henrique <https://github.com/mrhenrike>",
-        ),
-        "subcredits": (
-            "FirewallXPL-Forge | União Geek — https://github.com/Uniao-Geek",
+            "André Henrique (@mrhenrike) | União Geek",
         ),
         "devices": (
             "Routers",

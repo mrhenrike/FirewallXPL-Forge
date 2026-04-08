@@ -1,6 +1,6 @@
 {
   "checked_at": "2026-04-03T21:56:54.046319+00:00",
-  "campaign": "phase6b_final_honeypot_validation",
+  "campaign": "honeypot_validation",
   "modes": {
     "defensive": {
       "description": "non-intrusive checks only",

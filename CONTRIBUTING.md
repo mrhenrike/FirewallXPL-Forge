@@ -22,7 +22,7 @@ Thanks for considering a contribution. This document summarizes scope, workflow,
 |----------|----------------------------|
 | Routers, switches, TAPs, firewalls, NGFW | Modules whose primary target is IP camera, printer, or DVR |
 
-Out-of-scope proposals may be declined or redirected to a specialized fork.
+Out-of-scope proposals may be declined or redirected to a specialized project.
 
 ## How to contribute
 
@@ -35,7 +35,7 @@ Out-of-scope proposals may be declined or redirected to a specialized fork.
 1. One PR should address **one coherent** topic.
 2. Include **risk notes** (operational impact, security surface).
 3. **Do not** commit secrets, `.env`, credentials, or customer data.
-4. Preserve upstream `authors` in inherited modules; add `subcredits` when adapting.
+4. Preserve original `authors` in inherited modules; credit original work in references.
 5. Update **both locales** when you change user-visible behavior (en-US + pt-BR wiki sections as applicable).
 
 ## Bug reports
@@ -46,7 +46,7 @@ Include:
 - Exact command sequence (interactive or `rxf.py -m ... -s ...`)
 - OS, Python version, venv vs global
 - Expected vs actual behavior
-- Traceback or `firewallxpl.log` excerpt **without** real third-party IPs/tokens
+- Traceback or `firewallxpl.log` excerpt **without** real real IPs/tokens
 
 ## Validation expectations
 

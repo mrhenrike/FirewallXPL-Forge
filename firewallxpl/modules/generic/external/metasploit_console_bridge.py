@@ -22,7 +22,7 @@ class Exploit(Exploit):
         "MSF modules and license remain under Rapid7/BSD at your install path — this module only "
         "orchestrates the CLI. Not legal advice: comply with all licenses and target authorization.",
         "authors": (
-            "André Henrique (@mrhenrike)",
+            "André Henrique (@mrhenrike) | União Geek",
         ),
         "references": (
             "https://github.com/rapid7/metasploit-framework",

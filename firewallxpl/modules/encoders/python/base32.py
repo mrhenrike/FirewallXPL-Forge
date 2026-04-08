@@ -9,7 +9,7 @@ class Encoder(BaseEncoder):
         "name": "Python Base32 Encoder",
         "description": "Module encodes Python payload to Base32 format.",
         "authors": (
-            "André Henrique (@mrhenrike) | União Geek",  # FirewallXPL-Forge encoder
+            "André Henrique (@mrhenrike) | União Geek",
         ),
     }
 

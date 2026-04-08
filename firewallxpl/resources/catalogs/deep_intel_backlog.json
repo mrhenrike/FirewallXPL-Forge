@@ -134,11 +134,11 @@
       "notes": "source_type=firmware-research-index reachable=True"
     },
     {
-      "id": "threat9-upnpfuzz",
+      "id": "fxf-upnpfuzz",
       "origin": "external_source",
       "name": "UPnPFuzz",
       "domain": "upnp-discovery-fuzzing",
-      "url": "https://github.com/threat9/upnpfuzz/?tab=readme-ov-file",
+      "url": "https://github.com/mrhenrike/FirewallXPL-Forge/?tab=readme-ov-file",
       "priority": "p1",
       "recommended_action": "adapter_or_wrapper_module",
       "keyword_hits": "0",
@@ -170,11 +170,11 @@
       "notes": "source_type=algorithm-research reachable=True"
     },
     {
-      "id": "threat9-main",
+      "id": "fxf-main",
       "origin": "external_source",
-      "name": "THREAT9 official site",
+      "name": "FirewallXPL-Forge project site",
       "domain": "project-context",
-      "url": "https://threat9.com/",
+      "url": "https://github.com/mrhenrike/FirewallXPL-Forge",
       "priority": "p3",
       "recommended_action": "reference_triage",
       "keyword_hits": "0",
@@ -206,16 +206,16 @@
       "notes": "device_pool has Intelbras SKUs with no firewallxpl/vendor path hit; validate CVE-2019-19516, RF301K cfg leak, etc. against firmware."
     },
     {
-      "id": "embedded-local-third-party-poc",
+      "id": "embedded-local-fxf-poc",
       "origin": "local_submodule_scan",
-      "name": "Mirrors third-party-router-poc embutidos (FirewallXPL catalogs)",
+      "name": "Mirrors fxf-poc-catalog embutidos (FirewallXPL catalogs)",
       "domain": "router-ngfw-switch-iot-edge",
       "url": "",
       "priority": "p1",
       "recommended_action": "port_high_value_pocs_to_firewallxpl_modules",
       "keyword_hits": "0",
       "status": "embedded_catalog_ready",
-      "notes": "Ver embedded_third_party_poc_intel.json e external_tool_intel_sources (local-poc-*); tg12 CVE index ~7,9k só no JSON; CVE DB carrega hints dos outros mirrors."
+      "notes": "Ver cve_extended_catalog.json e external_tool_intel_sources (local-poc-*); tg12 CVE index ~7,9k só no JSON; CVE DB carrega hints dos outros mirrors."
     },
     {
       "id": "mercusys-soho-gap",

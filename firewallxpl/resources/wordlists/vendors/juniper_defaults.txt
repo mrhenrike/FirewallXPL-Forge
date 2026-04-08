@@ -1,0 +1,10 @@
+# Juniper SRX / ScreenOS / Junos default credentials
+# Format: user:pass
+# Author: André Henrique (@mrhenrike) | União Geek
+admin:abc123
+super:juniper123
+admin:<<< %s(un='%s') = %u.
+root:
+admin:juniper
+admin:admin
+admin:Juniper

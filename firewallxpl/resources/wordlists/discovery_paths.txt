@@ -1,0 +1,32 @@
+# Discovery paths for security appliance web fingerprinting
+# Source: atomic-red-team T1595.003 + manual additions
+# Author: André Henrique (@mrhenrike) | União Geek
+#
+# Used by Network Discovery Engine (Fase 10) for HTTP path probing
+checkpoint
+citrix
+cisco
+juniper
+bigip
+bigadmin
+sslvpn
+webvpn
+ssl
+vpn
+openvpnadmin
+firewall
+firewalls
+gateway
+proxy
+remote
+tmui
+global-protect
+dana-na
+clients/MyCRL
+api/v2/cmdb/system/status
++CSCOE+/logon.html
+cgi-bin/jarrewrite.sh
+webconsole/Controller
+ztp/cgi-bin/handler
+SecureSphere
+tipsLogin.action

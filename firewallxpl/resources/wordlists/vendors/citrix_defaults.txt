@@ -1,0 +1,7 @@
+# Citrix NetScaler ADC / Gateway default credentials
+# Format: user:pass
+# Author: André Henrique (@mrhenrike) | União Geek
+# Sources: SecLists citrix.txt
+nsroot:nsroot
+admin:admin
+root:

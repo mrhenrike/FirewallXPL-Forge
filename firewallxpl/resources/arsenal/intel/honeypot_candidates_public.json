@@ -1,6 +1,6 @@
 {
   "generated_by": "manual_websearch_fallback",
-  "notes": "Public candidate links gathered without authenticated APIs. Treat as unverified until phase6b live runs with provider credentials.",
+  "notes": "Public candidate links gathered without authenticated APIs. Treat as unverified until live validation runs with provider credentials.",
   "candidates": [
     {
       "platform": "shodan",

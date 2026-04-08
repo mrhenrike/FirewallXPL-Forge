@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Author: André Henrique (@mrhenrike) | União Geek — https://github.com/Uniao-Geek
-"""Sync MIB corpus for RouterXPL-Forge SNMP validations."""
+"""Sync MIB corpus for FirewallXPL-Forge SNMP validations."""
 
 from __future__ import annotations
 
@@ -20,7 +20,7 @@ MIB_EXTENSIONS = (".mib", ".my", ".smi", ".txt")
 
 
 def _http_get(url: str, timeout: int = 15) -> bytes:
-    req = urllib.request.Request(url, headers={"User-Agent": "RouterXPL-Forge-MIBSync/1.0"})
+    req = urllib.request.Request(url, headers={"User-Agent": "FirewallXPL-Forge-MIBSync/1.0"})
     with urllib.request.urlopen(req, timeout=timeout) as response:
         return response.read()
 

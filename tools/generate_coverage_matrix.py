@@ -800,7 +800,7 @@ def _deep_intel_backlog_section(repo_root: Path) -> str:
 
 
 def _honeypot_campaign_section(repo_root: Path) -> str:
-    """Render phase6b honeypot campaign readiness snapshot."""
+    """Render honeypot campaign readiness snapshot."""
     campaign_path = repo_root / "firewallxpl" / "resources" / "arsenal" / "intel" / "honeypot_validation_campaign.json"
     if not campaign_path.exists():
         return "## Honeypot Final Validation Snapshot\n\n- honeypot_validation_campaign.json not found."
@@ -821,7 +821,7 @@ def _honeypot_campaign_section(repo_root: Path) -> str:
     lines = [
         "## Honeypot Final Validation Snapshot",
         "",
-        "- Campaign: {}".format(payload.get("campaign", "phase6b_final_honeypot_validation")),
+        "- Campaign: {}".format(payload.get("campaign", "honeypot_validation")),
         "- Checked at: {}".format(payload.get("checked_at", "n/a")),
         "",
         "| Platform | Ready Queries | Blocked Queries |",
@@ -868,7 +868,7 @@ def _build_summary(records: List[ModuleRecord], matrix: Dict[Tuple[str, str], Co
 def _build_markdown(records: List[ModuleRecord], matrix: Dict[Tuple[str, str], CoverageEntry]) -> str:
     """Render matrix document in Markdown format."""
     lines: List[str] = [
-        "# RouterXPL-Forge Coverage Matrix",
+        "# FirewallXPL-Forge Coverage Matrix",
         "",
         _platform_section(),
         "",
@@ -927,7 +927,7 @@ def _build_markdown(records: List[ModuleRecord], matrix: Dict[Tuple[str, str], C
 def _build_plain_text(records: List[ModuleRecord], matrix: Dict[Tuple[str, str], CoverageEntry]) -> str:
     """Render matrix document in plain text format."""
     lines: List[str] = [
-        "RouterXPL-Forge Coverage Matrix",
+        "FirewallXPL-Forge Coverage Matrix",
         "=" * 33,
         "",
         "Platform Compatibility Status",

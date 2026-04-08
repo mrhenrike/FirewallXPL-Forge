@@ -11,7 +11,7 @@ class Payload(BindTCPPayloadMixin, ArchitectureSpecificPayload):
         "name": "ARMLE Bind TCP",
         "description": "Creates interactive tcp bind shell for ARMLE architecture.",
         "authors": (
-            "Marcin Bury <marcin[at]threat9.com>",  # firewallxpl module
+            "André Henrique (@mrhenrike) | União Geek",
         ),
     }
 

@@ -6,11 +6,11 @@ with open("README.md", "r") as f:
 
 setup(
     name="firewallxpl",
-    version="1.0.0b0",
+    version="2.0.0",
     description="Perimeter-focused exploitation framework (NGFW, UTM, WAF, cloud FW) — FirewallXPL-Forge",
     long_description=long_description,
-    author="Threat9",
-    author_email="marcin@threat9.com",
+    author="André Henrique (@mrhenrike)",
+    author_email="mrhenrike@users.noreply.github.com",
     url="https://github.com/mrhenrike/FirewallXPL-Forge",
     download_url="https://github.com/mrhenrike/FirewallXPL-Forge",
     packages=find_packages(),

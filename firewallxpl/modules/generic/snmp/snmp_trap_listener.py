@@ -9,7 +9,7 @@ class Exploit(Exploit):
         "name": "SNMP Trap Listener",
         "description": "Operational validation module for SNMP trap reception over UDP.",
         "authors": (
-            "André Henrique (@mrhenrike) | União Geek",  # FirewallXPL-Forge module
+            "André Henrique (@mrhenrike) | União Geek",
         ),
         "devices": (
             "Routers",

@@ -7,7 +7,7 @@ class Payload(ReverseTCPPayloadMixin, GenericPayload):
         "name": "Awk Reverse TCP",
         "description": "Creates an interactive tcp reverse shell by using (g)awk.",
         "authors": (
-            "Marcin Bury <marcin[at]threat9.com>",  # firewallxpl module
+            "André Henrique (@mrhenrike) | União Geek",
         ),
     }
 

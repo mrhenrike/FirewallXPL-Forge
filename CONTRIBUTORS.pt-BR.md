@@ -4,18 +4,12 @@
 
 **Author:** André Henrique ([@mrhenrike](https://github.com/mrhenrike)) \| **União Geek** — [https://github.com/Uniao-Geek](https://github.com/Uniao-Geek)
 
-## Manutenção atual
+## Mantenedor
 
 | Papel | Contato |
 |-------|---------|
-| Mantenedor do fork | [André Henrique (@mrhenrike)](https://github.com/mrhenrike) |
+| Autor e Mantenedor | [André Henrique (@mrhenrike)](https://github.com/mrhenrike) |
 | Organização | [União Geek](https://github.com/Uniao-Geek) |
-
-## Linhagem e créditos upstream
-
-O FirewallXPL-Forge deriva do projeto **RouterSploit** ([threat9/routersploit](https://github.com/threat9/routersploit)), mantido historicamente pela **Threat9**. Muitos módulos preservam autores e referências originais no campo `__info__["authors"]`.
-
-Componentes e ideias de terceiros continuam creditados nos próprios arquivos (Riposte, advisories, CVEs, *pull requests* originais).
 
 ## Como aparecer nesta lista
 

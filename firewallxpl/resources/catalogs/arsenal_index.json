@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "name": "RouterXPL-Forge Arsenal Index",
+    "name": "FirewallXPL-Forge Arsenal Index",
     "scope": [
       "routers",
       "switches",
@@ -23,7 +23,7 @@
     "cve_extended_catalog.json",
     "deep_intel_backlog.json",
     "discord_requested_devices.json",
-    "embedded_third_party_poc_intel.json",
+    "cve_extended_catalog.json",
     "external_framework_clones.json",
     "external_tool_intel_sources.json",
     "market_priority_devices_2010_2026.json",
@@ -31,8 +31,8 @@
     "osi_tcpip_priority_matrix.json",
     "post2018_network_devices.json",
     "superproject_submodule_integration_matrix.json",
-    "third_party_router_exploit_repos.json",
-    "third_party_upstream_open_work.json",
+    "# (removed catalog)",
+    "# (removed catalog)",
     "workspace_reuse_inventory.json"
   ],
   "wordlists": [
@@ -1842,7 +1842,7 @@
       "pytest-forked",
       "pytest-xdist",
       "flake8",
-      "git+https://github.com/threat9/threat9-test-bed",
+      "# removed: legacy test-bed dependency",
       "telnetlib3"
     ]
   },
