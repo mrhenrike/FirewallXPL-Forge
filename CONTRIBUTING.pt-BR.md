@@ -16,7 +16,7 @@ Obrigado por considerar contribuir. A documentação é **bilíngue**: **en-US**
 
 ## Escopo do repositório
 
-| Incluído | Não é foco deste fork |
+| Incluído | Não é foco deste projeto |
 |----------|------------------------|
 | Roteadores, switches, TAPs, firewalls, NGFW | Módulos cujo alvo principal é câmera IP, impressora, DVR |
 
@@ -31,7 +31,7 @@ Obrigado por considerar contribuir. A documentação é **bilíngue**: **en-US**
 1. Um PR = **um tema** coerente.
 2. Notas de **risco**.
 3. Sem segredos, `.env` ou dados de clientes.
-4. Preserve `authors` upstream; use `subcredits` nas adaptações.
+4. Preserve `authors`; credite o trabalho original em references.
 5. Atualize **en-US e pt-BR** quando alterar comportamento visível (README/wiki conforme aplicável).
 
 ## Relatório de bugs

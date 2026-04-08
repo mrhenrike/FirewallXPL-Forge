@@ -252,7 +252,7 @@ def _build_md(
     ]
 
     lines: List[str] = [
-        "# RouterXPL-Forge — Full Module Catalog",
+        "# FirewallXPL-Forge — Full Module Catalog",
         "",
         "> Generated: {}".format(now),
         "> Author: Andre Henrique (@mrhenrike) | Uniao Geek",
@@ -431,7 +431,7 @@ def _build_txt(
     """Build the full catalog in plain text."""
     now = datetime.now(timezone.utc).isoformat()
     lines: List[str] = [
-        "RouterXPL-Forge - Full Module Catalog",
+        "FirewallXPL-Forge - Full Module Catalog",
         "=" * 40,
         "Generated: {}".format(now),
         "Author: Andre Henrique (@mrhenrike) | Uniao Geek",

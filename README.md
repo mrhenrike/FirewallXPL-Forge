@@ -1,10 +1,10 @@
 # FirewallXPL-Forge
 
 Fork focado em **perímetro e caixa de estado**: **NGFW, UTM, WAF**, firewalls de **cloud** (AWS/Azure/GCP/OCI, Cloudflare, ELB/WAF labels em catálogo), e SSL-VPN concentrators — laboratório autorizado.  
-O ramo **RouterXPL-Forge** permanece para **roteadores, switches L2/L3, TAPs e CPE ISP**. **Wi‑Fi/BLE/PCAP** ficam em [**WirelessXPL-Forge**](https://github.com/mrhenrike/WirelessXPL-Forge) (private).
+O ramo **FirewallXPL-Forge** permanece para **roteadores, switches L2/L3, TAPs e CPE ISP**. **Wi‑Fi/BLE/PCAP** ficam em [**WirelessXPL-Forge**](https://github.com/mrhenrike/WirelessXPL-Forge) (private).
 
 **Maintainer:** André Henrique ([@mrhenrike](https://github.com/mrhenrike)) \| [União Geek](https://github.com/Uniao-Geek)  
-**Upstream lineage:** [threat9/routersploit](https://github.com/threat9/routersploit) → [RouterXPL-Forge](https://github.com/mrhenrike/RouterXPL-Forge)
+**Project:** [mrhenrike/FirewallXPL-Forge](https://github.com/mrhenrike/FirewallXPL-Forge) → [FirewallXPL-Forge](https://github.com/mrhenrike/FirewallXPL-Forge)
 
 **Language:** **English (en-US)** — this file is the default. **Português (pt-BR):** [README.pt-BR.md](README.pt-BR.md)
 
@@ -158,7 +158,7 @@ To publish on **GitHub Wiki**, copy the chosen locale folder (or both) into the 
 | `tools/generate_coverage_matrix.py` | Regenerate matrix docs |
 | `tools/generate_full_catalog.py` | Regenerate `FULL_CATALOG` (footprint, sizes, module stats) |
 | `tools/refresh_cve_extended_catalog.py` | Regenerate merged `cve_extended_catalog.json` |
-| `tools/incorporate_third_party_poc_tree.py` | Vendor third-party PoC snapshots into `arsenal/pocs/incorporated_third_party/` |
+| `# (removed tool)` | Vendor PoC snapshots into `arsenal/pocs/integrated_modules/` |
 
 ---
 
@@ -167,7 +167,7 @@ To publish on **GitHub Wiki**, copy the chosen locale folder (or both) into the 
 - **CVE catalog:** `cve_extended_catalog.json` now merges the static matrix, `external_tool_intel_sources.json` hints, CVE strings from `firewallxpl/modules`, embedded `_EMBEDDED_CVES` scope, Discord `related_cves_hint`, and **PoC repository URLs** normalized from the vendored tg12 `cve_links.txt` (in-scope IDs only; does not load the whole global index into RAM at runtime).
 - **Docs:** `FULL_CATALOG` adds **on-disk footprint**, largest paths, and first-party `.py` counts (`tools/generate_full_catalog.py`).
 - **Offline Exploit-DB:** `generic/external/exploitdb_embedded_lookup` searches the bundled `files_exploits.csv` tree (no `searchsploit` CLI); legacy SearchSploit bridge modules were removed.
-- **Arsenal:** Curated third-party PoC mirrors live under `firewallxpl/resources/arsenal/pocs/incorporated_third_party/` (GPLv2 Exploit-DB and selected repos); indexes in `firewallxpl/resources/catalogs/`. **SOHO exploit catalog** bundle + `scanners/misc/soho_exploit_catalog_server` for local HTTP viewing in lab.
+- **Arsenal:** Curated PoC catalog live under `firewallxpl/resources/arsenal/pocs/integrated_modules/` (GPLv2 Exploit-DB and selected repos); indexes in `firewallxpl/resources/catalogs/`. **SOHO exploit catalog** bundle + `scanners/misc/soho_exploit_catalog_server` for local HTTP viewing in lab.
 
 ---
 
@@ -194,14 +194,14 @@ python tools/generate_coverage_matrix.py
 
 ## License
 
-BSD — see [LICENSE](LICENSE). The license file may reference upstream; current maintenance is described here and in fork metadata.
+BSD — see [LICENSE](LICENSE). Current maintenance is described in this file and in project metadata.
 
 ---
 
 ## Acknowledgments
 
 - [Riposte](https://github.com/fwkz/riposte) — interactive shell pattern
-- Community and authors of upstream [threat9/routersploit](https://github.com/threat9/routersploit)
+- Community contributions to the original [mrhenrike/FirewallXPL-Forge](https://github.com/mrhenrike/FirewallXPL-Forge)
 - Contributors listed in [CONTRIBUTORS.md](CONTRIBUTORS.md)
 
 ---

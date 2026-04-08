@@ -11,7 +11,7 @@ class Payload(ReverseTCPPayloadMixin, ArchitectureSpecificPayload):
         "name": "MIPSLE Reverse TCP",
         "description": "Creates interactive tcp reverse shell for MIPSLE architecture.",
         "authors": (
-            "Marcin Bury <marcin[at]threat9.com>",  # firewallxpl module
+            "André Henrique (@mrhenrike) | União Geek",
         ),
     }
 

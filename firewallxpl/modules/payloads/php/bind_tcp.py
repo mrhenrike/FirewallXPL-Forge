@@ -12,8 +12,7 @@ class Payload(BindTCPPayloadMixin, GenericPayload):
         "name": "PHP Bind TCP",
         "description": "Creates interactive tcp bind shell by using php.",
         "authors": (
-            "Andre Marques (zc00l)",  # shellpop
-            "Marcin Bury <marcin[at]threat9.com>",  # firewallxpl module
+            "André Henrique (@mrhenrike) | União Geek",
         ),
     }
 

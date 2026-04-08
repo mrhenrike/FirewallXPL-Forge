@@ -11,8 +11,7 @@ class Payload(BindTCPPayloadMixin, ArchitectureSpecificPayload):
         "name": "X86 Bind TCP",
         "description": "Creates interactive tcp bind shell for X86 architecture.",
         "authors": (
-            "Ramon de C Valle",  # metasploit module
-            "Marcin Bury <marcin[at]threat9.com>",  # firewallxpl module
+            "André Henrique (@mrhenrike) | União Geek",
         )
     }
 

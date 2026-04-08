@@ -4,18 +4,12 @@
 
 **Language:** **English (en-US)** — default. **Português (pt-BR):** [CONTRIBUTORS.pt-BR.md](CONTRIBUTORS.pt-BR.md)
 
-## Current maintenance
+## Maintainer
 
 | Role | Contact |
 |------|---------|
-| Fork maintainer | [André Henrique (@mrhenrike)](https://github.com/mrhenrike) |
+| Author & Maintainer | [André Henrique (@mrhenrike)](https://github.com/mrhenrike) |
 | Organization | [União Geek](https://github.com/Uniao-Geek) |
-
-## Upstream lineage and credits
-
-FirewallXPL-Forge derives from **RouterSploit** ([threat9/routersploit](https://github.com/threat9/routersploit)), historically maintained by **Threat9**. Many modules preserve original authors in `__info__["authors"]`.
-
-Third-party components and ideas remain credited in source files (Riposte, advisories, CVEs, original pull requests).
 
 ## How to be listed here
 

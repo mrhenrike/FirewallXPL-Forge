@@ -7,7 +7,7 @@ class Payload(PythonBindTCP):
         "name": "Python Reverse TCP One-Liner",
         "description": "Creates interactive tcp bind shell by using python one-liner.",
         "authors": (
-            "Marcin Bury <marcin[at]threat9.com>",  # firewallxpl module
+            "André Henrique (@mrhenrike) | União Geek",
         ),
     }
 

@@ -7,5 +7,5 @@ pytest==4.4.0
 pytest-forked
 pytest-xdist
 flake8
-git+https://github.com/threat9/threat9-test-bed
+# removed: legacy test-bed dependency
 telnetlib3

@@ -54,12 +54,17 @@ def _infer_protocol(module_name: str) -> Optional[str]:
     return None
 
 
-def _resolve_router_vendor_uri(module_name: str) -> Optional[str]:
-    marker = ".modules.creds.routers."
-    if marker not in module_name:
+def _resolve_vendor_uri(module_name: str) -> Optional[str]:
+    """Resolve vendor-specific wordlist for perimeter/waf/vpn/nac/lb creds modules."""
+    for marker in (".modules.creds.perimeter.", ".modules.creds.waf.",
+                    ".modules.creds.vpn.", ".modules.creds.nac.",
+                    ".modules.creds.lb.", ".modules.creds.routers."):
+        if marker in module_name:
+            suffix = module_name.split(marker, 1)[1]
+            break
+    else:
         return None
 
-    suffix = module_name.split(marker, 1)[1]
     if "." not in suffix:
         return None
 
@@ -74,25 +79,30 @@ def _resolve_router_vendor_uri(module_name: str) -> Optional[str]:
     if vendor == "mikrotik":
         return mikrotik_api
 
-    # Vendor-specific wordlist filenames (optional)
+    vendors_dir = Path(__file__).resolve().parent / "vendors"
     candidates = (
+        vendors_dir / f"{vendor}_{protocol}_defaults.txt",
+        vendors_dir / f"{vendor}_defaults.txt",
+    )
+    for cand in candidates:
+        if cand.exists():
+            return cand.resolve().as_uri()
+
+    legacy_candidates = (
         f"{vendor}_{protocol}_defaults.txt",
         f"{vendor}_defaults.txt",
     )
-
-    for filename in candidates:
+    for filename in legacy_candidates:
         local_path = Path(__file__).resolve().parent / filename
         if local_path.exists():
             return _wordlist_uri(filename)
 
-    # Fallback for all router vendor protocol modules:
-    # always use file-based defaults instead of inline script literals.
     return defaults
 
 
 def resolve_default_pairs(module_name: str, current_defaults: List[str]) -> List[str]:
     """Resolve default credential pairs from file-based sources for modules."""
-    source_uri = _resolve_router_vendor_uri(module_name)
+    source_uri = _resolve_vendor_uri(module_name)
     if source_uri is None:
         return current_defaults
     return _load_entries(source_uri)

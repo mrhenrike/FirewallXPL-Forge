@@ -7,7 +7,7 @@ class Encoder(BaseEncoder):
         "name": "Perl Hex Encoder",
         "description": "Module encodes PERL payload to Hex format.",
         "authors": (
-            "Marcin Bury <marcin[at]threat9.com>",  # firewallxpl module
+            "André Henrique (@mrhenrike) | União Geek",
         ),
     }
 

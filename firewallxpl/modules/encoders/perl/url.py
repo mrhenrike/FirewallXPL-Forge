@@ -9,7 +9,7 @@ class Encoder(BaseEncoder):
         "name": "Perl URL Encoder",
         "description": "Module encodes PERL payload to URL-encoded format.",
         "authors": (
-            "André Henrique (@mrhenrike) | União Geek",  # FirewallXPL-Forge encoder
+            "André Henrique (@mrhenrike) | União Geek",
         ),
     }
 

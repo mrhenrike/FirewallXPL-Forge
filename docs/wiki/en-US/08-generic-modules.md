@@ -17,7 +17,7 @@ Options: `banner`, `product`, `version`, `remote_only`, `show_physical`.
 
 ## Exploit-DB (offline CSV) — `generic/external/exploitdb_embedded_lookup`
 
-Searches **`files_exploits.csv`** inside the bundled `exploit-database__exploitdb` tree under `firewallxpl/resources/arsenal/pocs/incorporated_third_party/`. **No** `searchsploit` or external Exploit-DB CLI. Preserve GPLv2 notices when redistributing mirror contents.
+Searches **`files_exploits.csv`** inside the bundled `exploit-database__exploitdb` tree under `firewallxpl/resources/arsenal/pocs/integrated_modules/`. **No** `searchsploit` or external Exploit-DB CLI. Preserve GPLv2 notices when redistributing mirror contents.
 
 ## PCAP / Wi‑Fi offline — `generic/pcap/*`
 

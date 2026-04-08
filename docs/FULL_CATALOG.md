@@ -1443,7 +1443,7 @@ Approximate on-disk size (file bytes only; binary prefixes). Walk skips caches s
 
 5. **ExploitDB embedded lookup (CSV)**
    - Path: `generic/external/exploitdb_embedded_lookup.py`
-   - Searches files_exploits.csv in the bundled exploit-database__exploitdb tree (arsenal/pocs/incorporated_third_party). No searchsploit / external CLI.
+   - Searches files_exploits.csv in the bundled exploit-database__exploitdb tree (arsenal/pocs/integrated_modules). No searchsploit / external CLI.
    - Devices: Research / catalog
 
 6. **Metasploit Console Bridge**

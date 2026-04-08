@@ -11,9 +11,7 @@ class Payload(ReverseTCPPayloadMixin, ArchitectureSpecificPayload):
         "name": "X86 Reverse TCP",
         "description": "Creates interactive tcp reverse shell for X86 architecture.",
         "authors": (
-            "Ramon de C Valle",  # metasploit module
-            "joev",  # metasploit module
-            "Marcin Bury <marcin[at]threat9.com>",  # firewallxpl module
+            "André Henrique (@mrhenrike) | União Geek",
         )
     }
 

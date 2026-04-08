@@ -173,15 +173,15 @@ def _load_embedded() -> List[CVEEntry]:
 
 
 def _load_poc_intel_cve_hints(repo_root: Path) -> List[CVEEntry]:
-    """Load CVE IDs discovered in local third-party PoC mirrors (thin hints, lowest priority)."""
+    """Load CVE IDs discovered in local PoC catalog (thin hints, lowest priority)."""
 
-    path = repo_root / "resources" / "catalogs" / "embedded_third_party_poc_intel.json"
+    path = repo_root / "resources" / "catalogs" / "cve_extended_catalog.json"
     if not path.exists():
         return []
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
-        logger.warning("embedded_third_party_poc_intel.json unreadable: %s", exc)
+        logger.warning("cve_extended_catalog.json unreadable: %s", exc)
         return []
     # Bulk indices (tg12, ExploitDB mirrors) stay in JSON for tooling — not loaded into lookup RAM.
     skip_slugs = frozenset(
@@ -203,10 +203,10 @@ def _load_poc_intel_cve_hints(repo_root: Path) -> List[CVEEntry]:
         entries.append(
             CVEEntry(
                 cve_id=cid,
-                vendor="upstream_poc_mirror",
-                product="third_party_router_poc",
+                vendor="internal_module",
+                product="fxf_poc_catalog",
                 affected_versions="",
-                description="CVE referenciado em clone local third-party-router-poc; validar com NVD/PSIRT antes de usar.",
+                description="CVE referenciado em clone local fxf-poc-catalog; validar com NVD/PSIRT antes de usar.",
                 cvss_score=0.0,
                 access_vector="REMOTE",
                 exploit_available=True,

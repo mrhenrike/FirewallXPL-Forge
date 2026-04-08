@@ -33,14 +33,14 @@
 
 | Repository | Role |
 |------------|------|
-| [RouterXPL-Forge](https://github.com/mrhenrike/RouterXPL-Forge) | Routers, switches, TAPs, SOHO edge |
+| [FirewallXPL-Forge](https://github.com/mrhenrike/FirewallXPL-Forge) | Routers, switches, TAPs, SOHO edge |
 | [WirelessXPL-Forge](https://github.com/mrhenrike/WirelessXPL-Forge) | 802.11 / WPA3 / BLE / PCAP lab |
 
 ## Governance & CI / Governança e CI
 
 | Topic | Links |
 |-------|--------|
-| License | [LICENSE](../../LICENSE) (BSD; upstream Threat9 notice retained) |
+| License | [LICENSE](../../LICENSE) (BSD; André Henrique (@mrhenrike) notice retained) |
 | Code of Conduct | [CODE_OF_CONDUCT.md](../../CODE_OF_CONDUCT.md) · [CODE_OF_CONDUCT.pt-BR.md](../../CODE_OF_CONDUCT.pt-BR.md) |
 | Security | [SECURITY.md](../../SECURITY.md) · [SECURITY.pt-BR.md](../../SECURITY.pt-BR.md) |
 | Contributing | [CONTRIBUTING.md](../../CONTRIBUTING.md) · [CONTRIBUTING.pt-BR.md](../../CONTRIBUTING.pt-BR.md) |

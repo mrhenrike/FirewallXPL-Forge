@@ -8,7 +8,7 @@
 
 - **Em escopo:** falhas no **próprio FirewallXPL-Forge** (código Python, dependências declaradas, scripts em `tools/`) que afetem quem **executa** o framework (RCE no operador, execução insegura de entradas, etc.).
 - **Fora de escopo:** “0-day” em equipamentos de terceiros descobertos *usando* o framework; use canais do fabricante ou programas de *bug bounty* deles.
-- **Escopo funcional do repositório:** **NGFW, UTM, WAF**, firewalls de **cloud** e concentradores SSL-VPN — laboratório de perímetro; módulos focados em câmera/impressora/DVR como alvo principal não são prioridade deste fork.
+- **Escopo funcional do repositório:** **NGFW, UTM, WAF**, firewalls de **cloud** e concentradores SSL-VPN — laboratório de perímetro; módulos focados em câmera/impressora/DVR como alvo principal não são prioridade deste projeto.
 
 ## Como reportar vulnerabilidades
 

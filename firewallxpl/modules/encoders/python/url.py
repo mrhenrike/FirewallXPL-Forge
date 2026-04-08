@@ -9,7 +9,7 @@ class Encoder(BaseEncoder):
         "name": "Python URL Encoder",
         "description": "Module encodes Python payload to URL-encoded format.",
         "authors": (
-            "André Henrique (@mrhenrike) | União Geek",  # FirewallXPL-Forge encoder
+            "André Henrique (@mrhenrike) | União Geek",
         ),
     }
 

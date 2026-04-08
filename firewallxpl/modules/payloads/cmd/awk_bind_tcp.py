@@ -7,7 +7,7 @@ class Payload(BindTCPPayloadMixin, GenericPayload):
         "name": "Awk Bind TCP",
         "description": "Creates an interactive tcp bind shell by using (g)awk.",
         "authors": (
-            "Marcin Bury <marcin[at]threat9.com>",  # firewallxpl module
+            "André Henrique (@mrhenrike) | União Geek",
         ),
     }
 

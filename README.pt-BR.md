@@ -5,7 +5,7 @@
 Framework open source para testes de segurança em **dispositivos embutidos**, com foco em **roteadores, switches, TAPs, firewalls e NGFW**.
 
 **Mantenedor:** André Henrique ([@mrhenrike](https://github.com/mrhenrike)) \| [União Geek](https://github.com/Uniao-Geek)  
-**Linhagem upstream:** [threat9/routersploit](https://github.com/threat9/routersploit)
+**Projeto:** [mrhenrike/FirewallXPL-Forge](https://github.com/mrhenrike/FirewallXPL-Forge)
 
 [![Python 3.8–3.13](https://img.shields.io/badge/Python-3.8--3.13-blue.svg)](https://www.python.org/downloads/)
 [![CI](https://github.com/mrhenrike/FirewallXPL-Forge/actions/workflows/compat-matrix.yml/badge.svg)](https://github.com/mrhenrike/FirewallXPL-Forge/actions)
@@ -140,7 +140,7 @@ O bootstrap regista em **`firewallxpl.log`**.
 - **Catálogo CVE:** `cve_extended_catalog.json` passa a fundir a matriz estática, *hints* de `external_tool_intel_sources.json`, CVEs citados em `firewallxpl/modules`, o conjunto em `_EMBEDDED_CVES`, `related_cves_hint` do Discord e **URLs de repositórios PoC** normalizados a partir do tg12 `cve_links.txt` vendored (só IDs em âmbito edge/FirewallXPL).
 - **Documentação:** `FULL_CATALOG` inclui **pegada em disco**, pastas mais pesadas e contagens de `.py` de primeira parte (`tools/generate_full_catalog.py`).
 - **Exploit-DB offline:** `generic/external/exploitdb_embedded_lookup` pesquisa o `files_exploits.csv` do espelho local (sem CLI `searchsploit`); o antigo módulo ponte SearchSploit foi removido.
-- **Arsenal:** espelhos PoC de terceiros em `firewallxpl/resources/arsenal/pocs/incorporated_third_party/` (Exploit-DB GPLv2 e repos curados); índices JSON em `firewallxpl/resources/catalogs/`. Catálogo SOHO estático + `scanners/misc/soho_exploit_catalog_server` para visualização HTTP em laboratório.
+- **Arsenal:** espelhos PoC de terceiros em `firewallxpl/resources/arsenal/pocs/integrated_modules/` (Exploit-DB GPLv2 e repos curados); índices JSON em `firewallxpl/resources/catalogs/`. Catálogo SOHO estático + `scanners/misc/soho_exploit_catalog_server` para visualização HTTP em laboratório.
 
 ---
 
@@ -163,7 +163,7 @@ BSD — ver [LICENSE](LICENSE).
 ## Agradecimentos
 
 - [Riposte](https://github.com/fwkz/riposte)
-- [threat9/routersploit](https://github.com/threat9/routersploit)
+- [mrhenrike/FirewallXPL-Forge](https://github.com/mrhenrike/FirewallXPL-Forge)
 - [CONTRIBUTORS.md](CONTRIBUTORS.md)
 
 ---
