@@ -1,4 +1,8 @@
 # Author: André Henrique (@mrhenrike) | União Geek — https://github.com/Uniao-Geek
+#
+# SECURITY: This workflow publishes to PyPI via Trusted Publisher (OIDC).
+# Protected by: environment "pypi" requiring manual approval from @mrhenrike,
+# branch policy restricted to master, and fork execution blocked.
 
 name: publish-pypi
 
@@ -8,18 +12,30 @@ on:
 
 permissions:
   contents: read
-  id-token: write  # Required for PyPI Trusted Publisher (OIDC)
+  id-token: write
 
 jobs:
   build:
     name: Build package
     runs-on: ubuntu-latest
+    if: github.repository == 'mrhenrike/FirewallXPL-Forge'
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
+      - name: Verify package metadata
+        run: |
+          python -c "
+          import tomllib
+          with open('pyproject.toml', 'rb') as f:
+              data = tomllib.load(f)
+          name = data['project']['name']
+          assert name == 'firewallxpl', f'Unexpected package name: {name}'
+          print(f'Package: {name} v{data[\"project\"][\"version\"]}')
+          "
 
       - name: Install build tools
         run: pip install build
@@ -36,6 +52,7 @@ jobs:
     name: Publish to PyPI
     needs: build
     runs-on: ubuntu-latest
+    if: github.repository == 'mrhenrike/FirewallXPL-Forge'
     environment:
       name: pypi
       url: https://pypi.org/project/firewallxpl/
