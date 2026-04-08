@@ -8,7 +8,7 @@ Install deps and run from repo root, or `pip install -e .`.
 
 ## `stdin is not a TTY`
 
-Use non-interactive mode: `python rxf.py -m ... -s "..."`.
+Use non-interactive mode: `python fxf.py -m ... -s "..."`.
 
 ## Paramiko / SSL issues
 
@@ -24,7 +24,7 @@ Ensure `telnetlib3` is installed.
 
 ## Scapy / PCAP `ImportError`
 
-`pip install scapy`. On Windows, live capture may need Npcap; offline reads often work without.
+`pip install `. On Windows, live capture may need Npcap; offline reads often work without.
 
 ## Windows readline
 

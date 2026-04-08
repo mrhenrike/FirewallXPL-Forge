@@ -12,15 +12,15 @@ PNG gallery (MikrotikAPI-BF–style). Mermaid sources: [../../diagrams/architect
 
 | SOHO router | Managed switch |
 |:---:|:---:|
-| ![SOHO](../../img/architecture/rxf_arch_router_soho.png) | ![Switch](../../img/architecture/rxf_arch_switch_l2l3.png) |
+| ![SOHO](../../img/architecture/fxf_arch_router_soho.png) | ![Switch](../../img/architecture/fxf_arch_switch_l2l3.png) |
 
 | NGFW / UTM | ISP CPE |
 |:---:|:---:|
-| ![NGFW](../../img/architecture/rxf_arch_ngfw_utm.png) | ![ISP CPE](../../img/architecture/rxf_arch_isp_cpe.png) |
+| ![NGFW](../../img/architecture/fxf_arch_ngfw_utm.png) | ![ISP CPE](../../img/architecture/fxf_arch_isp_cpe.png) |
 
 | Mixed edge |
 |:---:|
-| ![Mixed edge](../../img/architecture/rxf_arch_edge_mixed.png) |
+| ![Mixed edge](../../img/architecture/fxf_arch_edge_mixed.png) |
 
 ## Table of contents
 
@@ -29,7 +29,7 @@ PNG gallery (MikrotikAPI-BF–style). Mermaid sources: [../../diagrams/architect
 | [01-introduction-and-installation.md](01-introduction-and-installation.md) | Goals, legal scope, Python, `pip`, `env_doctor`, logs, architecture figure |
 | [02-interactive-shell-commands.md](02-interactive-shell-commands.md) | `use`, `set`, `setg`, `show`, `run`, `check`, `back`, `exit`, `help` |
 | [03-search-and-listing.md](03-search-and-listing.md) | `search`, filters, `show all/scanners/...` |
-| [04-non-interactive-mode.md](04-non-interactive-mode.md) | `rxf.py -m` / `-s`, automation |
+| [04-non-interactive-mode.md](04-non-interactive-mode.md) | `fxf.py -m` / `-s`, automation |
 | [05-creds-modules.md](05-creds-modules.md) | Default creds and brute force |
 | [06-exploits-modules.md](06-exploits-modules.md) | Exploits, `check()`, common options |
 | [07-scanners-and-autopwn.md](07-scanners-and-autopwn.md) | `router_scan`, `autopwn`, FortiGate SSL-VPN scanner |

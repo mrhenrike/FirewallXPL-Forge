@@ -43,7 +43,7 @@ Out-of-scope proposals may be declined or redirected to a specialized project.
 Include:
 
 - Module path (e.g. `exploits/routers/dlink/dir_815_850l_rce`)
-- Exact command sequence (interactive or `rxf.py -m ... -s ...`)
+- Exact command sequence (interactive or `fxf.py -m ... -s ...`)
 - OS, Python version, venv vs global
 - Expected vs actual behavior
 - Traceback or `firewallxpl.log` excerpt **without** real real IPs/tokens
@@ -57,8 +57,8 @@ PRs should pass the suggested local validation below when the change touches run
 ```bash
 python tools/env_doctor.py
 python tools/compile_first_party.py
-python tools/compat_smoke.py
-python tools/validate_market_priority_minimums.py
+python tools/env_doctor.py
+python tools/validate_coverage_minimums.py
 python tools/generate_coverage_matrix.py
 ```
 

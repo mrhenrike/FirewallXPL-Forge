@@ -10,9 +10,13 @@
 [![CI](https://github.com/mrhenrike/FirewallXPL-Forge/actions/workflows/compat-matrix.yml/badge.svg)](https://github.com/mrhenrike/FirewallXPL-Forge/actions)
 [![PyPI](https://img.shields.io/pypi/v/firewallxpl.svg)](https://pypi.org/project/firewallxpl/)
 
+---
+
 ## Architecture & Attack Surface Map
 
-![FirewallXPL-Forge Attack Surface Map](docs/diagrams/architecture/attack-surface-map-v2.0.0.png)
+![FirewallXPL-Forge v2.0.0 — Full Attack Surface Map with Coverage Status](docs/diagrams/architecture/attack-surface-map-v2.0.0.png)
+
+---
 
 ## Install
 
@@ -31,80 +35,9 @@ pip install firewallxpl[full]
 
 # From source
 git clone https://github.com/mrhenrike/FirewallXPL-Forge.git
-cd FirewallXPL-Forge && pip install -e ".[tui,discovery]"
-python fxf.py
-```
-
----
-
-## What the project does
-
-FirewallXPL-Forge fornece **módulos** para ensaios **autorizados** contra superfície **firewall / VPN / gestão centralizada** (pentest, laboratório, red team controlado). Classes de alvo por omissão: `fw`, `ngfw`, `utm`, `waf`, `cloud_fw` (ver `module_target_scope.json`).
-
-| Type | Role |
-|------|------|
-| **exploits** | Abuse known vulnerabilities (with `check()` where implemented) |
-| **creds** | Default credentials and brute force against network services |
-| **scanners** | Weakness identification; **autopwn** orchestrates modules with Nmap-like timing profiles |
-| **generic** | Cross-cutting utilities: SNMP, SSDP, **CVE lookup**, wordlist, external bridges *(802.11 PCAP → WirelessXPL-Forge)* |
-| **payloads** | Payload generation by architecture (ARM/MIPS/x86, reverse/bind shells) |
-| **encoders** | Payload encoding (Python, PHP, Perl) |
-
-**Out of scope in this repository:** modules whose primary target is IP cameras, printers, or DVRs.
-
-### Attack-surface architecture (by device class)
-
-Hub-and-spoke diagrams (same idea as [MikrotikAPI-BF](https://github.com/mrhenrike/MikrotikAPI-BF) `img/mikrotik_*`): device core, remote **access vectors**, and how they map to **FirewallXPL-Forge** coverage. Mermaid sources: [docs/diagrams/architecture/](docs/diagrams/architecture/).
-
-| SOHO / home router | Managed L2–L3 switch |
-|:---:|:---:|
-| ![SOHO router — attack surface & RXF coverage](docs/img/architecture/rxf_arch_router_soho.png) | ![Switch — attack surface & RXF coverage](docs/img/architecture/rxf_arch_switch_l2l3.png) |
-
-| NGFW / UTM | ISP CPE / residential gateway |
-|:---:|:---:|
-| ![NGFW UTM — attack surface & RXF coverage](docs/img/architecture/rxf_arch_ngfw_utm.png) | ![ISP CPE — attack surface & RXF coverage](docs/img/architecture/rxf_arch_isp_cpe.png) |
-
-| Mixed edge (router + UTM-lite) |
-|:---:|
-| ![Mixed edge — attack surface & RXF coverage](docs/img/architecture/rxf_arch_edge_mixed.png) |
-
----
-
-## Compatibility notice
-
-> Some platforms have **not** been field-tested. If something breaks, open an issue with OS, Python version, and traceback.
-
-| Platform | Status |
-|----------|--------|
-| Windows 10/11 | CI + local validation |
-| WSL / Debian / Ubuntu | CI + local validation |
-| Kali Linux | Validated locally |
-| macOS | CI (limited field validation) |
-| RHEL / Fedora / Termux | Expected compatible — not validated |
-
-**Python:** 3.8 through 3.13. Includes a shim for removed `telnetlib` on 3.13+ (`telnetlib3`).
-
----
-
-## Quick install
-
-### Dependencies (`requirements.txt`)
-
-- `requests`, `paramiko`, `pysnmp`, `pycryptodome`, `scapy`, `setuptools`
-- `telnetlib3` on Python ≥ 3.13
-
-### Clone and run
-
-```bash
-git clone https://github.com/mrhenrike/FirewallXPL-Forge.git
 cd FirewallXPL-Forge
-python3 -m venv .venv
-# Linux/macOS:
-source .venv/bin/activate
-# Windows:
-# .venv\Scripts\activate
-python3 -m pip install -r requirements.txt
-python3 rxf.py
+pip install -e ".[tui,discovery]"
+python fxf.py
 ```
 
 ### Environment diagnostics
@@ -115,97 +48,144 @@ python tools/env_doctor.py
 
 ---
 
-## Usage overview
+## What the project does
+
+FirewallXPL-Forge provides **modules** for **authorized** security testing against perimeter devices (pentest, lab, controlled red team). Target classes: `perimeter`, `waf`, `vpn`, `nac`, `lb`.
+
+| Type | Role |
+|------|------|
+| **exploits** | Abuse known vulnerabilities — `check()` + `run()` per module |
+| **creds** | Default credentials and brute force against SSH, FTP, Telnet, HTTP, SNMP |
+| **scanners** | Weakness identification; **AutoPwn** orchestrates all modules with Nmap-style timing (T0–T5) |
+| **payloads** | Payload generation by architecture (ARM/MIPS/x86/x64, reverse/bind shells) |
+| **encoders** | Payload encoding (Python, PHP, Perl) |
+| **generic** | Cross-cutting utilities: CVE lookup, SNMP, SSDP, wordlist generator |
+
+**Out of scope:** IP cameras, printers, DVRs, consumer routers.
+
+---
+
+## Vendor coverage (23 vendors, 51+ CVEs)
+
+### IT Security Appliances
+
+| Vendor | Modules | Key CVEs |
+|--------|---------|----------|
+| Fortinet FortiOS/FortiGate | 9 | CVE-2018-13379, CVE-2022-40684, CVE-2024-21762, CVE-2024-47575 |
+| Cisco ASA/FTD/IOS XE | 4 | CVE-2020-3452, CVE-2023-20198, CVE-2023-20269 |
+| Palo Alto PAN-OS | 5 | CVE-2024-0012, CVE-2024-3400, CVE-2025-0108 |
+| F5 BIG-IP | 6 | CVE-2020-5902, CVE-2022-1388, CVE-2023-46747 |
+| Citrix/NetScaler | 3 | CVE-2019-19781, CVE-2023-3519, CVE-2023-4966 |
+| SonicWall | 6 | CVE-2020-5135, CVE-2024-40766, CVE-2024-53704 |
+| Ivanti/Pulse Secure | 3 | CVE-2019-11510, CVE-2023-46805+21887, CVE-2025-0282 |
+| Juniper SRX/EX | 2 | CVE-2023-36845, CVE-2024-21591 |
+| Sophos XG | 3 | CVE-2020-12271, CVE-2022-1040, CVE-2022-3236 |
+| Check Point | 1 | CVE-2024-24919 |
+| WatchGuard | 2 | XCS RCE, CVE-2022-23176 |
+| Zyxel USG | 3 | CVE-2022-30525, CVE-2023-28771, CVE-2023-33009 |
+| pfSense | 3 | CVE-2022-31814, CVE-2023-27100, CVE-2023-42326 |
+| Barracuda | 3 | CVE-2023-2868, CVE-2023-7102, SecureSphere SQLi |
+
+### OT/ICS Industrial Firewalls
+
+| Vendor | Modules | Key CVEs |
+|--------|---------|----------|
+| Siemens SCALANCE/SINEMA/RUGGEDCOM | 3 | CVE-2022-32257, CVE-2023-24845, CVE-2023-44373 |
+| Moxa EDR | 2 | CVE-2024-9137 (CVSS 9.9), CVE-2024-9138 |
+| Hirschmann EAGLE | 1 | CVE-2020-6994 |
+| Phoenix Contact mGuard | 1 | CVE-2024-43386 |
+| Schneider ConneXium/Tofino | 1 | CVE-2017-6026 |
+| Cisco ISA-3000 | 1 | CVE-2018-0101 (CVSS 10.0) |
+| Secomea GateManager | 1 | CVE-2020-14500 (CVSS 10.0) |
+| Ewon/HMS Cosy+ | 1 | CVE-2026-25823 |
+
+### OT Protocol Bypass
+
+Modbus TCP, OPC UA, DNP3, IEC 60870-5-104, EtherNet/IP CIP
+
+### Generic Techniques
+
+HTTP Request Smuggling, VLAN Hopping, Heartbleed, Shellshock, SSH Auth Keys
+
+---
+
+## Usage
 
 ### Interactive shell
 
-After `python rxf.py`:
-
-```text
-help                          # global help (+ module help if one is loaded)
-use creds/generic/ssh_default # load module (slashes like paths)
-set target 192.168.0.1
-show options                  # editable options
-show info                     # module metadata
-check                         # check if target looks vulnerable (if implemented)
-run                           # execute
-back                          # unload module
-search exit                   # modules whose path contains "exit"
-search type=exploits vendor=linksys wrt
-exec uname -a                 # OS shell command
-exit                          # Ctrl+D also exits
+```bash
+python fxf.py
 ```
 
-**Search:** space-separated words are **AND**ed (all must appear in the module path). Filters: `type=`, `device=`, `language=`, `payload=`, `vendor=`.
+```text
+fxf > use exploits/perimeter/fortinet/fortios_sslvpn_path_traversal_cve_2018_13379
+fxf (...) > set target 192.168.1.1
+fxf (...) > check
+[+] Target is vulnerable
+fxf (...) > run
+```
 
-**Global options:** `setg name value` applies across modules; `unsetg name` removes.
+### AutoPwn with ML
 
-**Prompt:** environment variables `FXF_RAW_PROMPT` and `FXF_MODULE_PROMPT` (see `firewallxpl/interpreter.py`).
+```text
+fxf > use scanners/autopwn
+fxf (scanners/autopwn) > set target 192.168.1.1
+fxf (scanners/autopwn) > set timing_template aggressive
+fxf (scanners/autopwn) > set ml_advisor true
+fxf (scanners/autopwn) > set ml_fingerprint true
+fxf (scanners/autopwn) > run
+```
 
 ### Non-interactive mode
 
 ```bash
-python rxf.py -m creds/generic/ssh_default -s "target 192.168.0.1" -s "port 22"
+python fxf.py -m exploits/perimeter/fortinet/fortios_auth_bypass_cve_2022_40684 -s "target 10.0.0.1"
 ```
 
-`-s` may repeat; each string is parsed like interactive `set`.
+### Search
 
-### Logs
-
-Bootstrap logging writes to **`firewallxpl.log`** (rotating log in the current working directory).
-
----
-
-## Full documentation (Wiki)
-
-Syntax, examples by module family, troubleshooting, and the module index:
-
-- **English (en-US, default):** [docs/wiki/en-US/README.md](docs/wiki/en-US/README.md)  
-- **Português (pt-BR):** [docs/wiki/pt-BR/README.md](docs/wiki/pt-BR/README.md)  
-- **Hub (both):** [docs/wiki/README.md](docs/wiki/README.md)
-
-To publish on **GitHub Wiki**, copy the chosen locale folder (or both) into the wiki repository (separate Git clone).
-
----
-
-## Other docs in the repo
-
-| Path | Contents |
-|------|----------|
-| [docs/README.md](docs/README.md) · [docs/README.pt-BR.md](docs/README.pt-BR.md) | Documentation hub (en-US + pt-BR) |
-| [docs/diagrams/architecture/](docs/diagrams/architecture/) | Attack-surface architecture (MikrotikAPI-BF style) + [PNGs](docs/img/architecture/) |
-| [docs/COVERAGE_MATRIX.md](docs/COVERAGE_MATRIX.md) | Coverage matrix and external intel (en-US body) |
-| [docs/FULL_CATALOG.md](docs/FULL_CATALOG.md) | Extended device/CVE-oriented catalog (en-US body) |
-| `firewallxpl/resources/catalogs/` | JSON catalogs (market, Discord, extended CVE, etc.) |
-| `tools/report_market_priority_gaps.py` | Gap report vs market-priority catalog |
-| `tools/validate_market_priority_minimums.py` | Yearly minimum validation |
-| `tools/generate_coverage_matrix.py` | Regenerate matrix docs |
-| `tools/generate_full_catalog.py` | Regenerate `FULL_CATALOG` (footprint, sizes, module stats) |
-| `tools/refresh_cve_extended_catalog.py` | Regenerate merged `cve_extended_catalog.json` |
-| `# (removed tool)` | Vendor PoC snapshots into `arsenal/pocs/integrated_modules/` |
-
----
-
-## Release notes — 3.4.8
-
-- **CVE catalog:** `cve_extended_catalog.json` now merges the static matrix, `external_tool_intel_sources.json` hints, CVE strings from `firewallxpl/modules`, embedded `_EMBEDDED_CVES` scope, Discord `related_cves_hint`, and **PoC repository URLs** normalized from the vendored tg12 `cve_links.txt` (in-scope IDs only; does not load the whole global index into RAM at runtime).
-- **Docs:** `FULL_CATALOG` adds **on-disk footprint**, largest paths, and first-party `.py` counts (`tools/generate_full_catalog.py`).
-- **Offline Exploit-DB:** `generic/external/exploitdb_embedded_lookup` searches the bundled `files_exploits.csv` tree (no `searchsploit` CLI); legacy SearchSploit bridge modules were removed.
-- **Arsenal:** Curated PoC catalog live under `firewallxpl/resources/arsenal/pocs/integrated_modules/` (GPLv2 Exploit-DB and selected repos); indexes in `firewallxpl/resources/catalogs/`. **SOHO exploit catalog** bundle + `scanners/misc/soho_exploit_catalog_server` for local HTTP viewing in lab.
-
----
-
-## Tests and quality (contributors)
-
-```bash
-python tools/compat_smoke.py
-python tools/validate_market_priority_minimums.py
-python tools/generate_coverage_matrix.py
+```text
+fxf > search fortinet
+fxf > search type=exploits vendor=cisco
+fxf > search CVE-2024
 ```
 
 ---
 
-## Governance (bilingual files)
+## Core engines
+
+| Engine | Description |
+|--------|-------------|
+| **Async Concurrency** | asyncio + ThreadPool (up to 300 threads) + ProcessPool + ConnectionPool + Pipeline |
+| **GPU Acceleration** | NVIDIA CUDA, AMD ROCm, Intel oneAPI, Apple Metal, OpenCL, CPU fallback |
+| **ML Engine** | ServiceFingerprinter, AttackOptimizer (Thompson Sampling), AnomalyDetector, AutoTuner, CredentialMutator |
+| **Network Discovery** | Nmap/Masscan integration + builtin TCP fallback + device identification (23 vendors) + vulnerability mapping |
+| **Rich TUI** | Styled banner, panels, tables, progress bars, full-screen dashboard |
+
+---
+
+## Compatibility
+
+| Platform | Status |
+|----------|--------|
+| Windows 10/11 | CI + local validation |
+| WSL / Debian / Ubuntu | CI + local validation |
+| Kali Linux | Validated locally |
+| macOS | CI |
+
+**Python:** 3.9 through 3.13. Includes shim for removed `telnetlib` on 3.13+.
+
+---
+
+## Documentation
+
+- **Wiki (en-US + pt-BR):** [github.com/mrhenrike/FirewallXPL-Forge/wiki](https://github.com/mrhenrike/FirewallXPL-Forge/wiki)
+- **Coverage Matrix:** [docs/COVERAGE_MATRIX.md](docs/COVERAGE_MATRIX.md)
+- **Full Catalog:** [docs/FULL_CATALOG.md](docs/FULL_CATALOG.md)
+
+---
+
+## Governance
 
 | English (default) | Português (pt-BR) |
 |-------------------|---------------------|
@@ -218,15 +198,7 @@ python tools/generate_coverage_matrix.py
 
 ## License
 
-BSD — see [LICENSE](LICENSE). Current maintenance is described in this file and in project metadata.
-
----
-
-## Acknowledgments
-
-- [Riposte](https://github.com/fwkz/riposte) — interactive shell pattern
-- Community contributions to the original [mrhenrike/FirewallXPL-Forge](https://github.com/mrhenrike/FirewallXPL-Forge)
-- Contributors listed in [CONTRIBUTORS.md](CONTRIBUTORS.md)
+BSD — see [LICENSE](LICENSE).
 
 ---
 

@@ -20,15 +20,15 @@ Estilo hub-and-spoke (como no MikrotikAPI-BF). **Mermaid:** [diagrams/architectu
 
 | Router SOHO | Switch |
 |:---:|:---:|
-| ![SOHO](img/architecture/rxf_arch_router_soho.png) | ![Switch](img/architecture/rxf_arch_switch_l2l3.png) |
+| ![SOHO](img/architecture/fxf_arch_router_soho.png) | ![Switch](img/architecture/fxf_arch_switch_l2l3.png) |
 
 | NGFW / UTM | CPE ISP |
 |:---:|:---:|
-| ![NGFW](img/architecture/rxf_arch_ngfw_utm.png) | ![CPE](img/architecture/rxf_arch_isp_cpe.png) |
+| ![NGFW](img/architecture/fxf_arch_ngfw_utm.png) | ![CPE](img/architecture/fxf_arch_isp_cpe.png) |
 
 | Edge misto |
 |:---:|
-| ![Edge misto](img/architecture/rxf_arch_edge_mixed.png) |
+| ![Edge misto](img/architecture/fxf_arch_edge_mixed.png) |
 
 ## Wiki
 
@@ -40,7 +40,7 @@ Estilo hub-and-spoke (como no MikrotikAPI-BF). **Mermaid:** [diagrams/architectu
 ```bash
 python tools/generate_coverage_matrix.py
 python tools/generate_full_catalog.py
-python tools/refresh_cve_extended_catalog.py
+python tools/refresh_cve_catalog.py
 python tools/gen_wiki_module_index.py
 ```
 

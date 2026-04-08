@@ -4,7 +4,7 @@ Module encodes Python payload to hex format.
 
 ## Verification Steps
 
-  1. Start `./rxf.py`
+  1. Start `./fxf.py`
   2. Do: `use encoders/python/hex`
   3. Do: `show info`
 

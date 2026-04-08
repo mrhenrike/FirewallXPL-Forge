@@ -4,7 +4,7 @@ Module encodes PHP payload to Hex format.
 
 ## Verification Steps
 
-  1. Start `./rxf.py`
+  1. Start `./fxf.py`
   2. Do: `use encoders/php/hex`
   3. Do: `show info`
 

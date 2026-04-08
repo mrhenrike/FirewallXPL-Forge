@@ -21,25 +21,25 @@ Diagrams follow the same visual language as **MikrotikAPI-BF** (`img/mikrotik_*`
 
 | PNG | Source |
 |-----|--------|
-| [../../img/architecture/rxf_arch_router_soho.png](../../img/architecture/rxf_arch_router_soho.png) | SOHO router |
-| [../../img/architecture/rxf_arch_switch_l2l3.png](../../img/architecture/rxf_arch_switch_l2l3.png) | Switch |
-| [../../img/architecture/rxf_arch_ngfw_utm.png](../../img/architecture/rxf_arch_ngfw_utm.png) | NGFW / UTM |
-| [../../img/architecture/rxf_arch_isp_cpe.png](../../img/architecture/rxf_arch_isp_cpe.png) | ISP CPE |
-| [../../img/architecture/rxf_arch_edge_mixed.png](../../img/architecture/rxf_arch_edge_mixed.png) | Mixed edge |
+| [../../img/architecture/fxf_arch_router_soho.png](../../img/architecture/fxf_arch_router_soho.png) | SOHO router |
+| [../../img/architecture/fxf_arch_switch_l2l3.png](../../img/architecture/fxf_arch_switch_l2l3.png) | Switch |
+| [../../img/architecture/fxf_arch_ngfw_utm.png](../../img/architecture/fxf_arch_ngfw_utm.png) | NGFW / UTM |
+| [../../img/architecture/fxf_arch_isp_cpe.png](../../img/architecture/fxf_arch_isp_cpe.png) | ISP CPE |
+| [../../img/architecture/fxf_arch_edge_mixed.png](../../img/architecture/fxf_arch_edge_mixed.png) | Mixed edge |
 
 ### Gallery (embedded)
 
 | SOHO router | Switch |
 |:---:|:---:|
-| ![SOHO router](../../img/architecture/rxf_arch_router_soho.png) | ![Switch](../../img/architecture/rxf_arch_switch_l2l3.png) |
+| ![SOHO router](../../img/architecture/fxf_arch_router_soho.png) | ![Switch](../../img/architecture/fxf_arch_switch_l2l3.png) |
 
 | NGFW / UTM | ISP CPE |
 |:---:|:---:|
-| ![NGFW / UTM](../../img/architecture/rxf_arch_ngfw_utm.png) | ![ISP CPE](../../img/architecture/rxf_arch_isp_cpe.png) |
+| ![NGFW / UTM](../../img/architecture/fxf_arch_ngfw_utm.png) | ![ISP CPE](../../img/architecture/fxf_arch_isp_cpe.png) |
 
 | Mixed edge |
 |:---:|
-| ![Mixed edge](../../img/architecture/rxf_arch_edge_mixed.png) |
+| ![Mixed edge](../../img/architecture/fxf_arch_edge_mixed.png) |
 
 **TAP / passive devices:** see Mermaid source [06-network-tap.mmd](06-network-tap.mmd) — PNG optional (low remote attack surface).
 

