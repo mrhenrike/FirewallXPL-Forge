@@ -15,15 +15,15 @@
 
 | SOHO router | L2–L3 switch |
 |:---:|:---:|
-| ![SOHO router](../img/architecture/rxf_arch_router_soho.png) | ![Switch](../img/architecture/rxf_arch_switch_l2l3.png) |
+| ![SOHO router](../img/architecture/fxf_arch_router_soho.png) | ![Switch](../img/architecture/fxf_arch_switch_l2l3.png) |
 
 | NGFW / UTM | ISP CPE |
 |:---:|:---:|
-| ![NGFW UTM](../img/architecture/rxf_arch_ngfw_utm.png) | ![ISP CPE](../img/architecture/rxf_arch_isp_cpe.png) |
+| ![NGFW UTM](../img/architecture/fxf_arch_ngfw_utm.png) | ![ISP CPE](../img/architecture/fxf_arch_isp_cpe.png) |
 
 | Mixed edge |
 |:---:|
-| ![Mixed edge](../img/architecture/rxf_arch_edge_mixed.png) |
+| ![Mixed edge](../img/architecture/fxf_arch_edge_mixed.png) |
 
 ## Shared asset / Recurso partilhado
 
@@ -34,7 +34,7 @@
 | Repository | Role |
 |------------|------|
 | [FirewallXPL-Forge](https://github.com/mrhenrike/FirewallXPL-Forge) | Routers, switches, TAPs, SOHO edge |
-| [WirelessXPL-Forge](https://github.com/mrhenrike/WirelessXPL-Forge) | 802.11 / WPA3 / BLE / PCAP lab |
+| [FirewallXPL-Forge](https://github.com/mrhenrike/FirewallXPL-Forge) | 802.11 / WPA3 / BLE / PCAP lab |
 
 ## Governance & CI / Governança e CI
 

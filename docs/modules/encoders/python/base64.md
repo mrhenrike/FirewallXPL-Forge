@@ -4,7 +4,7 @@ Module encodes Python payload to base64 format.
 
 ## Verification Steps
 
-  1. Start `./rxf.py`
+  1. Start `./fxf.py`
   2. Do: `use encoders/python/base64`
   3. Do: `show info`
 

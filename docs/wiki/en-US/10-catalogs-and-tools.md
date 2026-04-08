@@ -36,13 +36,13 @@ python tools/generate_full_catalog.py
 | Script | Role |
 |--------|------|
 | `tools/env_doctor.py` | Dependency smoke |
-| `tools/compat_smoke.py` | Compatibility smoke |
-| `tools/validate_market_priority_minimums.py` | Market catalog validation |
-| `tools/report_market_priority_gaps.py` | Gap CSV |
+| `tools/env_doctor.py` | Compatibility smoke |
+| `tools/validate_coverage_minimums.py` | Market catalog validation |
+| `tools/report_coverage_gaps.py` | Gap CSV |
 | `tools/gen_wiki_module_index.py` | Regenerate [../ANEXO-INDICE-MODULOS.md](../ANEXO-INDICE-MODULOS.md) |
 | `tools/sync_intel_sources.py` | External intel snapshot (environment-dependent) |
 | `tools/generate_full_catalog.py` | Regenerate [../../FULL_CATALOG.md](../../FULL_CATALOG.md) / `.txt` (footprint + stats) |
-| `tools/refresh_cve_extended_catalog.py` | Regenerate `cve_extended_catalog.json` (merge + tg12 PoC URLs) |
+| `tools/refresh_cve_catalog.py` | Regenerate `cve_extended_catalog.json` (merge + tg12 PoC URLs) |
 | `# (removed tool)` | Refresh embedded PoC intel JSON from local mirrors |
 | `# (removed tool)` | Copy/sync PoC trees into `integrated_modules/` |
 | `tools/build_soho_catalog_js_index.py` | Rebuild SOHO catalog JS index metadata |

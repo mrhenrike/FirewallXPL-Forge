@@ -38,13 +38,13 @@ python tools/generate_full_catalog.py
 | Script | Função |
 |--------|--------|
 | `tools/env_doctor.py` | Dependências base |
-| `tools/compat_smoke.py` | Fumo de compatibilidade |
-| `tools/validate_market_priority_minimums.py` | Valida catálogo de prioridade |
-| `tools/report_market_priority_gaps.py` | Gera `.log/market_priority_gaps.csv` |
+| `tools/env_doctor.py` | Fumo de compatibilidade |
+| `tools/validate_coverage_minimums.py` | Valida catálogo de prioridade |
+| `tools/report_coverage_gaps.py` | Gera `.log/market_priority_gaps.csv` |
 | `tools/gen_wiki_module_index.py` | Regenera `docs/wiki/ANEXO-INDICE-MODULOS.md` |
 | `tools/sync_intel_sources.py` | *Snapshots* de intel externa (rede / `gh` conforme ambiente) |
 | `tools/generate_full_catalog.py` | Regenera `docs/FULL_CATALOG.*` (pegada em disco + estatísticas) |
-| `tools/refresh_cve_extended_catalog.py` | Regenera `cve_extended_catalog.json` (merge + URLs PoC tg12) |
+| `tools/refresh_cve_catalog.py` | Regenera `cve_extended_catalog.json` (merge + URLs PoC tg12) |
 | `# (removed tool)` | Actualiza JSON de intel PoC embutido |
 | `# (removed tool)` | Copia/sincroniza árvores PoC para `integrated_modules/` |
 | `tools/build_soho_catalog_js_index.py` | Reconstrói índice JS do catálogo SOHO |

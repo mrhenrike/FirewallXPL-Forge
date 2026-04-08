@@ -4,7 +4,7 @@ Module generates payload that creates interactive udp bind shell by using python
 
 ## Verification Steps
 
-  1. Start `./rxf.py`
+  1. Start `./fxf.py`
   2. Do: `use payloads/python/bind_udp`
   3. Do: `set rport 4321`
   4. Do: `run`

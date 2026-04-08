@@ -68,7 +68,7 @@ Approximate on-disk size (file bytes only; binary prefixes). Walk skips caches s
 | `firewallxpl/modules` | 388 |
 | `firewallxpl/libs` | 5 |
 | `tools` | 35 |
-| `rxf.py` | 1 |
+| `fxf.py` | 1 |
 
 ---
 

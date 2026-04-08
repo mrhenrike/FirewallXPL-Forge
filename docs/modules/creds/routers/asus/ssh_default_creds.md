@@ -5,7 +5,7 @@ If valid credentials are found, they are displayed to the user.
 
 ## Verification Steps
 
-  1. Start `./rxf.py`
+  1. Start `./fxf.py`
   2. Do: `use creds/routers/asus/ssh_default_creds`
   3. Do: `set target [TargetIP]`
   4. Do: `run`
