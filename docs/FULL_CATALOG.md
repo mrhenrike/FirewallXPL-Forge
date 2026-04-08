@@ -441,7 +441,7 @@ Approximate on-disk size (file bytes only; binary prefixes). Walk skips caches s
 
 66. **HTTP Form Char-by-Char Oracle**
    - Path: `exploits/generic/http_form_char_by_char_oracle.py`
-   - Generic framework for character-by-character password probing when the login page leaks a content or timing oracle. Not bound to a specific vendor/model/year in the market-priority catalog — you must 
+   - Generic framework for character-by-character password probing when the login page leaks a content or timing oracle. Not bound to a specific vendor/model/year in the coverage catalog — you must 
    - Devices: Any in-scope device with a vulnerable web login oracle (lab-validated only)
 
 ### huawei (7)
@@ -1456,9 +1456,9 @@ Approximate on-disk size (file bytes only; binary prefixes). Walk skips caches s
    - Loads a .rb path from your Metasploit tree and prints Name/Author/References heuristics. Does not run Ruby or MSF; original file is not modified. Credit remains with module authors and Rapid7 license.
    - Devices: Documentation
 
-8. **MikrotikAPI-BF Bridge**
+8. **FirewallXPL-Forge Bridge**
    - Path: `generic/external/mikrotikapi_bf_bridge.py`
-   - Runs MikrotikAPI-BF (https://github.com/mrhenrike/MikrotikAPI-BF) via subprocess. Set script_path to your repo's mikrotikapi-bf.py or leave empty to use PATH (mikrotikapi-bf).
+   - Runs FirewallXPL-Forge (https://github.com/mrhenrike/FirewallXPL-Forge) via subprocess. Set script_path to your repo's mikrotikapi-bf.py or leave empty to use PATH (mikrotikapi-bf).
    - Devices: MikroTik RouterOS
 
 ### pcap (9)

@@ -1284,9 +1284,9 @@ GENERIC MODULES (20)
      Path: generic/external/metasploit_rb_inspect.py
      Loads a .rb path from your Metasploit tree and prints Name/Author/References heuristics. Does not run Ruby or MSF; origi
      Devices: Documentation
-  8. MikrotikAPI-BF Bridge
+  8. FirewallXPL-Forge Bridge
      Path: generic/external/mikrotikapi_bf_bridge.py
-     Runs MikrotikAPI-BF (https://github.com/mrhenrike/MikrotikAPI-BF) via subprocess. Set script_path to your repo's mikroti
+     Runs FirewallXPL-Forge (https://github.com/mrhenrike/FirewallXPL-Forge) via subprocess. Set script_path to your repo's mikroti
      Devices: MikroTik RouterOS
 
 [PCAP] (9)

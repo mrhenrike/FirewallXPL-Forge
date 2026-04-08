@@ -8,7 +8,7 @@ Documentação de uso do framework. Pode ser lida no GitHub ou copiada para o re
 
 ## Diagramas de arquitetura (por classe de dispositivo)
 
-Galeria PNG (estilo MikrotikAPI-BF). Fontes Mermaid: [../../diagrams/architecture/README.md](../../diagrams/architecture/README.md).
+Galeria PNG (estilo FirewallXPL-Forge). Fontes Mermaid: [../../diagrams/architecture/README.md](../../diagrams/architecture/README.md).
 
 | Router SOHO | Switch gerido |
 |:---:|:---:|

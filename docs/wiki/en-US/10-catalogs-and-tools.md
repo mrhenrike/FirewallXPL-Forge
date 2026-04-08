@@ -6,7 +6,7 @@
 
 | File | Role |
 |------|------|
-| `market_priority_devices_2010_2026.json` | Market device pool + yearly lists |
+| `coverage_devices_2010_2026.json` | Market device pool + yearly lists |
 | `module_target_scope.json` | AutoPwn scope policy |
 | `cve_extended_catalog.json` | CVE DB extension (merged static + intel + modules + tg12 PoC refs for in-scope IDs) |
 | `discord_requested_devices.json` | Community requests |

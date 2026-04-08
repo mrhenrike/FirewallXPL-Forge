@@ -16,7 +16,7 @@
 
 ## Arquitetura / superfície de ataque (PNGs)
 
-Estilo hub-and-spoke (como no MikrotikAPI-BF). **Mermaid:** [diagrams/architecture/](diagrams/architecture/).
+Estilo hub-and-spoke (como no FirewallXPL-Forge). **Mermaid:** [diagrams/architecture/](diagrams/architecture/).
 
 | Router SOHO | Switch |
 |:---:|:---:|

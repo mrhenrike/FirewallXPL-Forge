@@ -1,156 +1,110 @@
 # FirewallXPL-Forge
 
-**Idioma:** **Português (pt-BR)**. **English (en-US, padrão do repositório):** [README.md](README.md)
+**Framework de exploração de segurança perimetral** — 164 módulos cobrindo **FW, NGFW, UTM, WAF, VPN, NAC, LB** e firewalls industriais **OT/ICS** em **23 vendors** e **51+ CVEs**.
 
-Framework open source para testes de segurança em **dispositivos embutidos**, com foco em **roteadores, switches, TAPs, firewalls e NGFW**.
+**Autor:** André Henrique ([@mrhenrike](https://github.com/mrhenrike)) \| [União Geek](https://github.com/Uniao-Geek)
 
-**Mantenedor:** André Henrique ([@mrhenrike](https://github.com/mrhenrike)) \| [União Geek](https://github.com/Uniao-Geek)  
-**Projeto:** [mrhenrike/FirewallXPL-Forge](https://github.com/mrhenrike/FirewallXPL-Forge)
+**Idioma:** **Português (pt-BR)** — esta página. **English (en-US, default):** [README.md](README.md)
 
-[![Python 3.8–3.13](https://img.shields.io/badge/Python-3.8--3.13-blue.svg)](https://www.python.org/downloads/)
+[![Python 3.9–3.13](https://img.shields.io/badge/Python-3.9--3.13-blue.svg)](https://www.python.org/downloads/)
 [![CI](https://github.com/mrhenrike/FirewallXPL-Forge/actions/workflows/compat-matrix.yml/badge.svg)](https://github.com/mrhenrike/FirewallXPL-Forge/actions)
+[![PyPI](https://img.shields.io/pypi/v/firewallxpl.svg)](https://pypi.org/project/firewallxpl/)
+
+---
+
+## Arquitetura e Mapa de Superfície de Ataque
+
+![FirewallXPL-Forge v2.0.0 — Mapa de Superfície de Ataque](docs/diagrams/architecture/attack-surface-map-v2.0.0.png)
+
+---
+
+## Instalação
+
+```bash
+# Via PyPI (recomendado)
+pip install firewallxpl
+
+# Com TUI Rich + descoberta Nmap
+pip install firewallxpl[tui,discovery]
+
+# Com engine ML + aceleração GPU
+pip install firewallxpl[ml,gpu-nvidia]
+
+# Tudo incluído
+pip install firewallxpl[full]
+
+# A partir do código-fonte
+git clone https://github.com/mrhenrike/FirewallXPL-Forge.git
+cd FirewallXPL-Forge
+pip install -e ".[tui,discovery]"
+python fxf.py
+```
 
 ---
 
 ## O que o projeto faz
 
-O FirewallXPL-Forge organiza **módulos** que apoiam avaliações autorizadas (pentest, laboratório, red team controlado):
+FirewallXPL-Forge fornece **módulos** para testes de segurança **autorizados** contra dispositivos de perímetro (pentest, laboratório, red team controlado). Classes alvo: `perimeter`, `waf`, `vpn`, `nac`, `lb`.
 
 | Tipo | Função |
 |------|--------|
-| **exploits** | Abuso de vulnerabilidades conhecidas (com `check()` quando implementado) |
-| **creds** | Teste de credenciais padrão e força bruta em serviços de rede |
-| **scanners** | Identificação de superfície vulnerável; **autopwn** orquestra módulos com perfis de tempo estilo Nmap |
-| **generic** | Utilitários transversais: SNMP, SSDP, PCAP/Wi‑Fi offline, **CVE lookup**, gerador de wordlists, Bluetooth LE |
-| **payloads** | Geração de cargas por arquitetura (ARM/MIPS/x86, shells reversas/bind) |
+| **exploits** | Exploração de vulnerabilidades conhecidas — `check()` + `run()` por módulo |
+| **creds** | Credenciais default e brute force via SSH, FTP, Telnet, HTTP, SNMP |
+| **scanners** | Identificação de fraquezas; **AutoPwn** orquestra todos os módulos com timing Nmap (T0–T5) |
+| **payloads** | Geração de payloads por arquitetura (ARM/MIPS/x86/x64, reverse/bind shells) |
 | **encoders** | Codificação de payloads (Python, PHP, Perl) |
 
-**Fora de escopo neste repositório:** módulos voltados a câmeras IP, impressoras e DVRs como alvo principal.
-
-### Arquitetura e superfície de ataque (por categoria)
-
-Diagramas estilo hub-and-spoke (mesma linha do [MikrotikAPI-BF](https://github.com/mrhenrike/MikrotikAPI-BF), `img/mikrotik_*`): núcleo do equipamento, **vetores de entrada** remotos e correspondência com cobertura **FirewallXPL-Forge**. Fontes Mermaid: [docs/diagrams/architecture/](docs/diagrams/architecture/).
-
-| Router SOHO | Switch L2–L3 gerido |
-|:---:|:---:|
-| ![Router SOHO — superfície e cobertura FXF](docs/img/architecture/fxf_arch_router_soho.png) | ![Switch — superfície e cobertura FXF](docs/img/architecture/fxf_arch_switch_l2l3.png) |
-
-| NGFW / UTM | CPE ISP / gateway residencial |
-|:---:|:---:|
-| ![NGFW UTM — superfície e cobertura FXF](docs/img/architecture/fxf_arch_ngfw_utm.png) | ![CPE ISP — superfície e cobertura FXF](docs/img/architecture/fxf_arch_isp_cpe.png) |
-
-| Edge misto (router + UTM-lite) |
-|:---:|
-| ![Edge misto — superfície e cobertura FXF](docs/img/architecture/fxf_arch_edge_mixed.png) |
-
 ---
 
-## Documentação wiki
-
-- **Português (pt-BR):** [docs/wiki/pt-BR/README.md](docs/wiki/pt-BR/README.md)  
-- **English (en-US):** [docs/wiki/en-US/README.md](docs/wiki/en-US/README.md)  
-- **Hub:** [docs/wiki/README.md](docs/wiki/README.md)
-
----
-
-## Instalação rápida
-
-### Dependências (`requirements.txt`)
-
-- `requests`, `paramiko`, `pysnmp`, `pycryptodome`, ``, `setuptools`
-- `telnetlib3` em Python ≥ 3.13
-
-### Clonar e executar
-
-```bash
-git clone https://github.com/mrhenrike/FirewallXPL-Forge.git
-cd FirewallXPL-Forge
-python3 -m venv .venv
-# Linux/macOS:
-source .venv/bin/activate
-# Windows:
-# .venv\Scripts\activate
-python3 -m pip install -r requirements.txt
-python3 fxf.py
-```
-
-### Diagnóstico do ambiente
-
-```bash
-python tools/env_doctor.py
-```
-
----
-
-## Uso resumido
+## Uso
 
 ### Shell interativo
 
-Após `python fxf.py`:
+```bash
+python fxf.py
+```
 
 ```text
-help
-use creds/generic/ssh_default
-set target 192.168.0.1
-show options
-show info
-check
-run
-back
-search type=exploits vendor=linksys wrt
-exec uname -a
-exit
+fxf > use exploits/perimeter/fortinet/fortios_sslvpn_path_traversal_cve_2018_13379
+fxf (...) > set target 192.168.1.1
+fxf (...) > check
+[+] Alvo é vulnerável
+fxf (...) > run
 ```
 
-### Modo não interativo
+### AutoPwn com ML
+
+```text
+fxf > use scanners/autopwn
+fxf (scanners/autopwn) > set target 192.168.1.1
+fxf (scanners/autopwn) > set timing_template aggressive
+fxf (scanners/autopwn) > set ml_advisor true
+fxf (scanners/autopwn) > run
+```
+
+### Modo não-interativo
 
 ```bash
-python fxf.py -m creds/generic/ssh_default -s "target 192.168.0.1" -s "port 22"
+python fxf.py -m exploits/perimeter/fortinet/fortios_auth_bypass_cve_2022_40684 -s "target 10.0.0.1"
 ```
 
-### Logs
+---
 
-O bootstrap regista em **`firewallxpl.log`**.
+## Engines
+
+| Engine | Descrição |
+|--------|-----------|
+| **Concorrência Async** | asyncio + ThreadPool (até 300 threads) + ProcessPool + ConnectionPool + Pipeline |
+| **Aceleração GPU** | NVIDIA CUDA, AMD ROCm, Intel oneAPI, Apple Metal, OpenCL, CPU fallback |
+| **Engine ML** | Fingerprinter, AttackOptimizer (Thompson Sampling), AnomalyDetector, AutoTuner |
+| **Network Discovery** | Integração Nmap/Masscan + fallback TCP + identificação de dispositivos (23 vendors) |
+| **TUI Rich** | Banner estilizado, painéis, tabelas, progress bars, dashboard |
 
 ---
 
-## Governança (bilíngue)
+## Documentação
 
-| Português (pt-BR) | English (default) |
-|-------------------|-------------------|
-| [CONTRIBUTING.pt-BR.md](CONTRIBUTING.pt-BR.md) | [CONTRIBUTING.md](CONTRIBUTING.md) |
-| [CODE_OF_CONDUCT.pt-BR.md](CODE_OF_CONDUCT.pt-BR.md) | [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) |
-| [SECURITY.pt-BR.md](SECURITY.pt-BR.md) | [SECURITY.md](SECURITY.md) |
-| [CONTRIBUTORS.pt-BR.md](CONTRIBUTORS.pt-BR.md) | [CONTRIBUTORS.md](CONTRIBUTORS.md) |
-
----
-
-## Outros recursos
-
-| Caminho | Conteúdo |
-|---------|----------|
-| [docs/README.md](docs/README.md) · [docs/README.pt-BR.md](docs/README.pt-BR.md) | Hub da pasta `docs/` |
-| [docs/COVERAGE_MATRIX.md](docs/COVERAGE_MATRIX.md) | Matriz de cobertura |
-| [docs/FULL_CATALOG.md](docs/FULL_CATALOG.md) | Catálogo ampliado |
-
----
-
-## Notas de versão — 3.4.8
-
-- **Catálogo CVE:** `cve_extended_catalog.json` passa a fundir a matriz estática, *hints* de `external_tool_intel_sources.json`, CVEs citados em `firewallxpl/modules`, o conjunto em `_EMBEDDED_CVES`, `related_cves_hint` do Discord e **URLs de repositórios PoC** normalizados a partir do tg12 `cve_links.txt` vendored (só IDs em âmbito edge/FirewallXPL).
-- **Documentação:** `FULL_CATALOG` inclui **pegada em disco**, pastas mais pesadas e contagens de `.py` de primeira parte (`tools/generate_full_catalog.py`).
-- **Exploit-DB offline:** `generic/external/exploitdb_embedded_lookup` pesquisa o `files_exploits.csv` do espelho local (sem CLI `searchsploit`); o antigo módulo ponte SearchSploit foi removido.
-- **Arsenal:** espelhos PoC de terceiros em `firewallxpl/resources/arsenal/pocs/integrated_modules/` (Exploit-DB GPLv2 e repos curados); índices JSON em `firewallxpl/resources/catalogs/`. Catálogo SOHO estático + `scanners/misc/soho_exploit_catalog_server` para visualização HTTP em laboratório.
-
----
-
-## Testes sugeridos (contribuidores)
-
-```bash
-python tools/env_doctor.py
-python tools/validate_coverage_minimums.py
-python tools/generate_coverage_matrix.py
-```
+- **Wiki (en-US + pt-BR):** [github.com/mrhenrike/FirewallXPL-Forge/wiki](https://github.com/mrhenrike/FirewallXPL-Forge/wiki)
 
 ---
 
@@ -160,12 +114,4 @@ BSD — ver [LICENSE](LICENSE).
 
 ---
 
-## Agradecimentos
-
-- [Riposte](https://github.com/fwkz/riposte)
-- [mrhenrike/FirewallXPL-Forge](https://github.com/mrhenrike/FirewallXPL-Forge)
-- [CONTRIBUTORS.md](CONTRIBUTORS.md)
-
----
-
-> **Author:** André Henrique ([@mrhenrike](https://github.com/mrhenrike)) \| **União Geek** — [https://github.com/Uniao-Geek](https://github.com/Uniao-Geek)
+> **Autor:** André Henrique ([@mrhenrike](https://github.com/mrhenrike)) \| **União Geek** — [https://github.com/Uniao-Geek](https://github.com/Uniao-Geek)
