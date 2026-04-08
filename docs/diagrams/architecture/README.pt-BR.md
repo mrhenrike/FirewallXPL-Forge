@@ -4,7 +4,7 @@
 
 **Author:** André Henrique ([@mrhenrike](https://github.com/mrhenrique)) \| **União Geek** — [https://github.com/Uniao-Geek](https://github.com/Uniao-Geek)
 
-O estilo replica o hub-and-spoke do **MikrotikAPI-BF** (`mikrotik_full_attack_surface.png`, `mikrotik_access_vectors.png`): núcleo do dispositivo, vetores de acesso em volta, legenda de cobertura.
+O estilo replica o hub-and-spoke do **FirewallXPL-Forge** (`fxf_full_attack_surface.png`, `fxf_access_vectors.png`): núcleo do dispositivo, vetores de acesso em volta, legenda de cobertura.
 
 ## Legenda de cobertura
 

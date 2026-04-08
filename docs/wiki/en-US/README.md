@@ -8,7 +8,7 @@ Official usage documentation. Read on GitHub or copy into the **GitHub Wiki** (s
 
 ## Architecture diagrams (device classes)
 
-PNG gallery (MikrotikAPI-BF–style). Mermaid sources: [../../diagrams/architecture/README.md](../../diagrams/architecture/README.md).
+PNG gallery (FirewallXPL-Forge–style). Mermaid sources: [../../diagrams/architecture/README.md](../../diagrams/architecture/README.md).
 
 | SOHO router | Managed switch |
 |:---:|:---:|

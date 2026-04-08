@@ -6,12 +6,12 @@
 
 | Ficheiro | Conteúdo |
 |----------|----------|
-| `market_priority_devices_2010_2026.json` | *Device pool* e listas anuais (Brasil/global) |
+| `coverage_devices_2010_2026.json` | *Device pool* e listas anuais (Brasil/global) |
 | `module_target_scope.json` | Política de escopo e mapeamento *device class* para AutoPwn |
 | `cve_extended_catalog.json` | Extensão do `CVEDatabase` (merge matriz + intel + módulos + URLs PoC tg12 para IDs em âmbito) |
 | `discord_requested_devices.json` | Pedidos da comunidade / Discord |
 | `external_tool_intel_sources.json` | Fontes externas para roadmap (RouterPwn, EDB, Metasploit, …) |
-| `external_framework_clones.json` | URLs oficiais para clonar Metasploit / Exploit-DB / MikrotikAPI-BF (licenças e pontes `generic/external/*`) |
+| `external_framework_clones.json` | URLs oficiais para clonar Metasploit / Exploit-DB / FirewallXPL-Forge (licenças e pontes `generic/external/*`) |
 | `integrated_modules_index.json` | Índice dos espelhos PoC em `arsenal/pocs/integrated_modules/` |
 | `soho_catalog_js_index.json` | Metadados da *build* do catálogo SOHO HTML/JS |
 | `# (removed catalog)` | *Snapshot* de PRs/issues abertos nos *mirrors* de referencia |
@@ -40,7 +40,7 @@ python tools/generate_full_catalog.py
 | `tools/env_doctor.py` | Dependências base |
 | `tools/env_doctor.py` | Fumo de compatibilidade |
 | `tools/validate_coverage_minimums.py` | Valida catálogo de prioridade |
-| `tools/report_coverage_gaps.py` | Gera `.log/market_priority_gaps.csv` |
+| `tools/report_coverage_gaps.py` | Gera `.log/coverage_gaps.csv` |
 | `tools/gen_wiki_module_index.py` | Regenera `docs/wiki/ANEXO-INDICE-MODULOS.md` |
 | `tools/sync_intel_sources.py` | *Snapshots* de intel externa (rede / `gh` conforme ambiente) |
 | `tools/generate_full_catalog.py` | Regenera `docs/FULL_CATALOG.*` (pegada em disco + estatísticas) |

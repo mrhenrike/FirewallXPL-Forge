@@ -949,7 +949,7 @@
 | intelbras-vuln-checker-gist | Community Intelbras router vuln checklist (gist) | research-index | router-br | conditional | queued_for_curation | tracked | https://gist.github.com/MrCl0wnLab/2c325380cff786e0e1556c1fc8306098 |
 | metasploit-framework-github | Metasploit Framework (Rapid7) — reference source | exploit-framework | orchestration-bridge | high | adapter-module | tracked | https://github.com/rapid7/metasploit-framework |
 | exploitdb-gitlab | Exploit-DB (OffSec) — reference database | exploit-database | research-cli | high | embedded-in-forge | tracked | https://gitlab.com/exploit-database/exploitdb |
-| mikrotikapi-bf-github | MikrotikAPI-BF — RouterOS toolkit (author) | vendor-toolkit | mikrotik-routeros | high | adapter-module | tracked | https://github.com/mrhenrike/MikrotikAPI-BF |
+| mikrotikapi-bf-github | FirewallXPL-Forge — RouterOS toolkit (author) | vendor-toolkit | mikrotik-routeros | high | adapter-module | tracked | https://github.com/mrhenrike/FirewallXPL-Forge |
 | bitbucket-router-research | Bitbucket search — router / firmware / exploit keywords | discovery-hint | router-soho | low | reference | tracked | https://bitbucket.org/search?q=router |
 | local-poc-0vercl0k-zenith | 0vercl0k__zenith (clone local PoC) | local-git-submodule | edge_network_poc | high | embedded-local-mirror | tracked | https://github.com/0vercl0k/zenith.git |
 | local-poc-0xedh-mistrastar-mips-exploit | 0xedh__mistrastar-mips-exploit (clone local PoC) | local-git-submodule | iot_embedded_poc | conditional | embedded-local-mirror | tracked | https://github.com/0xedh/mistrastar-mips-exploit.git |

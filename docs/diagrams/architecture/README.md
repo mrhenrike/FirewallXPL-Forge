@@ -4,7 +4,7 @@
 
 **Languages:** Diagram labels are **English (en-US)** by default (aligned with tool output). **Português (pt-BR):** [README.pt-BR.md](README.pt-BR.md).
 
-Diagrams follow the same visual language as **MikrotikAPI-BF** (`img/mikrotik_*`): central device core, **access vectors** as spokes, **✓ / ✗** for coverage in FirewallXPL-Forge (`creds`, `exploits`, `scanners`, `generic`), optional CVE callouts.
+Diagrams follow the same visual language as **FirewallXPL-Forge** (`img/fxf_*`): central device core, **access vectors** as spokes, **✓ / ✗** for coverage in FirewallXPL-Forge (`creds`, `exploits`, `scanners`, `generic`), optional CVE callouts.
 
 ## Files
 

@@ -11,12 +11,12 @@
 | [COVERAGE_MATRIX.md](COVERAGE_MATRIX.md) | en-US | Coverage matrix, external intel tables |
 | [FULL_CATALOG.md](FULL_CATALOG.md) | en-US | Full module catalog snapshot |
 | [wiki/README.md](wiki/README.md) | bilingual hub | Wiki index (en-US + pt-BR) |
-| [diagrams/architecture/README.md](diagrams/architecture/README.md) | en-US + pt-BR | **Attack-surface architecture** (MikrotikAPI-BF style) |
+| [diagrams/architecture/README.md](diagrams/architecture/README.md) | en-US + pt-BR | **Attack-surface architecture** (FirewallXPL-Forge style) |
 | [img/architecture/](img/architecture/) | en-US labels on PNG | Exported architecture PNGs |
 
 ## Attack-surface architecture (PNGs)
 
-Same visual language as MikrotikAPI-BF hub-and-spoke diagrams. **Mermaid:** [diagrams/architecture/](diagrams/architecture/). **Gallery:**
+Same visual language as FirewallXPL-Forge hub-and-spoke diagrams. **Mermaid:** [diagrams/architecture/](diagrams/architecture/). **Gallery:**
 
 | SOHO router | Switch |
 |:---:|:---:|
