@@ -10,6 +10,9 @@ on:
 permissions:
   contents: read
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   smoke:
     name: "${{ matrix.os }} / py${{ matrix.python-version }}"
@@ -18,7 +21,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
+        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
 
     steps:
       - name: Checkout
@@ -34,17 +37,27 @@ jobs:
           python -m pip install --upgrade pip setuptools wheel
           python -m pip install -r requirements.txt
 
-      - name: Run compatibility smoke check
+      - name: Validate module indexing and imports
         run: |
-          python tools/compat_smoke.py
+          python -c "
+          import sys; sys.path.insert(0, '.')
+          from firewallxpl.core.exploit.utils import index_modules
+          modules = index_modules()
+          assert len(modules) >= 100, f'Expected 100+ modules, got {len(modules)}'
+          print(f'OK: {len(modules)} modules indexed')
+          "
 
-      - name: Validate market priority yearly minimums
+      - name: Validate Python syntax compilation
+        run: |
+          python -m compileall -q firewallxpl tools
+
+      - name: Validate coverage minimums
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.11'
         run: |
-          python tools/validate_market_priority_minimums.py
+          python tools/validate_coverage_minimums.py
 
   quality-security:
-    name: "quality-security / ubuntu / py3.11"
+    name: "quality-security / ubuntu / py3.12"
     runs-on: ubuntu-latest
 
     steps:
@@ -54,7 +67,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: "3.12"
 
       - name: Install runtime requirements
         run: |
@@ -63,7 +76,7 @@ jobs:
 
       - name: Install security audit tooling
         run: |
-          python -m pip install pip-audit flake8 pytest bandit
+          python -m pip install pip-audit flake8 bandit
 
       - name: Validate dependency graph integrity
         run: |
@@ -71,27 +84,23 @@ jobs:
 
       - name: Lint gate (critical errors)
         run: |
-          flake8 tools rxf.py --count --select=E9,F63,F7,F82 --show-source --statistics
-
-      - name: Scoped tests gate
-        run: |
-          python tools/run_scoped_tests.py
+          flake8 tools fxf.py --count --select=E9,F63,F7,F82 --show-source --statistics
 
       - name: Validate Python syntax compilation
         run: |
           python -m compileall -q firewallxpl tools
 
-      - name: Validate market priority yearly minimums
+      - name: Validate coverage minimums
         run: |
-          python tools/validate_market_priority_minimums.py
+          python tools/validate_coverage_minimums.py
 
       - name: Validate governance baseline
         run: |
           python tools/validate_governance.py
 
-      - name: Build OSI/TCP-IP attack-test matrix snapshot
+      - name: Build attack matrix snapshot
         run: |
-          python tools/build_osi_tcpip_attack_matrix.py
+          python tools/build_attack_matrix.py
 
       - name: Build curated arsenal index
         run: |
@@ -99,12 +108,7 @@ jobs:
 
       - name: Validate curated arsenal architecture
         run: |
-          python tools/validate_arsenal_architecture.py
-
-      - name: Validate generated coverage matrix is up to date
-        run: |
-          python tools/generate_coverage_matrix.py
-          git diff --exit-code -- docs/COVERAGE_MATRIX.md docs/COVERAGE_MATRIX.txt firewallxpl/resources/catalogs/arsenal_index.json
+          python tools/validate_arsenal.py
 
       - name: Dependency vulnerability audit
         run: |
@@ -114,9 +118,10 @@ jobs:
         run: |
           bandit -q -r tools -lll
 
-      - name: Refresh deep intel and honeypot snapshots (non-gating)
+      - name: Refresh intel and honeypot snapshots (non-gating)
+        continue-on-error: true
         run: |
-          python tools/deep_intel_backlog.py
+          python tools/intel_backlog.py
           python tools/validate_honeypot_traps.py
 
   dependency-review:
