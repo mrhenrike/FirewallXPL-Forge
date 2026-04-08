@@ -160,7 +160,7 @@ def _parse_tg12_txt_cve_urls(path: Path) -> list[dict[str, Any]]:
     buf_urls: list[str] = []
 
     def flush() -> None:
-        nonlocal current, buf_urls
+        nonlocal buf_urls
         if current and buf_urls:
             entries.append({"cve_id": current, "urls": list(buf_urls)})
         buf_urls = []
