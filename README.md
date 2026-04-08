@@ -1,15 +1,39 @@
 # FirewallXPL-Forge
 
-Fork focado em **perímetro e caixa de estado**: **NGFW, UTM, WAF**, firewalls de **cloud** (AWS/Azure/GCP/OCI, Cloudflare, ELB/WAF labels em catálogo), e SSL-VPN concentrators — laboratório autorizado.  
-O ramo **FirewallXPL-Forge** permanece para **roteadores, switches L2/L3, TAPs e CPE ISP**. **Wi‑Fi/BLE/PCAP** ficam em [**WirelessXPL-Forge**](https://github.com/mrhenrike/WirelessXPL-Forge) (private).
+**Perimeter security exploitation framework** — 164 modules covering **FW, NGFW, UTM, WAF, VPN, NAC, LB**, and **OT/ICS** industrial firewalls across **23 vendors** and **51+ CVEs**.
 
-**Maintainer:** André Henrique ([@mrhenrike](https://github.com/mrhenrike)) \| [União Geek](https://github.com/Uniao-Geek)  
-**Project:** [mrhenrike/FirewallXPL-Forge](https://github.com/mrhenrike/FirewallXPL-Forge) → [FirewallXPL-Forge](https://github.com/mrhenrike/FirewallXPL-Forge)
+**Author:** André Henrique ([@mrhenrike](https://github.com/mrhenrike)) \| [União Geek](https://github.com/Uniao-Geek)
 
-**Language:** **English (en-US)** — this file is the default. **Português (pt-BR):** [README.pt-BR.md](README.pt-BR.md)
+**Language:** **English (en-US)** — default. **Português (pt-BR):** [README.pt-BR.md](README.pt-BR.md)
 
-[![Python 3.8–3.13](https://img.shields.io/badge/Python-3.8--3.13-blue.svg)](https://www.python.org/downloads/)
+[![Python 3.9–3.13](https://img.shields.io/badge/Python-3.9--3.13-blue.svg)](https://www.python.org/downloads/)
 [![CI](https://github.com/mrhenrike/FirewallXPL-Forge/actions/workflows/compat-matrix.yml/badge.svg)](https://github.com/mrhenrike/FirewallXPL-Forge/actions)
+[![PyPI](https://img.shields.io/pypi/v/firewallxpl.svg)](https://pypi.org/project/firewallxpl/)
+
+## Architecture & Attack Surface Map
+
+![FirewallXPL-Forge Attack Surface Map](docs/diagrams/architecture/attack-surface-map-v2.0.0.png)
+
+## Install
+
+```bash
+# From PyPI (recommended)
+pip install firewallxpl
+
+# With Rich TUI + Nmap discovery
+pip install firewallxpl[tui,discovery]
+
+# With ML engine + GPU acceleration
+pip install firewallxpl[ml,gpu-nvidia]
+
+# Everything
+pip install firewallxpl[full]
+
+# From source
+git clone https://github.com/mrhenrike/FirewallXPL-Forge.git
+cd FirewallXPL-Forge && pip install -e ".[tui,discovery]"
+python fxf.py
+```
 
 ---
 
