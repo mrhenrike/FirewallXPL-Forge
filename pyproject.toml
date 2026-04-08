@@ -1,0 +1,76 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "firewallxpl"
+version = "2.0.0"
+description = "Perimeter security exploitation framework — NGFW, UTM, WAF, VPN, NAC, LB, and OT/ICS firewalls"
+readme = "README.md"
+license = {text = "BSD-3-Clause"}
+requires-python = ">=3.8"
+authors = [
+    {name = "André Henrique", email = "mrhenrike@users.noreply.github.com"},
+]
+keywords = [
+    "security", "exploitation", "penetration-testing", "firewall", "ngfw",
+    "utm", "waf", "vpn", "nac", "load-balancer", "ics", "ot", "scada",
+    "vulnerability-scanner", "pentest", "red-team", "security-audit",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: POSIX",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Security",
+    "Topic :: System :: Networking",
+]
+dependencies = [
+    "requests>=2.32.4",
+    "paramiko",
+    "pysnmp",
+    "pycryptodome",
+    "setuptools",
+    "psutil>=5.9.0",
+    "telnetlib3; python_version >= '3.13'",
+]
+
+[project.optional-dependencies]
+tui = ["rich>=13.0.0"]
+tui-full = ["rich>=13.0.0", "textual>=0.40.0"]
+ml = ["scikit-learn>=1.3.0", "joblib>=1.3.0"]
+ml-gpu = ["torch>=2.0.0"]
+gpu-nvidia = ["torch>=2.0.0", "cupy-cuda12x>=12.0.0"]
+gpu-amd = ["torch>=2.0.0"]
+gpu-intel = ["torch>=2.0.0", "intel-extension-for-pytorch>=2.1.0"]
+gpu-apple = ["torch>=2.0.0"]
+gpu-opencl = ["pyopencl>=2023.1", "numpy>=1.24.0"]
+discovery = ["python-nmap>=0.7.1"]
+async = ["aiohttp>=3.9.0", "asyncssh>=2.14.0"]
+full = [
+    "rich>=13.0.0", "scikit-learn>=1.3.0", "torch>=2.0.0",
+    "python-nmap>=0.7.1", "aiohttp>=3.9.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/mrhenrike/FirewallXPL-Forge"
+Repository = "https://github.com/mrhenrike/FirewallXPL-Forge"
+Issues = "https://github.com/mrhenrike/FirewallXPL-Forge/issues"
+Wiki = "https://github.com/mrhenrike/FirewallXPL-Forge/wiki"
+
+[project.scripts]
+fxf = "firewallxpl.interpreter:main"
+
+[tool.setuptools.packages.find]
+include = ["firewallxpl*"]
