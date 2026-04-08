@@ -50,7 +50,7 @@ First-party .py file counts (excl. __pycache__):
   firewallxpl/modules      388
   firewallxpl/libs         5
   tools                  35
-  rxf.py                 1
+  fxf.py                 1
 
 EXPLOITS (129)
 ========================================

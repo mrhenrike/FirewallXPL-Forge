@@ -12,15 +12,15 @@ Galeria PNG (estilo MikrotikAPI-BF). Fontes Mermaid: [../../diagrams/architectur
 
 | Router SOHO | Switch gerido |
 |:---:|:---:|
-| ![SOHO](../../img/architecture/rxf_arch_router_soho.png) | ![Switch](../../img/architecture/rxf_arch_switch_l2l3.png) |
+| ![SOHO](../../img/architecture/fxf_arch_router_soho.png) | ![Switch](../../img/architecture/fxf_arch_switch_l2l3.png) |
 
 | NGFW / UTM | CPE ISP |
 |:---:|:---:|
-| ![NGFW](../../img/architecture/rxf_arch_ngfw_utm.png) | ![CPE](../../img/architecture/rxf_arch_isp_cpe.png) |
+| ![NGFW](../../img/architecture/fxf_arch_ngfw_utm.png) | ![CPE](../../img/architecture/fxf_arch_isp_cpe.png) |
 
 | Edge misto |
 |:---:|
-| ![Edge misto](../../img/architecture/rxf_arch_edge_mixed.png) |
+| ![Edge misto](../../img/architecture/fxf_arch_edge_mixed.png) |
 
 ## Índice
 
@@ -29,7 +29,7 @@ Galeria PNG (estilo MikrotikAPI-BF). Fontes Mermaid: [../../diagrams/architectur
 | [01-introducao-e-instalacao.md](01-introducao-e-instalacao.md) | Objetivos, escopo legal, Python, `pip`, `env_doctor`, logs, figura de arquitetura |
 | [02-shell-interativo-comandos.md](02-shell-interativo-comandos.md) | `use`, `set`, `setg`, `show`, `run`, `check`, `back`, `exit`, `help` |
 | [03-busca-e-listagem.md](03-busca-e-listagem.md) | `search`, filtros, `show all/scanners/...` |
-| [04-modo-nao-interativo.md](04-modo-nao-interativo.md) | `rxf.py -m` / `-s`, automação |
+| [04-modo-nao-interativo.md](04-modo-nao-interativo.md) | `fxf.py -m` / `-s`, automação |
 | [05-modulos-creds.md](05-modulos-creds.md) | Credenciais e brute force |
 | [06-modulos-exploits.md](06-modulos-exploits.md) | Exploits, `check()`, opções comuns |
 | [07-scanners-e-autopwn.md](07-scanners-e-autopwn.md) | `router_scan`, `autopwn`, FortiGate SSL-VPN |

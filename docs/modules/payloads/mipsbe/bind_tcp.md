@@ -4,7 +4,7 @@ Module generates payload that creates interactive tcp bind shell for MIPSBE arch
 
 ## Verification Steps
 
-  1. Start `./rxf.py`
+  1. Start `./fxf.py`
   2. Do: `use payloads/mipsbe/bind_tcp`
   3. Do: `set rport 4321`
   4. Do: `run`

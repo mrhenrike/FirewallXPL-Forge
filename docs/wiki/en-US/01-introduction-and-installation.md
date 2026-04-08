@@ -8,7 +8,7 @@ A **modular Python framework** for **authorized** security testing of embedded n
 
 **Architecture overview (SOHO router example — full gallery in [wiki hub README](../README.md)):**
 
-![SOHO router — attack surface & tool coverage](../../img/architecture/rxf_arch_router_soho.png)
+![SOHO router — attack surface & tool coverage](../../img/architecture/fxf_arch_router_soho.png)
 
 ## Legal and ethical use
 
@@ -43,7 +43,7 @@ Checks core imports. Scapy is not in the doctor today; fix Scapy manually if `ge
 ## Start the app
 
 ```bash
-python rxf.py
+python fxf.py
 ```
 
 Interactive mode needs a **TTY**. For automation use `-m` / `-s` (see [04-non-interactive-mode.md](04-non-interactive-mode.md)).

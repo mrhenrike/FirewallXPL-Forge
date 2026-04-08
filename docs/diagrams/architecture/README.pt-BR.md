@@ -24,15 +24,15 @@ Caminhos em `docs/img/architecture/`. Galeria:
 
 | Router SOHO | Switch |
 |:---:|:---:|
-| ![SOHO](../../img/architecture/rxf_arch_router_soho.png) | ![Switch](../../img/architecture/rxf_arch_switch_l2l3.png) |
+| ![SOHO](../../img/architecture/fxf_arch_router_soho.png) | ![Switch](../../img/architecture/fxf_arch_switch_l2l3.png) |
 
 | NGFW / UTM | CPE ISP |
 |:---:|:---:|
-| ![NGFW](../../img/architecture/rxf_arch_ngfw_utm.png) | ![CPE](../../img/architecture/rxf_arch_isp_cpe.png) |
+| ![NGFW](../../img/architecture/fxf_arch_ngfw_utm.png) | ![CPE](../../img/architecture/fxf_arch_isp_cpe.png) |
 
 | Edge misto |
 |:---:|
-| ![Edge misto](../../img/architecture/rxf_arch_edge_mixed.png) |
+| ![Edge misto](../../img/architecture/fxf_arch_edge_mixed.png) |
 
 Ver também [README.md](README.md) (en-US).
 

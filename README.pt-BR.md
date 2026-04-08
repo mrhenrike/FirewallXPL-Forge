@@ -33,15 +33,15 @@ Diagramas estilo hub-and-spoke (mesma linha do [MikrotikAPI-BF](https://github.c
 
 | Router SOHO | Switch L2–L3 gerido |
 |:---:|:---:|
-| ![Router SOHO — superfície e cobertura RXF](docs/img/architecture/rxf_arch_router_soho.png) | ![Switch — superfície e cobertura RXF](docs/img/architecture/rxf_arch_switch_l2l3.png) |
+| ![Router SOHO — superfície e cobertura FXF](docs/img/architecture/fxf_arch_router_soho.png) | ![Switch — superfície e cobertura FXF](docs/img/architecture/fxf_arch_switch_l2l3.png) |
 
 | NGFW / UTM | CPE ISP / gateway residencial |
 |:---:|:---:|
-| ![NGFW UTM — superfície e cobertura RXF](docs/img/architecture/rxf_arch_ngfw_utm.png) | ![CPE ISP — superfície e cobertura RXF](docs/img/architecture/rxf_arch_isp_cpe.png) |
+| ![NGFW UTM — superfície e cobertura FXF](docs/img/architecture/fxf_arch_ngfw_utm.png) | ![CPE ISP — superfície e cobertura FXF](docs/img/architecture/fxf_arch_isp_cpe.png) |
 
 | Edge misto (router + UTM-lite) |
 |:---:|
-| ![Edge misto — superfície e cobertura RXF](docs/img/architecture/rxf_arch_edge_mixed.png) |
+| ![Edge misto — superfície e cobertura FXF](docs/img/architecture/fxf_arch_edge_mixed.png) |
 
 ---
 
@@ -57,7 +57,7 @@ Diagramas estilo hub-and-spoke (mesma linha do [MikrotikAPI-BF](https://github.c
 
 ### Dependências (`requirements.txt`)
 
-- `requests`, `paramiko`, `pysnmp`, `pycryptodome`, `scapy`, `setuptools`
+- `requests`, `paramiko`, `pysnmp`, `pycryptodome`, ``, `setuptools`
 - `telnetlib3` em Python ≥ 3.13
 
 ### Clonar e executar
@@ -71,7 +71,7 @@ source .venv/bin/activate
 # Windows:
 # .venv\Scripts\activate
 python3 -m pip install -r requirements.txt
-python3 rxf.py
+python3 fxf.py
 ```
 
 ### Diagnóstico do ambiente
@@ -86,7 +86,7 @@ python tools/env_doctor.py
 
 ### Shell interativo
 
-Após `python rxf.py`:
+Após `python fxf.py`:
 
 ```text
 help
@@ -105,7 +105,7 @@ exit
 ### Modo não interativo
 
 ```bash
-python rxf.py -m creds/generic/ssh_default -s "target 192.168.0.1" -s "port 22"
+python fxf.py -m creds/generic/ssh_default -s "target 192.168.0.1" -s "port 22"
 ```
 
 ### Logs
@@ -147,8 +147,8 @@ O bootstrap regista em **`firewallxpl.log`**.
 ## Testes sugeridos (contribuidores)
 
 ```bash
-python tools/compat_smoke.py
-python tools/validate_market_priority_minimums.py
+python tools/env_doctor.py
+python tools/validate_coverage_minimums.py
 python tools/generate_coverage_matrix.py
 ```
 

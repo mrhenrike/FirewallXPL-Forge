@@ -13,7 +13,7 @@
 
 **Visão de arquitetura (exemplo router SOHO — galeria completa no [README da wiki](../README.md)):**
 
-![Router SOHO — superfície de ataque e cobertura da ferramenta](../../img/architecture/rxf_arch_router_soho.png)
+![Router SOHO — superfície de ataque e cobertura da ferramenta](../../img/architecture/fxf_arch_router_soho.png)
 
 ## Uso legal e ético
 
@@ -48,14 +48,14 @@ Verifica importação de depend núcleo (`requests`, `paramiko`, `pysnmp`, `Cryp
 ## Iniciar o programa
 
 ```bash
-python rxf.py
+python fxf.py
 ```
 
 O shell interativo exige **TTY** (`stdin` interativo). Para automação use o modo `-m`/`-s` (ver [04-modo-nao-interativo.md](04-modo-nao-interativo.md)).
 
 ## Arquivo de log
 
-O arquivo **`firewallxpl.log`** (na pasta de trabalho de onde você invocou `rxf.py`) recebe mensagens de logging do bootstrap. Gire ou apague o arquivo em ambientes de laboratório para não acumular dados sensíveis.
+O arquivo **`firewallxpl.log`** (na pasta de trabalho de onde você invocou `fxf.py`) recebe mensagens de logging do bootstrap. Gire ou apague o arquivo em ambientes de laboratório para não acumular dados sensíveis.
 
 ## Histórico de comandos
 

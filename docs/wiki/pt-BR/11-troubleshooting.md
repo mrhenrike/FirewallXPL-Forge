@@ -12,14 +12,14 @@
 cd FirewallXPL-Forge
 python -m pip install -e .
 # ou
-python rxf.py    # entrypoint espera estar na raiz do clone com deps instaladas
+python fxf.py    # entrypoint espera estar na raiz do clone com deps instaladas
 ```
 
 ## `stdin is not a TTY`
 
 **Causa:** redirecionamento de *stdin* ou execução em CI sem terminal.
 
-**Correção:** use modo não interativo: `python rxf.py -m ... -s "..."`.
+**Correção:** use modo não interativo: `python fxf.py -m ... -s "..."`.
 
 ## Falhas `paramiko` / `cryptography` / versão OpenSSL
 
@@ -43,7 +43,7 @@ O projeto depende de **`telnetlib3`**. Confirme `pip show telnetlib3`.
 
 **Sintoma:** `ImportError` ao usar `generic/pcap/*`.
 
-**Correção:** `pip install scapy` (já no `requirements.txt`). No Windows, captura ao vivo pode exigir Npcap; para só ler ficheiros `.pcap` isso muitas vezes não é necessário.
+**Correção:** `pip install ` (já no `requirements.txt`). No Windows, captura ao vivo pode exigir Npcap; para só ler ficheiros `.pcap` isso muitas vezes não é necessário.
 
 ## Histórico / *readline* no Windows
 
