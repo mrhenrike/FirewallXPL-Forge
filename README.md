@@ -1,5 +1,22 @@
 # FirewallXPL-Forge
 
+> **⚠ MIGRATION NOTICE — v2.1.0 (Final Release)**
+>
+> FirewallXPL-Forge has been **merged into [EmbedXPL-Forge](https://github.com/mrhenrike/EmbedXPL-Forge)**.
+> All 81 unique modules (Fortinet, Cisco, Palo Alto, SonicWall, Sophos, Juniper, F5 BIG-IP,
+> Citrix, Barracuda, A10, Imperva, NAC, pfSense, OT perimeter) are now available under
+> `embedxpl/modules/exploits/firewalls/` and related paths.
+>
+> **To migrate:**
+> ```bash
+> pip install embedxpl       # replaces firewallxpl
+> exf                        # new CLI (fxf alias also available)
+> ```
+> FirewallXPL-Forge **v2.1.0** is the final standalone release. This repository will remain
+> archived for reference but **will not receive new modules or CVE coverage**.
+
+---
+
 **Perimeter security exploitation framework** — 164 modules covering **FW, NGFW, UTM, WAF, VPN, NAC, LB**, and **OT/ICS** industrial firewalls across **23 vendors** and **51+ CVEs**.
 
 **Author:** André Henrique ([@mrhenrike](https://github.com/mrhenrike)) \| [União Geek](https://github.com/Uniao-Geek)

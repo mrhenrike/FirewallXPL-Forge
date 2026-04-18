@@ -1,8 +1,39 @@
 #!/usr/bin/env python3
+# Author: André Henrique (@mrhenrike) | União Geek — https://github.com/Uniao-Geek
 
 import logging.handlers
 import platform
 import sys
+
+# ──────────────────────────────────────────────────────────────────────────────
+#  MIGRATION NOTICE (v2.1.0)
+#  FirewallXPL-Forge has been merged into EmbedXPL-Forge.
+#  All 81 modules (Fortinet, Cisco, Palo Alto, SonicWall, Sophos, Juniper,
+#  F5, Citrix, Barracuda, A10/Imperva, NAC, pfSense, OT perimeter) are now
+#  available under `embedxpl/modules/exploits/firewalls/` and related paths.
+#
+#  ➜  Migrate:  pip install embedxpl
+#  ➜  New CLI:  exf  (or fxf — alias registered by embedxpl)
+#  ➜  Docs:     https://github.com/mrhenrike/EmbedXPL-Forge
+#
+#  FirewallXPL-Forge v2.1.0 continues to work but will not receive new modules.
+# ──────────────────────────────────────────────────────────────────────────────
+
+_MIGRATION_BANNER = """
+\033[33m╔══════════════════════════════════════════════════════════════════════╗
+║  ⚠  FirewallXPL-Forge has been merged into EmbedXPL-Forge            ║
+║                                                                      ║
+║  All 81 modules are now available in EmbedXPL-Forge v2.0+            ║
+║                                                                      ║
+║  Migrate:  pip install embedxpl                                      ║
+║  New CLI:  exf  (or  fxf  — alias registered by embedxpl)            ║
+║  Repo:     https://github.com/mrhenrike/EmbedXPL-Forge               ║
+║                                                                      ║
+║  FirewallXPL v2.1.0 is the final standalone release.                ║
+╚══════════════════════════════════════════════════════════════════════╝\033[0m
+"""
+print(_MIGRATION_BANNER, file=sys.stderr)
+
 if sys.version_info.major < 3:
     print("FirewallXPL supports only Python3. Rerun application in Python3 environment.")
     exit(1)
