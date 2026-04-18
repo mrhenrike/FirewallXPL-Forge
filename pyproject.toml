@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "firewallxpl"
-version = "2.0.0"
-description = "Perimeter security exploitation framework — NGFW, UTM, WAF, VPN, NAC, LB, and OT/ICS firewalls"
+version = "2.1.0"
+description = "Perimeter security exploitation framework — MERGED into EmbedXPL-Forge v2.0+. This is the final standalone release. See https://github.com/mrhenrike/EmbedXPL-Forge"
 readme = "README.md"
 license = {text = "BSD-3-Clause"}
 requires-python = ">=3.8"
