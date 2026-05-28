@@ -62,9 +62,10 @@ jobs:
           for f in os.listdir('dist'):
               if f.endswith('.whl'):
                   with zipfile.ZipFile(os.path.join('dist', f)) as z:
-                      meta = [n for n in z.namelist() if 'METADATA' in n][0]
+                      # Use endswith to avoid matching MIB/resource files that contain METADATA in path
+                      meta = [n for n in z.namelist() if n.endswith('.dist-info/METADATA')][0]
                       content = z.read(meta).decode()
-                      assert 'Name: firewallxpl' in content, 'ALERT: wheel metadata mismatch'
+                      assert 'Name: firewallxpl' in content, f'ALERT: wheel metadata mismatch. Name line: {[l for l in content.splitlines() if l.startswith(\"Name:\")]}'
                       print(f'Wheel verified: {f}')
           "
 
