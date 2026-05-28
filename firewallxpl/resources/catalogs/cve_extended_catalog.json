@@ -1,6 +1,7 @@
 {
   "catalog_note": "\u00cdndice estendido offline para FirewallXPL-Forge (lookup). N\u00e3o substitui NVD/CISA; cruze sempre com firmware e PSIRT do fabricante.",
-  "entry_count": 140,
+  "entry_count": 145,
+  "last_updated": "2026-05-28",
   "entries": [
     {
       "cve_id": "CVE-2001-0537",
@@ -2620,6 +2621,104 @@
       "references": [
         "https://github.com/teteco/CVE-2025-67070-Intelbras-CFTV-MFA-Bypass.git"
       ]
+    },
+    {
+      "cve_id": "CVE-2026-35616",
+      "vendor": "fortinet",
+      "product": "forticlient_ems",
+      "affected_versions": "FortiClient EMS 7.4.5, 7.4.6",
+      "description": "Pre-authentication API bypass via HTTP header spoofing in FortiClient EMS. Django middleware trusts user-controlled X-SSL-CLIENT-VERIFY and X-SSL-Client-Cert headers as equivalent to Apache mod_ssl WSGI output. Certificate chain validation uses only DN string matching with no X.509 signature verification. Full admin API access with no credentials. CISA KEV 2026-04-06.",
+      "cvss_score": 9.1,
+      "access_vector": "REMOTE",
+      "exploit_available": true,
+      "modules": [
+        "exploits/perimeter/fortinet/forticlient_ems_preauth_api_bypass_cve_2026_35616.py"
+      ],
+      "devices": [
+        "Fortinet FortiClient EMS 7.4.5",
+        "Fortinet FortiClient EMS 7.4.6"
+      ],
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-35616",
+        "https://bishopfox.com/blog/api-authentication-bypass-in-forticlient-ems-7-4-5-7-4-6-cve-2026-35616",
+        "https://github.com/keraattin/CVE-2026-35616",
+        "https://www.fortiguard.com/psirt/FG-IR-26-016"
+      ],
+      "note": "CISA KEV 2026-04-06. Fixed in 7.4.7 / hotfix 7.4.5.2111 or 7.4.6.2170. EKZ infostealer campaign (Arctic Wolf Labs)."
+    },
+    {
+      "cve_id": "CVE-2026-24858",
+      "vendor": "fortinet",
+      "product": "forticloud_sso",
+      "affected_versions": "FortiOS 7.0.0-7.0.16, 7.2.0-7.2.10, 7.4.0-7.4.4; FortiManager/FortiAnalyzer 7.0.x-7.4.x",
+      "description": "Cross-tenant FortiCloud SSO authentication bypass. FortiCloud JWT accepted without org binding, allowing any FortiCloud account holder to authenticate as admin on any registered FortiGate/FortiManager/FortiAnalyzer. CVSS 9.8.",
+      "cvss_score": 9.8,
+      "access_vector": "REMOTE",
+      "exploit_available": true,
+      "modules": [
+        "exploits/perimeter/fortinet/forticloud_sso_auth_bypass_cve_2026_24858.py"
+      ],
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-24858",
+        "https://github.com/absholi7ly/CVE-2026-24858-FortiCloud-SSO-Authentication-Bypass"
+      ],
+      "note": "Fixed in FortiOS 7.0.17+, 7.2.11+, 7.4.5+. Workaround: disable FortiCloud SSO."
+    },
+    {
+      "cve_id": "CVE-2024-50562",
+      "vendor": "fortinet",
+      "product": "fortios_sslvpn",
+      "affected_versions": "FortiOS 7.4.x < 7.4.4, 7.2.x < 7.2.9, 7.0.x < 7.0.16",
+      "description": "Improper session invalidation in FortiOS SSL-VPN. Session cookie not invalidated after logout; a captured SVPNCOOKIE can be replayed to regain authenticated portal access.",
+      "cvss_score": 7.5,
+      "access_vector": "REMOTE",
+      "exploit_available": true,
+      "modules": [
+        "exploits/perimeter/fortinet/fortios_sslvpn_session_reuse_cve_2024_50562.py"
+      ],
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-50562",
+        "https://www.exploit-db.com/exploits/52336"
+      ],
+      "note": "Fixed in FortiOS 7.4.4+, 7.2.9+, 7.0.16+."
+    },
+    {
+      "cve_id": "CVE-2025-20362",
+      "vendor": "cisco",
+      "product": "asa_ftd",
+      "affected_versions": "Cisco ASA 9.12-9.20 (pre-fix), FTD 7.0.0-7.7.x (pre-fix)",
+      "description": "Pre-authentication restricted URL bypass in Cisco ASA/FTD VPN web server. Unauthenticated attacker accesses restricted VPN URL endpoints via crafted HTTPS requests. CWE-120. First stage of FIRESTARTER chain (UAT4356/ArcaneDoor APT). CISA ED 25-03.",
+      "cvss_score": 9.1,
+      "access_vector": "REMOTE",
+      "exploit_available": true,
+      "modules": [
+        "exploits/perimeter/cisco/cisco_asa_ftd_firestarter_chain_cve_2025_20362_20333.py"
+      ],
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-20362",
+        "https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-asaftd-webvpn-z5xP8EUB",
+        "https://www.cisa.gov/news-events/analysis-reports/ar26-113a"
+      ],
+      "note": "CISA AR26-113A / ED 25-03. FIRESTARTER backdoor persists post-patch. Hard power cycle + reimaging required."
+    },
+    {
+      "cve_id": "CVE-2025-20333",
+      "vendor": "cisco",
+      "product": "asa_ftd",
+      "affected_versions": "Cisco ASA 9.12-9.20 (pre-fix), FTD 7.0.0-7.7.x (pre-fix)",
+      "description": "Missing authorization in Cisco ASA/FTD VPN web server. Authenticated attacker (via CVE-2025-20362 or valid VPN creds) executes arbitrary code as root via crafted HTTPS requests. CWE-862. CVSS 9.9. Second stage of FIRESTARTER chain (UAT4356/ArcaneDoor APT).",
+      "cvss_score": 9.9,
+      "access_vector": "REMOTE",
+      "exploit_available": true,
+      "modules": [
+        "exploits/perimeter/cisco/cisco_asa_ftd_firestarter_chain_cve_2025_20362_20333.py"
+      ],
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-20333",
+        "https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-asaftd-webvpn-z5xP8EUB",
+        "https://www.cisa.gov/news-events/analysis-reports/ar26-113a"
+      ],
+      "note": "RCE as root. FIRESTARTER persistence bypasses firmware update. Hard power cycle + reimaging required."
     }
   ],
   "seed_sources_note": "Linhas iniciais: matrix est\u00e1tica. Acrescimos: related_cves_hint em external_tool_intel_sources.json; CVEs em firewallxpl/modules exceto IDs j\u00e1 presentes aqui ou em cve_db._EMBEDDED_CVES; refer\u00eancias PoC GitHub/GitLab a partir de tg12__PoC_CVEs/cve_links.txt (filtrado por IDs em \u00e2mbito)."
