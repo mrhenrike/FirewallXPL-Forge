@@ -95,4 +95,4 @@ jobs:
           path: dist/
 
       - name: Publish to PyPI (Trusted Publisher / OIDC)
-        uses: pypa/gh-action-pypi-publish@76f52bc884231f62b54f72e44af3222aff7e3a45 # release/v1.12.4
+        uses: pypa/gh-action-pypi-publish@release/v1
