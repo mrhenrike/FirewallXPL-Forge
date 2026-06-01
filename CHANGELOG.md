@@ -4,6 +4,21 @@ All notable changes to FirewallXPL-Forge are documented here.
 
 ---
 
+## [2.1.1] - 2026-06-01
+
+### Added - CVE-2026-0257 PAN-OS GlobalProtect Authentication Override Cookie Bypass
+
+**CVE-2026-0257 (CVSS 7.8 HIGH, CISA KEV 2026-05-29)**
+- `exploits/perimeter/paloalto/globalprotect_auth_bypass_cve_2026_0257.py`
+  - Full E2E: TLS cert extraction -> RSA-PKCS1v15 cookie forge -> pre-auth VPN bypass
+  - CISA KEV deadline: 2026-06-19 | Active exploitation from 2026-05-17
+  - Affects PAN-OS 10.2/11.1/11.2/12.1 and Prisma Access (pre-fix versions)
+
+**Catalog**
+- `cve_extended_catalog.json`: +1 entry (CVE-2026-0257), count 145->146
+
+---
+
 ## [2.1.0] - 2026-05-28
 
 ### Added
