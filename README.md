@@ -90,7 +90,7 @@ FirewallXPL-Forge provides **modules** for **authorized** security testing again
 |--------|---------|----------|
 | Fortinet FortiOS/FortiGate | 9 | CVE-2018-13379, CVE-2022-40684, CVE-2024-21762, CVE-2024-47575 |
 | Cisco ASA/FTD/IOS XE | 4 | CVE-2020-3452, CVE-2023-20198, CVE-2023-20269 |
-| Palo Alto PAN-OS | 5 | CVE-2024-0012, CVE-2024-3400, CVE-2025-0108 |
+| Palo Alto PAN-OS | 6 | **CVE-2026-0257** (auth bypass CISA KEV 2026-05-29), CVE-2024-0012, CVE-2024-3400, CVE-2025-0108 |
 | F5 BIG-IP | 6 | CVE-2020-5902, CVE-2022-1388, CVE-2023-46747 |
 | Citrix/NetScaler | 3 | CVE-2019-19781, CVE-2023-3519, CVE-2023-4966 |
 | SonicWall | 6 | CVE-2020-5135, CVE-2024-40766, CVE-2024-53704 |
@@ -165,7 +165,42 @@ python fxf.py -m exploits/perimeter/fortinet/fortios_auth_bypass_cve_2022_40684 
 fxf > search fortinet
 fxf > search type=exploits vendor=cisco
 fxf > search CVE-2024
+fxf > search cve_2026_0257
 ```
+
+### NSE script installer
+
+Install the bundled firewall-specific Nmap scripts into your nmap scripts directory:
+
+```bash
+# Interactive
+fxf > install-nse
+
+# Non-interactive (requires nmap in PATH)
+python fxf.py -c "install-nse"
+
+# Custom path or dry-run
+python fxf.py -c "install-nse --path /usr/local/share/nmap/scripts"
+python fxf.py -c "install-nse --check"
+```
+
+**Bundled scripts:**
+
+| Script | Purpose |
+|--------|---------|
+| `fxf-firewall-fingerprint.nse` | Generic firewall fingerprinting (11 vendors) |
+| `fxf-globalprotect-detect.nse` | Palo Alto GlobalProtect portal/gateway detection |
+| `fxf-globalprotect-auth-bypass-cve-2026-0257.nse` | CVE-2026-0257 passive pre-check |
+| `fxf-fortios-detect.nse` | Fortinet FortiOS detection |
+| `fxf-cisco-asa-detect.nse` | Cisco ASA/FTD detection |
+
+```bash
+# After installing: use nmap directly
+nmap -p 443 --script fxf-globalprotect-auth-bypass-cve-2026-0257 <target>
+nmap -p 443,80,8443 --script fxf-firewall-fingerprint 192.168.0.0/24
+```
+
+See [docs/wiki/en-US/12-nse-scripts.md](docs/wiki/en-US/12-nse-scripts.md) for the full NSE reference.
 
 ---
 

@@ -1,62 +1,104 @@
-# Módulos `generic` — PCAP, CVE, wordlist, SNMP, UPnP, Bluetooth
+# Módulos `generic`
 
-**Idioma:** pt-BR. **English (en-US):** [../en-US/08-generic-modules.md](../en-US/08-generic-modules.md)
+**Idioma:** Português (pt-BR). **English:** [../en-US/08-generic-modules.md](../en-US/08-generic-modules.md)
 
-Área de **utilitários** transversais ao ecossistema de testes.
-
-## CVE — `generic/cve/cve_lookup`
-
-Consulta **base embutida** (`firewallxpl.core.cve`) com correspondência vendor/produto/versão/*banner*.
-
-```text
-use generic/cve/cve_lookup
-set vendor cisco
-set product rv320
-run
-```
-
-Opções úteis: `banner`, `product`, `version`, `remote_only`, `show_physical`.
-
-Ideal **após** obter *banner* por outro scanner ou serviço.
-
-## Exploit-DB (CSV offline) — `generic/external/exploitdb_embedded_lookup`
-
-Pesquisa o **`files_exploits.csv`** do espelho `exploit-database__exploitdb` em `firewallxpl/resources/arsenal/pocs/integrated_modules/`. **Sem** `searchsploit` nem CLI externo. Respeite avisos GPLv2 ao redistribuir o espelho.
-
-## PCAP / Wi‑Fi offline — `generic/pcap/*`
-
-Requer **Scapy**. Útil para laboratório e análise forense **autorizada**.
-
-| Módulo | Função resumida |
-|--------|-----------------|
-| `pcap_ap_station_mapper` | Mapear AP/estações a partir de captura |
-| `pcap_handshake_extractor` | Extrair *handshake* WPA para *crack* offline |
-| `pcap_offline_wpa_crack` | Integração com quebra offline (ex.: *hashcat*) |
-| `pcap_wep_crack` | Ataques estatísticos WEP |
-| `pcap_pmkid_attack` | Extração / encaminhamento PMKID |
-| `pcap_tkip_downgrade` | Análise TKIP / Michael |
-| `pcap_dragonblood` | Deteção relacionada WPA3/SAE |
-| `pcap_wpe_harvest` | Material MSCHAPv2 / EAP de capturas |
-| `pcap_credential_sniffer` | Análise de credenciais em tráfego (âmbito lab) |
-
-Configure sempre **caminho para ficheiro PCAP** conforme `show options` de cada módulo.
-
-## Wordlist — `generic/wordlist/wordlist_generator`
-
-Gera *wordlists* parametrizáveis (perfil corporativo vs pessoal, variações). Integra-se conceitualmente com bruteforce (`ssh_bruteforce`, etc.) via export para ficheiro.
-
-## SNMP — `generic/snmp/snmp_trap_listener`
-
-*Listener* de traps para cenários de teste.
-
-## UPnP — `generic/upnp/ssdp_msearch`
-
-Descoberta SSDP / *M-SEARCH* em LAN.
-
-## Bluetooth LE — `generic/bluetooth/*`
-
-`*btle_scan`, `btle_enumerate`, `btle_write` — em geral **Linux** com *stack* adequada; pode exigir `bluepy` e permissões de sistema.
+Módulos genéricos cobrem capacidades multifabricante: lookup de CVE, análise de PCAP, traps SNMP, descoberta UPnP/SSDP, geração de wordlist e varredura Bluetooth LE.
 
 ---
 
-[Wiki hub](../README.md)
+## Lookup de CVE — `generic/cve/cve_lookup`
+
+Consulta o banco de dados CVE offline embutido para dispositivos de rede/perímetro.
+
+```text
+fxf > use generic/cve/cve_lookup
+fxf (CVE Lookup) > set vendor paloalto
+fxf (CVE Lookup) > run
+```
+
+**Opções:**
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `vendor` | `OptString` | `""` | Nome do vendor (busca fuzzy; ex.: `paloalto`, `fortinet`, `cisco`) |
+| `product` | `OptString` | `""` | Nome ou modelo do produto |
+| `version` | `OptString` | `""` | String de versão do firmware/software |
+| `banner` | `OptString` | `""` | Texto de banner bruto (tokens extraídos automaticamente) |
+| `remote_only` | `OptBool` | `true` | Mostrar apenas CVEs exploráveis remotamente |
+| `show_physical` | `OptBool` | `false` | Incluir CVEs que requerem acesso físico |
+
+**Saída de exemplo — CVE-2026-0257:**
+```
+fxf > use generic/cve/cve_lookup
+fxf (CVE Lookup) > set vendor paloalto
+fxf (CVE Lookup) > set product pan-os
+fxf (CVE Lookup) > run
+
+[+] CVE-2026-0257 | CVSS: 7.8 | paloalto / pan-os | REMOTE
+    GlobalProtect auth override cookie bypass. Exploração ativa confirmada.
+    EXPLOITABLE (rxf module available)
+    Módulo: exploits/perimeter/paloalto/globalprotect_auth_bypass_cve_2026_0257
+    Refs: https://security.paloaltonetworks.com/CVE-2026-0257
+
+[+] CVE-2024-3400 | CVSS: 10.0 | paloalto / pan-os | REMOTE
+    Command injection no GlobalProtect levando a RCE
+    EXPLOITABLE (rxf module available)
+    Módulo: exploits/perimeter/paloalto/globalprotect_cmd_injection_cve_2024_3400
+```
+
+---
+
+## Exploit-DB offline — `generic/external/exploitdb_embedded_lookup`
+
+Pesquisa o `files_exploits.csv` do espelho Exploit-DB embutido. Sem necessidade de `searchsploit` ou CLI externo.
+
+Localização: `firewallxpl/resources/arsenal/pocs/integrated_modules/`
+
+---
+
+## PCAP / Wi-Fi offline — `generic/pcap/*`
+
+Requer **Scapy**. Apenas para uso em laboratório autorizado ou análise forense.
+
+| Módulo | Função |
+|--------|--------|
+| `pcap_ap_station_mapper` | Mapear APs e estações a partir de uma captura |
+| `pcap_handshake_extractor` | Extrair handshakes WPA |
+| `pcap_offline_wpa_crack` | Fluxo de quebra offline de WPA |
+| `pcap_wep_crack` | Ataques estatísticos WEP |
+| `pcap_pmkid_attack` | Extração PMKID e fluxo de ataque offline |
+| `pcap_credential_sniffer` | Extrair padrões de credenciais da captura |
+
+---
+
+## Gerador de wordlist — `generic/wordlist_generator`
+
+Geração parametrizada de wordlists para alimentar módulos de bruteforce.
+
+---
+
+## Listener SNMP — `generic/snmp_trap_listener`
+
+Escuta traps SNMP em ambientes de laboratório.
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `bind_address` | `OptString` | `0.0.0.0` | Endereço de bind |
+| `port` | `OptPort` | `162` | Porta UDP de traps |
+| `community` | `OptString` | `public` | Community string SNMP |
+
+---
+
+## UPnP / SSDP — `generic/ssdp_msearch`
+
+Descobre dispositivos UPnP na LAN via SSDP M-SEARCH.
+
+---
+
+## Bluetooth LE — `generic/bluetooth/*`
+
+Apenas Linux com `bluepy` opcional. Requer adaptador Bluetooth e permissões adequadas.
+
+---
+
+[Hub da wiki](../README.md)

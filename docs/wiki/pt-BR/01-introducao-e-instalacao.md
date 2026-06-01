@@ -1,66 +1,158 @@
 # Introdução, escopo e instalação
 
-**Idioma:** pt-BR. **English (en-US):** [../en-US/01-introduction-and-installation.md](../en-US/01-introduction-and-installation.md)
+**Idioma:** Português (pt-BR). **English:** [../en-US/01-introduction-and-installation.md](../en-US/01-introduction-and-installation.md)
 
-## Para que serve o FirewallXPL-Forge
+## O que é o FirewallXPL-Forge
 
-É um **framework modular** em Python para apoiar testes de intrusão **autorizados** contra equipamentos de rede embutidos (roteadores, switches, TAPs, firewalls, NGFW). Os módulos implementam, por exemplo:
+Um **framework Python modular** para testes de segurança **autorizados** em dispositivos de perímetro de rede: NGFW, UTM, WAF, concentradores VPN, NAC, balanceadores de carga e firewalls adjacentes a OT. Segue o modelo de módulos do Metasploit: selecione um módulo, defina as opções, execute `check` e depois `run`.
 
-- tentativas de login com listas de credenciais;
-- exploração de vulnerabilidades públicas documentadas;
-- varreduras que sugerem módulos aplicáveis;
-- utilitários (PCAP, consulta a CVE embutidas, wordlists, SNMP, etc.).
+> **Aviso de migração (v2.1.0):** Todos os 81 módulos estão disponíveis no
+> [EmbedXPL-Forge](https://github.com/mrhenrike/EmbedXPL-Forge) (`pip install embedxpl`).
+> O FirewallXPL-Forge v2.1.0 é o último release standalone e não receberá novos módulos.
 
-**Visão de arquitetura (exemplo router SOHO — galeria completa no [README da wiki](../README.md)):**
+**Exemplo de fluxo:**
 
-![Router SOHO — superfície de ataque e cobertura da ferramenta](../../img/architecture/fxf_arch_router_soho.png)
+```
+fxf > use exploits/perimeter/fortinet/fortios_auth_bypass_cve_2022_40684
+fxf (FortiOS Auth Bypass CVE-2022-40684) > set target 10.0.0.1
+fxf (FortiOS Auth Bypass CVE-2022-40684) > check
+[+] Target is vulnerable
+fxf (FortiOS Auth Bypass CVE-2022-40684) > run
+```
+
+---
 
 ## Uso legal e ético
 
-**Utilize apenas em redes e equipamentos para os quais você tenha autorização explícita.** O mantenedor e colaboradores **não** se responsabilizam pelo uso indevido. Em ambientes corporativos, siga o contrato de pentest e o roteiro aprovado.
+**Use apenas em redes e dispositivos que você possui ou tem permissão escrita explícita para testar.**
+Os mantenedores não são responsáveis por uso indevido. Siga seu contrato e as regras de engajamento.
+
+---
 
 ## Requisitos
 
-- **Python 3.8 a 3.13**
-- Dependências em `requirements.txt` (instale com `pip install -r requirements.txt`)
-- Em **Python 3.13+**, o pacote `telnetlib3` substitui o `telnetlib` removido da biblioteca padrão
-- Módulos **PCAP** dependem de **Scapy**; instalação do Scapy no Windows pode exigir Npcap/WinPcap para captura ao vivo — para análise **offline** de arquivos `.pcap` costuma bastar o interpretador Python
+| Item | Mínimo | Observações |
+|------|--------|-------------|
+| Python | 3.8 | 3.13+ requer extra `telnetlib3` |
+| OS | Linux, macOS, Windows | Alvo principal de desenvolvimento é Linux |
+| nmap | qualquer | Opcional; necessário para o extra `discovery` e scripts NSE |
+| biblioteca cryptography | qualquer | Necessária para o forge de cookie CVE-2026-0257 |
+
+---
 
 ## Instalação
+
+### Via PyPI (recomendado)
+
+```bash
+pip install firewallxpl
+# Com TUI e suporte a descoberta nmap:
+pip install "firewallxpl[tui,discovery]"
+```
+
+### A partir do código-fonte (desenvolvimento / editável)
 
 ```bash
 git clone https://github.com/mrhenrike/FirewallXPL-Forge.git
 cd FirewallXPL-Forge
 python3 -m venv .venv
-source .venv/bin/activate   # Linux/macOS
-# .venv\Scripts\activate    # Windows
-python3 -m pip install -r requirements.txt
+source .venv/bin/activate       # Linux / macOS
+# .venv\Scripts\Activate.ps1   # Windows PowerShell
+pip install -e ".[tui,discovery]"
 ```
 
-## Diagnóstico
+### Extras opcionais
+
+| Extra | Instala | Finalidade |
+|-------|---------|-----------|
+| `tui` | `rich` | Saída colorida TUI |
+| `tui-full` | `rich`, `textual` | TUI completo com tabelas interativas |
+| `discovery` | `python-nmap` | Descoberta de hosts/serviços via nmap |
+| `ml` | `scikit-learn`, `joblib` | Advisor ML para AutoPwn |
+| `ml-gpu` | `torch` | Logits de timing via GPU (CUDA) |
+| `async` | `aiohttp`, `asyncssh` | Cliente HTTP + SSH assíncrono |
+| `full` | todos acima | Tudo incluído |
+
+---
+
+## Instalar scripts NSE
+
+Após instalar o firewallxpl, publique os scripts NSE de firewall embutidos no nmap:
+
+```bash
+# Modo interativo
+python fxf.py
+fxf > install-nse
+
+# Modo não-interativo (requer nmap no PATH)
+python fxf.py -c "install-nse"
+
+# Com privilégios elevados (Linux)
+sudo python fxf.py -c "install-nse"
+
+# Diretório personalizado
+python fxf.py -c "install-nse --path /usr/local/share/nmap/scripts"
+```
+
+Se o nmap não estiver instalado, o comando exibe o caminho dos scripts embutidos para
+que você possa copiá-los manualmente depois. Consulte [12-scripts-nse.md](12-scripts-nse.md)
+para a referência completa de NSE.
+
+---
+
+## Diagnósticos
 
 ```bash
 python tools/env_doctor.py
 ```
 
-Verifica importação de depend núcleo (`requests`, `paramiko`, `pysnmp`, `Crypto`, `setuptools`). **Scapy** não aparece no *doctor* atual; se módulos `generic/pcap/*` falharem ao importar, instale/resolva o Scapy manualmente.
+Verifica imports principais. O Scapy não é verificado; corrija manualmente se os módulos
+`generic/pcap/*` falharem ao importar.
 
-## Iniciar o programa
+```bash
+python tools/check_env_readiness.py
+```
+
+Valida prontidão do ambiente (indexação de módulos, arquivos de recursos).
+
+---
+
+## Iniciar a aplicação
+
+### Modo interativo
 
 ```bash
 python fxf.py
 ```
 
-O shell interativo exige **TTY** (`stdin` interativo). Para automação use o modo `-m`/`-s` (ver [04-modo-nao-interativo.md](04-modo-nao-interativo.md)).
+Requer um **TTY**. O prompt é `fxf >`.
 
-## Arquivo de log
+**Personalização do ambiente:**
 
-O arquivo **`firewallxpl.log`** (na pasta de trabalho de onde você invocou `fxf.py`) recebe mensagens de logging do bootstrap. Gire ou apague o arquivo em ambientes de laboratório para não acumular dados sensíveis.
+| Variável | Padrão | Efeito |
+|----------|--------|--------|
+| `FXF_RAW_PROMPT` | `fxf >` (sublinhado) | Prompt sem módulo carregado |
+| `FXF_MODULE_PROMPT` | `fxf (modulo) >` | Prompt com módulo carregado |
 
-## Histórico de comandos
+### Modo não-interativo / batch
 
-O interpretador usa `~/.rxf_history` (ou equivalente no perfil do usuário) para histórico do *readline*, quando disponível.
+```bash
+python fxf.py -m <modulo/caminho> [-s "opcao valor"] ...
+python fxf.py -h
+```
+
+Veja [04-modo-nao-interativo.md](04-modo-nao-interativo.md).
 
 ---
 
-[Wiki hub](../README.md)
+## Arquivo de log
+
+`firewallxpl.log` no diretório de trabalho atual. Handler rotativo, máx. 500 KB.
+
+## Histórico de comandos
+
+`~/.fxf_history` (histórico readline, 100 entradas).
+
+---
+
+[Hub da wiki](../README.md)

@@ -36,7 +36,8 @@ PNG gallery (FirewallXPL-Forge–style). Mermaid sources: [../../diagrams/archit
 | [08-generic-modules.md](08-generic-modules.md) | PCAP, CVE lookup, wordlists, SNMP, UPnP, BTLE |
 | [09-payloads-and-encoders.md](09-payloads-and-encoders.md) | Payloads and encoders |
 | [10-catalogs-and-tools.md](10-catalogs-and-tools.md) | JSON catalogs, `tools/` |
-| [11-troubleshooting.md](11-troubleshooting.md) | Common failures |
+| [11-troubleshooting.md](11-troubleshooting.md) | Common failures, NSE install errors, CVE-2026-0257 issues |
+| [12-nse-scripts.md](12-nse-scripts.md) | Bundled NSE scripts, `install-nse` command, per-script reference |
 | [Module path index (all locales)](../ANEXO-INDICE-MODULOS.md) | Full path list |
 
 ## Regenerate the annex
