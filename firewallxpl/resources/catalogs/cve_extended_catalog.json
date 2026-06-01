@@ -1,7 +1,7 @@
 {
   "catalog_note": "\u00cdndice estendido offline para FirewallXPL-Forge (lookup). N\u00e3o substitui NVD/CISA; cruze sempre com firmware e PSIRT do fabricante.",
-  "entry_count": 145,
-  "last_updated": "2026-05-28",
+  "entry_count": 146,
+  "last_updated": "2026-06-01",
   "entries": [
     {
       "cve_id": "CVE-2001-0537",
@@ -2719,6 +2719,25 @@
         "https://www.cisa.gov/news-events/analysis-reports/ar26-113a"
       ],
       "note": "RCE as root. FIRESTARTER persistence bypasses firmware update. Hard power cycle + reimaging required."
+    },
+    {
+      "cve_id": "CVE-2026-0257",
+      "vendor": "paloalto",
+      "product": "pan-os",
+      "affected_versions": "PAN-OS 10.2.x/11.1.x/11.2.x/12.1.x (pre-fix); Prisma Access 10.2.x/11.2.x (pre-fix)",
+      "description": "Authentication override cookie bypass in PAN-OS GlobalProtect. gpsvc encrypts cookies with RSA-PKCS1v15 using a cert whose public key is exposed via TLS handshake when shared with HTTPS service. No signature verification after decryption. Attacker extracts public key, forges admin cookie, establishes unauthorized VPN session. CVSS 7.8 HIGH. CISA KEV 2026-05-29.",
+      "cvss_score": 7.8,
+      "access_vector": "REMOTE",
+      "exploit_available": true,
+      "modules": [
+        "exploits/perimeter/paloalto/globalprotect_auth_bypass_cve_2026_0257.py"
+      ],
+      "references": [
+        "https://security.paloaltonetworks.com/CVE-2026-0257",
+        "https://www.rapid7.com/blog/post/etr-rapid7-observed-exploitation-of-pan-os-globalprotect-authentication-bypass-vulnerability-cve-2026-0257/",
+        "https://nefariousplan.com/posts/pan-os-cve-2026-0257-cookie-cert-was-the-tls-cert"
+      ],
+      "note": "CISA KEV 2026-05-29 (deadline 2026-06-19). Active exploitation from 2026-05-17. Fixed: 12.1.7, 11.2.12, 11.1.15, 10.2.18-h6."
     }
   ],
   "seed_sources_note": "Linhas iniciais: matrix est\u00e1tica. Acrescimos: related_cves_hint em external_tool_intel_sources.json; CVEs em firewallxpl/modules exceto IDs j\u00e1 presentes aqui ou em cve_db._EMBEDDED_CVES; refer\u00eancias PoC GitHub/GitLab a partir de tg12__PoC_CVEs/cve_links.txt (filtrado por IDs em \u00e2mbito)."
