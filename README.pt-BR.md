@@ -86,7 +86,42 @@ fxf (scanners/autopwn) > run
 
 ```bash
 python fxf.py -m exploits/perimeter/fortinet/fortios_auth_bypass_cve_2022_40684 -s "target 10.0.0.1"
+python fxf.py -m exploits/perimeter/paloalto/globalprotect_auth_bypass_cve_2026_0257 -s "target vpn.alvo.com" -s "forge_user admin"
 ```
+
+### Instalador de scripts NSE
+
+Instale os scripts Nmap especializados em firewalls embutidos no pacote:
+
+```bash
+# Modo interativo
+fxf > install-nse
+
+# Modo não-interativo (requer nmap no PATH)
+python fxf.py -c "install-nse"
+
+# Caminho personalizado ou simulação
+python fxf.py -c "install-nse --path /usr/local/share/nmap/scripts"
+python fxf.py -c "install-nse --check"
+```
+
+**Scripts embutidos:**
+
+| Script | Finalidade |
+|--------|-----------|
+| `fxf-firewall-fingerprint.nse` | Fingerprinting genérico de firewall (11 vendors) |
+| `fxf-globalprotect-detect.nse` | Detecção de portal/gateway Palo Alto GlobalProtect |
+| `fxf-globalprotect-auth-bypass-cve-2026-0257.nse` | Verificacao passiva de CVE-2026-0257 |
+| `fxf-fortios-detect.nse` | Detecção de Fortinet FortiOS |
+| `fxf-cisco-asa-detect.nse` | Detecção de Cisco ASA/FTD |
+
+```bash
+# Apos instalar: use o nmap diretamente
+nmap -p 443 --script fxf-globalprotect-auth-bypass-cve-2026-0257 <alvo>
+nmap -p 443,80,8443 --script fxf-firewall-fingerprint 192.168.0.0/24
+```
+
+Consulte [docs/wiki/pt-BR/12-scripts-nse.md](docs/wiki/pt-BR/12-scripts-nse.md) para a referencia completa de NSE.
 
 ---
 

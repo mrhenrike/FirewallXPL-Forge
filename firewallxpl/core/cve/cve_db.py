@@ -109,6 +109,34 @@ _EMBEDDED_CVES: List[Dict[str, Any]] = [
     {"cve_id": "CVE-2024-21762", "vendor": "fortinet", "product": "fortigate", "affected_versions": "FortiOS 7.4.0-7.4.2, 7.2.0-7.2.6, 7.0.0-7.0.13", "description": "Out-of-bound write in SSL-VPN allowing RCE", "cvss_score": 9.6, "access_vector": "REMOTE"},
     # --- Palo Alto ---
     {"cve_id": "CVE-2024-3400", "vendor": "paloalto", "product": "pan-os", "affected_versions": "PAN-OS 10.2, 11.0, 11.1 with GlobalProtect", "description": "Command injection in GlobalProtect leading to RCE", "cvss_score": 10.0, "access_vector": "REMOTE"},
+    {
+        "cve_id": "CVE-2026-0257",
+        "vendor": "paloalto",
+        "product": "pan-os",
+        "affected_versions": (
+            "PAN-OS 10.2.x < 10.2.7-h34/10.2.10-h36/10.2.13-h21/10.2.16-h7/10.2.18-h6; "
+            "PAN-OS 11.1.x < 11.1.4-h33/11.1.6-h32/11.1.7-h6/11.1.10-h25/11.1.13-h5/11.1.15; "
+            "PAN-OS 11.2.x < 11.2.4-h17/11.2.7-h14/11.2.10-h7/11.2.12; "
+            "PAN-OS 12.1.x < 12.1.4-h6/12.1.7; "
+            "Prisma Access 10.2.x < 10.2.10-h36; Prisma Access 11.2.x < 11.2.7-h13"
+        ),
+        "description": (
+            "GlobalProtect auth override cookie bypass (CWE-565). "
+            "When auth override cookies are enabled and the encryption certificate is shared with the "
+            "HTTPS service, an unauthenticated attacker extracts the public key from the TLS chain and "
+            "forges RSA-PKCS1v15-encrypted cookies for any username (including admin), bypassing VPN auth. "
+            "CISA KEV 2026-05-29. Active exploitation confirmed from May 17, 2026."
+        ),
+        "cvss_score": 7.8,
+        "access_vector": "REMOTE",
+        "exploit_available": True,
+        "rxf_module": "exploits/perimeter/paloalto/globalprotect_auth_bypass_cve_2026_0257",
+        "references": [
+            "https://security.paloaltonetworks.com/CVE-2026-0257",
+            "https://github.com/sfewer-r7/CVE-2026-0257",
+            "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+        ],
+    },
     # --- SonicWall ---
     {"cve_id": "CVE-2021-20016", "vendor": "sonicwall", "product": "sma", "affected_versions": "SMA 100 Series", "description": "SQL injection leading to credential theft", "cvss_score": 9.8, "access_vector": "REMOTE"},
     # --- Juniper ---
