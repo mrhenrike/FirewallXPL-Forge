@@ -241,11 +241,13 @@ class BaseInterpreter:
 class FirewallXPLInterpreter(BaseInterpreter):
     history_file = os.path.expanduser("~/.fxf_history")
     global_help = """Global commands:
-    help                        Print this help menu
-    use <module>                Select a module for usage
-    exec <shell command> <args> Execute a command in a shell
-    search <search term>        Search for appropriate module
-    exit                        Exit FirewallXPL"""
+    help                          Print this help menu
+    use <module>                  Select a module for usage
+    exec <shell command> <args>   Execute a command in a shell
+    search <search term>          Search for appropriate module
+    install-nse [--check] [--force] [--path <dir>] [--list]
+                                  Install bundled NSE scripts into nmap scripts dir
+    exit                          Exit FirewallXPL"""
 
     module_help = """Module commands:
     run                                 Run the selected module with the given options
@@ -267,7 +269,7 @@ class FirewallXPLInterpreter(BaseInterpreter):
         self.show_sub_commands = ("info", "options", "advanced", "devices", "all", "encoders", "creds", "exploits", "scanners", "wordlists", "perimeter", "waf", "vpn", "nac", "lb")
         self.search_sub_commands = ("type", "device", "language", "payload", "vendor")
 
-        self.global_commands = sorted(["use ", "exec ", "help", "exit", "show ", "search "])
+        self.global_commands = sorted(["use ", "exec ", "help", "exit", "show ", "search ", "install-nse "])
         self.module_commands = ["run", "back", "set ", "setg ", "check"]
         self.module_commands.extend(self.global_commands)
         self.module_commands.sort()
@@ -735,3 +737,65 @@ class FirewallXPLInterpreter(BaseInterpreter):
 
     def command_exit(self, *args, **kwargs):
         raise EOFError
+
+    def command_install_nse(self, *args, **kwargs):
+        """Install FirewallXPL-Forge NSE scripts into the nmap scripts directory.
+
+        Usage:
+            install-nse                    Auto-detect nmap and install scripts
+            install-nse --check            Dry-run: show what would be installed
+            install-nse --force            Overwrite existing scripts
+            install-nse --path <dir>       Install into a custom directory
+            install-nse --list             List bundled NSE scripts without installing
+
+        Examples:
+            fxf> install-nse
+            fxf> install-nse --force
+            fxf> install-nse --path /usr/local/share/nmap/scripts
+            fxf> install-nse --check
+        """
+        try:
+            from firewallxpl.core.nse_installer import install_nse_scripts, print_install_report, _bundled_nse_scripts
+        except ImportError as exc:
+            print_error("NSE installer not available: {}".format(exc))
+            return
+
+        raw = " ".join(args) if args else ""
+        tokens = raw.split()
+
+        # Parse minimal flags from the command string
+        custom_path = None
+        force = False
+        dry_run = False
+        list_only = False
+
+        i = 0
+        while i < len(tokens):
+            tok = tokens[i]
+            if tok == "--force":
+                force = True
+            elif tok == "--check":
+                dry_run = True
+            elif tok == "--list":
+                list_only = True
+            elif tok in ("--path", "-p") and i + 1 < len(tokens):
+                i += 1
+                custom_path = tokens[i]
+            i += 1
+
+        if list_only:
+            scripts = _bundled_nse_scripts()
+            if not scripts:
+                print_error("No bundled NSE scripts found in package.")
+                return
+            print_info("Bundled NSE scripts ({} total):".format(len(scripts)))
+            for s in scripts:
+                print_info("  {}".format(s.name))
+            return
+
+        result = install_nse_scripts(
+            custom_path=custom_path,
+            force=force,
+            dry_run=dry_run,
+        )
+        print_install_report(result, verbose=True)

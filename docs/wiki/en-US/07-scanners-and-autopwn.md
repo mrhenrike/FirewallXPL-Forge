@@ -2,67 +2,129 @@
 
 **Language:** English (en-US). **pt-BR:** [../pt-BR/07-scanners-e-autopwn.md](../pt-BR/07-scanners-e-autopwn.md)
 
-## `scanners/routers/router_scan`
+Scanner modules orchestrate multi-module campaigns against a single target or subnet.
+`scanners/autopwn` is the main entry point for automated perimeter testing.
 
-Broad `generic + routers` orchestration entry point.
-
-```text
-use scanners/routers/router_scan
-set target 192.168.1.1
-run
-```
+---
 
 ## `scanners/autopwn`
 
-Parallel scan with credential and exploit checks; **timing templates** similar to Nmap `T0`–`T5`.
+Parallel credential and exploit scanning with **Nmap-style timing templates** (T0–T5).
 
-### Key options
-
-| Option | Description |
-|--------|-------------|
-| `target` | IP |
-| `target_device_class` | `multi`, `router`, `switch`, `tap`, `fw`, `ngfw`, `isp_cpe` — see `firewallxpl/resources/catalogs/module_target_scope.json` |
-| `vendor` | Filter when supported |
-| `timing_template` | `t0`..`t5` or aliases `paranoid` … `insane` |
-| `check_exploits` / `check_creds` | Enable/disable classes of tests |
-| HTTP/FTP/SSH/SFTP/Telnet/SNMP/TCP/UDP | `*_use`, ports, SSL flags |
-| `threads`, `verify_positive_twice`, `module_timeout_s` | Performance / reliability |
-
-### Optional ML advisor (`show advanced`)
-
-**Off by default.** Reorders exploit/credential module queues and can suggest or apply a `timing_template` using a lightweight linear head (feature vector + JSON weights). Actual CPU/RAM cost of this layer is small; high `threads` and network I/O dominate.
-
-| Option | Description |
-|--------|-------------|
-| `ml_advisor` | Set `true` to enable; prints warnings. |
-| `ml_auto_timing` | With `ml_advisor true`, **overwrites** `timing_template` with the advisor suggestion. |
-| `ml_use_gpu` | If PyTorch+CUDA is installed (optional extra `pip install .[ml-gpu]`), runs timing logits on GPU — marginal benefit. HTTP/SSH checks remain I/O bound. |
-
-For heavy crypto (e.g. WPA/PMKID), use external tools such as hashcat, not this advisor.
-
-### Example
+### Usage
 
 ```text
-use scanners/autopwn
-set target 192.168.50.1
-set timing_template polite
-set target_device_class router
-run
+fxf > use scanners/autopwn
+fxf (AutoPwn) > set target 192.168.50.1
+fxf (AutoPwn) > set timing_template polite
+fxf (AutoPwn) > set target_device_class ngfw
+fxf (AutoPwn) > run
 ```
 
-Use `show advanced` for the full set.
+### Core options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `target` | `OptIP` / `string` | `""` | Target IP or subnet (CIDR) |
+| `target_device_class` | `OptString` | `"multi"` | Device class filter: `multi`, `router`, `switch`, `tap`, `fw`, `ngfw`, `isp_cpe` |
+| `vendor` | `OptString` | `""` | Vendor name filter (e.g. `fortinet`, `cisco`) |
+| `timing_template` | `OptString` | `"normal"` | `t0`–`t5` or `paranoid`, `sneaky`, `polite`, `normal`, `aggressive`, `insane` |
+| `check_exploits` | `OptBool` | `true` | Run exploit `check()` methods |
+| `check_creds` | `OptBool` | `true` | Run credential modules |
+| `threads` | `OptInteger` | `8` | Concurrent module threads |
+| `module_timeout_s` | `OptInteger` | `30` | Per-module timeout in seconds |
+| `verify_positive_twice` | `OptBool` | `false` | Re-verify positive results |
+
+### Timing template reference
+
+| Template | Alias | Speed | Stealth | Use case |
+|----------|-------|-------|---------|---------|
+| `t0` | `paranoid` | Slowest | Highest | IDS evasion, high detection sensitivity |
+| `t1` | `sneaky` | Slow | High | Low-detection environments |
+| `t2` | `polite` | Moderate | Moderate | Standard authorized audits |
+| `t3` | `normal` | Default | Moderate | General use |
+| `t4` | `aggressive` | Fast | Low | Robust networks, lab |
+| `t5` | `insane` | Fastest | None | Lab-only, may lose data |
+
+### Protocol-specific options
+
+| Option | Type | Description |
+|--------|------|-------------|
+| `http_use` | `OptBool` | Enable HTTP checks |
+| `https_use` | `OptBool` | Enable HTTPS checks |
+| `ssh_use` | `OptBool` | Enable SSH checks |
+| `ftp_use` | `OptBool` | Enable FTP checks |
+| `telnet_use` | `OptBool` | Enable Telnet checks |
+| `snmp_use` | `OptBool` | Enable SNMP checks |
+| `tcp_use` | `OptBool` | Enable raw TCP checks |
+| `udp_use` | `OptBool` | Enable UDP checks |
+| `http_port` | `OptPort` | HTTP port override |
+| `https_port` | `OptPort` | HTTPS port override |
+| `ssh_port` | `OptPort` | SSH port override |
+
+---
+
+### Optional ML advisor (show advanced)
+
+**Off by default.** Reorders the exploit/credential module queue and can suggest or
+auto-apply a timing template using a lightweight linear model (feature vector + JSON weights).
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `ml_advisor` | `OptBool` | `false` | Enable ML advisor |
+| `ml_auto_timing` | `OptBool` | `false` | Auto-apply advisor timing suggestion |
+| `ml_use_gpu` | `OptBool` | `false` | Use GPU for logits (requires `pip install .[ml-gpu]`) |
+
+> CPU/RAM overhead of the ML layer is small; network I/O dominates total scan time.
+
+**Example with ML:**
+```text
+fxf (AutoPwn) > set ml_advisor true
+fxf (AutoPwn) > set ml_auto_timing true
+fxf (AutoPwn) > run
+```
+
+---
 
 ## `scanners/routers/fortigate_sslvpn_scan`
 
-SSL-VPN / FortiGate-oriented recon (authorized testing only).
+FortiGate SSL-VPN–oriented recon and vulnerability enumeration.
 
-## `scanners/routers/hootoo_scan`
+```text
+fxf > use scanners/routers/fortigate_sslvpn_scan
+fxf (FortiGate SSL-VPN Scanner) > set target 10.0.0.1
+fxf (FortiGate SSL-VPN Scanner) > run
+```
 
-HooToo-focused AutoPwn-style scanner.
+---
 
-## `scanners/misc/soho_exploit_catalog_server`
+## `scanners/misc/misc_scan`
 
-Serves the bundled **SOHO exploit catalog** (static HTML/JS under `firewallxpl/resources/arsenal/pocs/soho_exploit_catalog/`) on **`127.0.0.1:8765`** by default. Lab-only; use `open_browser true` to launch the default browser.
+General perimeter recon scanner; covers HTTP fingerprinting and banner collection
+across multiple ports.
+
+```text
+fxf > use scanners/misc/misc_scan
+fxf (Misc Scan) > set target 10.0.0.0/24
+fxf (Misc Scan) > run
+```
+
+---
+
+## NSE scripts for pre-scanning
+
+Before running AutoPwn, use the bundled NSE scripts for lightweight fingerprinting:
+
+```bash
+# Identify firewall vendor
+nmap -p 443,80,8443 --script fxf-firewall-fingerprint 192.168.0.0/24
+
+# Check for GlobalProtect CVE-2026-0257 exposure
+nmap -p 443 --script fxf-globalprotect-auth-bypass-cve-2026-0257 10.0.0.1
+```
+
+Then run the corresponding fxf exploit module on confirmed targets. See
+[12-nse-scripts.md](12-nse-scripts.md) for the full NSE reference.
 
 ---
 

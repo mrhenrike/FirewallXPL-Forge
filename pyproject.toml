@@ -74,3 +74,16 @@ fxf = "firewallxpl.interpreter:main"
 
 [tool.setuptools.packages.find]
 include = ["firewallxpl*"]
+
+[tool.setuptools.package-data]
+firewallxpl = [
+    "resources/arsenal/nse/*.nse",
+    "resources/arsenal/*.json",
+    "resources/catalogs/*.json",
+    "resources/wordlists/**/*.txt",
+    "resources/vendors/*.dat",
+    "resources/vendors/*.csv",
+    "resources/ssh_keys/*.json",
+    "resources/ssh_keys/*.key",
+    "resources/ml/*.json",
+]
