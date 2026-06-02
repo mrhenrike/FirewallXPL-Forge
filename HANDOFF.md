@@ -111,3 +111,36 @@
 ### Paths importantes
 - Windows: `D:\Projetos-SafeLabs\submodules\IoT\FirewallXPL-Forge`
 - Linux: `/mnt/predator/Projetos-SafeLabs/submodules/IoT/FirewallXPL-Forge`
+
+
+---
+
+## [2026-06-02 02:06] - TODOS OS PENDENTES RESOLVIDOS (v2.1.1)
+
+### Estado ao encerrar (COMPLETO)
+- FortiWeb criado: exploits/perimeter/fortinet/fortiweb/
+  - fortiweb_auth_bypass_rce_cve_2025_25257.py (CVE-2025-25257, CVSS 9.8)
+  - fortiweb_admin_rce_cve_2025_64446.py (CVE-2025-64446, CVSS 9.8)
+- Aruba ClearPass adicionado: nac/aruba/clearpass_unauth_rce_cve_2023_25594.py
+- ANEXO-INDICE-MODULOS.md regenerado (gen_wiki_module_index.py)
+- COVERAGE_MATRIX.md e FULL_CATALOG.md regenerados
+- Version bumped: 2.1.0 -> 2.1.1 em pyproject.toml e setup.py
+- 89 exploit modules total (era 82 antes desta sessao)
+
+### Pendencias resolvidas
+- [x] Regenerar ANEXO-INDICE-MODULOS.md
+- [x] Regenerar COVERAGE_MATRIX.md e FULL_CATALOG.md
+- [x] Bump versao para 2.1.1
+- [x] Criar fortiweb/ com CVE-2025-25257 e CVE-2025-64446
+- [x] Adicionar ClearPass em exploits/nac/aruba/
+
+### Sem pendencias conhecidas
+- FirewallXPL-Forge v2.1.1 esta completo como release standalone final
+- Todos os modulos NSE instalados e documentados
+- Wiki EN-US e PT-BR completas (12 paginas cada)
+- CVE-2026-0257 no banco de dados e no modulo de exploit
+
+### Ambiente necessario
+- Python 3.8-3.13
+- Windows: D:\Projetos-SafeLabs\submodules\IoT\FirewallXPL-Forge
+- Linux: /mnt/predator/Projetos-SafeLabs/submodules/IoT/FirewallXPL-Forge
