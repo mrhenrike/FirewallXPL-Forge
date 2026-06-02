@@ -18,16 +18,16 @@
 
 ## Global Capability Summary
 
-- Module tree (firewallxpl/modules): c6fa6216038c3bfce8100c9cc7cb4eb3ce13f32e
-- Total modules indexed: 95
-- Distinct vendor/product entries: 95
-- Distinct CVEs mapped in modules: 12
-- Attack classes identified: auth_bypass, backdoor, info_disclosure, path_traversal, rce
+- Module tree (firewallxpl/modules): fc41c8c2bfe0f1774c1cdfba05500447336e76a2
+- Total modules indexed: 172
+- Distinct vendor/product entries: 172
+- Distinct CVEs mapped in modules: 77
+- Attack classes identified: auth_bypass, backdoor, info_disclosure, password_reset_or_change, path_traversal, rce
 
 ### Module Type Counts
 - creds: 28
 - encoders: 13
-- exploits: 12
+- exploits: 89
 - generic: 7
 - payloads: 32
 - scanners: 3
@@ -77,10 +77,10 @@
 
 | OSI | TCP/IP | Layer | Protocol | Module Hits | Covered | Attack Vectors | Test Types | ISP | Corporate | OT_IIoT |
 |---|---|---|---|---:|---|---|---|---|---|---|
-| L1 | Link | Physical | ethernet | 1 | yes | link_disruption_or_flap_induction, tap_or_span_blind_spot_abuse, physical_plane_availability_degradation | link_state_validation, duplex_speed_mismatch_detection, capture_integrity_verification | P2 | P2 | P2 |
-| L2 | Link | Data Link | arp | 0 | no | vlan_hopping_and_tagging_abuse, arp_spoofing_or_poisoning, stp_manipulation_or_loop_induction, mac_table_exhaustion_scenarios, wpa_wpa2_offline_handshake_crack, wireless_credential_harvest_from_pcap, rogue_ap_detection_via_pcap | vlan_segmentation_validation, arp_integrity_checks, stp_lacp_hardening_review, l2_discovery_surface_assessment, pcap_ap_station_enumeration, pcap_handshake_completeness_check, pcap_cleartext_credential_extraction | P1 | P1 | P1 |
-| L2 | Link | Data Link | vlan_8021q_qinq | 0 | no | vlan_hopping_and_tagging_abuse, arp_spoofing_or_poisoning, stp_manipulation_or_loop_induction, mac_table_exhaustion_scenarios, wpa_wpa2_offline_handshake_crack, wireless_credential_harvest_from_pcap, rogue_ap_detection_via_pcap | vlan_segmentation_validation, arp_integrity_checks, stp_lacp_hardening_review, l2_discovery_surface_assessment, pcap_ap_station_enumeration, pcap_handshake_completeness_check, pcap_cleartext_credential_extraction | P1 | P1 | P1 |
-| L2 | Link | Data Link | 802.11_wifi | 0 | no | offline_wpa_crack, handshake_capture_replay, credential_harvest | ap_enumeration, station_mapping, handshake_extraction, cleartext_sniffing | P2 | P1 | P2 |
+| L1 | Link | Physical | ethernet | 2 | yes | link_disruption_or_flap_induction, tap_or_span_blind_spot_abuse, physical_plane_availability_degradation | link_state_validation, duplex_speed_mismatch_detection, capture_integrity_verification | P2 | P2 | P2 |
+| L2 | Link | Data Link | arp | 2 | yes | vlan_hopping_and_tagging_abuse, arp_spoofing_or_poisoning, stp_manipulation_or_loop_induction, mac_table_exhaustion_scenarios, wpa_wpa2_offline_handshake_crack, wireless_credential_harvest_from_pcap, rogue_ap_detection_via_pcap | vlan_segmentation_validation, arp_integrity_checks, stp_lacp_hardening_review, l2_discovery_surface_assessment, pcap_ap_station_enumeration, pcap_handshake_completeness_check, pcap_cleartext_credential_extraction | P1 | P1 | P1 |
+| L2 | Link | Data Link | vlan_8021q_qinq | 1 | yes | vlan_hopping_and_tagging_abuse, arp_spoofing_or_poisoning, stp_manipulation_or_loop_induction, mac_table_exhaustion_scenarios, wpa_wpa2_offline_handshake_crack, wireless_credential_harvest_from_pcap, rogue_ap_detection_via_pcap | vlan_segmentation_validation, arp_integrity_checks, stp_lacp_hardening_review, l2_discovery_surface_assessment, pcap_ap_station_enumeration, pcap_handshake_completeness_check, pcap_cleartext_credential_extraction | P1 | P1 | P1 |
+| L2 | Link | Data Link | 802.11_wifi | 2 | yes | offline_wpa_crack, handshake_capture_replay, credential_harvest | ap_enumeration, station_mapping, handshake_extraction, cleartext_sniffing | P2 | P1 | P2 |
 | L2 | Link | Data Link | stp_rstp_mstp | 0 | no | vlan_hopping_and_tagging_abuse, arp_spoofing_or_poisoning, stp_manipulation_or_loop_induction, mac_table_exhaustion_scenarios, wpa_wpa2_offline_handshake_crack, wireless_credential_harvest_from_pcap, rogue_ap_detection_via_pcap | vlan_segmentation_validation, arp_integrity_checks, stp_lacp_hardening_review, l2_discovery_surface_assessment, pcap_ap_station_enumeration, pcap_handshake_completeness_check, pcap_cleartext_credential_extraction | P2 | P1 | P2 |
 | L2 | Link | Data Link | lacp | 0 | no | vlan_hopping_and_tagging_abuse, arp_spoofing_or_poisoning, stp_manipulation_or_loop_induction, mac_table_exhaustion_scenarios, wpa_wpa2_offline_handshake_crack, wireless_credential_harvest_from_pcap, rogue_ap_detection_via_pcap | vlan_segmentation_validation, arp_integrity_checks, stp_lacp_hardening_review, l2_discovery_surface_assessment, pcap_ap_station_enumeration, pcap_handshake_completeness_check, pcap_cleartext_credential_extraction | P2 | P1 | P2 |
 | L2 | Link | Data Link | lldp | 0 | no | vlan_hopping_and_tagging_abuse, arp_spoofing_or_poisoning, stp_manipulation_or_loop_induction, mac_table_exhaustion_scenarios, wpa_wpa2_offline_handshake_crack, wireless_credential_harvest_from_pcap, rogue_ap_detection_via_pcap | vlan_segmentation_validation, arp_integrity_checks, stp_lacp_hardening_review, l2_discovery_surface_assessment, pcap_ap_station_enumeration, pcap_handshake_completeness_check, pcap_cleartext_credential_extraction | P2 | P2 | P2 |
@@ -89,22 +89,22 @@
 | L3 | Internet | Network | icmp_icmpv6 | 0 | no | route_injection_or_hijack_paths, icmp_or_control_plane_abuse, ipv6_transition_misconfig_exposure | routing_surface_enumeration, dual_stack_consistency_checks, control_plane_exposure_validation | P1 | P1 | P2 |
 | L3 | Internet | Network | ospf | 0 | no | route_injection_or_hijack_paths, icmp_or_control_plane_abuse, ipv6_transition_misconfig_exposure | routing_surface_enumeration, dual_stack_consistency_checks, control_plane_exposure_validation | P2 | P2 | P3 |
 | L3 | Internet | Network | bgp | 0 | no | route_injection_or_hijack_paths, icmp_or_control_plane_abuse, ipv6_transition_misconfig_exposure | routing_surface_enumeration, dual_stack_consistency_checks, control_plane_exposure_validation | P2 | P3 | P3 |
-| L4 | Transport | Transport | tcp | 27 | yes | service_enumeration_and_port_abuse, session_exhaustion_or_flood_paths, transport_timeout_and_retry_abuse | tcp_udp_surface_mapping, session_stability_validation, timeout_retry_behavior_checks | P1 | P1 | P1 |
+| L4 | Transport | Transport | tcp | 28 | yes | service_enumeration_and_port_abuse, session_exhaustion_or_flood_paths, transport_timeout_and_retry_abuse | tcp_udp_surface_mapping, session_stability_validation, timeout_retry_behavior_checks | P1 | P1 | P1 |
 | L4 | Transport | Transport | udp | 6 | yes | service_enumeration_and_port_abuse, session_exhaustion_or_flood_paths, transport_timeout_and_retry_abuse | tcp_udp_surface_mapping, session_stability_validation, timeout_retry_behavior_checks | P1 | P1 | P1 |
 | L5-L7 | Application | Session/Presentation/Application | dns | 0 | no | default_credential_and_bruteforce_paths, auth_bypass_and_session_abuse, protocol_parser_and_input_injection_paths, management_api_and_header_abuse, snmp_read_write_and_trap_plane_misuse | credential_validation_matrix, auth_method_coverage_checks, protocol_specific_exploitability_checks, snmpv2_snmpv3_trap_operational_validation, api_and_web_management_flow_validation | P1 | P1 | P2 |
 | L5-L7 | Application | Session/Presentation/Application | dhcp | 0 | no | default_credential_and_bruteforce_paths, auth_bypass_and_session_abuse, protocol_parser_and_input_injection_paths, management_api_and_header_abuse, snmp_read_write_and_trap_plane_misuse | credential_validation_matrix, auth_method_coverage_checks, protocol_specific_exploitability_checks, snmpv2_snmpv3_trap_operational_validation, api_and_web_management_flow_validation | P1 | P1 | P2 |
 | L5-L7 | Application | Session/Presentation/Application | ntp_ptp | 0 | no | default_credential_and_bruteforce_paths, auth_bypass_and_session_abuse, protocol_parser_and_input_injection_paths, management_api_and_header_abuse, snmp_read_write_and_trap_plane_misuse | credential_validation_matrix, auth_method_coverage_checks, protocol_specific_exploitability_checks, snmpv2_snmpv3_trap_operational_validation, api_and_web_management_flow_validation | P1 | P2 | P1 |
-| L5-L7 | Application | Session/Presentation/Application | snmp_snmpv3 | 3 | yes | default_credential_and_bruteforce_paths, auth_bypass_and_session_abuse, protocol_parser_and_input_injection_paths, management_api_and_header_abuse, snmp_read_write_and_trap_plane_misuse | credential_validation_matrix, auth_method_coverage_checks, protocol_specific_exploitability_checks, snmpv2_snmpv3_trap_operational_validation, api_and_web_management_flow_validation | P1 | P1 | P1 |
-| L5-L7 | Application | Session/Presentation/Application | ssh | 10 | yes | default_credential_and_bruteforce_paths, auth_bypass_and_session_abuse, protocol_parser_and_input_injection_paths, management_api_and_header_abuse, snmp_read_write_and_trap_plane_misuse | credential_validation_matrix, auth_method_coverage_checks, protocol_specific_exploitability_checks, snmpv2_snmpv3_trap_operational_validation, api_and_web_management_flow_validation | P1 | P1 | P1 |
+| L5-L7 | Application | Session/Presentation/Application | snmp_snmpv3 | 4 | yes | default_credential_and_bruteforce_paths, auth_bypass_and_session_abuse, protocol_parser_and_input_injection_paths, management_api_and_header_abuse, snmp_read_write_and_trap_plane_misuse | credential_validation_matrix, auth_method_coverage_checks, protocol_specific_exploitability_checks, snmpv2_snmpv3_trap_operational_validation, api_and_web_management_flow_validation | P1 | P1 | P1 |
+| L5-L7 | Application | Session/Presentation/Application | ssh | 11 | yes | default_credential_and_bruteforce_paths, auth_bypass_and_session_abuse, protocol_parser_and_input_injection_paths, management_api_and_header_abuse, snmp_read_write_and_trap_plane_misuse | credential_validation_matrix, auth_method_coverage_checks, protocol_specific_exploitability_checks, snmpv2_snmpv3_trap_operational_validation, api_and_web_management_flow_validation | P1 | P1 | P1 |
 | L5-L7 | Application | Session/Presentation/Application | telnet | 6 | yes | default_credential_and_bruteforce_paths, auth_bypass_and_session_abuse, protocol_parser_and_input_injection_paths, management_api_and_header_abuse, snmp_read_write_and_trap_plane_misuse | credential_validation_matrix, auth_method_coverage_checks, protocol_specific_exploitability_checks, snmpv2_snmpv3_trap_operational_validation, api_and_web_management_flow_validation | P2 | P3 | P2 |
 | L5-L7 | Application | Session/Presentation/Application | ftp_ftps_sftp | 9 | yes | default_credential_and_bruteforce_paths, auth_bypass_and_session_abuse, protocol_parser_and_input_injection_paths, management_api_and_header_abuse, snmp_read_write_and_trap_plane_misuse | credential_validation_matrix, auth_method_coverage_checks, protocol_specific_exploitability_checks, snmpv2_snmpv3_trap_operational_validation, api_and_web_management_flow_validation | P2 | P2 | P2 |
-| L5-L7 | Application | Session/Presentation/Application | http_https_api | 9 | yes | default_credential_and_bruteforce_paths, auth_bypass_and_session_abuse, protocol_parser_and_input_injection_paths, management_api_and_header_abuse, snmp_read_write_and_trap_plane_misuse | credential_validation_matrix, auth_method_coverage_checks, protocol_specific_exploitability_checks, snmpv2_snmpv3_trap_operational_validation, api_and_web_management_flow_validation | P1 | P1 | P1 |
+| L5-L7 | Application | Session/Presentation/Application | http_https_api | 23 | yes | default_credential_and_bruteforce_paths, auth_bypass_and_session_abuse, protocol_parser_and_input_injection_paths, management_api_and_header_abuse, snmp_read_write_and_trap_plane_misuse | credential_validation_matrix, auth_method_coverage_checks, protocol_specific_exploitability_checks, snmpv2_snmpv3_trap_operational_validation, api_and_web_management_flow_validation | P1 | P1 | P1 |
 | L5-L7 | Application | Session/Presentation/Application | radius_tacacs | 0 | no | default_credential_and_bruteforce_paths, auth_bypass_and_session_abuse, protocol_parser_and_input_injection_paths, management_api_and_header_abuse, snmp_read_write_and_trap_plane_misuse | credential_validation_matrix, auth_method_coverage_checks, protocol_specific_exploitability_checks, snmpv2_snmpv3_trap_operational_validation, api_and_web_management_flow_validation | P3 | P2 | P3 |
 | L5-L7 | Application | Session/Presentation/Application | tr069_cwmp | 1 | yes | default_credential_and_bruteforce_paths, auth_bypass_and_session_abuse, protocol_parser_and_input_injection_paths, management_api_and_header_abuse, snmp_read_write_and_trap_plane_misuse | credential_validation_matrix, auth_method_coverage_checks, protocol_specific_exploitability_checks, snmpv2_snmpv3_trap_operational_validation, api_and_web_management_flow_validation | P2 | P3 | P3 |
 | L5-L7 | Application | Session/Presentation/Application | syslog | 0 | no | default_credential_and_bruteforce_paths, auth_bypass_and_session_abuse, protocol_parser_and_input_injection_paths, management_api_and_header_abuse, snmp_read_write_and_trap_plane_misuse | credential_validation_matrix, auth_method_coverage_checks, protocol_specific_exploitability_checks, snmpv2_snmpv3_trap_operational_validation, api_and_web_management_flow_validation | P2 | P1 | P2 |
-| L5-L7 | Application | Session/Presentation/Application | modbus_tcp | 0 | no | default_credential_and_bruteforce_paths, auth_bypass_and_session_abuse, protocol_parser_and_input_injection_paths, management_api_and_header_abuse, snmp_read_write_and_trap_plane_misuse | credential_validation_matrix, auth_method_coverage_checks, protocol_specific_exploitability_checks, snmpv2_snmpv3_trap_operational_validation, api_and_web_management_flow_validation | P3 | P3 | P2 |
-| L5-L7 | Application | Session/Presentation/Application | dnp3 | 0 | no | default_credential_and_bruteforce_paths, auth_bypass_and_session_abuse, protocol_parser_and_input_injection_paths, management_api_and_header_abuse, snmp_read_write_and_trap_plane_misuse | credential_validation_matrix, auth_method_coverage_checks, protocol_specific_exploitability_checks, snmpv2_snmpv3_trap_operational_validation, api_and_web_management_flow_validation | P3 | P3 | P2 |
-| L5-L7 | Application | Session/Presentation/Application | opc_ua | 0 | no | default_credential_and_bruteforce_paths, auth_bypass_and_session_abuse, protocol_parser_and_input_injection_paths, management_api_and_header_abuse, snmp_read_write_and_trap_plane_misuse | credential_validation_matrix, auth_method_coverage_checks, protocol_specific_exploitability_checks, snmpv2_snmpv3_trap_operational_validation, api_and_web_management_flow_validation | P3 | P3 | P2 |
+| L5-L7 | Application | Session/Presentation/Application | modbus_tcp | 1 | yes | default_credential_and_bruteforce_paths, auth_bypass_and_session_abuse, protocol_parser_and_input_injection_paths, management_api_and_header_abuse, snmp_read_write_and_trap_plane_misuse | credential_validation_matrix, auth_method_coverage_checks, protocol_specific_exploitability_checks, snmpv2_snmpv3_trap_operational_validation, api_and_web_management_flow_validation | P3 | P3 | P2 |
+| L5-L7 | Application | Session/Presentation/Application | dnp3 | 1 | yes | default_credential_and_bruteforce_paths, auth_bypass_and_session_abuse, protocol_parser_and_input_injection_paths, management_api_and_header_abuse, snmp_read_write_and_trap_plane_misuse | credential_validation_matrix, auth_method_coverage_checks, protocol_specific_exploitability_checks, snmpv2_snmpv3_trap_operational_validation, api_and_web_management_flow_validation | P3 | P3 | P2 |
+| L5-L7 | Application | Session/Presentation/Application | opc_ua | 1 | yes | default_credential_and_bruteforce_paths, auth_bypass_and_session_abuse, protocol_parser_and_input_injection_paths, management_api_and_header_abuse, snmp_read_write_and_trap_plane_misuse | credential_validation_matrix, auth_method_coverage_checks, protocol_specific_exploitability_checks, snmpv2_snmpv3_trap_operational_validation, api_and_web_management_flow_validation | P3 | P3 | P2 |
 | L5-L7 | Application | Session/Presentation/Application | mqtt | 0 | no | default_credential_and_bruteforce_paths, auth_bypass_and_session_abuse, protocol_parser_and_input_injection_paths, management_api_and_header_abuse, snmp_read_write_and_trap_plane_misuse | credential_validation_matrix, auth_method_coverage_checks, protocol_specific_exploitability_checks, snmpv2_snmpv3_trap_operational_validation, api_and_web_management_flow_validation | P3 | P3 | P2 |
 | L5-L7 | Application | Session/Presentation/Application | bacnet_ip | 0 | no | default_credential_and_bruteforce_paths, auth_bypass_and_session_abuse, protocol_parser_and_input_injection_paths, management_api_and_header_abuse, snmp_read_write_and_trap_plane_misuse | credential_validation_matrix, auth_method_coverage_checks, protocol_specific_exploitability_checks, snmpv2_snmpv3_trap_operational_validation, api_and_web_management_flow_validation | P3 | P3 | P2 |
 | L5-L7 | Application | Session/Presentation/Application | profinet_ethernet | 0 | no | default_credential_and_bruteforce_paths, auth_bypass_and_session_abuse, protocol_parser_and_input_injection_paths, management_api_and_header_abuse, snmp_read_write_and_trap_plane_misuse | credential_validation_matrix, auth_method_coverage_checks, protocol_specific_exploitability_checks, snmpv2_snmpv3_trap_operational_validation, api_and_web_management_flow_validation | P3 | P3 | P2 |
@@ -113,11 +113,11 @@
 
 | Layer | Total Protocol Hits |
 |---|---:|
-| L1 Physical | 1 |
-| L2 Data Link | 0 |
+| L1 Physical | 2 |
+| L2 Data Link | 5 |
 | L3 Network | 0 |
-| L4 Transport | 33 |
-| L5-L7 Session/Presentation/Application | 38 |
+| L4 Transport | 34 |
+| L5-L7 Session/Presentation/Application | 57 |
 
 ## Market Priority Coverage (2010-2026)
 
@@ -153,23 +153,23 @@
 
 | Year | Required | Cataloged | Status | Vendor Covered Count | Keyword Hits |
 |---:|---:|---:|---|---:|---:|
-| 2010 | 13 | 13 | ok | 5 | 0 |
-| 2011 | 13 | 13 | ok | 5 | 0 |
-| 2012 | 15 | 15 | ok | 5 | 0 |
-| 2013 | 15 | 15 | ok | 5 | 0 |
-| 2014 | 15 | 15 | ok | 6 | 0 |
-| 2015 | 15 | 15 | ok | 6 | 0 |
-| 2016 | 15 | 15 | ok | 6 | 0 |
-| 2017 | 15 | 15 | ok | 6 | 0 |
-| 2018 | 17 | 17 | ok | 6 | 0 |
-| 2019 | 20 | 20 | ok | 6 | 0 |
-| 2020 | 20 | 20 | ok | 6 | 0 |
-| 2021 | 22 | 22 | ok | 6 | 0 |
-| 2022 | 23 | 23 | ok | 7 | 0 |
-| 2023 | 22 | 22 | ok | 7 | 0 |
-| 2024 | 24 | 24 | ok | 7 | 0 |
-| 2025 | 24 | 24 | ok | 7 | 0 |
-| 2026 | 24 | 24 | ok | 7 | 0 |
+| 2010 | 13 | 13 | ok | 6 | 0 |
+| 2011 | 13 | 13 | ok | 6 | 0 |
+| 2012 | 15 | 15 | ok | 6 | 0 |
+| 2013 | 15 | 15 | ok | 6 | 0 |
+| 2014 | 15 | 15 | ok | 7 | 0 |
+| 2015 | 15 | 15 | ok | 7 | 0 |
+| 2016 | 15 | 15 | ok | 8 | 2 |
+| 2017 | 15 | 15 | ok | 8 | 2 |
+| 2018 | 17 | 17 | ok | 9 | 0 |
+| 2019 | 20 | 20 | ok | 9 | 0 |
+| 2020 | 20 | 20 | ok | 9 | 0 |
+| 2021 | 22 | 22 | ok | 9 | 2 |
+| 2022 | 23 | 23 | ok | 10 | 2 |
+| 2023 | 22 | 22 | ok | 10 | 2 |
+| 2024 | 24 | 24 | ok | 10 | 2 |
+| 2025 | 24 | 24 | ok | 10 | 2 |
+| 2026 | 24 | 24 | ok | 10 | 2 |
 
 #### Global Coverage By Year
 
@@ -426,7 +426,7 @@
 | 2010 | Juniper | SRX300 | ngfw-corporate | yes | 0 |
 | 2010 | Fortinet | FortiGate 60F | ngfw-corporate | yes | 0 |
 | 2010 | Palo Alto Networks | PA-220 | ngfw-corporate | no | 0 |
-| 2010 | Aruba | 2930F | switch-corporate | no | 0 |
+| 2010 | Aruba | 2930F | switch-corporate | yes | 0 |
 | 2010 | MikroTik | RB3011UiAS-RM | router-corporate | no | 0 |
 | 2010 | MikroTik | CRS326 | switch-corporate | no | 0 |
 | 2010 | Ubiquiti | UniFi Dream Router | router-corporate | no | 0 |
@@ -439,7 +439,7 @@
 | 2011 | Juniper | SRX300 | ngfw-corporate | yes | 0 |
 | 2011 | Fortinet | FortiGate 60F | ngfw-corporate | yes | 0 |
 | 2011 | Palo Alto Networks | PA-220 | ngfw-corporate | no | 0 |
-| 2011 | Aruba | 2930F | switch-corporate | no | 0 |
+| 2011 | Aruba | 2930F | switch-corporate | yes | 0 |
 | 2011 | MikroTik | RB3011UiAS-RM | router-corporate | no | 0 |
 | 2011 | MikroTik | CRS326 | switch-corporate | no | 0 |
 | 2011 | Ubiquiti | UniFi Dream Router | router-corporate | no | 0 |
@@ -454,7 +454,7 @@
 | 2012 | Juniper | SRX300 | ngfw-corporate | yes | 0 |
 | 2012 | Fortinet | FortiGate 60F | ngfw-corporate | yes | 0 |
 | 2012 | Palo Alto Networks | PA-220 | ngfw-corporate | no | 0 |
-| 2012 | Aruba | 2930F | switch-corporate | no | 0 |
+| 2012 | Aruba | 2930F | switch-corporate | yes | 0 |
 | 2012 | Ubiquiti | UniFi Dream Router | router-corporate | no | 0 |
 | 2012 | Cisco | Catalyst 2960-X | switch-enterprise | yes | 0 |
 | 2012 | Intelbras | SG 800 Q+ | switch-soho | no | 0 |
@@ -469,7 +469,7 @@
 | 2013 | Juniper | SRX300 | ngfw-corporate | yes | 0 |
 | 2013 | Fortinet | FortiGate 60F | ngfw-corporate | yes | 0 |
 | 2013 | Palo Alto Networks | PA-220 | ngfw-corporate | no | 0 |
-| 2013 | Aruba | 2930F | switch-corporate | no | 0 |
+| 2013 | Aruba | 2930F | switch-corporate | yes | 0 |
 | 2013 | Ubiquiti | UniFi Dream Router | router-corporate | no | 0 |
 | 2013 | Cisco | Catalyst 3850 | switch-enterprise | yes | 0 |
 | 2013 | Intelbras | SG 800 Q+ | switch-soho | no | 0 |
@@ -484,7 +484,7 @@
 | 2014 | Juniper | SRX300 | ngfw-corporate | yes | 0 |
 | 2014 | Fortinet | FortiGate 60F | ngfw-corporate | yes | 0 |
 | 2014 | Palo Alto Networks | PA-220 | ngfw-corporate | no | 0 |
-| 2014 | Aruba | 2930F | switch-corporate | no | 0 |
+| 2014 | Aruba | 2930F | switch-corporate | yes | 0 |
 | 2014 | Ubiquiti | UniFi Dream Router | router-corporate | no | 0 |
 | 2014 | Cisco | Catalyst 3850 | switch-enterprise | yes | 0 |
 | 2014 | Intelbras | SG 1024 MR | switch-corporate | no | 0 |
@@ -499,7 +499,7 @@
 | 2015 | Juniper | SRX300 | ngfw-corporate | yes | 0 |
 | 2015 | Fortinet | FortiGate 60F | ngfw-corporate | yes | 0 |
 | 2015 | Palo Alto Networks | PA-220 | ngfw-corporate | no | 0 |
-| 2015 | Aruba | 2930F | switch-corporate | no | 0 |
+| 2015 | Aruba | 2930F | switch-corporate | yes | 0 |
 | 2015 | Ubiquiti | UniFi Dream Router | router-corporate | no | 0 |
 | 2015 | Cisco | Catalyst 3850 | switch-enterprise | yes | 0 |
 | 2015 | Intelbras | SG 1024 MR | switch-corporate | no | 0 |
@@ -514,12 +514,12 @@
 | 2016 | Juniper | SRX300 | ngfw-corporate | yes | 0 |
 | 2016 | Fortinet | FortiGate 60F | ngfw-corporate | yes | 0 |
 | 2016 | Palo Alto Networks | PA-220 | ngfw-corporate | no | 0 |
-| 2016 | Aruba | 2930F | switch-corporate | no | 0 |
+| 2016 | Aruba | 2930F | switch-corporate | yes | 0 |
 | 2016 | Ubiquiti | UniFi Dream Router | router-corporate | no | 0 |
 | 2016 | Cisco | Catalyst 9300 | switch-enterprise | yes | 0 |
 | 2016 | Intelbras | SG 1024 MR | switch-corporate | no | 0 |
 | 2016 | Fortinet | FortiGate 100F | ngfw-corporate | yes | 0 |
-| 2016 | Sophos | XGS Firewall | ngfw-smb | no | 0 |
+| 2016 | Sophos | XGS Firewall | ngfw-smb | yes | 2 |
 | 2016 | DrayTek | Vigor2960 Firewall VPN | fw-smb | no | 0 |
 | 2017 | MikroTik | RB3011UiAS-RM | router-corporate | no | 0 |
 | 2017 | MikroTik | RB4011iGS+RM | router-corporate | no | 0 |
@@ -529,12 +529,12 @@
 | 2017 | Juniper | SRX300 | ngfw-corporate | yes | 0 |
 | 2017 | Fortinet | FortiGate 60F | ngfw-corporate | yes | 0 |
 | 2017 | Palo Alto Networks | PA-220 | ngfw-corporate | no | 0 |
-| 2017 | Aruba | 2930F | switch-corporate | no | 0 |
+| 2017 | Aruba | 2930F | switch-corporate | yes | 0 |
 | 2017 | Ubiquiti | UniFi Dream Router | router-corporate | no | 0 |
 | 2017 | Cisco | Catalyst 9300 | switch-enterprise | yes | 0 |
 | 2017 | Intelbras | SG 1024 MR | switch-corporate | no | 0 |
 | 2017 | Fortinet | FortiGate 100F | ngfw-corporate | yes | 0 |
-| 2017 | Sophos | XGS Firewall | ngfw-smb | no | 0 |
+| 2017 | Sophos | XGS Firewall | ngfw-smb | yes | 2 |
 | 2017 | DrayTek | Vigor2960 Firewall VPN | fw-smb | no | 0 |
 | 2018 | MikroTik | RB3011UiAS-RM | router-corporate | no | 0 |
 | 2018 | MikroTik | RB4011iGS+RM | router-corporate | no | 0 |
@@ -544,13 +544,13 @@
 | 2018 | Juniper | SRX300 | ngfw-corporate | yes | 0 |
 | 2018 | Fortinet | FortiGate 60F | ngfw-corporate | yes | 0 |
 | 2018 | Palo Alto Networks | PA-220 | ngfw-corporate | no | 0 |
-| 2018 | Aruba | 2930F | switch-corporate | no | 0 |
+| 2018 | Aruba | 2930F | switch-corporate | yes | 0 |
 | 2018 | Ubiquiti | UniFi Dream Router | router-corporate | no | 0 |
 | 2018 | Cisco | Catalyst 9300 | switch-enterprise | yes | 0 |
-| 2018 | Aruba | Instant On 1930 | switch-corporate | no | 0 |
+| 2018 | Aruba | Instant On 1930 | switch-corporate | yes | 0 |
 | 2018 | Intelbras | SG 2404 PoE | switch-poe | no | 0 |
 | 2018 | Fortinet | FortiGate 100F | ngfw-corporate | yes | 0 |
-| 2018 | SonicWall | TZ Series | fw-smb | no | 0 |
+| 2018 | SonicWall | TZ Series | fw-smb | yes | 0 |
 | 2018 | Blockbit | Blockbit NGFW/UTM | ngfw-corporate | no | 0 |
 | 2018 | DrayTek | Vigor2960 Firewall VPN | fw-smb | no | 0 |
 | 2019 | MikroTik | RB3011UiAS-RM | router-corporate | no | 0 |
@@ -561,14 +561,14 @@
 | 2019 | Juniper | SRX300 | ngfw-corporate | yes | 0 |
 | 2019 | Fortinet | FortiGate 60F | ngfw-corporate | yes | 0 |
 | 2019 | Palo Alto Networks | PA-220 | ngfw-corporate | no | 0 |
-| 2019 | Aruba | 2930F | switch-corporate | no | 0 |
+| 2019 | Aruba | 2930F | switch-corporate | yes | 0 |
 | 2019 | Ubiquiti | UniFi Dream Router | router-corporate | no | 0 |
 | 2019 | OpenWrt | OpenWrt 19.07 Generic Targets | router-firmware | no | 0 |
 | 2019 | Cisco | Catalyst 9300 | switch-enterprise | yes | 0 |
-| 2019 | Aruba | Instant On 1930 | switch-corporate | no | 0 |
+| 2019 | Aruba | Instant On 1930 | switch-corporate | yes | 0 |
 | 2019 | Intelbras | SG 2404 PoE | switch-poe | no | 0 |
 | 2019 | Fortinet | FortiGate 100F | ngfw-corporate | yes | 0 |
-| 2019 | SonicWall | TZ Series | fw-smb | no | 0 |
+| 2019 | SonicWall | TZ Series | fw-smb | yes | 0 |
 | 2019 | Netgate | pfSense | fw-opensource | no | 0 |
 | 2019 | Starti | Edge Protect NGFW | ngfw-smb | no | 0 |
 | 2019 | Blockbit | Blockbit NGFW/UTM | ngfw-corporate | no | 0 |
@@ -581,13 +581,13 @@
 | 2020 | Juniper | SRX300 | ngfw-corporate | yes | 0 |
 | 2020 | Fortinet | FortiGate 60F | ngfw-corporate | yes | 0 |
 | 2020 | Palo Alto Networks | PA-220 | ngfw-corporate | no | 0 |
-| 2020 | Aruba | 2930F | switch-corporate | no | 0 |
+| 2020 | Aruba | 2930F | switch-corporate | yes | 0 |
 | 2020 | Ubiquiti | UniFi Dream Router | router-corporate | no | 0 |
 | 2020 | Cisco | Catalyst 9300 | switch-enterprise | yes | 0 |
-| 2020 | Aruba | Instant On 1930 | switch-corporate | no | 0 |
+| 2020 | Aruba | Instant On 1930 | switch-corporate | yes | 0 |
 | 2020 | Intelbras | SG 2404 PoE | switch-poe | no | 0 |
 | 2020 | Fortinet | FortiGate 100F | ngfw-corporate | yes | 0 |
-| 2020 | SonicWall | TZ Series | fw-smb | no | 0 |
+| 2020 | SonicWall | TZ Series | fw-smb | yes | 0 |
 | 2020 | Netgate | pfSense | fw-opensource | no | 0 |
 | 2020 | Starti | Edge Protect NGFW | ngfw-smb | no | 0 |
 | 2020 | Blockbit | Blockbit NGFW/UTM | ngfw-corporate | no | 0 |
@@ -601,14 +601,14 @@
 | 2021 | Juniper | SRX300 | ngfw-corporate | yes | 0 |
 | 2021 | Fortinet | FortiGate 60F | ngfw-corporate | yes | 0 |
 | 2021 | Palo Alto Networks | PA-220 | ngfw-corporate | no | 0 |
-| 2021 | Aruba | 2930F | switch-corporate | no | 0 |
+| 2021 | Aruba | 2930F | switch-corporate | yes | 0 |
 | 2021 | Ubiquiti | UniFi Dream Router | router-corporate | no | 0 |
 | 2021 | OpenWrt | OpenWrt 21.02 Generic Targets | router-firmware | no | 0 |
 | 2021 | Cisco | Catalyst 9300 | switch-enterprise | yes | 0 |
-| 2021 | Aruba | Instant On 1930 | switch-corporate | no | 0 |
+| 2021 | Aruba | Instant On 1930 | switch-corporate | yes | 0 |
 | 2021 | Intelbras | SG 2404 PoE | switch-poe | no | 0 |
 | 2021 | Fortinet | FortiGate 100F | ngfw-corporate | yes | 0 |
-| 2021 | Sophos | XGS Firewall | ngfw-smb | no | 0 |
+| 2021 | Sophos | XGS Firewall | ngfw-smb | yes | 2 |
 | 2021 | Netgate | pfSense | fw-opensource | no | 0 |
 | 2021 | Starti | Edge Protect NGFW | ngfw-smb | no | 0 |
 | 2021 | Blockbit | Blockbit NGFW/UTM | ngfw-corporate | no | 0 |
@@ -623,14 +623,14 @@
 | 2022 | Juniper | SRX300 | ngfw-corporate | yes | 0 |
 | 2022 | Fortinet | FortiGate 60F | ngfw-corporate | yes | 0 |
 | 2022 | Palo Alto Networks | PA-220 | ngfw-corporate | no | 0 |
-| 2022 | Aruba | 2930F | switch-corporate | no | 0 |
+| 2022 | Aruba | 2930F | switch-corporate | yes | 0 |
 | 2022 | Ubiquiti | UniFi Dream Router | router-corporate | no | 0 |
 | 2022 | OpenWrt | OpenWrt 22.03 Generic Targets | router-firmware | no | 0 |
 | 2022 | Cisco | Catalyst 9300 | switch-enterprise | yes | 0 |
-| 2022 | Aruba | Instant On 1930 | switch-corporate | no | 0 |
+| 2022 | Aruba | Instant On 1930 | switch-corporate | yes | 0 |
 | 2022 | Intelbras | SG 2404 PoE | switch-poe | no | 0 |
 | 2022 | Fortinet | FortiGate 200F | ngfw-corporate | yes | 0 |
-| 2022 | Sophos | XGS Firewall | ngfw-smb | no | 0 |
+| 2022 | Sophos | XGS Firewall | ngfw-smb | yes | 2 |
 | 2022 | Netgate | pfSense | fw-opensource | no | 0 |
 | 2022 | Cisco | Business CBS250 | switch-corporate | yes | 0 |
 | 2022 | Starti | Edge Protect NGFW | ngfw-smb | no | 0 |
@@ -647,12 +647,12 @@
 | 2023 | Cisco | C1111-8P | router-corporate | yes | 0 |
 | 2023 | Fortinet | FortiGate 60F | ngfw-corporate | yes | 0 |
 | 2023 | Juniper | SRX300 | ngfw-corporate | yes | 0 |
-| 2023 | Aruba | 2930F | switch-corporate | no | 0 |
+| 2023 | Aruba | 2930F | switch-corporate | yes | 0 |
 | 2023 | Cisco | Catalyst 9300 | switch-enterprise | yes | 0 |
-| 2023 | Aruba | Instant On 1930 | switch-corporate | no | 0 |
+| 2023 | Aruba | Instant On 1930 | switch-corporate | yes | 0 |
 | 2023 | Intelbras | SG 2404 PoE | switch-poe | no | 0 |
 | 2023 | Fortinet | FortiGate 200F | ngfw-corporate | yes | 0 |
-| 2023 | Sophos | XGS Firewall | ngfw-smb | no | 0 |
+| 2023 | Sophos | XGS Firewall | ngfw-smb | yes | 2 |
 | 2023 | Cisco | Business CBS350 | switch-corporate | yes | 0 |
 | 2023 | Ubiquiti | UniFi Switch 8/16/24/48 PoE | switch-corporate | no | 0 |
 | 2023 | Starti | Edge Protect NGFW | ngfw-smb | no | 0 |
@@ -669,13 +669,13 @@
 | 2024 | Cisco | C1111-8P | router-corporate | yes | 0 |
 | 2024 | Fortinet | FortiGate 60F | ngfw-corporate | yes | 0 |
 | 2024 | Juniper | SRX300 | ngfw-corporate | yes | 0 |
-| 2024 | Aruba | 2930F | switch-corporate | no | 0 |
+| 2024 | Aruba | 2930F | switch-corporate | yes | 0 |
 | 2024 | OpenWrt | OpenWrt 23.05 Generic Targets | router-firmware | no | 0 |
 | 2024 | Cisco | Catalyst 9300 | switch-enterprise | yes | 0 |
-| 2024 | Aruba | Instant On 1930 | switch-corporate | no | 0 |
+| 2024 | Aruba | Instant On 1930 | switch-corporate | yes | 0 |
 | 2024 | Intelbras | SG 2404 PoE | switch-poe | no | 0 |
 | 2024 | Fortinet | FortiGate 200F | ngfw-corporate | yes | 0 |
-| 2024 | Sophos | XGS Firewall | ngfw-smb | no | 0 |
+| 2024 | Sophos | XGS Firewall | ngfw-smb | yes | 2 |
 | 2024 | Cisco | Business CBS350 | switch-corporate | yes | 0 |
 | 2024 | Ubiquiti | UniFi Switch 8/16/24/48 PoE | switch-corporate | no | 0 |
 | 2024 | Palo Alto Networks | PA-450 | ngfw-corporate | no | 0 |
@@ -693,13 +693,13 @@
 | 2025 | Cisco | C1111-8P | router-corporate | yes | 0 |
 | 2025 | Fortinet | FortiGate 60F | ngfw-corporate | yes | 0 |
 | 2025 | Juniper | SRX300 | ngfw-corporate | yes | 0 |
-| 2025 | Aruba | 2930F | switch-corporate | no | 0 |
+| 2025 | Aruba | 2930F | switch-corporate | yes | 0 |
 | 2025 | OpenWrt | OpenWrt 23.05 Generic Targets | router-firmware | no | 0 |
 | 2025 | Cisco | Catalyst 9300 | switch-enterprise | yes | 0 |
-| 2025 | Aruba | Instant On 1930 | switch-corporate | no | 0 |
+| 2025 | Aruba | Instant On 1930 | switch-corporate | yes | 0 |
 | 2025 | Intelbras | SG 2404 PoE | switch-poe | no | 0 |
 | 2025 | Fortinet | FortiGate 200F | ngfw-corporate | yes | 0 |
-| 2025 | Sophos | XGS Firewall | ngfw-smb | no | 0 |
+| 2025 | Sophos | XGS Firewall | ngfw-smb | yes | 2 |
 | 2025 | Cisco | Business CBS350 | switch-corporate | yes | 0 |
 | 2025 | Ubiquiti | UniFi Switch 8/16/24/48 PoE | switch-corporate | no | 0 |
 | 2025 | Palo Alto Networks | PA-450 | ngfw-corporate | no | 0 |
@@ -717,13 +717,13 @@
 | 2026 | Cisco | C1111-8P | router-corporate | yes | 0 |
 | 2026 | Fortinet | FortiGate 60F | ngfw-corporate | yes | 0 |
 | 2026 | Juniper | SRX300 | ngfw-corporate | yes | 0 |
-| 2026 | Aruba | 2930F | switch-corporate | no | 0 |
+| 2026 | Aruba | 2930F | switch-corporate | yes | 0 |
 | 2026 | OpenWrt | OpenWrt 23.05 Generic Targets | router-firmware | no | 0 |
 | 2026 | Cisco | Catalyst 9300 | switch-enterprise | yes | 0 |
-| 2026 | Aruba | Instant On 1930 | switch-corporate | no | 0 |
+| 2026 | Aruba | Instant On 1930 | switch-corporate | yes | 0 |
 | 2026 | Intelbras | SG 2404 PoE | switch-poe | no | 0 |
 | 2026 | Fortinet | FortiGate 200F | ngfw-corporate | yes | 0 |
-| 2026 | Sophos | XGS Firewall | ngfw-smb | no | 0 |
+| 2026 | Sophos | XGS Firewall | ngfw-smb | yes | 2 |
 | 2026 | Cisco | Business CBS350 | switch-corporate | yes | 0 |
 | 2026 | Ubiquiti | UniFi Switch 8/16/24/48 PoE | switch-corporate | no | 0 |
 | 2026 | Palo Alto Networks | PA-450 | ngfw-corporate | no | 0 |
@@ -933,73 +933,7 @@
 
 ## External Tooling and Code Intelligence
 
-| ID | Name | Type | Domain | Scope Alignment | Integration Status | Test Matrix | Source |
-|---|---|---|---|---|---|---|---|
-| forge-integrated-modules | Integrated FXF module catalog | embedded-offline-tree | router-soho | high | embedded-in-forge | tracked | urn:firewallxpl:integrated-modules |
-| belkin4xx-keygen | Belkin4xx key correlation script | algorithm-research | wifi-default-key | conditional | queued_for_analysis | tracked | https://bitbucket.org/dudux/belkin4xx/src/eb7545023f250589bfc2f944472964754a83f66d/belkin4xx.py?at=master |
-| pirelli-prg-eav4202n | PRG EAV4202N default WPA algorithm research | algorithm-research | wifi-default-key | conditional | queued_for_analysis | tracked | https://sviehb.wordpress.com/2011/12/04/prg-eav4202n-default-wpa-key-algorithm/ |
-| fxf-upnpfuzz | UPnPFuzz | fuzzing-tool | upnp-discovery-fuzzing | high | planned-adapter | tracked | https://github.com/mrhenrike/FirewallXPL-Forge/?tab=readme-ov-file |
-| devttys0-repos | devttys0 repositories index | firmware-research-index | firmware-toolchain | high | planned-curation | tracked | https://github.com/devttys0?tab=repositories |
-| devttys0-delink | DeLink firmware decryption library | firmware-tool | dlink-firmware-decryption | high | planned-adapter | tracked | https://github.com/devttys0/delink |
-| fxf-main | FirewallXPL-Forge project site | vendor-context | project-context | reference | reference | tracked | https://github.com/mrhenrike/FirewallXPL-Forge |
-| routerpwn-site | RouterPWN (SOHO router exploits, generators, advisories) | exploit-index | router-soho | high | queued_for_curation | tracked | https://routerpwn.com/ |
-| routerpwn-wayback | RouterPWN — Internet Archive (Wayback) catch-all | exploit-index-archive | router-soho | high | queued_for_curation | tracked | https://web.archive.org/web/*/http://routerpwn.com/ |
-| routerpwn-github-mirror | hkm/routerpwn.com (static mirror / offline bundle) | source-mirror | router-soho | high | embedded-in-forge | tracked | https://github.com/hkm/routerpwn.com |
-| exploit-db-hardware-search | Exploit-DB — hardware / router vendor search | exploit-index | router-switch-fw | conditional | reference | tracked | https://www.exploit-db.com/ |
-| intelbras-vuln-checker-gist | Community Intelbras router vuln checklist (gist) | research-index | router-br | conditional | queued_for_curation | tracked | https://gist.github.com/MrCl0wnLab/2c325380cff786e0e1556c1fc8306098 |
-| metasploit-framework-github | Metasploit Framework (Rapid7) — reference source | exploit-framework | orchestration-bridge | high | adapter-module | tracked | https://github.com/rapid7/metasploit-framework |
-| exploitdb-gitlab | Exploit-DB (OffSec) — reference database | exploit-database | research-cli | high | embedded-in-forge | tracked | https://gitlab.com/exploit-database/exploitdb |
-| mikrotikapi-bf-github | FirewallXPL-Forge — RouterOS toolkit (author) | vendor-toolkit | mikrotik-routeros | high | adapter-module | tracked | https://github.com/mrhenrike/FirewallXPL-Forge |
-| bitbucket-router-research | Bitbucket search — router / firmware / exploit keywords | discovery-hint | router-soho | low | reference | tracked | https://bitbucket.org/search?q=router |
-| local-poc-0vercl0k-zenith | 0vercl0k__zenith (clone local PoC) | local-git-submodule | edge_network_poc | high | embedded-local-mirror | tracked | https://github.com/0vercl0k/zenith.git |
-| local-poc-0xedh-mistrastar-mips-exploit | 0xedh__mistrastar-mips-exploit (clone local PoC) | local-git-submodule | iot_embedded_poc | conditional | embedded-local-mirror | tracked | https://github.com/0xedh/mistrastar-mips-exploit.git |
-| local-poc-0xyassine-poc-seeker | 0xyassine__poc-seeker (clone local PoC) | local-git-submodule | edge_network_poc | high | embedded-local-mirror | tracked | https://github.com/0xyassine/poc-seeker.git |
-| local-poc-649-pingpon-exploit | 649__Pingpon-Exploit (clone local PoC) | local-git-submodule | edge_network_poc | high | embedded-local-mirror | tracked | https://github.com/649/Pingpon-Exploit.git |
-| local-poc-acecilia-openwrtinvasion | acecilia__OpenWRTInvasion (clone local PoC) | local-git-submodule | iot_embedded_poc | conditional | embedded-local-mirror | tracked | https://github.com/acecilia/OpenWRTInvasion.git |
-| local-poc-afang5472-tp-link-wdr-router-command-injection_poc | afang5472__TP-Link-WDR-Router-Command-injection_POC (clone local PoC) | local-git-submodule | edge_network_poc | conditional | embedded-local-mirror | tracked | https://github.com/afang5472/TP-Link-WDR-Router-Command-injection_POC.git |
-| local-poc-arthastang-iot-home-guard | arthastang__IoT-Home-Guard (clone local PoC) | local-git-submodule | iot_embedded_poc | conditional | embedded-local-mirror | tracked | https://github.com/arthastang/IoT-Home-Guard.git |
-| local-poc-arthastang-iot-implant-toolkit | arthastang__IoT-Implant-Toolkit (clone local PoC) | local-git-submodule | iot_embedded_poc | conditional | embedded-local-mirror | tracked | https://github.com/arthastang/IoT-Implant-Toolkit.git |
-| local-poc-arthastang-router-exploit-shovel | arthastang__Router-Exploit-Shovel (clone local PoC) | local-git-submodule | edge_network_poc | high | embedded-local-mirror | tracked | https://github.com/arthastang/Router-Exploit-Shovel.git |
-| local-poc-coincoin7-wireless-router-vulnerability | coincoin7__Wireless-Router-Vulnerability (clone local PoC) | local-git-submodule | edge_network_poc | high | embedded-local-mirror | tracked | https://github.com/coincoin7/Wireless-Router-Vulnerability.git |
-| local-poc-cybervinner-tp-link-tl-wr820n-cve-2025-14175 | CyberVinner__TP-Link-TL-WR820N-CVE-2025-14175 (clone local PoC) | local-git-submodule | iot_embedded_poc | high | embedded-local-mirror | tracked | https://github.com/CyberVinner/TP-Link-TL-WR820N-CVE-2025-14175.git |
-| local-poc-dylvie-cve-2020-35575-tp-link-tl-wr841nd-password-disclosure | dylvie__CVE-2020-35575-TP-LINK-TL-WR841ND-password-disclosure (clone local PoC) | local-git-submodule | edge_network_poc | high | embedded-local-mirror | tracked | https://github.com/dylvie/CVE-2020-35575-TP-LINK-TL-WR841ND-password-disclosure.git |
-| local-poc-elbertavares-routers-exploit | ElberTavares__routers-exploit (clone local PoC) | local-git-submodule | edge_network_poc | high | embedded-local-mirror | tracked | https://github.com/ElberTavares/routers-exploit.git |
-| local-poc-entysec-hatasm | EntySec__HatAsm (clone local PoC) | local-git-submodule | edge_network_poc | conditional | embedded-local-mirror | tracked | https://github.com/EntySec/HatAsm.git |
-| local-poc-entysec-hatsploit | EntySec__HatSploit (clone local PoC) | local-git-submodule | iot_embedded_poc | high | embedded-local-mirror | tracked | https://github.com/EntySec/HatSploit.git |
-| local-poc-entysec-libload | EntySec__libload (clone local PoC) | local-git-submodule | iot_embedded_poc | conditional | embedded-local-mirror | tracked | https://github.com/EntySec/libload.git |
-| local-poc-entysec-pwny | EntySec__Pwny (clone local PoC) | local-git-submodule | iot_embedded_poc | conditional | embedded-local-mirror | tracked | https://github.com/EntySec/Pwny.git |
-| local-poc-entysec-rombuster | EntySec__RomBuster (clone local PoC) | local-git-submodule | edge_network_poc | conditional | embedded-local-mirror | tracked | https://github.com/EntySec/RomBuster.git |
-| local-poc-exploit-database-exploitdb | exploit-database__exploitdb (clone local PoC) | local-git-submodule | exploitdb_mirror | conditional | embedded-local-mirror | tracked | https://gitlab.com/exploit-database/exploitdb.git |
-| local-poc-exploit-database-exploitdb-bin-sploits | exploit-database__exploitdb-bin-sploits (clone local PoC) | local-git-submodule | exploitdb_mirror | conditional | embedded-local-mirror | tracked | https://gitlab.com/exploit-database/exploitdb-bin-sploits.git |
-| local-poc-foreni-packages-cisco-global-exploiter | foreni-packages__cisco-global-exploiter (clone local PoC) | local-git-submodule | edge_network_poc | conditional | embedded-local-mirror | tracked | https://github.com/foreni-packages/cisco-global-exploiter.git |
-| local-poc-g-bdennour-huawei | G-bdennour__Huawei (clone local PoC) | local-git-submodule | iot_embedded_poc | conditional | embedded-local-mirror | tracked | https://github.com/G-bdennour/Huawei.git |
-| local-poc-hkm-routerpwn.com | hkm__routerpwn.com (clone local PoC) | local-git-submodule | iot_embedded_poc | conditional | embedded-local-mirror | tracked | https://github.com/hkm/routerpwn.com.git |
-| local-poc-hook-s3c-cve-2018-18852 | hook-s3c__CVE-2018-18852 (clone local PoC) | local-git-submodule | edge_network_poc | high | embedded-local-mirror | tracked | https://github.com/hook-s3c/CVE-2018-18852.git |
-| local-poc-iridium-tapohax | iridium__tapohax (clone local PoC) | local-git-submodule | edge_network_poc | conditional | embedded-local-mirror | tracked | https://github.com/iridium/tapohax.git |
-| local-poc-j91321-rext | j91321__rext (clone local PoC) | local-git-submodule | iot_embedded_poc | high | embedded-local-mirror | tracked | https://github.com/j91321/rext.git |
-| local-poc-jackdoan-tp-link-archerc5-rce | JackDoan__TP-Link-ArcherC5-RCE (clone local PoC) | local-git-submodule | edge_network_poc | high | embedded-local-mirror | tracked | https://github.com/JackDoan/TP-Link-ArcherC5-RCE.git |
-| local-poc-johnoseni1-router-hacker-exploit-and-extract-user-and-password- | johnoseni1__Router-hacker-Exploit-and-extract-user-and-password- (clone local PoC) | local-git-submodule | edge_network_poc | high | embedded-local-mirror | tracked | https://github.com/johnoseni1/Router-hacker-Exploit-and-extract-user-and-password-.git |
-| local-poc-knqyf263-cve-2020-10749 | knqyf263__CVE-2020-10749 (clone local PoC) | local-git-submodule | edge_network_poc | high | embedded-local-mirror | tracked | https://github.com/knqyf263/CVE-2020-10749.git |
-| local-poc-kthemis-routerexploitscan | kthemis__RouterExploitScan (clone local PoC) | local-git-submodule | edge_network_poc | conditional | embedded-local-mirror | tracked | https://github.com/kthemis/RouterExploitScan.git |
-| local-poc-maherazzouzi-zte-f660-exploit | MaherAzzouzi__ZTE-F660-Exploit (clone local PoC) | local-git-submodule | edge_network_poc | conditional | embedded-local-mirror | tracked | https://github.com/MaherAzzouzi/ZTE-F660-Exploit.git |
-| local-poc-openwrt-xiaomi-xmir-patcher | openwrt-xiaomi__xmir-patcher (clone local PoC) | local-git-submodule | iot_embedded_poc | high | embedded-local-mirror | tracked | https://github.com/openwrt-xiaomi/xmir-patcher.git |
-| local-poc-oscommonjs-exp_iot | oscommonjs__EXP_IOT (clone local PoC) | local-git-submodule | iot_embedded_poc | high | embedded-local-mirror | tracked | https://github.com/oscommonjs/EXP_IOT.git |
-| local-poc-samyk-evercookie | samyk__evercookie (clone local PoC) | local-git-submodule | edge_network_poc | high | embedded-local-mirror | tracked | https://github.com/samyk/evercookie.git |
-| local-poc-samyk-magspoof | samyk__magspoof (clone local PoC) | local-git-submodule | edge_network_poc | conditional | embedded-local-mirror | tracked | https://github.com/samyk/magspoof.git |
-| local-poc-samyk-poisontap | samyk__poisontap (clone local PoC) | local-git-submodule | edge_network_poc | conditional | embedded-local-mirror | tracked | https://github.com/samyk/poisontap.git |
-| local-poc-samyk-pwnat | samyk__pwnat (clone local PoC) | local-git-submodule | edge_network_poc | conditional | embedded-local-mirror | tracked | https://github.com/samyk/pwnat.git |
-| local-poc-samyk-skyjack | samyk__skyjack (clone local PoC) | local-git-submodule | iot_embedded_poc | conditional | embedded-local-mirror | tracked | https://github.com/samyk/skyjack.git |
-| local-poc-samyk-slipstream | samyk__slipstream (clone local PoC) | local-git-submodule | edge_network_poc | conditional | embedded-local-mirror | tracked | https://github.com/samyk/slipstream.git |
-| local-poc-seclab-ucr-ccs24mesh | seclab-ucr__CCS24Mesh (clone local PoC) | local-git-submodule | edge_network_poc | conditional | embedded-local-mirror | tracked | https://github.com/seclab-ucr/CCS24Mesh.git |
-| local-poc-seclab-ucr-koobe | seclab-ucr__KOOBE (clone local PoC) | local-git-submodule | generic_or_offtopic | conditional | embedded-local-mirror | tracked | https://github.com/seclab-ucr/KOOBE.git |
-| local-poc-seclab-ucr-symtcp | seclab-ucr__SymTCP (clone local PoC) | local-git-submodule | edge_network_poc | conditional | embedded-local-mirror | tracked | https://github.com/seclab-ucr/SymTCP.git |
-| local-poc-seclab-ucr-tcp_exploit | seclab-ucr__tcp_exploit (clone local PoC) | local-git-submodule | iot_embedded_poc | conditional | embedded-local-mirror | tracked | https://github.com/seclab-ucr/tcp_exploit.git |
-| local-poc-stasinopoulos-ztexploit | stasinopoulos__ZTExploit (clone local PoC) | local-git-submodule | edge_network_poc | conditional | embedded-local-mirror | tracked | https://github.com/stasinopoulos/ZTExploit.git |
-| local-poc-tacnetsol-trendnetexploits | tacnetsol__TRENDNetExploits (clone local PoC) | local-git-submodule | edge_network_poc | high | embedded-local-mirror | tracked | https://github.com/tacnetsol/TRENDNetExploits.git |
-| local-poc-teteco-cve-2025-67070-intelbras-cftv-mfa-bypass | teteco__CVE-2025-67070-Intelbras-CFTV-MFA-Bypass (clone local PoC) | local-git-submodule | edge_network_poc | high | embedded-local-mirror | tracked | https://github.com/teteco/CVE-2025-67070-Intelbras-CFTV-MFA-Bypass.git |
-| local-poc-tg12-poc_cves | tg12__PoC_CVEs (clone local PoC) | local-git-submodule | iot_embedded_poc | conditional | embedded-local-mirror | tracked | https://github.com/tg12/PoC_CVEs.git |
-| local-poc-thomasrinsma-vmg8825scripts | ThomasRinsma__vmg8825scripts (clone local PoC) | local-git-submodule | edge_network_poc | conditional | embedded-local-mirror | tracked | https://github.com/ThomasRinsma/vmg8825scripts.git |
-| local-poc-zeyad-azima-huawei_thief | Zeyad-Azima__Huawei_Thief (clone local PoC) | local-git-submodule | edge_network_poc | conditional | embedded-local-mirror | tracked | https://github.com/Zeyad-Azima/Huawei_Thief.git |
+- No external intelligence catalog found.
 
 ## Discord Requested Devices Coverage
 
@@ -1013,7 +947,7 @@
 | ADB / Pirelli | PRG EAV4202N / PRGAV4202N | dsl-gateway | no | 0 | 0 | 0 | 0 | - | default WPA algorithm weakness discussion |
 | Technicolor | TG585v6 | dsl-gateway | no | 0 | 0 | 0 | 0 | - | legacy vulnerable fleet mentioned in thread |
 | EasyBox | EasyBox (German variants) | dsl-gateway | no | 0 | 0 | 0 | 0 | - | algorithm request in discussion comments |
-| Generic | Low-cost Chinese ONU/CPE | onu/isp-cpe | yes | 0 | 0 | 0 | 1 | - | claim that modern cheap ONUs are not covered |
+| Generic | Low-cost Chinese ONU/CPE | onu/isp-cpe | yes | 6 | 11 | 0 | 1 | info_disclosure, rce | claim that modern cheap ONUs are not covered |
 
 ## Architecture Inventory Snapshot
 
@@ -1048,13 +982,7 @@
 
 ## Workspace Reuse Inventory Snapshot
 
-- Total assets discovered: 65650
-
-| Classification | Count |
-|---|---:|
-| catalog_only | 3677 |
-| integrate_core | 41627 |
-| reject | 20346 |
+- workspace_reuse_inventory.json not found.
 
 ## Deep Intel Backlog Snapshot
 
@@ -1084,17 +1012,31 @@
 
 | Vendor | Product | Modules | Exploits | Creds | Scanners | Generic | Payloads | Encoders | CVEs | Attack Classes |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---|---|
+| a10 | softax_path_traversal | 1 | 1 | 0 | 0 | 0 | 0 | 0 | - | path_traversal |
 | armle | bind_tcp | 1 | 0 | 0 | 0 | 0 | 1 | 0 | - | - |
 | armle | reverse_tcp | 1 | 0 | 0 | 0 | 0 | 1 | 0 | - | - |
+| aruba | clearpass_unauth_rce_cve_2023_25594 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2023-25594 | rce |
+| aruba | clearpass_xss_stored | 1 | 1 | 0 | 0 | 0 | 0 | 0 | - | - |
+| barracuda | esg_cmd_injection_cve_2023_2868 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2023-2868 | rce |
+| barracuda | esg_spreadsheet_rce_cve_2023_7102 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2023-7102 | rce |
+| checkpoint | gateway_info_disclosure_cve_2024_24919 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2024-24919 | info_disclosure |
+| cisco | asa_ftd_path_traversal_cve_2020_3452 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2020-3452 | path_traversal |
+| cisco | asa_vpn_bruteforce_cve_2023_20269 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2023-20269 | - |
+| cisco | cisco_asa_ftd_firestarter_chain_cve_2025_20362_20333 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2025-20333, CVE-2025-20362 | backdoor |
 | cisco | firepower_management60_path_traversal | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2016-6435 | path_traversal |
 | cisco | firepower_management60_rce | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2016-6433 | backdoor, rce |
 | cisco | ftp_default_creds | 1 | 0 | 1 | 0 | 0 | 0 | 0 | - | - |
+| cisco | ios_xe_webui_privesc_cve_2023_20198 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2023-20198 | - |
+| cisco | isa3000_asa_rce_cve_2018_0101 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2018-0101 | rce |
 | cisco | secure_acs_bypass | 1 | 1 | 0 | 0 | 0 | 0 | 0 | - | auth_bypass |
 | cisco | ssh_default_creds | 1 | 0 | 1 | 0 | 0 | 0 | 0 | - | - |
 | cisco | telnet_default_creds | 1 | 0 | 1 | 0 | 0 | 0 | 0 | - | - |
 | cisco | ucm_info_disclosure | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2013-7030 | info_disclosure |
 | cisco | ucs_manager_rce | 1 | 1 | 0 | 0 | 0 | 0 | 0 | - | rce |
 | cisco | unified_multi_path_traversal | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2011-3315 | path_traversal |
+| citrix | adc_rce_cve_2019_19781 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2019-19781 | path_traversal, rce |
+| citrix | netscaler_citrixbleed_cve_2023_4966 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2023-4966 | info_disclosure |
+| citrix | netscaler_rce_cve_2023_3519 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2023-3519 | rce |
 | cmd | awk_bind_tcp | 1 | 0 | 0 | 0 | 0 | 1 | 0 | - | - |
 | cmd | awk_bind_udp | 1 | 0 | 0 | 0 | 0 | 1 | 0 | - | - |
 | cmd | awk_reverse_tcp | 1 | 0 | 0 | 0 | 0 | 1 | 0 | - | - |
@@ -1110,46 +1052,93 @@
 | cmd | python_reverse_tcp | 1 | 0 | 0 | 0 | 0 | 1 | 0 | - | - |
 | cmd | python_reverse_udp | 1 | 0 | 0 | 0 | 0 | 1 | 0 | - | - |
 | cve | cve_lookup | 1 | 0 | 0 | 0 | 1 | 0 | 0 | - | - |
+| ewon | cosy_unauth_rce_cve_2026_25823 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2026-25823 | rce |
 | external | metasploit_console_bridge | 1 | 0 | 0 | 0 | 1 | 0 | 0 | - | - |
 | external | metasploit_rb_inspect | 1 | 0 | 0 | 0 | 1 | 0 | 0 | - | - |
 | external | mikrotikapi_bf_bridge | 1 | 0 | 0 | 0 | 1 | 0 | 0 | - | - |
-| fortinet | fortigate_os_backdoor | 1 | 1 | 0 | 0 | 0 | 0 | 0 | - | backdoor |
+| f5 | bigip_apm_buffer_overflow_cve_2025_53521 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2025-53521 | - |
+| f5 | bigip_config_rce_cve_2023_46747 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2023-46747 | rce |
+| f5 | bigip_icontrol_auth_bypass_cve_2022_1388 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2022-1388 | auth_bypass |
+| f5 | bigip_icontrol_rest_rce_cve_2021_22986 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2021-22986 | rce |
+| f5 | bigip_tmui_lfi_cve_2020_5902 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2020-5902 | - |
+| fortinet | forticlient_ems_preauth_api_bypass_cve_2026_35616 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2026-35616 | auth_bypass, backdoor |
+| fortinet | forticlientems_sqli_rce_cve_2023_48788 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2023-48788 | rce |
+| fortinet | forticloud_sso_auth_bypass_cve_2026_24858 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2026-24858 | auth_bypass |
+| fortinet | fortigate_os_backdoor | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2014-3413 | backdoor |
+| fortinet | fortimanager_fortijump_cve_2024_47575 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2024-47575 | - |
+| fortinet | fortios_auth_bypass_cve_2022_40684 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2022-40684 | auth_bypass |
+| fortinet | fortios_sslvpn_heap_rce_cve_2022_42475 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2022-42475 | rce |
+| fortinet | fortios_sslvpn_path_traversal_cve_2018_13379 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2018-13379 | info_disclosure, path_traversal |
+| fortinet | fortios_sslvpn_preauth_rce_cve_2023_27997 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2023-27997 | rce |
+| fortinet | fortios_sslvpn_rce_cve_2024_21762 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2024-21762 | rce |
+| fortinet | fortios_sslvpn_session_reuse_cve_2024_50562 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2024-50562 | - |
+| fortinet | fortios_websocket_auth_bypass_cve_2024_55591 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2024-55591 | auth_bypass |
+| fortinet | fortiweb_admin_rce_cve_2025_64446 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2025-64446 | rce |
+| fortinet | fortiweb_auth_bypass_rce_cve_2025_25257 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2025-25257 | auth_bypass, rce |
 | fortinet | ftp_default_creds | 1 | 0 | 1 | 0 | 0 | 0 | 0 | - | - |
 | fortinet | ssh_default_creds | 1 | 0 | 1 | 0 | 0 | 0 | 0 | - | - |
 | fortinet | telnet_default_creds | 1 | 0 | 1 | 0 | 0 | 0 | 0 | - | - |
 | ftp_bruteforce.py | ftp_bruteforce | 1 | 0 | 1 | 0 | 0 | 0 | 0 | - | - |
 | ftp_default.py | ftp_default | 1 | 0 | 1 | 0 | 0 | 0 | 0 | - | - |
-| heartbleed.py | heartbleed | 1 | 1 | 0 | 0 | 0 | 0 | 0 | - | info_disclosure |
+| generic | dnp3_firewall_evasion | 1 | 1 | 0 | 0 | 0 | 0 | 0 | - | - |
+| generic | ethernetip_cip_bypass | 1 | 1 | 0 | 0 | 0 | 0 | 0 | - | - |
+| generic | heartbleed | 1 | 1 | 0 | 0 | 0 | 0 | 0 | - | info_disclosure |
+| generic | http_form_char_by_char_oracle | 1 | 1 | 0 | 0 | 0 | 0 | 0 | - | info_disclosure |
+| generic | http_smuggling_checker | 1 | 1 | 0 | 0 | 0 | 0 | 0 | - | - |
+| generic | iec104_manipulation | 1 | 1 | 0 | 0 | 0 | 0 | 0 | - | - |
+| generic | misc_scan | 1 | 0 | 0 | 1 | 0 | 0 | 0 | - | - |
+| generic | modbus_dpi_bypass | 1 | 1 | 0 | 0 | 0 | 0 | 0 | - | - |
+| generic | opcua_firewall_bypass | 1 | 1 | 0 | 0 | 0 | 0 | 0 | - | - |
+| generic | shellshock | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2014-6271, CVE-2014-6278, CVE-2014-7169 | rce |
+| generic | ssh_auth_keys | 1 | 1 | 0 | 0 | 0 | 0 | 0 | - | - |
+| generic | vlan_hopping_checker | 1 | 1 | 0 | 0 | 0 | 0 | 0 | - | - |
+| hirschmann | eagle_auth_bypass_cve_2020_6994 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2020-6994 | auth_bypass |
 | http_basic_digest_bruteforce.py | http_basic_digest_bruteforce | 1 | 0 | 1 | 0 | 0 | 0 | 0 | - | - |
 | http_basic_digest_default.py | http_basic_digest_default | 1 | 0 | 1 | 0 | 0 | 0 | 0 | - | - |
-| http_form_char_by_char_oracle.py | http_form_char_by_char_oracle | 1 | 1 | 0 | 0 | 0 | 0 | 0 | - | info_disclosure |
 | http_multi_auth_default.py | http_multi_auth_default | 1 | 0 | 1 | 0 | 0 | 0 | 0 | - | - |
 | http_web_form_bruteforce.py | http_web_form_bruteforce | 1 | 0 | 1 | 0 | 0 | 0 | 0 | - | - |
+| imperva | securesphere_sqli_cve_2013_xxxx | 1 | 1 | 0 | 0 | 0 | 0 | 0 | - | - |
 | ipfire | ftp_default_creds | 1 | 0 | 1 | 0 | 0 | 0 | 0 | - | - |
 | ipfire | ssh_default_creds | 1 | 0 | 1 | 0 | 0 | 0 | 0 | - | - |
 | ipfire | telnet_default_creds | 1 | 0 | 1 | 0 | 0 | 0 | 0 | - | - |
+| ivanti | connect_secure_auth_rce_cve_2023_46805 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2023-46805, CVE-2024-21887 | rce |
+| ivanti | ics_buffer_overflow_rce_cve_2025_0282 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2025-0282 | rce |
 | juniper | ftp_default_creds | 1 | 0 | 1 | 0 | 0 | 0 | 0 | - | - |
+| juniper | jweb_oob_write_rce_cve_2024_21591 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2024-21591 | rce |
+| juniper | jweb_php_rce_cve_2023_36845 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2023-36845 | rce |
 | juniper | ssh_default_creds | 1 | 0 | 1 | 0 | 0 | 0 | 0 | - | - |
 | juniper | telnet_default_creds | 1 | 0 | 1 | 0 | 0 | 0 | 0 | - | - |
 | mipsbe | bind_tcp | 1 | 0 | 0 | 0 | 0 | 1 | 0 | - | - |
 | mipsbe | reverse_tcp | 1 | 0 | 0 | 0 | 0 | 1 | 0 | - | - |
 | mipsle | bind_tcp | 1 | 0 | 0 | 0 | 0 | 1 | 0 | - | - |
 | mipsle | reverse_tcp | 1 | 0 | 0 | 0 | 0 | 1 | 0 | - | - |
-| misc | misc_scan | 1 | 0 | 0 | 1 | 0 | 0 | 0 | - | - |
+| moxa | edr_cmd_injection_cve_2024_9138 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2024-9138 | rce |
+| moxa | edr_g_jwt_hardcoded_cve_2024_9137 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2024-9137 | - |
+| paloalto | globalprotect_auth_bypass_cve_2026_0257 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2026-0257 | auth_bypass |
+| paloalto | globalprotect_cmd_injection_cve_2024_3400 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2024-3400 | rce |
+| paloalto | panos_auth_bypass_cve_2025_0108 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2025-0108 | auth_bypass |
+| paloalto | panos_mgmt_auth_bypass_cve_2024_0012 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2024-0012, CVE-2024-9474 | auth_bypass |
+| paloalto | panos_privesc_cve_2024_9474 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2024-0012, CVE-2024-9474 | rce |
+| paloalto | panos_saml_auth_bypass_cve_2020_2021 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2020-2021 | auth_bypass |
 | perl | base64 | 1 | 0 | 0 | 0 | 0 | 0 | 1 | - | - |
 | perl | bind_tcp | 1 | 0 | 0 | 0 | 0 | 1 | 0 | - | - |
 | perl | hex | 1 | 0 | 0 | 0 | 0 | 0 | 1 | - | - |
 | perl | reverse_tcp | 1 | 0 | 0 | 0 | 0 | 1 | 0 | - | - |
 | perl | rot13 | 1 | 0 | 0 | 0 | 0 | 0 | 1 | - | - |
 | perl | url | 1 | 0 | 0 | 0 | 0 | 0 | 1 | - | - |
+| pfsense | antibruteforce_bypass_cve_2023_27100 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2023-27100 | - |
+| pfsense | interfaces_cmd_injection_cve_2023_42326 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2023-42326 | rce |
+| pfsense | pfblockerng_rce_cve_2022_31814 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2022-31814 | rce |
 | pfsense | ssh_default_creds | 1 | 0 | 1 | 0 | 0 | 0 | 0 | - | - |
 | pfsense | webinterface_http_form_default_creds | 1 | 0 | 1 | 0 | 0 | 0 | 0 | - | - |
+| phoenix | mguard_cmd_injection_cve_2024_43386 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2024-43386 | rce |
 | php | base64 | 1 | 0 | 0 | 0 | 0 | 0 | 1 | - | - |
 | php | bind_tcp | 1 | 0 | 0 | 0 | 0 | 1 | 0 | - | - |
 | php | hex | 1 | 0 | 0 | 0 | 0 | 0 | 1 | - | - |
 | php | reverse_tcp | 1 | 0 | 0 | 0 | 0 | 1 | 0 | - | - |
 | php | rot13 | 1 | 0 | 0 | 0 | 0 | 0 | 1 | - | - |
 | php | url | 1 | 0 | 0 | 0 | 0 | 0 | 1 | - | - |
+| pulsesecure | sslvpn_arbitrary_file_read_cve_2019_11510 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2019-11510 | - |
 | python | base32 | 1 | 0 | 0 | 0 | 0 | 0 | 1 | - | - |
 | python | base64 | 1 | 0 | 0 | 0 | 0 | 0 | 1 | - | - |
 | python | bind_tcp | 1 | 0 | 0 | 0 | 0 | 1 | 0 | - | - |
@@ -1159,28 +1148,52 @@
 | python | reverse_udp | 1 | 0 | 0 | 0 | 0 | 1 | 0 | - | - |
 | python | rot13 | 1 | 0 | 0 | 0 | 0 | 0 | 1 | - | - |
 | python | url | 1 | 0 | 0 | 0 | 0 | 0 | 1 | - | - |
-| routers | fortigate_sslvpn_scan | 1 | 0 | 0 | 1 | 0 | 0 | 0 | CVE-2018-13379, CVE-2022-40684, CVE-2023-27997, CVE-2024-21762, CVE-2025-59718 | - |
 | scanners | autopwn | 1 | 0 | 0 | 1 | 0 | 0 | 0 | - | - |
+| schneider | connexium_ssh_hardcoded_cve_2017_6026 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2017-6026 | - |
+| secomea | gatemanager_rce_cve_2020_14500 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2020-14500 | rce |
 | sftp_bruteforce.py | sftp_bruteforce | 1 | 0 | 1 | 0 | 0 | 0 | 0 | - | - |
 | sftp_default.py | sftp_default | 1 | 0 | 1 | 0 | 0 | 0 | 0 | - | - |
-| shellshock.py | shellshock | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2014-6271, CVE-2014-6278, CVE-2014-7169 | rce |
+| siemens | ruggedcom_web_rce_cve_2023_24845 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2023-24845 | rce |
+| siemens | scalance_cmd_injection_cve_2023_44373 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2023-44373 | rce |
+| siemens | sinema_rc_path_traversal_cve_2022_32257 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2022-32257 | path_traversal |
 | snmp | snmp_trap_listener | 1 | 0 | 0 | 0 | 1 | 0 | 0 | - | - |
 | snmp_bruteforce.py | snmp_bruteforce | 1 | 0 | 1 | 0 | 0 | 0 | 0 | - | - |
 | snmpv3_default.py | snmpv3_default | 1 | 0 | 1 | 0 | 0 | 0 | 0 | - | - |
-| ssh_auth_keys.py | ssh_auth_keys | 1 | 1 | 0 | 0 | 0 | 0 | 0 | - | - |
+| sonicwall | sma100_sqli_cve_2021_20016 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2021-20016 | - |
+| sonicwall | sma_password_reset_cve_2021_20034 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2021-20034 | password_reset_or_change |
+| sonicwall | sonicos_sslvpn_access_cve_2024_40766 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2024-40766 | - |
+| sonicwall | sonicos_sslvpn_auth_bypass_cve_2024_53704 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2024-53704 | auth_bypass |
+| sonicwall | sonicos_vpn_buffer_overflow_cve_2020_5135 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2020-5135 | - |
+| sonicwall | sslvpn_shellshock_rce_visualdoor | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2014-6271 | rce |
+| sophos | firewall_code_injection_cve_2022_3236 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2022-3236 | - |
+| sophos | xg_auth_bypass_cve_2022_1040 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2022-1040 | auth_bypass |
+| sophos | xg_sqli_asnarok_cve_2020_12271 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2020-12271 | - |
 | ssh_bruteforce.py | ssh_bruteforce | 1 | 0 | 1 | 0 | 0 | 0 | 0 | - | - |
 | ssh_default.py | ssh_default | 1 | 0 | 1 | 0 | 0 | 0 | 0 | - | - |
 | telnet_bruteforce.py | telnet_bruteforce | 1 | 0 | 1 | 0 | 0 | 0 | 0 | - | - |
 | telnet_default.py | telnet_default | 1 | 0 | 1 | 0 | 0 | 0 | 0 | - | - |
 | upnp | ssdp_msearch | 1 | 0 | 0 | 0 | 1 | 0 | 0 | - | - |
+| vpn | fortigate_sslvpn_scan | 1 | 0 | 0 | 1 | 0 | 0 | 0 | CVE-2018-13379, CVE-2022-40684, CVE-2023-27997, CVE-2024-21762, CVE-2025-59718 | - |
+| watchguard | firebox_cyclops_blink_cve_2022_23176 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2022-23176 | - |
 | watchguard | xcs_9_rce | 1 | 1 | 0 | 0 | 0 | 0 | 0 | - | rce |
 | wordlist | wordlist_generator | 1 | 0 | 0 | 0 | 1 | 0 | 0 | - | - |
 | x64 | bind_tcp | 1 | 0 | 0 | 0 | 0 | 1 | 0 | - | - |
 | x64 | reverse_tcp | 1 | 0 | 0 | 0 | 0 | 1 | 0 | - | - |
 | x86 | bind_tcp | 1 | 0 | 0 | 0 | 0 | 1 | 0 | - | - |
 | x86 | reverse_tcp | 1 | 0 | 0 | 0 | 0 | 1 | 0 | - | - |
+| zyxel | buffer_overflow_cve_2023_33009 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2023-33009 | - |
+| zyxel | ike_cmd_injection_cve_2023_28771 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2023-28771 | rce |
+| zyxel | usg_flex_cmd_injection_cve_2022_30525 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | CVE-2022-30525 | rce |
 
 ## Modules By Vendor/Product
+
+### a10 / softax_path_traversal
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: none
+- Attack classes: path_traversal
+- Module paths:
+  - `modules/exploits/lb/a10/softax_path_traversal.py`
 
 ### armle / bind_tcp
 
@@ -1198,13 +1211,77 @@
 - Module paths:
   - `modules/payloads/armle/reverse_tcp.py`
 
+### aruba / clearpass_unauth_rce_cve_2023_25594
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2023-25594
+- Attack classes: rce
+- Module paths:
+  - `modules/exploits/nac/aruba/clearpass_unauth_rce_cve_2023_25594.py`
+
+### aruba / clearpass_xss_stored
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: none
+- Attack classes: none
+- Module paths:
+  - `modules/exploits/nac/aruba/clearpass_xss_stored.py`
+
+### barracuda / esg_cmd_injection_cve_2023_2868
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2023-2868
+- Attack classes: rce
+- Module paths:
+  - `modules/exploits/waf/barracuda/esg_cmd_injection_cve_2023_2868.py`
+
+### barracuda / esg_spreadsheet_rce_cve_2023_7102
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2023-7102
+- Attack classes: rce
+- Module paths:
+  - `modules/exploits/waf/barracuda/esg_spreadsheet_rce_cve_2023_7102.py`
+
+### checkpoint / gateway_info_disclosure_cve_2024_24919
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2024-24919
+- Attack classes: info_disclosure
+- Module paths:
+  - `modules/exploits/perimeter/checkpoint/gateway_info_disclosure_cve_2024_24919.py`
+
+### cisco / asa_ftd_path_traversal_cve_2020_3452
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2020-3452
+- Attack classes: path_traversal
+- Module paths:
+  - `modules/exploits/perimeter/cisco/asa_ftd_path_traversal_cve_2020_3452.py`
+
+### cisco / asa_vpn_bruteforce_cve_2023_20269
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2023-20269
+- Attack classes: none
+- Module paths:
+  - `modules/exploits/perimeter/cisco/asa_vpn_bruteforce_cve_2023_20269.py`
+
+### cisco / cisco_asa_ftd_firestarter_chain_cve_2025_20362_20333
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2025-20333, CVE-2025-20362
+- Attack classes: backdoor
+- Module paths:
+  - `modules/exploits/perimeter/cisco/cisco_asa_ftd_firestarter_chain_cve_2025_20362_20333.py`
+
 ### cisco / firepower_management60_path_traversal
 
 - Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
 - CVEs: CVE-2016-6435
 - Attack classes: path_traversal
 - Module paths:
-  - `modules/exploits/routers/cisco/firepower_management60_path_traversal.py`
+  - `modules/exploits/perimeter/cisco/firepower_management60_path_traversal.py`
 
 ### cisco / firepower_management60_rce
 
@@ -1212,7 +1289,7 @@
 - CVEs: CVE-2016-6433
 - Attack classes: backdoor, rce
 - Module paths:
-  - `modules/exploits/routers/cisco/firepower_management60_rce.py`
+  - `modules/exploits/perimeter/cisco/firepower_management60_rce.py`
 
 ### cisco / ftp_default_creds
 
@@ -1220,7 +1297,23 @@
 - CVEs: none
 - Attack classes: none
 - Module paths:
-  - `modules/creds/routers/cisco/ftp_default_creds.py`
+  - `modules/creds/perimeter/cisco/ftp_default_creds.py`
+
+### cisco / ios_xe_webui_privesc_cve_2023_20198
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2023-20198
+- Attack classes: none
+- Module paths:
+  - `modules/exploits/perimeter/cisco/ios_xe_webui_privesc_cve_2023_20198.py`
+
+### cisco / isa3000_asa_rce_cve_2018_0101
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2018-0101
+- Attack classes: rce
+- Module paths:
+  - `modules/exploits/perimeter/cisco/isa3000_asa_rce_cve_2018_0101.py`
 
 ### cisco / secure_acs_bypass
 
@@ -1228,7 +1321,7 @@
 - CVEs: none
 - Attack classes: auth_bypass
 - Module paths:
-  - `modules/exploits/routers/cisco/secure_acs_bypass.py`
+  - `modules/exploits/nac/cisco/secure_acs_bypass.py`
 
 ### cisco / ssh_default_creds
 
@@ -1236,7 +1329,7 @@
 - CVEs: none
 - Attack classes: none
 - Module paths:
-  - `modules/creds/routers/cisco/ssh_default_creds.py`
+  - `modules/creds/perimeter/cisco/ssh_default_creds.py`
 
 ### cisco / telnet_default_creds
 
@@ -1244,7 +1337,7 @@
 - CVEs: none
 - Attack classes: none
 - Module paths:
-  - `modules/creds/routers/cisco/telnet_default_creds.py`
+  - `modules/creds/perimeter/cisco/telnet_default_creds.py`
 
 ### cisco / ucm_info_disclosure
 
@@ -1252,7 +1345,7 @@
 - CVEs: CVE-2013-7030
 - Attack classes: info_disclosure
 - Module paths:
-  - `modules/exploits/routers/cisco/ucm_info_disclosure.py`
+  - `modules/exploits/perimeter/cisco/ucm_info_disclosure.py`
 
 ### cisco / ucs_manager_rce
 
@@ -1260,7 +1353,7 @@
 - CVEs: none
 - Attack classes: rce
 - Module paths:
-  - `modules/exploits/routers/cisco/ucs_manager_rce.py`
+  - `modules/exploits/perimeter/cisco/ucs_manager_rce.py`
 
 ### cisco / unified_multi_path_traversal
 
@@ -1268,7 +1361,31 @@
 - CVEs: CVE-2011-3315
 - Attack classes: path_traversal
 - Module paths:
-  - `modules/exploits/routers/cisco/unified_multi_path_traversal.py`
+  - `modules/exploits/perimeter/cisco/unified_multi_path_traversal.py`
+
+### citrix / adc_rce_cve_2019_19781
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2019-19781
+- Attack classes: path_traversal, rce
+- Module paths:
+  - `modules/exploits/vpn/citrix/adc_rce_cve_2019_19781.py`
+
+### citrix / netscaler_citrixbleed_cve_2023_4966
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2023-4966
+- Attack classes: info_disclosure
+- Module paths:
+  - `modules/exploits/vpn/citrix/netscaler_citrixbleed_cve_2023_4966.py`
+
+### citrix / netscaler_rce_cve_2023_3519
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2023-3519
+- Attack classes: rce
+- Module paths:
+  - `modules/exploits/vpn/citrix/netscaler_rce_cve_2023_3519.py`
 
 ### cmd / awk_bind_tcp
 
@@ -1390,6 +1507,14 @@
 - Module paths:
   - `modules/generic/cve/cve_lookup.py`
 
+### ewon / cosy_unauth_rce_cve_2026_25823
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2026-25823
+- Attack classes: rce
+- Module paths:
+  - `modules/exploits/vpn/ewon/cosy_unauth_rce_cve_2026_25823.py`
+
 ### external / metasploit_console_bridge
 
 - Totals: modules=1, exploits=0, creds=0, scanners=0, generic=1, payloads=0, encoders=0
@@ -1414,13 +1539,157 @@
 - Module paths:
   - `modules/generic/external/mikrotikapi_bf_bridge.py`
 
+### f5 / bigip_apm_buffer_overflow_cve_2025_53521
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2025-53521
+- Attack classes: none
+- Module paths:
+  - `modules/exploits/lb/f5/bigip_apm_buffer_overflow_cve_2025_53521.py`
+
+### f5 / bigip_config_rce_cve_2023_46747
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2023-46747
+- Attack classes: rce
+- Module paths:
+  - `modules/exploits/lb/f5/bigip_config_rce_cve_2023_46747.py`
+
+### f5 / bigip_icontrol_auth_bypass_cve_2022_1388
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2022-1388
+- Attack classes: auth_bypass
+- Module paths:
+  - `modules/exploits/lb/f5/bigip_icontrol_auth_bypass_cve_2022_1388.py`
+
+### f5 / bigip_icontrol_rest_rce_cve_2021_22986
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2021-22986
+- Attack classes: rce
+- Module paths:
+  - `modules/exploits/lb/f5/bigip_icontrol_rest_rce_cve_2021_22986.py`
+
+### f5 / bigip_tmui_lfi_cve_2020_5902
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2020-5902
+- Attack classes: none
+- Module paths:
+  - `modules/exploits/lb/f5/bigip_tmui_lfi_cve_2020_5902.py`
+
+### fortinet / forticlient_ems_preauth_api_bypass_cve_2026_35616
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2026-35616
+- Attack classes: auth_bypass, backdoor
+- Module paths:
+  - `modules/exploits/perimeter/fortinet/forticlient_ems_preauth_api_bypass_cve_2026_35616.py`
+
+### fortinet / forticlientems_sqli_rce_cve_2023_48788
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2023-48788
+- Attack classes: rce
+- Module paths:
+  - `modules/exploits/perimeter/fortinet/forticlientems_sqli_rce_cve_2023_48788.py`
+
+### fortinet / forticloud_sso_auth_bypass_cve_2026_24858
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2026-24858
+- Attack classes: auth_bypass
+- Module paths:
+  - `modules/exploits/perimeter/fortinet/forticloud_sso_auth_bypass_cve_2026_24858.py`
+
 ### fortinet / fortigate_os_backdoor
 
 - Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
-- CVEs: none
+- CVEs: CVE-2014-3413
 - Attack classes: backdoor
 - Module paths:
-  - `modules/exploits/routers/fortinet/fortigate_os_backdoor.py`
+  - `modules/exploits/perimeter/fortinet/fortigate_os_backdoor.py`
+
+### fortinet / fortimanager_fortijump_cve_2024_47575
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2024-47575
+- Attack classes: none
+- Module paths:
+  - `modules/exploits/perimeter/fortinet/fortimanager_fortijump_cve_2024_47575.py`
+
+### fortinet / fortios_auth_bypass_cve_2022_40684
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2022-40684
+- Attack classes: auth_bypass
+- Module paths:
+  - `modules/exploits/perimeter/fortinet/fortios_auth_bypass_cve_2022_40684.py`
+
+### fortinet / fortios_sslvpn_heap_rce_cve_2022_42475
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2022-42475
+- Attack classes: rce
+- Module paths:
+  - `modules/exploits/perimeter/fortinet/fortios_sslvpn_heap_rce_cve_2022_42475.py`
+
+### fortinet / fortios_sslvpn_path_traversal_cve_2018_13379
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2018-13379
+- Attack classes: info_disclosure, path_traversal
+- Module paths:
+  - `modules/exploits/perimeter/fortinet/fortios_sslvpn_path_traversal_cve_2018_13379.py`
+
+### fortinet / fortios_sslvpn_preauth_rce_cve_2023_27997
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2023-27997
+- Attack classes: rce
+- Module paths:
+  - `modules/exploits/perimeter/fortinet/fortios_sslvpn_preauth_rce_cve_2023_27997.py`
+
+### fortinet / fortios_sslvpn_rce_cve_2024_21762
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2024-21762
+- Attack classes: rce
+- Module paths:
+  - `modules/exploits/perimeter/fortinet/fortios_sslvpn_rce_cve_2024_21762.py`
+
+### fortinet / fortios_sslvpn_session_reuse_cve_2024_50562
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2024-50562
+- Attack classes: none
+- Module paths:
+  - `modules/exploits/perimeter/fortinet/fortios_sslvpn_session_reuse_cve_2024_50562.py`
+
+### fortinet / fortios_websocket_auth_bypass_cve_2024_55591
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2024-55591
+- Attack classes: auth_bypass
+- Module paths:
+  - `modules/exploits/perimeter/fortinet/fortios_websocket_auth_bypass_cve_2024_55591.py`
+
+### fortinet / fortiweb_admin_rce_cve_2025_64446
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2025-64446
+- Attack classes: rce
+- Module paths:
+  - `modules/exploits/perimeter/fortinet/fortiweb/fortiweb_admin_rce_cve_2025_64446.py`
+
+### fortinet / fortiweb_auth_bypass_rce_cve_2025_25257
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2025-25257
+- Attack classes: auth_bypass, rce
+- Module paths:
+  - `modules/exploits/perimeter/fortinet/fortiweb/fortiweb_auth_bypass_rce_cve_2025_25257.py`
 
 ### fortinet / ftp_default_creds
 
@@ -1428,7 +1697,7 @@
 - CVEs: none
 - Attack classes: none
 - Module paths:
-  - `modules/creds/routers/fortinet/ftp_default_creds.py`
+  - `modules/creds/perimeter/fortinet/ftp_default_creds.py`
 
 ### fortinet / ssh_default_creds
 
@@ -1436,7 +1705,7 @@
 - CVEs: none
 - Attack classes: none
 - Module paths:
-  - `modules/creds/routers/fortinet/ssh_default_creds.py`
+  - `modules/creds/perimeter/fortinet/ssh_default_creds.py`
 
 ### fortinet / telnet_default_creds
 
@@ -1444,7 +1713,7 @@
 - CVEs: none
 - Attack classes: none
 - Module paths:
-  - `modules/creds/routers/fortinet/telnet_default_creds.py`
+  - `modules/creds/perimeter/fortinet/telnet_default_creds.py`
 
 ### ftp_bruteforce.py / ftp_bruteforce
 
@@ -1462,13 +1731,109 @@
 - Module paths:
   - `modules/creds/generic/ftp_default.py`
 
-### heartbleed.py / heartbleed
+### generic / dnp3_firewall_evasion
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: none
+- Attack classes: none
+- Module paths:
+  - `modules/exploits/perimeter/generic/dnp3_firewall_evasion.py`
+
+### generic / ethernetip_cip_bypass
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: none
+- Attack classes: none
+- Module paths:
+  - `modules/exploits/perimeter/generic/ethernetip_cip_bypass.py`
+
+### generic / heartbleed
 
 - Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
 - CVEs: none
 - Attack classes: info_disclosure
 - Module paths:
-  - `modules/exploits/generic/heartbleed.py`
+  - `modules/exploits/perimeter/generic/heartbleed.py`
+
+### generic / http_form_char_by_char_oracle
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: none
+- Attack classes: info_disclosure
+- Module paths:
+  - `modules/exploits/perimeter/generic/http_form_char_by_char_oracle.py`
+
+### generic / http_smuggling_checker
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: none
+- Attack classes: none
+- Module paths:
+  - `modules/exploits/perimeter/generic/http_smuggling_checker.py`
+
+### generic / iec104_manipulation
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: none
+- Attack classes: none
+- Module paths:
+  - `modules/exploits/perimeter/generic/iec104_manipulation.py`
+
+### generic / misc_scan
+
+- Totals: modules=1, exploits=0, creds=0, scanners=1, generic=0, payloads=0, encoders=0
+- CVEs: none
+- Attack classes: none
+- Module paths:
+  - `modules/scanners/generic/misc_scan.py`
+
+### generic / modbus_dpi_bypass
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: none
+- Attack classes: none
+- Module paths:
+  - `modules/exploits/perimeter/generic/modbus_dpi_bypass.py`
+
+### generic / opcua_firewall_bypass
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: none
+- Attack classes: none
+- Module paths:
+  - `modules/exploits/perimeter/generic/opcua_firewall_bypass.py`
+
+### generic / shellshock
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2014-6271, CVE-2014-6278, CVE-2014-7169
+- Attack classes: rce
+- Module paths:
+  - `modules/exploits/perimeter/generic/shellshock.py`
+
+### generic / ssh_auth_keys
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: none
+- Attack classes: none
+- Module paths:
+  - `modules/exploits/perimeter/generic/ssh_auth_keys.py`
+
+### generic / vlan_hopping_checker
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: none
+- Attack classes: none
+- Module paths:
+  - `modules/exploits/nac/generic/vlan_hopping_checker.py`
+
+### hirschmann / eagle_auth_bypass_cve_2020_6994
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2020-6994
+- Attack classes: auth_bypass
+- Module paths:
+  - `modules/exploits/perimeter/hirschmann/eagle_auth_bypass_cve_2020_6994.py`
 
 ### http_basic_digest_bruteforce.py / http_basic_digest_bruteforce
 
@@ -1486,14 +1851,6 @@
 - Module paths:
   - `modules/creds/generic/http_basic_digest_default.py`
 
-### http_form_char_by_char_oracle.py / http_form_char_by_char_oracle
-
-- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
-- CVEs: none
-- Attack classes: info_disclosure
-- Module paths:
-  - `modules/exploits/generic/http_form_char_by_char_oracle.py`
-
 ### http_multi_auth_default.py / http_multi_auth_default
 
 - Totals: modules=1, exploits=0, creds=1, scanners=0, generic=0, payloads=0, encoders=0
@@ -1510,13 +1867,21 @@
 - Module paths:
   - `modules/creds/generic/http_web_form_bruteforce.py`
 
+### imperva / securesphere_sqli_cve_2013_xxxx
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: none
+- Attack classes: none
+- Module paths:
+  - `modules/exploits/waf/imperva/securesphere_sqli_cve_2013_xxxx.py`
+
 ### ipfire / ftp_default_creds
 
 - Totals: modules=1, exploits=0, creds=1, scanners=0, generic=0, payloads=0, encoders=0
 - CVEs: none
 - Attack classes: none
 - Module paths:
-  - `modules/creds/routers/ipfire/ftp_default_creds.py`
+  - `modules/creds/perimeter/ipfire/ftp_default_creds.py`
 
 ### ipfire / ssh_default_creds
 
@@ -1524,7 +1889,7 @@
 - CVEs: none
 - Attack classes: none
 - Module paths:
-  - `modules/creds/routers/ipfire/ssh_default_creds.py`
+  - `modules/creds/perimeter/ipfire/ssh_default_creds.py`
 
 ### ipfire / telnet_default_creds
 
@@ -1532,7 +1897,23 @@
 - CVEs: none
 - Attack classes: none
 - Module paths:
-  - `modules/creds/routers/ipfire/telnet_default_creds.py`
+  - `modules/creds/perimeter/ipfire/telnet_default_creds.py`
+
+### ivanti / connect_secure_auth_rce_cve_2023_46805
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2023-46805, CVE-2024-21887
+- Attack classes: rce
+- Module paths:
+  - `modules/exploits/vpn/ivanti/connect_secure_auth_rce_cve_2023_46805.py`
+
+### ivanti / ics_buffer_overflow_rce_cve_2025_0282
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2025-0282
+- Attack classes: rce
+- Module paths:
+  - `modules/exploits/vpn/ivanti/ics_buffer_overflow_rce_cve_2025_0282.py`
 
 ### juniper / ftp_default_creds
 
@@ -1540,7 +1921,23 @@
 - CVEs: none
 - Attack classes: none
 - Module paths:
-  - `modules/creds/routers/juniper/ftp_default_creds.py`
+  - `modules/creds/perimeter/juniper/ftp_default_creds.py`
+
+### juniper / jweb_oob_write_rce_cve_2024_21591
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2024-21591
+- Attack classes: rce
+- Module paths:
+  - `modules/exploits/perimeter/juniper/jweb_oob_write_rce_cve_2024_21591.py`
+
+### juniper / jweb_php_rce_cve_2023_36845
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2023-36845
+- Attack classes: rce
+- Module paths:
+  - `modules/exploits/perimeter/juniper/jweb_php_rce_cve_2023_36845.py`
 
 ### juniper / ssh_default_creds
 
@@ -1548,7 +1945,7 @@
 - CVEs: none
 - Attack classes: none
 - Module paths:
-  - `modules/creds/routers/juniper/ssh_default_creds.py`
+  - `modules/creds/perimeter/juniper/ssh_default_creds.py`
 
 ### juniper / telnet_default_creds
 
@@ -1556,7 +1953,7 @@
 - CVEs: none
 - Attack classes: none
 - Module paths:
-  - `modules/creds/routers/juniper/telnet_default_creds.py`
+  - `modules/creds/perimeter/juniper/telnet_default_creds.py`
 
 ### mipsbe / bind_tcp
 
@@ -1590,13 +1987,69 @@
 - Module paths:
   - `modules/payloads/mipsle/reverse_tcp.py`
 
-### misc / misc_scan
+### moxa / edr_cmd_injection_cve_2024_9138
 
-- Totals: modules=1, exploits=0, creds=0, scanners=1, generic=0, payloads=0, encoders=0
-- CVEs: none
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2024-9138
+- Attack classes: rce
+- Module paths:
+  - `modules/exploits/perimeter/moxa/edr_cmd_injection_cve_2024_9138.py`
+
+### moxa / edr_g_jwt_hardcoded_cve_2024_9137
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2024-9137
 - Attack classes: none
 - Module paths:
-  - `modules/scanners/misc/misc_scan.py`
+  - `modules/exploits/perimeter/moxa/edr_g_jwt_hardcoded_cve_2024_9137.py`
+
+### paloalto / globalprotect_auth_bypass_cve_2026_0257
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2026-0257
+- Attack classes: auth_bypass
+- Module paths:
+  - `modules/exploits/perimeter/paloalto/globalprotect_auth_bypass_cve_2026_0257.py`
+
+### paloalto / globalprotect_cmd_injection_cve_2024_3400
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2024-3400
+- Attack classes: rce
+- Module paths:
+  - `modules/exploits/perimeter/paloalto/globalprotect_cmd_injection_cve_2024_3400.py`
+
+### paloalto / panos_auth_bypass_cve_2025_0108
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2025-0108
+- Attack classes: auth_bypass
+- Module paths:
+  - `modules/exploits/perimeter/paloalto/panos_auth_bypass_cve_2025_0108.py`
+
+### paloalto / panos_mgmt_auth_bypass_cve_2024_0012
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2024-0012, CVE-2024-9474
+- Attack classes: auth_bypass
+- Module paths:
+  - `modules/exploits/perimeter/paloalto/panos_mgmt_auth_bypass_cve_2024_0012.py`
+
+### paloalto / panos_privesc_cve_2024_9474
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2024-0012, CVE-2024-9474
+- Attack classes: rce
+- Module paths:
+  - `modules/exploits/perimeter/paloalto/panos_privesc_cve_2024_9474.py`
+
+### paloalto / panos_saml_auth_bypass_cve_2020_2021
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2020-2021
+- Attack classes: auth_bypass
+- Module paths:
+  - `modules/exploits/perimeter/paloalto/panos_saml_auth_bypass_cve_2020_2021.py`
 
 ### perl / base64
 
@@ -1646,13 +2099,37 @@
 - Module paths:
   - `modules/encoders/perl/url.py`
 
+### pfsense / antibruteforce_bypass_cve_2023_27100
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2023-27100
+- Attack classes: none
+- Module paths:
+  - `modules/exploits/perimeter/pfsense/antibruteforce_bypass_cve_2023_27100.py`
+
+### pfsense / interfaces_cmd_injection_cve_2023_42326
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2023-42326
+- Attack classes: rce
+- Module paths:
+  - `modules/exploits/perimeter/pfsense/interfaces_cmd_injection_cve_2023_42326.py`
+
+### pfsense / pfblockerng_rce_cve_2022_31814
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2022-31814
+- Attack classes: rce
+- Module paths:
+  - `modules/exploits/perimeter/pfsense/pfblockerng_rce_cve_2022_31814.py`
+
 ### pfsense / ssh_default_creds
 
 - Totals: modules=1, exploits=0, creds=1, scanners=0, generic=0, payloads=0, encoders=0
 - CVEs: none
 - Attack classes: none
 - Module paths:
-  - `modules/creds/routers/pfsense/ssh_default_creds.py`
+  - `modules/creds/perimeter/pfsense/ssh_default_creds.py`
 
 ### pfsense / webinterface_http_form_default_creds
 
@@ -1660,7 +2137,15 @@
 - CVEs: none
 - Attack classes: none
 - Module paths:
-  - `modules/creds/routers/pfsense/webinterface_http_form_default_creds.py`
+  - `modules/creds/perimeter/pfsense/webinterface_http_form_default_creds.py`
+
+### phoenix / mguard_cmd_injection_cve_2024_43386
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2024-43386
+- Attack classes: rce
+- Module paths:
+  - `modules/exploits/perimeter/phoenix/mguard_cmd_injection_cve_2024_43386.py`
 
 ### php / base64
 
@@ -1709,6 +2194,14 @@
 - Attack classes: none
 - Module paths:
   - `modules/encoders/php/url.py`
+
+### pulsesecure / sslvpn_arbitrary_file_read_cve_2019_11510
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2019-11510
+- Attack classes: none
+- Module paths:
+  - `modules/exploits/vpn/pulsesecure/sslvpn_arbitrary_file_read_cve_2019_11510.py`
 
 ### python / base32
 
@@ -1782,14 +2275,6 @@
 - Module paths:
   - `modules/encoders/python/url.py`
 
-### routers / fortigate_sslvpn_scan
-
-- Totals: modules=1, exploits=0, creds=0, scanners=1, generic=0, payloads=0, encoders=0
-- CVEs: CVE-2018-13379, CVE-2022-40684, CVE-2023-27997, CVE-2024-21762, CVE-2025-59718
-- Attack classes: none
-- Module paths:
-  - `modules/scanners/routers/fortigate_sslvpn_scan.py`
-
 ### scanners / autopwn
 
 - Totals: modules=1, exploits=0, creds=0, scanners=1, generic=0, payloads=0, encoders=0
@@ -1797,6 +2282,22 @@
 - Attack classes: none
 - Module paths:
   - `modules/scanners/autopwn.py`
+
+### schneider / connexium_ssh_hardcoded_cve_2017_6026
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2017-6026
+- Attack classes: none
+- Module paths:
+  - `modules/exploits/perimeter/schneider/connexium_ssh_hardcoded_cve_2017_6026.py`
+
+### secomea / gatemanager_rce_cve_2020_14500
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2020-14500
+- Attack classes: rce
+- Module paths:
+  - `modules/exploits/vpn/secomea/gatemanager_rce_cve_2020_14500.py`
 
 ### sftp_bruteforce.py / sftp_bruteforce
 
@@ -1814,13 +2315,29 @@
 - Module paths:
   - `modules/creds/generic/sftp_default.py`
 
-### shellshock.py / shellshock
+### siemens / ruggedcom_web_rce_cve_2023_24845
 
 - Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
-- CVEs: CVE-2014-6271, CVE-2014-6278, CVE-2014-7169
+- CVEs: CVE-2023-24845
 - Attack classes: rce
 - Module paths:
-  - `modules/exploits/generic/shellshock.py`
+  - `modules/exploits/perimeter/siemens/ruggedcom_web_rce_cve_2023_24845.py`
+
+### siemens / scalance_cmd_injection_cve_2023_44373
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2023-44373
+- Attack classes: rce
+- Module paths:
+  - `modules/exploits/perimeter/siemens/scalance_cmd_injection_cve_2023_44373.py`
+
+### siemens / sinema_rc_path_traversal_cve_2022_32257
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2022-32257
+- Attack classes: path_traversal
+- Module paths:
+  - `modules/exploits/perimeter/siemens/sinema_rc_path_traversal_cve_2022_32257.py`
 
 ### snmp / snmp_trap_listener
 
@@ -1846,13 +2363,77 @@
 - Module paths:
   - `modules/creds/generic/snmpv3_default.py`
 
-### ssh_auth_keys.py / ssh_auth_keys
+### sonicwall / sma100_sqli_cve_2021_20016
 
 - Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
-- CVEs: none
+- CVEs: CVE-2021-20016
 - Attack classes: none
 - Module paths:
-  - `modules/exploits/generic/ssh_auth_keys.py`
+  - `modules/exploits/perimeter/sonicwall/sma100_sqli_cve_2021_20016.py`
+
+### sonicwall / sma_password_reset_cve_2021_20034
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2021-20034
+- Attack classes: password_reset_or_change
+- Module paths:
+  - `modules/exploits/perimeter/sonicwall/sma_password_reset_cve_2021_20034.py`
+
+### sonicwall / sonicos_sslvpn_access_cve_2024_40766
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2024-40766
+- Attack classes: none
+- Module paths:
+  - `modules/exploits/perimeter/sonicwall/sonicos_sslvpn_access_cve_2024_40766.py`
+
+### sonicwall / sonicos_sslvpn_auth_bypass_cve_2024_53704
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2024-53704
+- Attack classes: auth_bypass
+- Module paths:
+  - `modules/exploits/perimeter/sonicwall/sonicos_sslvpn_auth_bypass_cve_2024_53704.py`
+
+### sonicwall / sonicos_vpn_buffer_overflow_cve_2020_5135
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2020-5135
+- Attack classes: none
+- Module paths:
+  - `modules/exploits/perimeter/sonicwall/sonicos_vpn_buffer_overflow_cve_2020_5135.py`
+
+### sonicwall / sslvpn_shellshock_rce_visualdoor
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2014-6271
+- Attack classes: rce
+- Module paths:
+  - `modules/exploits/perimeter/sonicwall/sslvpn_shellshock_rce_visualdoor.py`
+
+### sophos / firewall_code_injection_cve_2022_3236
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2022-3236
+- Attack classes: none
+- Module paths:
+  - `modules/exploits/perimeter/sophos/firewall_code_injection_cve_2022_3236.py`
+
+### sophos / xg_auth_bypass_cve_2022_1040
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2022-1040
+- Attack classes: auth_bypass
+- Module paths:
+  - `modules/exploits/perimeter/sophos/xg_auth_bypass_cve_2022_1040.py`
+
+### sophos / xg_sqli_asnarok_cve_2020_12271
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2020-12271
+- Attack classes: none
+- Module paths:
+  - `modules/exploits/perimeter/sophos/xg_sqli_asnarok_cve_2020_12271.py`
 
 ### ssh_bruteforce.py / ssh_bruteforce
 
@@ -1894,13 +2475,29 @@
 - Module paths:
   - `modules/generic/upnp/ssdp_msearch.py`
 
+### vpn / fortigate_sslvpn_scan
+
+- Totals: modules=1, exploits=0, creds=0, scanners=1, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2018-13379, CVE-2022-40684, CVE-2023-27997, CVE-2024-21762, CVE-2025-59718
+- Attack classes: none
+- Module paths:
+  - `modules/scanners/vpn/fortinet/fortigate_sslvpn_scan.py`
+
+### watchguard / firebox_cyclops_blink_cve_2022_23176
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2022-23176
+- Attack classes: none
+- Module paths:
+  - `modules/exploits/perimeter/watchguard/firebox_cyclops_blink_cve_2022_23176.py`
+
 ### watchguard / xcs_9_rce
 
 - Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
 - CVEs: none
 - Attack classes: rce
 - Module paths:
-  - `modules/exploits/misc/watchguard/xcs_9_rce.py`
+  - `modules/exploits/perimeter/watchguard/xcs_9_rce.py`
 
 ### wordlist / wordlist_generator
 
@@ -1941,3 +2538,27 @@
 - Attack classes: none
 - Module paths:
   - `modules/payloads/x86/reverse_tcp.py`
+
+### zyxel / buffer_overflow_cve_2023_33009
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2023-33009
+- Attack classes: none
+- Module paths:
+  - `modules/exploits/perimeter/zyxel/buffer_overflow_cve_2023_33009.py`
+
+### zyxel / ike_cmd_injection_cve_2023_28771
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2023-28771
+- Attack classes: rce
+- Module paths:
+  - `modules/exploits/perimeter/zyxel/ike_cmd_injection_cve_2023_28771.py`
+
+### zyxel / usg_flex_cmd_injection_cve_2022_30525
+
+- Totals: modules=1, exploits=1, creds=0, scanners=0, generic=0, payloads=0, encoders=0
+- CVEs: CVE-2022-30525
+- Attack classes: rce
+- Module paths:
+  - `modules/exploits/perimeter/zyxel/usg_flex_cmd_injection_cve_2022_30525.py`

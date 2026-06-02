@@ -1,1217 +1,740 @@
 FirewallXPL-Forge - Full Module Catalog
 ========================================
-Generated: 2026-04-05T03:59:21.977842+00:00
+Generated: 2026-06-02T05:09:41.655218+00:00
 Author: Andre Henrique (@mrhenrike) | Uniao Geek
 
 SUMMARY
 --------------------
-  EXPLOITS: 129 modules, 36 vendor/group buckets
-  CREDENTIAL MODULES: 96 modules, 41 vendor/group buckets
-  SCANNERS: 6 modules, 3 vendor/group buckets
-  GENERIC MODULES: 20 modules, 7 vendor/group buckets
+  EXPLOITS: 89 modules, 26 vendor/group buckets
+  CREDENTIAL MODULES: 28 modules, 19 vendor/group buckets
+  SCANNERS: 3 modules, 3 vendor/group buckets
+  GENERIC MODULES: 7 modules, 5 vendor/group buckets
   ENCODERS: 13 modules, 3 vendor/group buckets
   PAYLOADS: 32 modules, 9 vendor/group buckets
-  TOTAL MODULES: 296
-  DISTINCT CVEs: 32
+  TOTAL MODULES: 172
+  DISTINCT CVEs: 77
 
 PROGRAM FOOTPRINT
 --------------------
 Repository root: D:\Projetos-SafeLabs\submodules\IoT\FirewallXPL-Forge
-Total file bytes: 1.80 GiB
-Files (repo walk, excl. skipped dirs): 55485
-Files under firewallxpl/: 54809
+Total file bytes: 105.23 MiB
+Files (repo walk, excl. skipped dirs): 3200
+Files under firewallxpl/: 2168
 
 Largest top-level paths:
-  firewallxpl                                1.79 GiB  (99.7%)
-  docs                                     4.57 MiB  (0.2%)
-  tests                                  319.00 KiB  (0.0%)
-  tools                                  247.33 KiB  (0.0%)
-  firewallxpl.egg-info                      58.36 KiB  (0.0%)
-  (repo root files)                       40.09 KiB  (0.0%)
+  firewallxpl                             90.82 MiB  (86.3%)
+  build                                    8.36 MiB  (7.9%)
+  docs                                     5.76 MiB  (5.5%)
+  tools                                  188.21 KiB  (0.2%)
+  firewallxpl.egg-info                    63.18 KiB  (0.1%)
+  (repo root files)                       56.63 KiB  (0.1%)
 
 firewallxpl/ first-level folders:
-  resources                                1.79 GiB  (99.7%)
-  modules                                712.45 KiB  (0.0%)
-  core                                   226.88 KiB  (0.0%)
-  (firewallxpl root files)                  27.00 KiB  (0.0%)
+  resources                               90.04 MiB  (85.6%)
+  modules                                445.81 KiB  (0.4%)
+  core                                   306.84 KiB  (0.3%)
+  (firewallxpl root files)                29.32 KiB  (0.0%)
   libs                                    13.68 KiB  (0.0%)
 
 firewallxpl/resources/* direct children (largest):
-  arsenal                                  1.68 GiB  (93.5%)
-  mibs                                    83.21 MiB  (4.5%)
-  catalogs                                24.94 MiB  (1.4%)
-  vendors                                  4.52 MiB  (0.2%)
-  wordlists                               44.91 KiB  (0.0%)
+  mibs                                    85.09 MiB  (80.9%)
+  vendors                                  4.52 MiB  (4.3%)
+  catalogs                               323.82 KiB  (0.3%)
+  arsenal                                 55.98 KiB  (0.1%)
+  wordlists                               49.83 KiB  (0.0%)
   ssh_keys                                 9.89 KiB  (0.0%)
   ml                                       1.22 KiB  (0.0%)
 
 First-party .py file counts (excl. __pycache__):
-  firewallxpl/core         46
-  firewallxpl/modules      388
-  firewallxpl/libs         5
-  tools                  35
-  fxf.py                 1
+  firewallxpl/core       77
+  firewallxpl/modules    244
+  firewallxpl/libs       5
+  tools                  25
+  rxf.py                 0
 
-EXPLOITS (129)
+EXPLOITS (89)
 ========================================
 
-[2WIRE] (2)
+[A10] (1)
 ------------------------------
-  1. 2Wire 4011G & 5012NV Path Traversal
-     Path: exploits/routers/2wire/4011g_5012nv_path_traversal.py
-     Module exploits path traversal vulnerability in 2Wire 4011G and 5012NV devices. If the target is vulnerable it is possib
-     Devices: 2Wire 4011G, 2Wire 5012NV
-  2. 2Wire Gateway Auth Bypass
-     Path: exploits/routers/2wire/gateway_auth_bypass.py
-     Module exploits 2Wire Gateway authentication bypass vulnerability. If the target is vulnerable link to bypass authentica
-     Devices: 2Wire 2701HGV-W, 2Wire 3800HGV-B, 2Wire 3801HGV
+  1. A10 SoftAX/ACOS Directory Traversal
+     Path: exploits/lb/a10/softax_path_traversal.py
+     Unauthenticated directory traversal in A10 SoftAX / ACOS management interface allows reading files with root privileges.
+     Devices: lb
 
-[3COM] (5)
+[ARUBA] (2)
 ------------------------------
-  3. 3Com AP8760 Password Disclosure
-     Path: exploits/routers/3com/ap8760_password_disclosure.py
-     Exploits 3Com AP8760 password disclosure vulnerability.If the target is vulnerable it is possible to fetch credentials f
-     Devices: 3Com AP8760
-  4. 3Com IMC Info Disclosure
-     Path: exploits/routers/3com/imc_info_disclosure.py
-     Exploits 3Com Intelligent Management Center information disclosure vulnerability that allows to fetch credentials for SQ
-     Devices: 3Com Intelligent Management Center
-  5. 3Com IMC Path Traversal
-     Path: exploits/routers/3com/imc_path_traversal.py
-     Exploits 3Com Intelligent Management Center path traversal vulnerability. If the target is vulnerable it is possible to 
-     Devices: 3Com Intelligent Management Center
-  6. 3Com OfficeConnect Info Disclosure
-     Path: exploits/routers/3com/officeconnect_info_disclosure.py
-     Exploits 3Com OfficeConnect information disclosure vulnerability. If the target is vulnerable it is possible to read sen
-     Devices: 3Com OfficeConnect
-  7. 3Com OfficeConnect RCE
-     Path: exploits/routers/3com/officeconnect_rce.py
-     Module exploits 3Com OfficeConnect remote command execution vulnerability which allows executing command on operating sy
-     Devices: 3Com OfficeConnect
+  2. Aruba ClearPass Stored XSS
+     Path: exploits/nac/aruba/clearpass_xss_stored.py
+     Stored XSS in Aruba ClearPass Policy Manager 6.4 login page allows injection into audit/access tracker. Requires prior s
+     Devices: nac
+  3. Aruba ClearPass Unauthenticated RCE (CVE-2023-25594)
+     Path: exploits/nac/aruba/clearpass_unauth_rce_cve_2023_25594.py
+     Unauthenticated remote code execution in Aruba ClearPass Policy Manager REST API. An attacker with network access to the
+     CVEs: CVE-2023-25594
+     Devices: nac
 
-[ASMAX] (2)
+[BARRACUDA] (2)
 ------------------------------
-  8. Asmax AR 804 RCE
-     Path: exploits/routers/asmax/ar_804_gu_rce.py
-     Module exploits Asmax AR 804 Remote Code Execution vulnerability which allows executing command on operating system leve
-     Devices: Asmax AR 804 gu
-  9. Asmax AR1004G Password Disclosure
-     Path: exploits/routers/asmax/ar_1004g_password_disclosure.py
-     Exploits Asmax AR1004G Password Disclosure vulnerability that allows to fetch credentials for: Admin, Support and User a
-     Devices: Asmax AR 1004g
+  4. Barracuda ESG Command Injection (CVE-2023-2868)
+     Path: exploits/waf/barracuda/esg_cmd_injection_cve_2023_2868.py
+     Remote command injection via crafted TAR file in Barracuda ESG appliance versions 5.1.3.001-9.2.0.006. Exploited by stat
+     CVEs: CVE-2023-2868
+     Devices: waf
+  5. Barracuda ESG Spreadsheet RCE (CVE-2023-7102)
+     Path: exploits/waf/barracuda/esg_spreadsheet_rce_cve_2023_7102.py
+     RCE via parameter injection in Spreadsheet ParseExcel library. CVSS 9.8.
+     CVEs: CVE-2023-7102
+     Devices: waf
 
-[ASUS] (4)
+[CHECKPOINT] (1)
 ------------------------------
-  10. Asus B1M Projector RCE
-     Path: exploits/misc/asus/b1m_projector_rce.py
-     Module exploits Asus B1M Projector Remote Code Execution vulnerability which allows executing command on operating syste
-     Devices: Asus B1M Projector
-  11. Asus Infosvr Backdoor RCE
-     Path: exploits/routers/asus/infosvr_backdoor_rce.py
-     Module exploits remote command execution in multiple ASUS devices. If the target is vulnerable, command loop is invoked 
-     Devices: ASUS RT-N66U, ASUS RT-AC87U, ASUS RT-N56U, ASUS RT-AC68U, ASUS DSL-N55U, ASUS DSL-AC68U, ASUS RT-AC66R, ASUS RT-AC66R
-  12. Asus RT-N16 Password Disclosure
-     Path: exploits/routers/asus/rt_n16_password_disclosure.py
-     Module exploits password disclosure vulnerability in Asus RT-N16 devices that allows to fetch credentials for the device
-     Devices: ASUS RT-N10U, firmware 3.0.0.4.374_168, ASUS RT-N56U, firmware 3.0.0.4.374_979, ASUS DSL-N55U, firmware 3.0.0.4.374_1397, ASUS RT-AC66U, firmware 3.0.0.4.374_2050, ASUS RT-N15U, firmware 3.0.0.4.374_16, ASUS RT-N53, firmware 3.0.0.4.374_311
-  13. AsusWRT Lan RCE
-     Path: exploits/routers/asus/asuswrt_lan_rce.py
-     Module exploits multiple vulnerabilities to achieve remote code execution in AsusWRT firmware. The HTTP server contains 
-     CVEs: CVE-2018-5999, CVE-2018-6000
-     Devices: AsusWRT < v3.0.0.4.384.10007
+  6. Check Point Gateway Info Disclosure (CVE-2024-24919)
+     Path: exploits/perimeter/checkpoint/gateway_info_disclosure_cve_2024_24919.py
+     Unauthenticated arbitrary file read via path traversal in /clients/MyCRL. Affects Check Point R77.20 through R81.20.
+     CVEs: CVE-2024-24919
+     Devices: perimeter
 
-[BELKIN] (6)
+[CISCO] (11)
 ------------------------------
-  14. Belkin Auth Bypass
-     Path: exploits/routers/belkin/auth_bypass.py
-     Module exploits Belkin authentication using MD5 password disclosure.
-     Devices: Belkin Play Max (F7D4401), Belkin F5D8633, Belkin N900 (F9K1104), Belkin N300 (F7D7301), Belkin AC1200
-  15. Belkin G & N150 Password Disclosure
-     Path: exploits/routers/belkin/g_n150_password_disclosure.py
-     Module exploits Belkin G and N150 Password MD5 Disclosure vulnerability which allows fetching administration's password 
-     CVEs: CVE-2012-2765
-     Devices: Belkin G, Belkin N150
-  16. Belkin G Info Disclosure
-     Path: exploits/routers/belkin/g_plus_info_disclosure.py
-     Module exploits Belkin Wireless G Plus MIMO Router F5D9230-4 information disclosure vulnerability which allows fetching 
-     CVEs: CVE-2008-0403
-     Devices: Belkin G
-  17. Belkin N150 Path Traversal
-     Path: exploits/routers/belkin/n150_path_traversal.py
-     Module exploits Belkin N150 Path Traversal vulnerability which allows to read any file on the system.
-     Devices: Belkin N150 1.00.07, Belkin N150 1.00.08, Belkin N150 1.00.09
-  18. Belkin N750 RCE
-     Path: exploits/routers/belkin/n750_rce.py
-     Module exploits Belkin N750 Remote Code Execution vulnerability which allows executing commands on operation system leve
-     CVEs: CVE-2014-1635
-     Devices: Belkin N750
-  19. Belkin Play Max Persistent RCE
-     Path: exploits/routers/belkin/play_max_prce.py
-     Module exploits Belkin SSID injection vuln, allowing to execute arbitrary command at every boot.
-     Devices: Belkin Play Max (F7D4401)
-
-[BHU] (1)
-------------------------------
-  20. BHU uRouter RCE
-     Path: exploits/routers/bhu/bhu_urouter_rce.py
-     Module exploits BHU uRouter unauthenticated remote code execution vulnerability, which allows executing commands on the 
-     Devices: BHU uRouter
-
-[BILLION] (2)
-------------------------------
-  21. Billion 5200W-T RCE
-     Path: exploits/routers/billion/billion_5200w_rce.py
-     Module exploits Remote Command Execution vulnerability in Billion 5200W-T devices. If the target is vulnerable it allows
-     Devices: Billion 5200W-T
-  22. Billion 7700NR4 Password Disclosure
-     Path: exploits/routers/billion/billion_7700nr4_password_disclosure.py
-     Exploits Billion 7700NR4 password disclosure vulnerability that allows to fetch credentials for admin account.
-     Devices: Billion 7700NR4
-
-[CISCO] (10)
-------------------------------
-  23. Cisco Catalyst 2960 ROCEM RCE
-     Path: exploits/routers/cisco/catalyst_2960_rocem.py
-     Module exploits Cisco Catalyst 2960 ROCEM RCE vulnerability. If target is vulnerable, it is possible to patch execution 
-     CVEs: CVE-2017-3881
-     Devices: Cisco Catalyst 2960 IOS 12.2(55)SE1, Cisco Catalyst 2960 IOS 12.2(55)SE11
-  24. Cisco DPC2420 Info Disclosure
-     Path: exploits/routers/cisco/dpc2420_info_disclosure.py
-     Module exploits Cisco DPC2420 information disclosure vulnerability which allows reading sensitive information from the c
-     Devices: Cisco DPC2420
-  25. Cisco Firepower Management 6.0 Path Traversal
-     Path: exploits/routers/cisco/firepower_management60_path_traversal.py
+  7. Cisco ASA/FTD Path Traversal (CVE-2020-3452)
+     Path: exploits/perimeter/cisco/asa_ftd_path_traversal_cve_2020_3452.py
+     Directory traversal in Cisco ASA/FTD WebVPN allows unauthenticated read of web service files via /+CSCOT+/translation-ta
+     CVEs: CVE-2020-3452
+     Devices: perimeter
+  8. Cisco ASA/FTD VPN Brute-Force (CVE-2023-20269)
+     Path: exploits/perimeter/cisco/asa_vpn_bruteforce_cve_2023_20269.py
+     Unauthorized access vulnerability in Cisco ASA/FTD remote access VPN allows unauthenticated brute-force of VPN credentia
+     CVEs: CVE-2023-20269
+     Devices: perimeter
+  9. Cisco ASA/FTD VPN Server FIRESTARTER Chain (CVE-2025-20362 + CVE-2025-20333)
+     Path: exploits/perimeter/cisco/cisco_asa_ftd_firestarter_chain_cve_2025_20362_20333.py
+     Chained exploitation of two Cisco ASA/FTD VPN web server vulnerabilities used by APT actor UAT4356 (ArcaneDoor/FIRESTART
+     CVEs: CVE-2025-20333, CVE-2025-20362
+     Devices: Cisco ASA 9.12 < 9.12.4.72, Cisco ASA 9.14 < 9.14.4.28, Cisco FTD 7.0.x < 7.0.8.1, Cisco FTD 7.1.x-7.2.x < 7.2.9, Cisco FTD 7.3.x-7.4.x < 7.4.2.4
+  10. Cisco Firepower Management 6.0 Path Traversal
+     Path: exploits/perimeter/cisco/firepower_management60_path_traversal.py
      Module exploits Cisco Firepower Management 6.0 Path Traversal vulnerability. If the target is vulnerable, it is possible
      CVEs: CVE-2016-6435
      Devices: Cisco Firepower Management Console 6.0
-  26. Cisco Firepower Management 6.0 RCE
-     Path: exploits/routers/cisco/firepower_management60_rce.py
+  11. Cisco Firepower Management 6.0 RCE
+     Path: exploits/perimeter/cisco/firepower_management60_rce.py
      Module exploits Cisco Firepower Management 6.0 Remote Code Execution vulnerability. If the target is vulnerable, it is c
      CVEs: CVE-2016-6433
      Devices: Cisco Firepower Management Console 6.0
-  27. Cisco IOS HTTP Unauthorized Administrative Access
-     Path: exploits/routers/cisco/ios_http_authorization_bypass.py
-     HTTP server for Cisco IOS 11.3 to 12.2 allows attackers to bypass authentication and execute arbitrary commands, when lo
-     CVEs: CVE-2001-0537
-     Devices: IOS 11.3 -> 12.2 are reportedly vulnerable
-  28. Cisco RV320 Command Injection
-     Path: exploits/routers/cisco/rv320_command_injection.py
-     Module exploits Cisco RV320 Remote Command Injection vulnerability in the web-based certificate generator feature.
-     CVEs: CVE-2019-1652
-     Devices: Cisco RV320 from 1.4.2.15 to 1.4.2.22, Cisco RV325
-  29. Cisco Secure ACS Unauthorized Password Change
-     Path: exploits/routers/cisco/secure_acs_bypass.py
+  12. Cisco IOS XE Web UI Privilege Escalation (CVE-2023-20198)
+     Path: exploits/perimeter/cisco/ios_xe_webui_privesc_cve_2023_20198.py
+     Privilege escalation in IOS XE Web UI allows unauth admin creation. CVSS 10.0.
+     CVEs: CVE-2023-20198
+     Devices: perimeter
+  13. Cisco ISA-3000/ASA Double Free RCE (CVE-2018-0101)
+     Path: exploits/perimeter/cisco/isa3000_asa_rce_cve_2018_0101.py
+     Double free in Cisco ASA/ISA-3000 XML parser allows unauth RCE. CVSS 10.0. 55+ PoCs on GitHub.
+     CVEs: CVE-2018-0101
+     Devices: perimeter
+  14. Cisco Secure ACS Unauthorized Password Change
+     Path: exploits/nac/cisco/secure_acs_bypass.py
      Module exploits an authentication bypass issue which allows arbitrary password change requests to be issued for any user
      Devices: Cisco Secure ACS version 5.1 with patch 3, 4, or 5 installed and without patch 6 or later installed, Cisco Secure ACS version 5.2 without any patches installed, Cisco Secure ACS version 5.2 with patch 1 or 2 installed and without patch 3 or later installed
-  30. Cisco UCM Info Disclosure
-     Path: exploits/routers/cisco/ucm_info_disclosure.py
+  15. Cisco UCM Info Disclosure
+     Path: exploits/perimeter/cisco/ucm_info_disclosure.py
      Module exploits information disclosure vulnerability in Cisco UCM devices. If the target is vulnerable it is possible to
      CVEs: CVE-2013-7030
      Devices: Cisco UCM
-  31. Cisco UCS Manager RCE
-     Path: exploits/routers/cisco/ucs_manager_rce.py
+  16. Cisco UCS Manager RCE
+     Path: exploits/perimeter/cisco/ucs_manager_rce.py
      Module exploits Cisco UCS Manager 2.1 (1b) Remote Code Execution vulnerability which allows executing commands on operat
      Devices: Cisco UCS Manager 2.1 (1b)
-  32. Cisco Unified Multi Path Traversal
-     Path: exploits/routers/cisco/unified_multi_path_traversal.py
+  17. Cisco Unified Multi Path Traversal
+     Path: exploits/perimeter/cisco/unified_multi_path_traversal.py
      Module exploits path traversal vulnerability in Cisco Unified Communications Manager, Cisco Unified Contact Center Expre
      CVEs: CVE-2011-3315
      Devices: Cisco Unified Communications Manager 5.x, Cisco Unified Communications Manager 6.x < 6.1(5), Cisco Unified Communications Manager 7.x < 7.1(5b), Cisco Unified Communications Manager 8.x < 8.0(3), Cisco Unified Contact Center Express, Cisco Unified IP Interactive Voice Response < 6.0(1), Cisco Unified IP Interactive Voice Response 7.0(x) < 7.0(2), Cisco Unified IP Interactive Voice Response 8.0(x) < 8.5(1)
 
-[COMTREND] (1)
+[CITRIX] (3)
 ------------------------------
-  33. Comtrend CT 5361T Password Disclosure
-     Path: exploits/routers/comtrend/ct_5361t_password_disclosure.py
-     WiFi router Comtrend CT 5361T suffers from a Password Disclosure Vulnerability
-     Devices: Comtrend CT 5361T (more likely CT 536X)
+  18. Citrix ADC/Gateway RCE (CVE-2019-19781)
+     Path: exploits/vpn/citrix/adc_rce_cve_2019_19781.py
+     Directory traversal in Citrix ADC (NetScaler) allows unauthenticated remote code execution via template injection throug
+     CVEs: CVE-2019-19781
+     Devices: vpn
+  19. NetScaler ADC Gateway Unauth RCE (CVE-2023-3519)
+     Path: exploits/vpn/citrix/netscaler_rce_cve_2023_3519.py
+     Unauth RCE in NetScaler when configured as Gateway or AAA vserver. CVSS 9.8.
+     CVEs: CVE-2023-3519
+     Devices: vpn
+  20. NetScaler CitrixBleed Session Leak (CVE-2023-4966)
+     Path: exploits/vpn/citrix/netscaler_citrixbleed_cve_2023_4966.py
+     Buffer overflow leaks session tokens (CitrixBleed). CVSS 9.4.
+     CVEs: CVE-2023-4966
+     Devices: vpn
 
-[DLINK] (27)
+[EWON] (1)
 ------------------------------
-  34. D-Link DCS-930L Auth RCE
-     Path: exploits/routers/dlink/dcs_930l_auth_rce.py
-     Module exploits D-Link DCS-930L Remote Code Execution vulnerability which allows executing command on the device.
-     Devices: D-Link DCS-930L
-  35. D-Link DGS-1510 Add User
-     Path: exploits/routers/dlink/dgs_1510_add_user.py
-     D-Link DGS-1510-28XMP, DGS-1510-28X, DGS-1510-52X, DGS-1510-52, DGS-1510-28P, DGS-1510-28 and DGS-1510-20 Websmart devic
-     Devices: D-Link DGS-1510-28XMP, D-Link DGS-1510-28X, D-Link DGS-1510-52X, D-Link DGS-1510-52, D-Link DGS-1510-28P, D-Link DGS-1510-28, D-Link DGS-1510-20
-  36. D-Link DIR-300 & DIR-320 & DIR-600 & DIR-615 Info Disclosure
-     Path: exploits/routers/dlink/dir_300_320_600_615_info_disclosure.py
-     Module explois information disclosure vulnerability in D-Link DIR-300, DIR-320, DIR-600,DIR-615 devices. It is possible 
-     Devices: D-Link DIR-300 (all), D-Link DIR-320 (all), D-Link DIR-600 (all), D-Link DIR-615 (fw 4.0)
-  37. D-Link DIR-300 & DIR-320 & DIR-615 Auth Bypass
-     Path: exploits/routers/dlink/dir_300_320_615_auth_bypass.py
-     Module exploits authentication bypass vulnerability in D-Link DIR-300, DIR-320, DIR-615 revD devices. It is possible to 
-     Devices: D-Link DIR-300, D-Link DIR-600, D-Link DIR-615 revD
-  38. D-Link DIR-300 & DIR-600 RCE
-     Path: exploits/routers/dlink/dir_300_600_rce.py
-     Module exploits D-Link DIR-300, DIR-600 Remote Code Execution vulnerability which allows executing command on operating 
-     Devices: D-Link DIR 300, D-Link DIR 600
-  39. D-Link DIR-300 & DIR-645 & DIR-815 UPNP RCE
-     Path: exploits/routers/dlink/dir_300_645_815_upnp_rce.py
-     Module exploits D-Link DIR-300, DIR-645 and DIR-815 UPNP Remote Code Execution vulnerability which allows executing comm
-     Devices: D-Link DIR-300, D-Link DIR-645, D-Link DIR-815
-  40. D-Link DIR-645 & DIR-815 RCE
-     Path: exploits/routers/dlink/dir_645_815_rce.py
-     Module exploits D-Link DIR-645 and DIR-815 Remote Code Execution vulnerability which allows executing command on the dev
-     Devices: DIR-815 v1.03b02, DIR-645 v1.02, DIR-645 v1.03, DIR-600 below v2.16b01, DIR-300 revB v2.13b01, DIR-300 revB v2.14b01, DIR-412 Ver 1.14WWB02, DIR-456U Ver 1.00ONG
-  41. D-Link DIR-645 Password Disclosure
-     Path: exploits/routers/dlink/dir_645_password_disclosure.py
-     Module exploits D-Link DIR-645 password disclosure vulnerability.
-     Devices: D-Link DIR-645 (Versions < 1.03)
-  42. D-Link DIR-815 & DIR-850L RCE
-     Path: exploits/routers/dlink/dir_815_850l_rce.py
-     Module exploits D-Link DIR-815 and DIR-850L Remote Code Execution vulnerability which allows executing command on the de
-     Devices: D-Link DIR-815, D-Link DIR-850L
-  43. D-Link DIR-825 Path Traversal
-     Path: exploits/routers/dlink/dir_825_path_traversal.py
-     Module exploits D-Link DIR-825 path traversal vulnerability, which allows reading files from the device.
-     Devices: D-Link DIR-825
-  44. D-Link DIR-850L Creds Disclosure
-     Path: exploits/routers/dlink/dir_850l_creds_disclosure.py
-     Module exploits D-Link DIR-850L credentials disclosure vulnerability, which allows retrieving administrative credentials
-     Devices: D-Link DIR-850L
-  45. D-Link DIR-8XX Password Disclosure
-     Path: exploits/routers/dlink/dir_8xx_password_disclosure.py
-     Module exploits D-Link DIR-8XX password disclosure vulnerability, which allows retrieving administrative credentials.
-     Devices: D-Link DIR-8XX
-  46. D-Link DNS-320L & DIR-327L RCE
-     Path: exploits/routers/dlink/dns_320l_327l_rce.py
-     Module exploits D-Link DNS-320L, DNS-327L Remote Code Execution vulnerability which allows executing command on the devi
-     Devices: D-Link DNS-320L 1.03b04, D-Link DNS-327L, 1.02
-  47. D-Link DSL-2640B DNS Change
-     Path: exploits/routers/dlink/dsl_2640b_dns_change.py
-     Module exploits D-Link DSL-2640B dns change vulnerability. If the target is vulnerable it is possible to change dns sett
-     Devices: D-Link DSL-2640B
-  48. D-Link DSL-2730U/2750U/2750E Path Traversal
-     Path: exploits/routers/dlink/dsl_2730_2750_path_traversal.py
-     Module exploits D-Link DSL-2730U/2750U/2750E Path Traversal vulnerability which allows to read any file on the system.
-     Devices: D-Link DSL-2730U, D-Link DSL-2750U, D-Link DSL-2750E
-  49. D-Link DSL-2740R DNS Change
-     Path: exploits/routers/dlink/dsl_2740r_dns_change.py
-     Module exploits D-Link DSL-2740R dns change vulnerability. If the target is vulnerable it is possible to change dns sett
-     Devices: D-Link DSL-2740R
-  50. D-Link DSL-2750B Info Disclosure
-     Path: exploits/routers/dlink/dsl_2750b_info_disclosure.py
-     Module explois information disclosure vulnerability in D-Link DSL-2750B devices. It is possible to retrieve sensitive in
-     Devices: D-Link DSL-2750B EU_1.01
-  51. D-Link DSL-2750B RCE
-     Path: exploits/routers/dlink/dsl_2750b_rce.py
-     Module exploits remote code execution vulnerability in D-Link DSL-2750B devices.
-     Devices: D-Link DSL-2750B
-  52. D-Link DSL-2780B & DSL-2730B & DSL-526B DNS Change
-     Path: exploits/routers/dlink/dsl_2730b_2780b_526b_dns_change.py
-     Module exploits D-Link DSL-2780B, DSL-2730B and DSL-526B dns change vulnerability. If the target is vulnerable it is pos
-     Devices: D-Link DSL-2780B, D-Link DSL-2730B, D-Link DSL-526B
-  53. D-Link DSP-W110 RCE
-     Path: exploits/routers/dlink/dsp_w110_rce.py
-     Module exploits D-Link DSP-W110 Remote Command Execution vulnerability which allows executing command on the operating s
-     Devices: D-Link DSP-W110 (Rev A) - v1.05b01
-  54. D-Link DVG-N5402SP Path Traversal
-     Path: exploits/routers/dlink/dvg_n5402sp_path_traversal.py
-     Module exploits D-Link DVG-N5402SP path traversal vulnerability, which allows reading files form the device.
-     Devices: D-Link DVG-N5402SP
-  55. D-Link DWL-3200AP Password Disclosure
-     Path: exploits/routers/dlink/dwl_3200ap_password_disclosure.py
-     Exploits D-Link DWL3200 access points weak cookie value.
-     Devices: D-Link DWL-3200AP
-  56. D-Link DWR-932 Info Disclosure
-     Path: exploits/routers/dlink/dwr_932_info_disclosure.py
-     Module explois information disclosure vulnerability in D-Link DWR-932 devices. It is possible to retrieve sensitive info
-     Devices: D-Link DWR-932
-  57. D-Link DWR-932B
-     Path: exploits/routers/dlink/dwr_932b_backdoor.py
-     Module exploits D-Link DWR-932B backdoor vulnerability which allows executing command on operating system level with roo
-     Devices: D-Link DWR-932B
-  58. D-Link Hedwig CGI RCE
-     Path: exploits/routers/dlink/multi_hedwig_cgi_exec.py
-     Module exploits buffer overflow vulnerablity in D-Link Hedwig CGI component, which leads to remote code execution.
-     Devices: D-Link DIR-645 Ver. 1.03, D-Link DIR-300 Ver. 2.14, D-Link DIR-600
-  59. D-Link Multi HNAP RCE
-     Path: exploits/routers/dlink/multi_hnap_rce.py
-     Module exploits HNAP remote code execution vulnerability in multiple D-Link devices which allows executing commands on t
-     Devices: D-Link DIR-645, D-Link AP-1522 revB, D-Link DAP-1650 revB, D-Link DIR-880L, D-Link DIR-865L, D-Link DIR-860L revA, D-Link DIR-860L revB, D-Link DIR-815 revB
-  60. D-Link PingTest RCE
-     Path: exploits/routers/dlink/dir_655_866_652_rce.py
-     Module exploits unauthenticated remote code execution occurs in D-Link products such as DIR-655C, DIR-866L, DIR-652, and
-     CVEs: CVE-2019-16920
-     Devices: DAP-1533 < v1.02B, DGL-5500 < v1.13b04, DIR-130 < v1.23b20, DIR-330 < v1.23b18, DIR-615 < v9.04NAb02, DIR-655 < v3.02b05, DIR-825 < v3.02, DIR-835 < v104b02Beta01
+  21. Ewon Cosy+ Unauth RCE (CVE-2026-25823)
+     Path: exploits/vpn/ewon/cosy_unauth_rce_cve_2026_25823.py
+     Unauthenticated RCE in Ewon/HMS Cosy+ industrial VPN gateway. CVSS 9.8.
+     CVEs: CVE-2026-25823
+     Devices: vpn
 
-[FORTINET] (1)
+[F5] (5)
 ------------------------------
-  61. FortiGate OS 4.x-5.0.7 Backdoor
-     Path: exploits/routers/fortinet/fortigate_os_backdoor.py
+  22. F5 BIG-IP APM Buffer Overflow RCE (CVE-2025-53521)
+     Path: exploits/lb/f5/bigip_apm_buffer_overflow_cve_2025_53521.py
+     Stack buffer overflow in BIG-IP APM virtual server. Pre-auth RCE. CVSS 9.8.
+     CVEs: CVE-2025-53521
+     Devices: lb
+  23. F5 BIG-IP Config Utility RCE (CVE-2023-46747)
+     Path: exploits/lb/f5/bigip_config_rce_cve_2023_46747.py
+     Unauthenticated RCE via request smuggling in BIG-IP Configuration Utility (TMUI). Bypasses authentication to execute sys
+     CVEs: CVE-2023-46747
+     Devices: lb
+  24. F5 BIG-IP TMUI LFI (CVE-2020-5902)
+     Path: exploits/lb/f5/bigip_tmui_lfi_cve_2020_5902.py
+     Local file inclusion via TMUI path traversal allows unauthenticated read of /etc/passwd, admin credentials, license and 
+     CVEs: CVE-2020-5902
+     Devices: lb
+  25. F5 BIG-IP iControl REST Auth Bypass (CVE-2022-1388)
+     Path: exploits/lb/f5/bigip_icontrol_auth_bypass_cve_2022_1388.py
+     Authentication bypass in iControl REST allows unauthenticated command execution via /mgmt/tm/util/bash with crafted head
+     CVEs: CVE-2022-1388
+     Devices: lb
+  26. F5 BIG-IP iControl REST RCE (CVE-2021-22986)
+     Path: exploits/lb/f5/bigip_icontrol_rest_rce_cve_2021_22986.py
+     Unauthenticated remote command execution via iControl REST /mgmt/tm/util/bash. Affects BIG-IP 16.0.x before 16.0.1.1.
+     CVEs: CVE-2021-22986
+     Devices: lb
+
+[FORTINET] (14)
+------------------------------
+  27. FortiClient EMS Pre-Auth API Bypass + Post-Exploitation (CVE-2026-35616)
+     Path: exploits/perimeter/fortinet/forticlient_ems_preauth_api_bypass_cve_2026_35616.py
+     Critical (CVSS 9.1) pre-authentication bypass in Fortinet FortiClient EMS 7.4.5-7.4.6. Generates a real X.509 certificat
+     CVEs: CVE-2026-35616
+     Devices: Fortinet FortiClient EMS 7.4.5, Fortinet FortiClient EMS 7.4.6
+  28. FortiClientEMS SQL Injection RCE (CVE-2023-48788)
+     Path: exploits/perimeter/fortinet/forticlientems_sqli_rce_cve_2023_48788.py
+     SQL injection in FortiClientEMS DAS allows unauth code execution. CVSS 9.8.
+     CVEs: CVE-2023-48788
+     Devices: perimeter
+  29. FortiCloud SSO Authentication Bypass & Post-Exploitation (CVE-2026-24858)
+     Path: exploits/perimeter/fortinet/forticloud_sso_auth_bypass_cve_2026_24858.py
+     Critical (CVSS 9.8) cross-tenant FortiCloud SSO auth bypass in FortiOS/FortiManager/FortiAnalyzer. Attacker JWT token re
+     CVEs: CVE-2026-24858
+     Devices: FortiOS 7.0.0-7.0.16, FortiOS 7.2.0-7.2.10, FortiOS 7.4.0-7.4.4, FortiManager 7.0.x / 7.2.x / 7.4.x, FortiAnalyzer 7.0.x / 7.2.x / 7.4.x
+  30. FortiGate OS 4.x-5.0.7 Backdoor
+     Path: exploits/perimeter/fortinet/fortigate_os_backdoor.py
      SSH misuse / Fortimanager_Access interactive auth against legacy FortiGate OS 4.x–5.0.7 (historical administrative chann
+     CVEs: CVE-2014-3413
      Devices: FortiGate OS Version 4.x-5.0.7
+  31. FortiManager FortiJump RCE (CVE-2024-47575)
+     Path: exploits/perimeter/fortinet/fortimanager_fortijump_cve_2024_47575.py
+     Missing authentication for critical function in FortiManager fgfmd daemon allows unauthenticated RCE via crafted request
+     CVEs: CVE-2024-47575
+     Devices: perimeter
+  32. FortiOS Auth Bypass via REST API (CVE-2022-40684)
+     Path: exploits/perimeter/fortinet/fortios_auth_bypass_cve_2022_40684.py
+     Authentication bypass using crafted Forwarded/X-Forwarded-Vdom headers allows unauthenticated access to /api/v2/cmdb/sys
+     CVEs: CVE-2022-40684
+     Devices: perimeter
+  33. FortiOS SSL-VPN Heap Overflow RCE (CVE-2022-42475)
+     Path: exploits/perimeter/fortinet/fortios_sslvpn_heap_rce_cve_2022_42475.py
+     Heap-based buffer overflow in FortiOS sslvpnd allows pre-auth RCE. CVSS 9.8.
+     CVEs: CVE-2022-42475
+     Devices: perimeter
+  34. FortiOS SSL-VPN OOB Write RCE (CVE-2024-21762)
+     Path: exploits/perimeter/fortinet/fortios_sslvpn_rce_cve_2024_21762.py
+     Pre-authentication out-of-bounds write in FortiOS SSL-VPN daemon allows RCE via crafted HTTP requests. CVSS 9.6. Affects
+     CVEs: CVE-2024-21762
+     Devices: perimeter
+  35. FortiOS SSL-VPN Path Traversal (CVE-2018-13379)
+     Path: exploits/perimeter/fortinet/fortios_sslvpn_path_traversal_cve_2018_13379.py
+     Path traversal via /remote/fgt_lang allows unauthenticated read of sslvpn_websession, leaking plaintext VPN credentials.
+     CVEs: CVE-2018-13379
+     Devices: perimeter
+  36. FortiOS SSL-VPN Pre-Auth RCE XORtigate (CVE-2023-27997)
+     Path: exploits/perimeter/fortinet/fortios_sslvpn_preauth_rce_cve_2023_27997.py
+     Pre-auth heap overflow in FortiOS SSL-VPN (XORtigate). CVSS 9.8.
+     CVEs: CVE-2023-27997
+     Devices: perimeter
+  37. FortiOS SSL-VPN Session Cookie Reuse after Logout (CVE-2024-50562)
+     Path: exploits/perimeter/fortinet/fortios_sslvpn_session_reuse_cve_2024_50562.py
+     After a user logs out of the FortiOS SSL-VPN portal the server-side session is not properly invalidated. A captured sess
+     CVEs: CVE-2024-50562
+     Devices: perimeter
+  38. FortiOS WebSocket Auth Bypass (CVE-2024-55591)
+     Path: exploits/perimeter/fortinet/fortios_websocket_auth_bypass_cve_2024_55591.py
+     Auth bypass via Node.js WebSocket in FortiOS grants super-admin. CVSS 9.8.
+     CVEs: CVE-2024-55591
+     Devices: perimeter
+  39. FortiWeb Admin REST API Command Injection (CVE-2025-64446)
+     Path: exploits/perimeter/fortinet/fortiweb/fortiweb_admin_rce_cve_2025_64446.py
+     Command injection in Fortinet FortiWeb admin REST API endpoint allows an attacker to execute arbitrary OS commands. The 
+     CVEs: CVE-2025-64446
+     Devices: perimeter, waf
+  40. FortiWeb Auth Bypass to RCE (CVE-2025-25257)
+     Path: exploits/perimeter/fortinet/fortiweb/fortiweb_auth_bypass_rce_cve_2025_25257.py
+     Authentication bypass in Fortinet FortiWeb WAF management interface allows an unauthenticated attacker to access the man
+     CVEs: CVE-2025-25257
+     Devices: perimeter, waf
 
-[HEARTBLEED.PY] (1)
+[GENERIC] (11)
 ------------------------------
-  62. OpenSSL Heartbleed
-     Path: exploits/generic/heartbleed.py
-     Exploits OpenSSL Heartbleed vulnerability. Vulnerability exists in the handling of heartbeat requests, where fake length
-     Devices: Multi
-
-[HOOTOO] (3)
-------------------------------
-  63. HooToo TripMate protocol.csp open_forwarding RCE
-     Path: exploits/routers/hootoo/tripmate_open_forwarding_rce.py
-     Module exploits TripMate unauthenticated OS command injection vulnerability in protocol.csp, in function open_forwarding
-     Devices: HooToo TripMate HT-TM01, firmware fw-WiFiDGRJ-HooToo-TM01-2.000.046, HooToo TripMate Nano HT-TM02, firmware fw-WiFiPort-HooToo-TM02-2.000.072, HooToo TripMate Mini HT-TM03, firmware fw-WiFiSDRJ-HooToo-TM03-2.000.016, HooToo TripMate Elite HT-TM04, firmware fw-WiFiDGRJ2-HooToo-TM04-2.000.008, HooToo TripMate Titan HT-TM05, firmware fw-7620-WiFiDGRJ-HooToo-HT-TM05-2.000.080.080, HooToo TripMate Elite U HT-TM06, firmware fw-7620-WiFiDGRJ-HooToo-633-HT-TM06-2.000.048
-  64. HooToo TripMate sysfirm.csp RCE
-     Path: exploits/routers/hootoo/tripmate_sysfirm_rce.py
-     Module exploits TripMate unauthenticated remote code execution vulnerability in sysfirm.csp, which allows executing comm
-     Devices: HooToo TripMate HT-TM01, firmware fw-WiFiDGRJ-HooToo-TM01-2.000.046, HooToo TripMate Nano HT-TM02, firmware fw-WiFiPort-HooToo-TM02-2.000.072, HooToo TripMate Mini HT-TM03, firmware fw-WiFiSDRJ-HooToo-TM03-2.000.016, HooToo TripMate Elite HT-TM04, firmware fw-WiFiDGRJ2-HooToo-TM04-2.000.008, HooToo TripMate Titan HT-TM05, firmware fw-7620-WiFiDGRJ-HooToo-HT-TM05-2.000.080.080, HooToo TripMate Elite U HT-TM06, firmware fw-7620-WiFiDGRJ-HooToo-633-HT-TM06-2.000.048
-  65. HooToo TripMate unauthenticated protocol.csp arbitrary file upload
-     Path: exploits/routers/hootoo/tripmate_arbitrary_file_upload.py
-     Module exploits TripMate unauthenticated arbitrary file upload in protocol.csp to overwrite selected system files.
-     Devices: HooToo TripMate HT-TM01, firmware fw-WiFiDGRJ-HooToo-TM01-2.000.046, HooToo TripMate Nano HT-TM02, firmware fw-WiFiPort-HooToo-TM02-2.000.072, HooToo TripMate Mini HT-TM03, firmware fw-WiFiSDRJ-HooToo-TM03-2.000.016, HooToo TripMate Elite HT-TM04, firmware fw-WiFiDGRJ2-HooToo-TM04-2.000.008, HooToo TripMate Titan HT-TM05, firmware fw-7620-WiFiDGRJ-HooToo-HT-TM05-2.000.080.080, HooToo TripMate Elite U HT-TM06, firmware fw-7620-WiFiDGRJ-HooToo-633-HT-TM06-2.000.048
-
-[HTTP_FORM_CHAR_BY_CHAR_ORACLE.PY] (1)
-------------------------------
-  66. HTTP Form Char-by-Char Oracle
-     Path: exploits/generic/http_form_char_by_char_oracle.py
+  41. DNP3 Firewall Evasion (N/A)
+     Path: exploits/perimeter/generic/dnp3_firewall_evasion.py
+     DNP3 protocol evasion techniques for industrial firewall bypass. Fragment reassembly attacks, unsolicited response injec
+     Devices: perimeter
+  42. EtherNet/IP CIP Firewall Bypass (N/A)
+     Path: exploits/perimeter/generic/ethernetip_cip_bypass.py
+     EtherNet/IP Common Industrial Protocol bypass via encapsulation manipulation. Affects Rockwell/Allen-Bradley environment
+     Devices: perimeter
+  43. HTTP Form Char-by-Char Oracle
+     Path: exploits/perimeter/generic/http_form_char_by_char_oracle.py
      Generic framework for character-by-character password probing when the login page leaks a content or timing oracle. Not 
      Devices: Any in-scope device with a vulnerable web login oracle (lab-validated only)
-
-[HUAWEI] (7)
-------------------------------
-  67. Huawei E5331 Info Disclosure
-     Path: exploits/routers/huawei/e5331_mifi_info_disclosure.py
-     Module exploits information disclosure vulnerability in Huawei E5331 MiFi Mobile Hotspotdevices. If the target is vulner
-     Devices: Huawei E5331 MiFi Mobile Hotspot
-  68. Huawei HG520 Information Disclosure
-     Path: exploits/routers/huawei/hg520_info_disclosure.py
-     Module exploits Huawei EchoLife HG520 information disclosure vulnerablity. If the target is vulnerable it is possible to
-     Devices: Huawei HG520
-  69. Huawei HG530 & HG520b Password Disclosure
-     Path: exploits/routers/huawei/hg530_hg520b_password_disclosure.py
-     Module exploits password disclosure vulnerability in Huawei HG530 and HG520b devices. If the target is vulnerable it all
-     Devices: Huawei Home Gateway HG530, Huawei Home Gateway HG520b
-  70. Huawei HG824* Authenticated Command Injection
-     Path: exploits/routers/huawei/hg8240_auth_rce.py
-     Module exploits Huawei HG824* authenticated command injection vulnerability.
-     Devices: Huawei EchoLife HG8240 V1, Huawei EchoLife HG8245 V1, Huawei EchoLife HG8245Q
-  71. Huawei HG824* File Traversal
-     Path: exploits/routers/huawei/hg8240_file_traversal.py
-     Module exploits Huawei HG824* file traversal vulnerability allowing arbitrary file reads.
-     Devices: Huawei EchoLife HG8240 V1, Huawei EchoLife HG8245 V1, Huawei EchoLife HG8245Q
-  72. Huawei HG866 Password Change
-     Path: exploits/routers/huawei/hg866_password_change.py
-     Module exploits password change vulnerability in Huawei HG866 devices. If the target is vulnerable it allows to change a
-     Devices: Huawei HG866
-  73. Huawei Router HG532 RCE
-     Path: exploits/routers/huawei/hg532_rce.py
-     Module exploits remote command execution in Huawei Router HG532 devices. If the target is vulnerable, command loop is in
-     CVEs: CVE-2017-17215
-     Devices: Huawei HG532
-
-[IPFIRE] (3)
-------------------------------
-  74. IPFire Oinkcode RCE
-     Path: exploits/routers/ipfire/ipfire_oinkcode_rce.py
-     Module exploits IPFire < 2.19 Core Update 110 Remote Code Execution vulnerability which allows executing command on oper
-     Devices: IPFire < 2.19 Core Update 110
-  75. IPFire Proxy RCE
-     Path: exploits/routers/ipfire/ipfire_proxy_rce.py
-     Module exploits IPFire < 2.19 Core Update 101 Remote Code Execution vulnerability which allows executing commands on ope
-     Devices: IPFire < 2.19 Core Update 101
-  76. IPFire Shellshock
-     Path: exploits/routers/ipfire/ipfire_shellshock.py
-     Exploits shellshock vulnerability in IPFire <= 2.15 Core Update 82. If the target is vulnerable it is possible to execut
-     Devices: IPFire <= 2.15 Core Update 82
-
-[LG] (1)
-------------------------------
-  77. LG_NAS_3718.510.a0_RCE
-     Path: exploits/routers/lg/nas_3718.py
-     Module exploits LG-NAS Storage Remote Command Execution vulnerability in the web-based certificate generator feature.
-     Devices: 3718.510.a0
-
-[LINKSYS] (5)
-------------------------------
-  78. Linksys E-Series TheMoon RCE
-     Path: exploits/routers/linksys/eseries_themoon_rce.py
-     Module exploits remote code execution vulnerability in multiple Linksys E-Series devices. Vulnerability was actively use
-     Devices: Linksys E900, Linksys E1000, Linksys E1200, Linksys E1500, Linksys E1550, Linksys E2000, Linksys E2100L, Linksys E2500
-  79. Linksys E1500/E2500
-     Path: exploits/routers/linksys/1500_2500_rce.py
-     Module exploits remote command execution in Linksys E1500/E2500 devices. Diagnostics interface allows executing root pri
-     Devices: Linksys E1500/E2500
-  80. Linksys SMART WiFi Password Disclosure
-     Path: exploits/routers/linksys/smartwifi_password_disclosure.py
-     Exploit implementation for Linksys SMART WiFi Password Disclosure vulnerability. If target is vulnerable administrator's
-     CVEs: CVE-2014-8243
-     Devices: Linksys EA2700 < Ver.1.1.40 (Build 162751), Linksys EA3500 < Ver.1.1.40 (Build 162464), Linksys E4200v2 < Ver.2.1.41 (Build 162351), Linksys EA4500 < Ver.2.1.41 (Build 162351), Linksys EA6200 < Ver.1.1.41 (Build 162599), Linksys EA6300 < Ver.1.1.40 (Build 160989), Linksys EA6400 < Ver.1.1.40 (Build 160989), Linksys EA6500 < Ver.1.1.40 (Build 160989)
-  81. Linksys WAP54Gv3
-     Path: exploits/routers/linksys/wap54gv3_rce.py
-     Module exploits remote command execution in Linksys WAP54Gv3 devices. Debug interface allows executing root privileged s
-     Devices: Linksys WAP54Gv3
-  82. Linksys WRT100/WRT110 RCE
-     Path: exploits/routers/linksys/wrt100_110_rce.py
-     Module exploits remote command execution in Linksys WRT100/WRT110 devices. If the target is vulnerable, command loop is 
-     CVEs: CVE-2013-3568
-     Devices: Linksys WRT100, Linksys WRT110
-
-[MIELE] (1)
-------------------------------
-  83. Miele Professional PG 8528 Path Traversal
-     Path: exploits/misc/miele/pg8528_path_traversal.py
-     Module exploits Miele Professional PG 8528 Path Traversal vulnerability which allows to read any file on the system.
-     CVEs: CVE-2017-7240
-     Devices: Miele Professional PG 8528 PST10
-
-[MIKROTIK] (2)
-------------------------------
-  84. Mikrotik RouterOS Jailbreak
-     Path: exploits/routers/mikrotik/routeros_jailbreak.py
-     Module creates "devel" user on RouterOS from 2.9.8 to 6.41rc56.
-     Devices: Mikrotik RoutersOS versions from 2.9.8 up to 6.41rc56
-  85. Mikrotik WinBox Auth Bypass - Creds Disclosure
-     Path: exploits/routers/mikrotik/winbox_auth_bypass_creds_disclosure.py
-     Module bypass authentication through WinBox service in Mikrotik devices versions from 6.29 (release date: 2015/28/05) to
-     Devices: Mikrotik RouterOS versions from 6.29 (release date: 2015/28/05) to 6.42 (release date 2018/04/20)
-
-[MOVISTAR] (1)
-------------------------------
-  86. Movistar ADSL Router BHS_RTA Path Traversal
-     Path: exploits/routers/movistar/adsl_router_bhs_rta_path_traversal.py
-     Module exploits Movistar ADSL Router BHS_RTA Path Traversal vulnerability which allows to read any file on the system.
-     Devices: Movistar ADSL Router BHS_RTA
-
-[MULTI] (5)
-------------------------------
-  87. GPON Home Gateway RCE
-     Path: exploits/routers/multi/gpon_home_gateway_rce.py
-     Module exploits GPON Home Gatewa command injection vulnerability, that allows executing commands on operating system lev
-     Devices: GPON Home Gateway
-  88. Misfortune Cookie
-     Path: exploits/routers/multi/misfortune_cookie.py
-     Exploit implementation for Misfortune Cookie Authentication Bypass vulnerability.
-     CVEs: CVE-2014-9222
-     Devices: {'name': 'Azmoon     AZ-D140W        2.11.89.0(RE2.C29)3.11.11.52_PMOFF.1', 'number': 107367693, 'offset': 13}, {'name': 'Billion    BiPAC 5102S     Av2.7.0.23 (UE0.B1C)', 'number': 107369694, 'offset': 13}, {'name': 'Billion    BiPAC 5102S     Bv2.7.0.23 (UE0.B1C)', 'number': 107369694, 'offset': 13}, {'name': 'Billion    BiPAC 5200      2.11.84.0(UE2.C2)3.11.11.6', 'number': 107369545, 'offset': 9}, {'name': 'Billion    BiPAC 5200      2_11_62_2_ UE0.C2D_3_10_16_0', 'number': 107371218, 'offset': 21}, {'name': 'Billion    BiPAC 5200A     2_10_5 _0(RE0.C2)3_6_0_0', 'number': 107366366, 'offset': 25}, {'name': 'Billion    BiPAC 5200A     2_11_38_0 (RE0.C29)3_10_5_0', 'number': 107371453, 'offset': 9}, {'name': 'Billion    BiPAC 5200GR4   2.11.91.0(RE2.C29)3.11.11.52', 'number': 107367690, 'offset': 21}
-  89. RomPager ROM-0
-     Path: exploits/routers/multi/rom0.py
-     Exploits RomPager ROM-0 authentication bypass vulnerability that allows downloading rom file and extract password withou
-     Devices: AirLive WT-2000ARM (2.11.6.0(RE0.C29)3.7.6.1), D-Link DSL-2520U (1.08 Hardware Version: B1), D-Link DSL-2640R, D-Link DSL-2740R (EU_1.13 Hardware Version: A1), Huawei 520 HG, Huawei 530 TRA, Pentagram Cerberus P 6331-42, TP-Link TD-8816
-  90. TCP-32764 Info Disclosure
-     Path: exploits/routers/multi/tcp_32764_info_disclosure.py
-     Exploits backdoor functionality that allows fetching credentials for administrator user.
-     Devices: Cisco RVS4000 fwv 2.0.3.2 & 1.3.0.5, Cisco WAP4410N, Cisco WRVS4400N, Cisco WRVS4400N, Diamond DSL642WLG / SerComm IP806Gx v2 TI, LevelOne WBR3460B, Linksys RVS4000 Firmware V1.3.3.5, Linksys WAG120N
-  91. TCP-32764 RCE
-     Path: exploits/routers/multi/tcp_32764_rce.py
-     Exploits backdoor functionality that allows executing commands on operating system level.
-     Devices: Cisco RVS4000 fwv 2.0.3.2 & 1.3.0.5, Cisco WAP4410N, Cisco WRVS4400N, Cisco WRVS4400N, Diamond DSL642WLG / SerComm IP806Gx v2 TI, LevelOne WBR3460B, Linksys RVS4000 Firmware V1.3.3.5, Linksys WAG120N
-
-[NETCORE] (1)
-------------------------------
-  92. Netcore/Netis UDP 53413 RCE
-     Path: exploits/routers/netcore/udp_53413_rce.py
-     Exploits Netcore/Netis backdoor functionality that allows executing commands on operating system level.
-     Devices: Netcore Router, Netis Router
-
-[NETGEAR] (10)
-------------------------------
-  93. Netgear DGN2200 RCE
-     Path: exploits/routers/netgear/dgn2200_dnslookup_cgi_rce.py
-     Exploits Netgear DGN2200 RCE vulnerability through dnslookup.cgi resource.
-     CVEs: CVE-2017-6334
-     Devices: Netgear DGN2200v1, Netgear DGN2200v2, Netgear DGN2200v3, Netgear DGN2200v4
-  94. Netgear DGN2200 RCE
-     Path: exploits/routers/netgear/dgn2200_ping_cgi_rce.py
-     Exploits Netgear DGN2200 RCE vulnerability in the ping.cgi script.
-     CVEs: CVE-2017-6077
-     Devices: Netgear DGN2200v1, Netgear DGN2200v2, Netgear DGN2200v3, Netgear DGN2200v4
-  95. Netgear JNR1010 Path Traversal
-     Path: exploits/routers/netgear/jnr1010_path_traversal.py
-     Module exploits Netgear JNR1010 Path Traversal vulnerability which allows to read any file on the system.
-     Devices: Netgear JNR1010
-  96. Netgear Multi Password Disclosure
-     Path: exploits/routers/netgear/multi_password_disclosure-2017-5521.py
-     Module exploits Password Disclosure vulnerability in multiple Netgear devices. If target is vulnerable administrator's p
-     CVEs: CVE-2017-5521
-     Devices: Netgear D6220, Netgear D6400, Netgear R6200v2, Netgear R6250, Netgear R6300v2, Netgear R6400, Netgear R6700, Netgear R6900
-  97. Netgear Multi RCE
-     Path: exploits/routers/netgear/multi_rce.py
-     Module exploits remote command execution in multiple Netgear devices. If the target is vulnerable, command loop is invok
-     Devices: Netgear WG102, Netgear WG103, Netgear WN604, Netgear WNDAP350, Netgear WNDAP360, Netgear WNAP320, Netgear WNAP210, Netgear WNDAP660
-  98. Netgear N300 Auth Bypass
-     Path: exploits/routers/netgear/n300_auth_bypass.py
-     Module exploits authentication bypass vulnerability in Netgear N300 devices. It is possible to access administration pan
-     Devices: Netgear N300, Netgear JNR1010v2, Netgear JNR3000, Netgear JWNR2000v5, Netgear JWNR2010v5, Netgear R3250, Netgear WNR2020, Netgear WNR614
-  99. Netgear ProSafe RCE
-     Path: exploits/routers/netgear/prosafe_rce.py
-     Module exploits remote command execution vulnerability in Netgear ProSafe WC9500, WC7600, WC7520 devices. If the target 
-     Devices: Netgear ProSafe WC9500, Netgear ProSafe WC7600, Netgear ProSafe WC7520
-  100. Netgear R7000 & R6400 RCE
-     Path: exploits/routers/netgear/r7000_r6400_rce.py
-     Module exploits remote command execution in Netgear R7000 and R6400 devices. If the target is vulnerable, command loop i
-     Devices: R6400 (AC1750), R7000 Nighthawk (AC1900, AC2300), R7500 Nighthawk X4 (AC2350), R7800 Nighthawk X4S(AC2600), R8000 Nighthawk (AC3200), R8500 Nighthawk X8 (AC5300), R9000 Nighthawk X10 (AD7200)
-  101. Netgear RAX30 RCE
-     Path: exploits/routers/netgear/rax30_rce.py
-     Module exploits remote command execution in Netgear RAX30 devices. If the target is vulnerable, command loop is invoked 
-     Devices: Netgear RAX30
-  102. Netgear WNR500/WNR612v3/JNR1010/JNR2010 Path Traversal
-     Path: exploits/routers/netgear/wnr500_612v3_jnr1010_2010_path_traversal.py
-     Module exploits Netgear WNR500/WNR612v3/JNR1010/JNR2010 Path Traversal vulnerability which allows to read any file on th
-     Devices: Netgear WNR500, Netgear WNR612v3, Netgear JNR1010, Netgear JNR2010
-
-[NETSYS] (1)
-------------------------------
-  103. Netsys Multi RCE
-     Path: exploits/routers/netsys/multi_rce.py
-     Exploits Netsys multiple remote command execution vulnerabilities that allows executing commands on operating system lev
-     Devices: Multiple Netsys
-
-[SHELLSHOCK.PY] (1)
-------------------------------
-  104. Shellshock
-     Path: exploits/generic/shellshock.py
+  44. HTTP Request Smuggling Checker
+     Path: exploits/perimeter/generic/http_smuggling_checker.py
+     Tests for HTTP request smuggling vectors (CL.TE, TE.CL) that can bypass firewall/WAF inspection and access controls. App
+     Devices: perimeter
+  45. IEC 60870-5-104 Protocol Manipulation (N/A)
+     Path: exploits/perimeter/generic/iec104_manipulation.py
+     IEC 104 SCADA protocol manipulation to bypass industrial firewall rules. ASDU type confusion, cause-of-transmission spoo
+     Devices: perimeter
+  46. Modbus TCP Deep Packet Inspection Bypass (N/A)
+     Path: exploits/perimeter/generic/modbus_dpi_bypass.py
+     Techniques to bypass Modbus TCP DPI in industrial firewalls via fragmentation, function code manipulation, and timing ev
+     Devices: perimeter
+  47. Multi SSH Authorized Keys
+     Path: exploits/perimeter/generic/ssh_auth_keys.py
+     Module exploits private key exposure vulnerability. If the target is vulnerable it is possible to authentiate to the dev
+     Devices: ExaGrid firmware < 4.8 P26, Quantum DXi V1000, Array Networks vxAG 9.2.0.34 and vAPV 8.3.2.17 appliances, Barracuda Load Balancer, Ceragon FibeAir IP-10, F5 BigIP, Loadbalancer.org Enterprise VA 7.5.2, Digital Alert Systems DASDEC and Monroe Electronics One-Net E189 Emergency Alert System
+  48. OPC UA Firewall Bypass (N/A)
+     Path: exploits/perimeter/generic/opcua_firewall_bypass.py
+     OPC UA protocol manipulation to bypass industrial firewall inspection. Uses chunking, security policy downgrade, and end
+     Devices: perimeter
+  49. OpenSSL Heartbleed
+     Path: exploits/perimeter/generic/heartbleed.py
+     Exploits OpenSSL Heartbleed vulnerability. Vulnerability exists in the handling of heartbeat requests, where fake length
+     Devices: Multi
+  50. Shellshock
+     Path: exploits/perimeter/generic/shellshock.py
      Exploits shellshock vulnerability that allows executing commands on operating system level.
      CVEs: CVE-2014-6271, CVE-2014-6278, CVE-2014-7169
      Devices: Multi
+  51. VLAN Hopping / 802.1Q Checker
+     Path: exploits/nac/generic/vlan_hopping_checker.py
+     Checks for VLAN hopping susceptibility via DTP negotiation, double-tagging, and 802.1Q tag injection. Tests NAC bypass v
+     Devices: nac
 
-[SHUTTLE] (1)
+[HIRSCHMANN] (1)
 ------------------------------
-  105. Shuttle 915 WM DNS Change
-     Path: exploits/routers/shuttle/915wm_dns_change.py
-     Module exploits Shuttle Tech ADSL Modem-Router 915 WM dns change vulnerability. If the target is vulnerable it is possib
-     Devices: Shuttle Tech ADSL Modem-Router 915 WM
+  52. Hirschmann EAGLE20/30 Auth Bypass (CVE-2020-6994)
+     Path: exploits/perimeter/hirschmann/eagle_auth_bypass_cve_2020_6994.py
+     Use of hard-coded credentials in Hirschmann EAGLE20/30 industrial firewall. CVSS 9.8.
+     CVEs: CVE-2020-6994
+     Devices: perimeter
 
-[SSH_AUTH_KEYS.PY] (1)
+[IMPERVA] (1)
 ------------------------------
-  106. Multi SSH Authorized Keys
-     Path: exploits/generic/ssh_auth_keys.py
-     Module exploits private key exposure vulnerability. If the target is vulnerable it is possible to authentiate to the dev
-     Devices: ExaGrid firmware < 4.8 P26, Quantum DXi V1000, Array Networks vxAG 9.2.0.34 and vAPV 8.3.2.17 appliances, Barracuda Load Balancer, Ceragon FibeAir IP-10, F5 BigIP, Loadbalancer.org Enterprise VA 7.5.2, Digital Alert Systems DASDEC and Monroe Electronics One-Net E189 Emergency Alert System
+  53. Imperva SecureSphere MX Blind SQLi
+     Path: exploits/waf/imperva/securesphere_sqli_cve_2013_xxxx.py
+     Blind SQL injection in Imperva SecureSphere WAF management console (MX) allows extraction of admin password hashes. Affe
+     Devices: waf
 
-[TECHNICOLOR] (4)
+[IVANTI] (2)
 ------------------------------
-  107. Technicolor DWG-855 Auth Bypass
-     Path: exploits/routers/technicolor/dwg855_authbypass.py
-     Module exploits Technicolor DWG-855 Authentication Bypass vulnerability which allows changing administrator's password. 
-     Devices: Technicolor DWG-855
-  108. Technicolor TC7200 Password Disclosure
-     Path: exploits/routers/technicolor/tc7200_password_disclosure.py
-     Module exploits Technicolor TC7200 password disclosure vulnerability which allows fetching administration's password.
-     Devices: Technicolor TC7200
-  109. Technicolor TC7200 Password Disclosure V2
-     Path: exploits/routers/technicolor/tc7200_password_disclosure_v2.py
-     Module exploits Technicolor TC7200 password disclosure vulnerability which allows fetching administration's password.
-     Devices: Technicolor TC7200
-  110. Technicolor TG784n-v3 Auth Bypass
-     Path: exploits/routers/technicolor/tg784_authbypass.py
-     Module exploits Technicolor TG784n-v3 authentication bypass vulnerability.
-     Devices: Technicolor TG784n-v3, Unknown number of Technicolor and Thompson routers
+  54. Ivanti Connect Secure Auth Bypass + RCE (CVE-2023-46805 + CVE-2024-21887)
+     Path: exploits/vpn/ivanti/connect_secure_auth_rce_cve_2023_46805.py
+     Auth bypass via /api/v1/totp/user-backup-code chains with command injection in /api/v1/license/keys-status for unauthent
+     CVEs: CVE-2023-46805, CVE-2024-21887
+     Devices: vpn
+  55. Ivanti Connect Secure Buffer Overflow RCE (CVE-2025-0282)
+     Path: exploits/vpn/ivanti/ics_buffer_overflow_rce_cve_2025_0282.py
+     Stack buffer overflow in ICS allows pre-auth RCE. CVSS 9.0.
+     CVEs: CVE-2025-0282
+     Devices: vpn
 
-[THOMSON] (2)
+[JUNIPER] (2)
 ------------------------------
-  111. Thomson TWG849 Info Disclosure
-     Path: exploits/routers/thomson/twg849_info_disclosure.py
-     Module exploits Thomson TWG849 information disclosure vulnerability which allows reading sensitive information.
-     Devices: Thomson TWG849
-  112. Thomson TWG850 Password Disclosure
-     Path: exploits/routers/thomson/twg850_password_disclosure.py
-     Module exploits Thomson TWG850 password disclosure vulnerability which allows fetching administration's password.
-     Devices: Thomson TWG850
+  56. Juniper J-Web OOB Write RCE (CVE-2024-21591)
+     Path: exploits/perimeter/juniper/jweb_oob_write_rce_cve_2024_21591.py
+     Out-of-bounds write in J-Web allows pre-auth RCE. CVSS 9.8. SRX and EX series.
+     CVEs: CVE-2024-21591
+     Devices: perimeter
+  57. Juniper J-Web PHP RCE (CVE-2023-36845)
+     Path: exploits/perimeter/juniper/jweb_php_rce_cve_2023_36845.py
+     Unauthenticated RCE via PHP environment variable injection (PHPRC) in J-Web on Juniper SRX and EX series. Allows executi
+     CVEs: CVE-2023-36845
+     Devices: perimeter
 
-[TPLINK] (5)
+[MOXA] (2)
 ------------------------------
-  113. TP-Link Archer C2 & C20i
-     Path: exploits/routers/tplink/archer_c2_c20i_rce.py
-     Exploits TP-Link Archer C2 and Archer C20i remote code execution vulnerability that allows executing commands on operati
-     Devices: TP-Link Archer C2, TP-Link Archer C20i
-  114. TP-Link Archer C9 admin password reset (CVE-2017-11519)
-     Path: exploits/routers/tplink/archer_c9_admin_password_reset.py
-     Module exploits TP-Link Archer C9 password reset feature by leveraging a predictable random number generator seed.
-     CVEs: CVE-2017-11519
-     Devices: TP-Link Archer C60, TP-Link Archer C9
-  115. TP-Link WDR740ND & WDR740N Backdoor RCE
-     Path: exploits/routers/tplink/wdr740nd_wdr740n_backdoor.py
-     Exploits TP-Link WDR740ND and WDR740N backdoor vulnerability that allows executing commands on operating system level.
-     Devices: TP-Link WDR740ND, TP-Link WDR740N
-  116. TP-Link WDR740ND & WDR740N Path Traversal
-     Path: exploits/routers/tplink/wdr740nd_wdr740n_path_traversal.py
-     Exploits TP-Link WDR740ND and WDR740N path traversal vulnerabilitythat allowsto read files from the filesystem.
-     Devices: TP-Link WDR740ND, TP-Link WDR740N
-  117. TP-Link WDR842ND configure Disclosure
-     Path: exploits/routers/tplink/wdr842nd_wdr842n_configure_disclosure.py
-     Module exploits TP-Link WDR842ND configure disclosure vulnerability which allows fetching configure.
-     Devices: TP-Link WDR842ND
+  58. Moxa EDR Series Command Injection (CVE-2024-9138)
+     Path: exploits/perimeter/moxa/edr_cmd_injection_cve_2024_9138.py
+     OS command injection in Moxa EDR industrial router/firewall. CVSS 9.8.
+     CVEs: CVE-2024-9138
+     Devices: perimeter
+  59. Moxa EDR-G Series Hardcoded JWT (CVE-2024-9137)
+     Path: exploits/perimeter/moxa/edr_g_jwt_hardcoded_cve_2024_9137.py
+     Hardcoded JWT secret in Moxa EDR-G9010/G9004 allows admin access. CVSS 9.9.
+     CVEs: CVE-2024-9137
+     Devices: perimeter
 
-[UBIQUITI] (1)
+[PALOALTO] (6)
 ------------------------------
-  118. AirOS 6.x - Arbitrary File Upload
-     Path: exploits/routers/ubiquiti/airos_6_x.py
-     Exploit implementation for AirOS 6.x - Arbitrary File Upload. If the target is vulnerable is possible to take full contr
-     Devices: AirOS 6.x
+  60. PAN-OS Auth Bypass (CVE-2025-0108)
+     Path: exploits/perimeter/paloalto/panos_auth_bypass_cve_2025_0108.py
+     Auth bypass in PAN-OS management web interface. CVSS 9.1. Actively exploited.
+     CVEs: CVE-2025-0108
+     Devices: perimeter
+  61. PAN-OS GlobalProtect Auth Override Cookie Bypass (CVE-2026-0257)
+     Path: exploits/perimeter/paloalto/globalprotect_auth_bypass_cve_2026_0257.py
+     CVSS 7.8 HIGH. Authentication override cookies in GlobalProtect are encrypted with RSA-PKCS1v15 using a certificate whos
+     CVEs: CVE-2026-0257
+     Devices: Palo Alto Networks PAN-OS 10.2.x (pre-fix), Palo Alto Networks PAN-OS 11.1.x (pre-fix), Palo Alto Networks PAN-OS 11.2.x (pre-fix), Palo Alto Networks PAN-OS 12.1.x (pre-fix), Prisma Access 10.2.x / 11.2.x (pre-fix)
+  62. PAN-OS GlobalProtect Command Injection (CVE-2024-3400)
+     Path: exploits/perimeter/paloalto/globalprotect_cmd_injection_cve_2024_3400.py
+     Unauthenticated command injection in GlobalProtect via crafted SESSID cookie path traversal. Affects PAN-OS 10.2, 11.0, 
+     CVEs: CVE-2024-3400
+     Devices: perimeter
+  63. PAN-OS Management Auth Bypass (CVE-2024-0012)
+     Path: exploits/perimeter/paloalto/panos_mgmt_auth_bypass_cve_2024_0012.py
+     Authentication bypass in PAN-OS management web interface via X-PAN-AUTHCHECK: off header. Chains with CVE-2024-9474 for 
+     CVEs: CVE-2024-0012, CVE-2024-9474
+     Devices: perimeter
+  64. PAN-OS Privilege Escalation (CVE-2024-9474)
+     Path: exploits/perimeter/paloalto/panos_privesc_cve_2024_9474.py
+     OS command injection in PAN-OS management escalates to root. Chains with CVE-2024-0012.
+     CVEs: CVE-2024-0012, CVE-2024-9474
+     Devices: perimeter
+  65. PAN-OS SAML Auth Bypass (CVE-2020-2021)
+     Path: exploits/perimeter/paloalto/panos_saml_auth_bypass_cve_2020_2021.py
+     SAML auth bypass in PAN-OS when Validate IdP Certificate disabled. CVSS 10.0.
+     CVEs: CVE-2020-2021
+     Devices: perimeter
 
-[WATCHGUARD] (1)
+[PFSENSE] (3)
 ------------------------------
-  119. Watchguard XCS Remote Command Execution
-     Path: exploits/misc/watchguard/xcs_9_rce.py
+  66. pfSense Anti-Brute-Force Bypass (CVE-2023-27100)
+     Path: exploits/perimeter/pfsense/antibruteforce_bypass_cve_2023_27100.py
+     Bypasses anti-brute-force protection in pfSense CE, enabling unlimited authentication attempts. Affects pfSenseCE versio
+     CVEs: CVE-2023-27100
+     Devices: perimeter
+  67. pfSense Interfaces Command Injection (CVE-2023-42326)
+     Path: exploits/perimeter/pfsense/interfaces_cmd_injection_cve_2023_42326.py
+     Command injection in pfSense interfaces_gif_edit.php and interfaces_gre_edit.php allows authenticated OS command executi
+     CVEs: CVE-2023-42326
+     Devices: perimeter
+  68. pfSense pfBlockerNG Unauth RCE (CVE-2022-31814)
+     Path: exploits/perimeter/pfsense/pfblockerng_rce_cve_2022_31814.py
+     OS command injection in pfBlockerNG via HTTP Host header. Unauth RCE. CVSS 9.8.
+     CVEs: CVE-2022-31814
+     Devices: perimeter
+
+[PHOENIX] (1)
+------------------------------
+  69. Phoenix Contact mGuard Command Injection (CVE-2024-43386)
+     Path: exploits/perimeter/phoenix/mguard_cmd_injection_cve_2024_43386.py
+     OS command injection in Phoenix Contact FL MGUARD firewall via web interface. CVSS 8.8.
+     CVEs: CVE-2024-43386
+     Devices: perimeter
+
+[PULSESECURE] (1)
+------------------------------
+  70. Pulse Secure SSL VPN Arbitrary File Read (CVE-2019-11510)
+     Path: exploits/vpn/pulsesecure/sslvpn_arbitrary_file_read_cve_2019_11510.py
+     Pre-auth arbitrary file read in Pulse Connect Secure 8.1-8.3 via crafted URI allows reading /etc/passwd, session files, 
+     CVEs: CVE-2019-11510
+     Devices: vpn
+
+[SCHNEIDER] (1)
+------------------------------
+  71. Schneider ConneXium/Tofino SSH Hardcoded Credentials (CVE-2017-6026)
+     Path: exploits/perimeter/schneider/connexium_ssh_hardcoded_cve_2017_6026.py
+     Hard-coded SSH keys in Schneider ConneXium Tofino industrial firewall. CVSS 9.8.
+     CVEs: CVE-2017-6026
+     Devices: perimeter
+
+[SECOMEA] (1)
+------------------------------
+  72. Secomea GateManager Unauth RCE (CVE-2020-14500)
+     Path: exploits/vpn/secomea/gatemanager_rce_cve_2020_14500.py
+     Critical vulnerability in Secomea GateManager OT remote access allows unauth RCE. CVSS 10.0.
+     CVEs: CVE-2020-14500
+     Devices: vpn
+
+[SIEMENS] (3)
+------------------------------
+  73. Siemens RUGGEDCOM ROX Web RCE (CVE-2023-24845)
+     Path: exploits/perimeter/siemens/ruggedcom_web_rce_cve_2023_24845.py
+     Command injection in RUGGEDCOM ROX web interface allows authenticated RCE. CVSS 9.1.
+     CVEs: CVE-2023-24845
+     Devices: perimeter
+  74. Siemens SCALANCE Command Injection (CVE-2023-44373)
+     Path: exploits/perimeter/siemens/scalance_cmd_injection_cve_2023_44373.py
+     OS command injection in SCALANCE S/SC/W products via crafted HTTP requests. CVSS 9.1. Affects industrial firewalls/switc
+     CVEs: CVE-2023-44373
+     Devices: perimeter
+  75. Siemens SINEMA Remote Connect Path Traversal (CVE-2022-32257)
+     Path: exploits/perimeter/siemens/sinema_rc_path_traversal_cve_2022_32257.py
+     Path traversal in SINEMA Remote Connect Server allows unauth file access. CVSS 9.8.
+     CVEs: CVE-2022-32257
+     Devices: perimeter
+
+[SONICWALL] (6)
+------------------------------
+  76. SonicWall SMA Password Reset (CVE-2021-20034)
+     Path: exploits/perimeter/sonicwall/sma_password_reset_cve_2021_20034.py
+     Unauthenticated path traversal in SonicWall SMA 100 series allows deleting the persistent DB, forcing admin password res
+     CVEs: CVE-2021-20034
+     Devices: perimeter
+  77. SonicWall SMA100 SQL Injection (CVE-2021-20016)
+     Path: exploits/perimeter/sonicwall/sma100_sqli_cve_2021_20016.py
+     SQL injection in SMA100 SSLVPN extracts credentials. CVSS 9.8.
+     CVEs: CVE-2021-20016
+     Devices: perimeter
+  78. SonicWall SSL-VPN Shellshock RCE (VisualDoor)
+     Path: exploits/perimeter/sonicwall/sslvpn_shellshock_rce_visualdoor.py
+     Unauthenticated RCE via Shellshock in SonicWall SSL-VPN cgi-bin/jarrewrite.sh. Affects SMA versions < 8.0.0.4.
+     CVEs: CVE-2014-6271
+     Devices: perimeter
+  79. SonicWall SSLVPN Auth Bypass (CVE-2024-53704)
+     Path: exploits/perimeter/sonicwall/sonicos_sslvpn_auth_bypass_cve_2024_53704.py
+     Auth bypass in SonicOS SSLVPN allows session hijacking. CVSS 9.8.
+     CVEs: CVE-2024-53704
+     Devices: perimeter
+  80. SonicWall SonicOS SSLVPN Access Control (CVE-2024-40766)
+     Path: exploits/perimeter/sonicwall/sonicos_sslvpn_access_cve_2024_40766.py
+     Improper access control in SonicOS SSLVPN allows unauthenticated access to resources and potential firewall crash. CVSS 
+     CVEs: CVE-2024-40766
+     Devices: perimeter
+  81. SonicWall SonicOS VPN Buffer Overflow (CVE-2020-5135)
+     Path: exploits/perimeter/sonicwall/sonicos_vpn_buffer_overflow_cve_2020_5135.py
+     Stack buffer overflow in SonicOS VPN Portal. Pre-auth RCE. CVSS 9.8.
+     CVEs: CVE-2020-5135
+     Devices: perimeter
+
+[SOPHOS] (3)
+------------------------------
+  82. Sophos Firewall Code Injection (CVE-2022-3236)
+     Path: exploits/perimeter/sophos/firewall_code_injection_cve_2022_3236.py
+     Code injection in Sophos Firewall User Portal. Pre-auth RCE. CVSS 9.8.
+     CVEs: CVE-2022-3236
+     Devices: perimeter
+  83. Sophos XG Firewall Auth Bypass (CVE-2022-1040)
+     Path: exploits/perimeter/sophos/xg_auth_bypass_cve_2022_1040.py
+     Authentication bypass in Sophos Firewall User Portal and Webadmin allows unauthenticated access to management. Affects S
+     CVEs: CVE-2022-1040
+     Devices: perimeter
+  84. Sophos XG SQLi RCE Asnarok (CVE-2020-12271)
+     Path: exploits/perimeter/sophos/xg_sqli_asnarok_cve_2020_12271.py
+     SQL injection in Sophos XG User Portal allows pre-auth RCE. CVSS 9.8.
+     CVEs: CVE-2020-12271
+     Devices: perimeter
+
+[WATCHGUARD] (2)
+------------------------------
+  85. WatchGuard Cyclops Blink Priv Esc (CVE-2022-23176)
+     Path: exploits/perimeter/watchguard/firebox_cyclops_blink_cve_2022_23176.py
+     Privilege escalation exploited by Sandworm GRU (Cyclops Blink). CVSS 8.8.
+     CVEs: CVE-2022-23176
+     Devices: perimeter
+  86. Watchguard XCS Remote Command Execution
+     Path: exploits/perimeter/watchguard/xcs_9_rce.py
      This module exploits two separate vulnerabilities found in the Watchguard XCS virtualappliance to gain command execution
      Devices: Watchguard XCS 9.2/10.0
 
-[WEPRESENT] (1)
+[ZYXEL] (3)
 ------------------------------
-  120. WePresent WiPG-1000 RCE
-     Path: exploits/misc/wepresent/wipg1000_rce.py
-     Module exploits WePresent WiPG-1000 Command Injection vulnerability which allows executing commands on operating system 
-     Devices: WePresent WiPG-1000 <=2.0.0.7
+  87. Zyxel ATP USG Buffer Overflow (CVE-2023-33009)
+     Path: exploits/perimeter/zyxel/buffer_overflow_cve_2023_33009.py
+     Buffer overflow in notification function. Pre-auth RCE. CVSS 9.8.
+     CVEs: CVE-2023-33009
+     Devices: perimeter
+  88. Zyxel IKE Command Injection (CVE-2023-28771)
+     Path: exploits/perimeter/zyxel/ike_cmd_injection_cve_2023_28771.py
+     OS command injection via IKE packet decoder. Pre-auth RCE. CVSS 9.8. Mirai botnet.
+     CVEs: CVE-2023-28771
+     Devices: perimeter
+  89. Zyxel USG FLEX/ATP Command Injection (CVE-2022-30525)
+     Path: exploits/perimeter/zyxel/usg_flex_cmd_injection_cve_2022_30525.py
+     Unauthenticated OS command injection in Zyxel USG FLEX 100(W)/200/500/700 and ATP series via ZTP interface. Affects ZLD 
+     CVEs: CVE-2022-30525
+     Devices: perimeter
 
-[ZTE] (4)
-------------------------------
-  121. ZTE F460 & F660 Backdoor RCE
-     Path: exploits/routers/zte/f460_f660_backdoor.py
-     Exploits ZTE F460 and F660 backdoor vulnerability that allows executing commands on operating system level.
-     Devices: ZTE F460, ZTE F660
-  122. ZTE ZXHN H108N Wifi Password Disclosure
-     Path: exploits/routers/zte/zxhn_h108n_wifi_password_disclosure.py
-     Module exploits ZTE ZXHN H108N WiFi Password Disclosure vulnerability that allows to retrieve password for wifi connecti
-     Devices: ZTE ZXHN H108N
-  123. ZTE ZXV10 RCE
-     Path: exploits/routers/zte/zxv10_rce.py
-     Exploits ZTE ZXV10 H108L remote code execution vulnerability that allows executing commands on operating system level.
-     Devices: ZTE ZXV10 H108L
-  124. ZTE ZXV10 W812N Information Disclosure
-     Path: exploits/routers/zte/zxv10_w812n.py
-     Exploits ZTE ZXV10 W812N information disclosure vulnerability that allows downloading configuration.
-     Devices: ZTE ZXV10 W812N V2
-
-[ZYXEL] (5)
-------------------------------
-  125. Zyxel Eir D1000 RCE
-     Path: exploits/routers/zyxel/d1000_rce.py
-     Module exploits Remote Command Execution vulnerability in Zyxel/Eir D1000 devices. If the target is vulnerable it allows
-     Devices: Zyxel EIR D1000
-  126. Zyxel Eir D1000 WiFi Password Disclosure
-     Path: exploits/routers/zyxel/d1000_wifi_password_disclosure.py
-     Module exploits WiFi Password Disclosure vulnerability in Zyxel/Eir D1000 devices. If the target is vulnerable it allows
-     Devices: Zyxel EIR D1000
-  127. Zyxel P660HN-T v1 RCE
-     Path: exploits/routers/zyxel/p660hn_t_v1_rce.py
-     Module exploits Remote Command Execution vulnerability in Zyxel P660HN-T v1 devices. If the target is vulnerable it allo
-     Devices: Zyxel P660HN-T v1
-  128. Zyxel P660HN-T v2 RCE
-     Path: exploits/routers/zyxel/p660hn_t_v2_rce.py
-     Module exploits Remote Command Execution vulnerability in Zyxel P660HN-T V2 devices. If the target is vulnerable it allo
-     Devices: Zyxel P660HN-T v2
-  129. Zyxel ZyWALL USG Extract Hashes
-     Path: exploits/routers/zyxel/zywall_usg_extract_hashes.py
-     Exploit implementation for ZyWall USG 20 Authentication Bypass In Configuration Import/Export. If the tharget is vulnera
-     Devices: ZyXEL ZyWALL USG-20, ZyXEL ZyWALL USG-20W, ZyXEL ZyWALL USG-50, ZyXEL ZyWALL USG-100, ZyXEL ZyWALL USG-200, ZyXEL ZyWALL USG-300, ZyXEL ZyWALL USG-1000, ZyXEL ZyWALL USG-1050
-
-CREDENTIAL MODULES (96)
+CREDENTIAL MODULES (28)
 ========================================
-
-[2WIRE] (3)
-------------------------------
-  1. 2Wire Router Default FTP Creds
-     Path: creds/routers/2wire/ftp_default_creds.py
-     Module performs dictionary attack against 2Wire Router FTP service. If valid credentials are found, they are displayed t
-     Devices: 2Wire Router
-  2. 2Wire Router Default SSH Creds
-     Path: creds/routers/2wire/ssh_default_creds.py
-     Module performs dictionary attack against 2Wire Router SSH service. If valid credentials are found, they are displayed t
-     Devices: 2Wire Router
-  3. 2Wire Router Default Telnet Creds
-     Path: creds/routers/2wire/telnet_default_creds.py
-     Module performs dictionary attack against Asmax Router Telnet service. If valid credentials are found, they are displaye
-     Devices: 2Wire Router
-
-[3COM] (3)
-------------------------------
-  4. 3Com Router Default FTP Creds
-     Path: creds/routers/3com/ftp_default_creds.py
-     Module performs dictionary attack against 3Com Router FTP service. If valid credentials are found, they are displayed to
-     Devices: 3Com Router
-  5. 3Com Router Default SSH Creds
-     Path: creds/routers/3com/ssh_default_creds.py
-     Module performs dictionary attack against 3Com Router SSH service. If valid credentials are found, they are displayed to
-     Devices: 3Com Router
-  6. 3Com Router Default Telnet Creds
-     Path: creds/routers/3com/telnet_default_creds.py
-     Module performs dictionary attack against 3Com Router Telnet service. If valid credentials are found, they are displayed
-     Devices: 3Com Router
-
-[ASMAX] (4)
-------------------------------
-  7. Asmax Router Default FTP Creds
-     Path: creds/routers/asmax/ftp_default_creds.py
-     Module performs dictionary attack against Asmax Router FTP service. If valid credentials are found, they are displayed t
-     Devices: Asmax Router
-  8. Asmax Router Default SSH Creds
-     Path: creds/routers/asmax/ssh_default_creds.py
-     Module performs dictionary attack against Asmax Router SSH service. If valid credentials are found, they are displayed t
-     Devices: Asmax Router
-  9. Asmax Router Default Telnet Creds
-     Path: creds/routers/asmax/telnet_default_creds.py
-     Module performs dictionary attack against Asmax Router Telnet service. If valid credentials are found, they are displaye
-     Devices: Asmax Router
-  10. Asmax Router Default Web Interface Creds - HTTP Auth
-     Path: creds/routers/asmax/webinterface_http_auth_default_creds.py
-     Module performs dictionary attack against Asmax Router web interface. If valid credentials are found, they are displayed
-     Devices: Asmax Router
-
-[ASUS] (3)
-------------------------------
-  11. Asus Router Default FTP Creds
-     Path: creds/routers/asus/ftp_default_creds.py
-     Module performs dictionary attack against Asus Router FTP service. If valid credentials are found, they are displayed to
-     Devices: Asus Router
-  12. Asus Router Default SSH Creds
-     Path: creds/routers/asus/ssh_default_creds.py
-     Module performs dictionary attack against Asus Router SSH service. If valid credentials are found, they are displayed to
-     Devices: Asus Router
-  13. Asus Router Default Telnet Creds
-     Path: creds/routers/asus/telnet_default_creds.py
-     Module performs dictionary attack against Asus Router Telnet service. If valid credentials are found, they are displayed
-     Devices: Asus Router
-
-[BELKIN] (3)
-------------------------------
-  14. Belkin Router Default FTP Creds
-     Path: creds/routers/belkin/ftp_default_creds.py
-     Module performs dictionary attack against Belkin Router FTP service. If valid credentials are found, they are displayed 
-     Devices: Belkin Router
-  15. Belkin Router Default SSH Creds
-     Path: creds/routers/belkin/ssh_default_creds.py
-     Module performs dictionary attack against Belkin Router SSH service. If valid credentials are found, they are displayed 
-     Devices: Belkin Router
-  16. Belkin Router Default Telnet Creds
-     Path: creds/routers/belkin/telnet_default_creds.py
-     Module performs dictionary attack against Belkin Router Telnet service. If valid credentials are found, they are display
-     Devices: Belkin Router
-
-[BHU] (3)
-------------------------------
-  17. Belkin Router Default FTP Creds
-     Path: creds/routers/bhu/ftp_default_creds.py
-     Module performs dictionary attack against Belkin Router FTP service. If valid credentials are found, they are displayed 
-     Devices: Belkin Router
-  18. Belkin Router Default SSH Creds
-     Path: creds/routers/bhu/ssh_default_creds.py
-     Module performs dictionary attack against Belkin Router SSH service. If valid credentials are found, they are displayed 
-     Devices: Belkin Router
-  19. Belkin Router Telnet Creds
-     Path: creds/routers/bhu/telnet_default_creds.py
-     Module performs dictioanry attack against Belkin Router Telnet service. If valid credentials are found, they are display
-     Devices: Belkin Router
-
-[BILLION] (3)
-------------------------------
-  20. Billion Router Default FTP Creds
-     Path: creds/routers/billion/ftp_default_creds.py
-     Module performs dictionary attack against Billion Router FTP service. If valid credentials are found, they are displayed
-     Devices: Billion Router
-  21. Billion Router Default SSH Creds
-     Path: creds/routers/billion/ssh_default_creds.py
-     Module performs dictionary attack against Billion Router SSH service. If valid credentials are found, they are displayed
-     Devices: Billion Router
-  22. Billion Router Default Telnet Creds
-     Path: creds/routers/billion/telnet_default_creds.py
-     Module performs dictionary attack against Billion Router Telnet service. If valid credentials are found, they are displa
-     Devices: Billion Router
 
 [CISCO] (3)
 ------------------------------
-  23. Cisco Router Default FTP Creds
-     Path: creds/routers/cisco/ftp_default_creds.py
+  1. Cisco Router Default FTP Creds
+     Path: creds/perimeter/cisco/ftp_default_creds.py
      Module performs dictionary attack against Cisco Router FTP service. If valid credentials are found, they are displayed t
      Devices: Cisco Router
-  24. Cisco Router Default SSH Creds
-     Path: creds/routers/cisco/ssh_default_creds.py
+  2. Cisco Router Default SSH Creds
+     Path: creds/perimeter/cisco/ssh_default_creds.py
      Module performs dictionary attack against Cisco Router SSH service. If valid credentials are found, they are displayed t
      Devices: Cisco Router
-  25. Cisco Router Default Telnet Creds
-     Path: creds/routers/cisco/telnet_default_creds.py
+  3. Cisco Router Default Telnet Creds
+     Path: creds/perimeter/cisco/telnet_default_creds.py
      Module performs dictionary attack against Cisco Router Telnet service. If valid credentials are found, they are displaye
      Devices: Cisco Router
 
-[COMTREND] (3)
-------------------------------
-  26. Comtrend Router Default FTP Creds
-     Path: creds/routers/comtrend/ftp_default_creds.py
-     Module performs dictionary attack against Comtrend Router FTP service. If valid credentials are found, they are displaye
-     Devices: Comtrend Router
-  27. Comtrend Router Default SSH Creds
-     Path: creds/routers/comtrend/ssh_default_creds.py
-     Module performs dictionary attack against Comtrend Router SSH service. If valid credentials are found, they are displaye
-     Devices: Comtrend Router
-  28. Comtrend Router Default Telnet Creds
-     Path: creds/routers/comtrend/telnet_default_creds.py
-     Module performs dictionary attack against Comtrend Router Telnet service. If valid credentials are found, they are displ
-     Devices: Comtrend Router
-
-[DLINK] (3)
-------------------------------
-  29. D-Link Router Default FTP Creds
-     Path: creds/routers/dlink/ftp_default_creds.py
-     Module performs dictionary attack against D-Link Router FTP service. If valid credentials are found, they are displayed 
-     Devices: D-Link Router
-  30. D-Link Router Default SSH Creds
-     Path: creds/routers/dlink/ssh_default_creds.py
-     Module performs dictionary attack against D-Link Router SSH service. If valid credentials are found, they are displayed 
-     Devices: D-Link Router
-  31. D-Link Router Default Telnet Creds
-     Path: creds/routers/dlink/telnet_default_creds.py
-     Module performs dictionary attack against D-Link Router Telnet service. If valid credentials are found, they are display
-     Devices: D-Link Router
-
 [FORTINET] (3)
 ------------------------------
-  32. Fortinet Router Default FTP Creds
-     Path: creds/routers/fortinet/ftp_default_creds.py
+  4. Fortinet Router Default FTP Creds
+     Path: creds/perimeter/fortinet/ftp_default_creds.py
      Module performs dictionary attack against Fortinet Router FTP service. If valid credentials are found, they are displaye
      Devices: Fortinet Router
-  33. Fortinet Router Default SSH Creds
-     Path: creds/routers/fortinet/ssh_default_creds.py
+  5. Fortinet Router Default SSH Creds
+     Path: creds/perimeter/fortinet/ssh_default_creds.py
      Module performs dictionary attack against Fortinet Router SSH service. If valid credentials are found, they are displaye
      Devices: Fortinet Router
-  34. Fortinet Router Default Telnet Creds
-     Path: creds/routers/fortinet/telnet_default_creds.py
+  6. Fortinet Router Default Telnet Creds
+     Path: creds/perimeter/fortinet/telnet_default_creds.py
      Module performs dictionary attack against Fortinet Router Telnet service. If valid credentials are found, they are displ
      Devices: Fortinet Router
 
 [FTP_BRUTEFORCE.PY] (1)
 ------------------------------
-  35. FTP Bruteforce
+  7. FTP Bruteforce
      Path: creds/generic/ftp_bruteforce.py
      Module performs bruteforce attack against FTP service.If valid credentials are found, the are displayed to the user.
      Devices: Multiple devices
 
 [FTP_DEFAULT.PY] (1)
 ------------------------------
-  36. FTP Default Creds
+  8. FTP Default Creds
      Path: creds/generic/ftp_default.py
      Module performs dictionary attack with default credentials against FTP service.If valid credentials are found, the are d
      Devices: Multiple devices
 
 [HTTP_BASIC_DIGEST_BRUTEFORCE.PY] (1)
 ------------------------------
-  37. HTTP Basic/Digest Bruteforce
+  9. HTTP Basic/Digest Bruteforce
      Path: creds/generic/http_basic_digest_bruteforce.py
      Module performs bruteforce attack against HTTP Basic/Digest Auth service. If valid credentials are found, they are displ
      Devices: Multiple devices
 
 [HTTP_BASIC_DIGEST_DEFAULT.PY] (1)
 ------------------------------
-  38. HTTP Basic/Digest Default Creds
+  10. HTTP Basic/Digest Default Creds
      Path: creds/generic/http_basic_digest_default.py
      Module performs dictionary attack with default credentials against HTTP Basic/Digest Auth service. If valid credentials 
      Devices: Multiple devices
 
 [HTTP_MULTI_AUTH_DEFAULT.PY] (1)
 ------------------------------
-  39. HTTP/HTTPS Multi-Auth Default Creds
+  11. HTTP/HTTPS Multi-Auth Default Creds
      Path: creds/generic/http_multi_auth_default.py
      Module validates multiple HTTP auth methods (basic, digest, bearer, custom headers, form).
      Devices: Routers, Switches, TAPs, FW, NGFW
 
 [HTTP_WEB_FORM_BRUTEFORCE.PY] (1)
 ------------------------------
-  40. HTTP Web Form Bruteforce (Hydra-style)
+  12. HTTP Web Form Bruteforce (Hydra-style)
      Path: creds/generic/http_web_form_bruteforce.py
      Dictionary attack against HTTP/HTTPS login forms. Set failure/success body substrings, status codes, or Location fragmen
      Devices: Routers, Switches, Gateways, CPE
 
-[HUAWEI] (3)
-------------------------------
-  41. Huawei Router Default FTP Creds
-     Path: creds/routers/huawei/ftp_default_creds.py
-     Module performs dictionary attack against Huawei Router FTP service. If valid credentials are found, they are displayed 
-     Devices: Huawei Router
-  42. Huawei Router Default SSH Creds
-     Path: creds/routers/huawei/ssh_default_creds.py
-     Module performs dictionary attack against Huawei Router SSH service. If valid credentials are found, they are displayed 
-     Devices: Huawei Router
-  43. Huawei Router Default Telnet Creds
-     Path: creds/routers/huawei/telnet_default_creds.py
-     Module performs dictionary attack against Huawei Router Telnet service. If valid credentials are found, they are display
-     Devices: Huawei Router
-
 [IPFIRE] (3)
 ------------------------------
-  44. IPFire Router Default FTP Creds
-     Path: creds/routers/ipfire/ftp_default_creds.py
+  13. IPFire Router Default FTP Creds
+     Path: creds/perimeter/ipfire/ftp_default_creds.py
      Module performs dictionary attack against IPFire Router FTP service. If valid credentials are found, they are displayed 
      Devices: IPFire Router
-  45. IPFire Router Default SSH Creds
-     Path: creds/routers/ipfire/ssh_default_creds.py
+  14. IPFire Router Default SSH Creds
+     Path: creds/perimeter/ipfire/ssh_default_creds.py
      Module performs dictionary attack against IPFire Router SSH service. If valid credentials are found, they are displayed 
      Devices: IPFire Router
-  46. IPFire Router Default Telnet Creds
-     Path: creds/routers/ipfire/telnet_default_creds.py
+  15. IPFire Router Default Telnet Creds
+     Path: creds/perimeter/ipfire/telnet_default_creds.py
      Module performs dictionary attack against IPFire Router Telnet service. If valid credentials are found, they are display
      Devices: IPFire Router
 
 [JUNIPER] (3)
 ------------------------------
-  47. Juniper Router Default FTP Creds
-     Path: creds/routers/juniper/ftp_default_creds.py
+  16. Juniper Router Default FTP Creds
+     Path: creds/perimeter/juniper/ftp_default_creds.py
      Module performs dictionary attack against Juniper Router FTP service. If valid credentials are foundm they are displayed
      Devices: Juniper Router
-  48. Juniper Router Default SSH Creds
-     Path: creds/routers/juniper/ssh_default_creds.py
+  17. Juniper Router Default SSH Creds
+     Path: creds/perimeter/juniper/ssh_default_creds.py
      Module performs dictionary attack against Juniper Router SSH service. If valid credentials are foundm they are displayed
      Devices: Juniper Router
-  49. Juniper Router Default Telnet Creds
-     Path: creds/routers/juniper/telnet_default_creds.py
+  18. Juniper Router Default Telnet Creds
+     Path: creds/perimeter/juniper/telnet_default_creds.py
      Module performs dictionary attack against Juniper Router Telnet service. If valid credentials are foundm they are displa
      Devices: Juniper Router
 
-[LINKSYS] (3)
-------------------------------
-  50. Linksys Router Default FTP Creds
-     Path: creds/routers/linksys/ftp_default_creds.py
-     Module performs dictionary attack against Linksys Router FTP service.If valid credentials are found, they are displayed 
-     Devices: Linksys Router
-  51. Linksys Router Default SSH Creds
-     Path: creds/routers/linksys/ssh_default_creds.py
-     Module performs dictionary attack against Linksys Router SSH service.If valid credentials are found, they are displayed 
-     Devices: Linksys Router
-  52. Linksys Router Default Telnet Creds
-     Path: creds/routers/linksys/telnet_default_creds.py
-     Module performs dictionary attack against Linksys Router Telnet service.If valid credentials are found, they are display
-     Devices: Linksys Router
-
-[MIKROTIK] (4)
-------------------------------
-  53. Mikrotik Default Creds - API ROS
-     Path: creds/routers/mikrotik/api_ros_default_creds.py
-     Module performs dictionary attack against Mikrotik API and API-SSL. If valid credentials are found they are displayed to
-     Devices: Mikrotik Router
-  54. Mikrotik Router Default FTP Creds
-     Path: creds/routers/mikrotik/ftp_default_creds.py
-     Module performs dictionary attack against Mikrotik Router FTP service.If valid credentials are found they are displayed 
-     Devices: Mikrotik Router
-  55. Mikrotik Router Default SSH Creds
-     Path: creds/routers/mikrotik/ssh_default_creds.py
-     Module performs dictionary attack against Mikrotik Router SSH service.If valid credentials are found they are displayed 
-     Devices: Mikrotik Router
-  56. Mikrotik Router Default Telnet Creds
-     Path: creds/routers/mikrotik/telnet_default_creds.py
-     Module performs dictionary attack against Mikrotik Router Telnet service.If valid credentials are found they are display
-     Devices: Mikrotik Router
-
-[MOVISTAR] (3)
-------------------------------
-  57. Movistar Router Default FTP Creds
-     Path: creds/routers/movistar/ftp_default_creds.py
-     Module performs dictionary attack against Movistar Router FTP service.If valid credentials are found, they are displayed
-     Devices: Movistar Router
-  58. Movistar Router Default SSH Creds
-     Path: creds/routers/movistar/ssh_default_creds.py
-     Module performs dictionary attack against Movistar Router SSH service.If valid credentials are found, they are displayed
-     Devices: Movistar Router
-  59. Movistar Router Default Telnet Creds
-     Path: creds/routers/movistar/telnet_default_creds.py
-     Module performs dictionary attack against Movistar Router Telnet service.If valid credentials are found, they are displa
-     Devices: Movistar Router
-
-[NETCORE] (3)
-------------------------------
-  60. Netcore Router Default FTP Creds
-     Path: creds/routers/netcore/ftp_default_creds.py
-     Module performs dictionary attack against Netcore Router FTP service.If valid credentials are found, they are displayed 
-     Devices: Netcore Router
-  61. Netcore Router Default SSH Creds
-     Path: creds/routers/netcore/ssh_default_creds.py
-     Module performs dictionary attack against Netcore Router SSH service.If valid credentials are found, they are displayed 
-     Devices: Netcore Router
-  62. Netcore Router Default Telnet Creds
-     Path: creds/routers/netcore/telnet_default_creds.py
-     Module performs dictionary attack against Netcore Router Telnet service.If valid credentials are found, they are display
-     Devices: Netcore Router
-
-[NETGEAR] (3)
-------------------------------
-  63. Netgear Router Default FTP Creds
-     Path: creds/routers/netgear/ftp_default_creds.py
-     Module performs dictionary attack against Netgear Router FTP service. If valid credentials are found, they are displayed
-     Devices: Netgear Router
-  64. Netgear Router Default SSH Creds
-     Path: creds/routers/netgear/ssh_default_creds.py
-     Module performs dictionary attack against Netgear Router SSH service. If valid credentials are found, they are displayed
-     Devices: Netgear Router
-  65. Netgear Router Default Telnet Creds
-     Path: creds/routers/netgear/telnet_default_creds.py
-     Module performs dictionary attack against Netgear Router Telnet service. If valid credentials are found, they are displa
-     Devices: Netgear Router
-
-[NETSYS] (3)
-------------------------------
-  66. Netsys Router Default FTP Creds
-     Path: creds/routers/netsys/ftp_default_creds.py
-     Module performs dictionary attack against Netsys Router FTP service. If valid credentials are found, they are displayed 
-     Devices: Netsys Router
-  67. Netsys Router Default SSH Creds
-     Path: creds/routers/netsys/ssh_default_creds.py
-     Module performs dictionary attack against Netsys Router SSH service. If valid credentials are found, they are displayed 
-     Devices: Netsys Router
-  68. Netsys Router Default Telnet Creds
-     Path: creds/routers/netsys/telnet_default_creds.py
-     Module performs dictionary attack against Netsys Router Telnet service. If valid credentials are found, they are display
-     Devices: Netsys Router
-
 [PFSENSE] (2)
 ------------------------------
-  69. PFSense Router Default Web Interface Creds - HTTP Form
-     Path: creds/routers/pfsense/webinterface_http_form_default_creds.py
+  19. PFSense Router Default Web Interface Creds - HTTP Form
+     Path: creds/perimeter/pfsense/webinterface_http_form_default_creds.py
      Module performs dictionary attack against PFSense Router web interface. If valid credentials are found, they are display
      Devices: PFSense Router
-  70. PFSense Router SSH Creds
-     Path: creds/routers/pfsense/ssh_default_creds.py
+  20. PFSense Router SSH Creds
+     Path: creds/perimeter/pfsense/ssh_default_creds.py
      Module performs dictionary attack against PFSense Router SSH service. If valid credentials are found, they are displayed
      Devices: PFSense Router
 
 [SFTP_BRUTEFORCE.PY] (1)
 ------------------------------
-  71. SFTP Bruteforce
+  21. SFTP Bruteforce
      Path: creds/generic/sftp_bruteforce.py
      Module performs bruteforce attack against SFTP service. If valid credentials are found, they are displayed to the user.
      Devices: Multiple devices
 
 [SFTP_DEFAULT.PY] (1)
 ------------------------------
-  72. SFTP Default Creds
+  22. SFTP Default Creds
      Path: creds/generic/sftp_default.py
      Module performs dictionary attack with default credentials against SFTP service. If valid credentials are found, they ar
      Devices: Multiple devices
 
 [SNMP_BRUTEFORCE.PY] (1)
 ------------------------------
-  73. SNMP Bruteforce
+  23. SNMP Bruteforce
      Path: creds/generic/snmp_bruteforce.py
      Module performs bruteforce attack against SNMP service. If valid community string is found, it is displayed to the user
      Devices: Multiple devices
 
 [SNMPV3_DEFAULT.PY] (1)
 ------------------------------
-  74. SNMPv3 Default Creds
+  24. SNMPv3 Default Creds
      Path: creds/generic/snmpv3_default.py
      Module validates default SNMPv3 credentials against target service.
      Devices: Routers, Switches, TAPs, FW, NGFW
 
 [SSH_BRUTEFORCE.PY] (1)
 ------------------------------
-  75. SSH Bruteforce
+  25. SSH Bruteforce
      Path: creds/generic/ssh_bruteforce.py
      Module performs bruteforce attack against SSH service. If valid credentials are found, they are displayed to the user.
      Devices: Multiple devices
 
 [SSH_DEFAULT.PY] (1)
 ------------------------------
-  76. SSH Default Creds
+  26. SSH Default Creds
      Path: creds/generic/ssh_default.py
      Module performs bruteforce attack against SSH service. If valid credentials are found, they are displayed to the user.
      Devices: Multiple devices
 
-[TECHNICOLOR] (3)
-------------------------------
-  77. Technicolor Router Default FTP Creds
-     Path: creds/routers/technicolor/ftp_default_creds.py
-     Module performs dictionary attack against Technicolor Router FTP service. If valid credentials are found, they are displ
-     Devices: Technicolor Router
-  78. Technicolor Router Default SSH Creds
-     Path: creds/routers/technicolor/ssh_default_creds.py
-     Module performs dictionary attack against Technicolor Router SSH service. If valid credentials are found, they are displ
-     Devices: Technicolor Router
-  79. Technicolor Router Default Telnet Creds
-     Path: creds/routers/technicolor/telnet_default_creds.py
-     Module performs dictionary attack against Technicolor Router Telnet service. If valid credentials are found, they are di
-     Devices: Technicolor Router
-
 [TELNET_BRUTEFORCE.PY] (1)
 ------------------------------
-  80. Telnet Bruteforce
+  27. Telnet Bruteforce
      Path: creds/generic/telnet_bruteforce.py
      Module performs bruteforce attack against Telnet service. If valid credentials are found, they are displayed to the user
      Devices: Multiple devices
 
 [TELNET_DEFAULT.PY] (1)
 ------------------------------
-  81. Telnet Default Creds
+  28. Telnet Default Creds
      Path: creds/generic/telnet_default.py
      Module performs dictionary attack with default credentials against Telnet service. If valid credentials are found, they 
      Devices: Multiple devices
 
-[THOMSON] (3)
-------------------------------
-  82. Thomson Router Default FTP Creds
-     Path: creds/routers/thomson/ftp_default_creds.py
-     Module performs dictionary attack against Thomson Router FTP service. If valid credentials are found, they are displayed
-     Devices: Thomson Router
-  83. Thomson Router Default SSH Creds
-     Path: creds/routers/thomson/ssh_default_creds.py
-     Module performs dictionary attack against Thomson Router SSH service. If valid credentials are found, they are displayed
-     Devices: Thomson Router
-  84. Thomson Router Default Telnet Creds
-     Path: creds/routers/thomson/telnet_default_creds.py
-     Module performs dictionary attack against Thomson Router Telnet service. If valid credentials are found, they are displa
-     Devices: Thomson Router
-
-[TPLINK] (3)
-------------------------------
-  85. TP-Link Router Default FTP Creds
-     Path: creds/routers/tplink/ftp_default_creds.py
-     Module performs dictionary attack against TP-Link Router FTP service. If valid credentials are found, they are displayed
-     Devices: TP-Link Router
-  86. TP-Link Router Default SSH Creds
-     Path: creds/routers/tplink/ssh_default_creds.py
-     Module performs dictionary attack against TP-Link Router SSH service. If valid credentials are found, they are displayed
-     Devices: TP-Link Router
-  87. TP-Link Router Default Telnet Creds
-     Path: creds/routers/tplink/telnet_default_creds.py
-     Module performs dictionary attack against TP-Link Router Telnet service. If valid credentials are found, they are displa
-     Devices: TP-Link Router
-
-[UBIQUITI] (3)
-------------------------------
-  88. Ubiquiti Router Default FTP Creds
-     Path: creds/routers/ubiquiti/ftp_default_creds.py
-     Module performs dictionary attack against Ubiquiti Router FTP service. If valid credentials are found, they are displaye
-     Devices: Ubiquiti Router
-  89. Ubiquiti Router Default SSH Creds
-     Path: creds/routers/ubiquiti/ssh_default_creds.py
-     Module performs dictionary attack against Ubiquiti Router SSH service. If valid credentials are found, they are displaye
-     Devices: Ubiquiti Router
-  90. Ubiquiti Router Default Telnet Creds
-     Path: creds/routers/ubiquiti/telnet_default_creds.py
-     Module performs dictionary attack against Ubiquiti Router Telnet service. If valid credentials are found, they are displ
-     Devices: Ubiquiti Router
-
-[ZTE] (3)
-------------------------------
-  91. ZTE Router Default FTP Creds
-     Path: creds/routers/zte/ftp_default_creds.py
-     Module performs dictioanry attack against ZTE Router FTP service. If valid credentials are found, they are displayed to 
-     Devices: ZTE Router
-  92. ZTE Router Default SSH Creds
-     Path: creds/routers/zte/ssh_default_creds.py
-     Module performs dictionary attack against ZTE Router SSH service. If valid credentials are found, they are displayed to 
-     Devices: ZTE Router
-  93. ZTE Router Default Telnet Creds
-     Path: creds/routers/zte/telnet_default_creds.py
-     Module performs dictionary attack against ZTE Router Telnet service. If valid credentials are found, they are displayed 
-     Devices: ZTE Router
-
-[ZYXEL] (3)
-------------------------------
-  94. Zyxel Router Default FTP Creds
-     Path: creds/routers/zyxel/ftp_default_creds.py
-     Module performs dictionary attack against Zyxel Router FTP service. If valid credentials are found, they are displayed t
-     Devices: Zyxel Router
-  95. Zyxel Router Default SSH Creds
-     Path: creds/routers/zyxel/ssh_default_creds.py
-     Module performs dictionary attack against Zyxel Router SSH service. If valid credentials are found, they are displayed t
-     Devices: Zyxel Router
-  96. Zyxel Router Default Telnet Creds
-     Path: creds/routers/zyxel/telnet_default_creds.py
-     Module performs dictionary attack against Zyxel Router Telnet service. If valid credentials are found, they are displaye
-     Devices: Zyxel Router
-
-SCANNERS (6)
+SCANNERS (3)
 ========================================
 
 [AUTOPWN.PY] (1)
@@ -1219,132 +742,64 @@ SCANNERS (6)
   1. AutoPwn
      Path: scanners/autopwn.py
      Module scans for vulnerabilities and weaknesses. Supports timing templates T0..T5 (default: balanced/T3).
-     Devices: Routers, Switches, TAPs, FW, NGFW
+     Devices: FW, NGFW, UTM, WAF, SSL-VPN, NAC, ELB
 
-[MISC] (2)
+[GENERIC] (1)
 ------------------------------
   2. Misc Scanner
-     Path: scanners/misc/misc_scan.py
-     Module that scans for misc devices vulnerablities and weaknesses.
+     Path: scanners/generic/misc_scan.py
+     Module that scans for generic device vulnerabilities and weaknesses.
      Devices: Misc Device
-  3. SOHO Exploit Catalog (local HTTP)
-     Path: scanners/misc/soho_exploit_catalog_server.py
-     Serves the embedded SOHO router exploit catalog (HTML + includes/scripts.js) over HTTP so browser one-click actions reso
-     Devices: SOHO routers / CPEs (catalog scope)
 
-[ROUTERS] (3)
+[VPN] (1)
 ------------------------------
-  4. FortiGate SSL-VPN / Web CVE Correlation Scan
-     Path: scanners/routers/fortigate_sslvpn_scan.py
+  3. FortiGate SSL-VPN / Web CVE Correlation Scan
+     Path: scanners/vpn/fortinet/fortigate_sslvpn_scan.py
      Fetches common FortiOS SSL-VPN paths (/remote/login, etc.), extracts version hints when present, and lists matching CVEs
      CVEs: CVE-2018-13379, CVE-2022-40684, CVE-2023-27997, CVE-2024-21762, CVE-2025-59718
      Devices: Fortinet FortiGate / FortiOS SSL-VPN
-  5. HooToo Scanner
-     Path: scanners/routers/hootoo_scan.py
-     Scanner module for HooToo routers
-     Devices: HooToo TripMate
-  6. Router Scanner
-     Path: scanners/routers/router_scan.py
-     Module that scans for routers vulnerablities and weaknesses.
-     Devices: Router
 
-GENERIC MODULES (20)
+GENERIC MODULES (7)
 ========================================
-
-[BLUETOOTH] (3)
-------------------------------
-  1. Bluetooth LE Enumerate
-     Path: generic/bluetooth/btle_enumerate.py
-     Enumerating services and characteristics of a given Bluetooth Low Energy devices.
-  2. Bluetooth LE Scan
-     Path: generic/bluetooth/btle_scan.py
-     Scans for Bluetooth Low Energy devices.
-  3. Bluetooth LE Write
-     Path: generic/bluetooth/btle_write.py
-     Writes data to target Bluetooth Low Energy device to given characteristic.
 
 [CVE] (1)
 ------------------------------
-  4. CVE Lookup by Banner / Vendor / Product
+  1. CVE Lookup by Banner / Vendor / Product
      Path: generic/cve/cve_lookup.py
      Queries the embedded CVE database for known vulnerabilities matching a target's vendor, product, version or raw banner. 
      Devices: Any — database covers routers, switches, firewalls, NGFW in scope
 
-[EXTERNAL] (4)
+[EXTERNAL] (3)
 ------------------------------
-  5. ExploitDB embedded lookup (CSV)
-     Path: generic/external/exploitdb_embedded_lookup.py
-     Searches files_exploits.csv in the bundled exploit-database__exploitdb tree (arsenal/pocs/integrated_modules). No 
-     Devices: Research / catalog
-  6. Metasploit Console Bridge
+  2. Metasploit Console Bridge
      Path: generic/external/metasploit_console_bridge.py
      Invokes local msfconsole with 'use <module>; setg RHOSTS; …; check|run'. MSF modules and license remain under Rapid7/BSD
      Devices: Any (depends on chosen Metasploit module)
-  7. Metasploit Ruby Module Metadata (read-only)
+  3. Metasploit Ruby Module Metadata (read-only)
      Path: generic/external/metasploit_rb_inspect.py
      Loads a .rb path from your Metasploit tree and prints Name/Author/References heuristics. Does not run Ruby or MSF; origi
      Devices: Documentation
-  8. FirewallXPL-Forge Bridge
+  4. MikrotikAPI-BF Bridge
      Path: generic/external/mikrotikapi_bf_bridge.py
-     Runs FirewallXPL-Forge (https://github.com/mrhenrike/FirewallXPL-Forge) via subprocess. Set script_path to your repo's mikroti
+     Runs MikrotikAPI-BF (https://github.com/mrhenrike/MikrotikAPI-BF) via subprocess. Set script_path to your repo's mikroti
      Devices: MikroTik RouterOS
-
-[PCAP] (9)
-------------------------------
-  9. PCAP AP & Station Mapper
-     Path: generic/pcap/pcap_ap_station_mapper.py
-     Offline analysis of PCAP/PCAPNG captures to enumerate access points (BSSID, SSID, channel, encryption) and client statio
-     Devices: Any 802.11 wireless capture
-  10. PCAP Offline Credential Sniffer
-     Path: generic/pcap/pcap_credential_sniffer.py
-     Offline extraction of cleartext credentials from PCAP/PCAPNG captures. Detects HTTP Basic/Form auth, FTP USER/PASS, Teln
-     Devices: Any network capture with cleartext protocols
-  11. PCAP Offline EAP/WPE Credential Harvester
-     Path: generic/pcap/pcap_wpe_harvest.py
-     Extracts EAP identities and challenge-response pairs from 802.1X authentication captures (WPA-Enterprise). Supports EAP-
-     Devices: Any WPA-Enterprise / 802.1X network capture
-  12. PCAP Offline PMKID Attack (WPA/WPA2 Clientless)
-     Path: generic/pcap/pcap_pmkid_attack.py
-     Extracts PMKID from EAPOL message 1 for clientless WPA/WPA2 offline attacks. No full 4-way handshake required. Outputs h
-     Devices: Any WPA/WPA2-PSK network (most modern APs include PMKID)
-  13. PCAP Offline TKIP/Michael Attack Analysis
-     Path: generic/pcap/pcap_tkip_downgrade.py
-     Analyzes PCAP captures for TKIP vulnerabilities including Beck-Tews (QoS injection), Ohigashi-Morii (man-in-the-middle),
-     Devices: Any WPA-TKIP or WPA2-TKIP mixed-mode network capture
-  14. PCAP Offline WEP Key Recovery
-     Path: generic/pcap/pcap_wep_crack.py
-     Extracts WEP IVs from PCAP captures and runs offline statistical key recovery using aircrack-ng (FMS/PTW/KoreK). Reports
-     Devices: Any WEP-encrypted 802.11 network capture
-  15. PCAP Offline WPA/WPA2 Dictionary Attack
-     Path: generic/pcap/pcap_offline_wpa_crack.py
-     Runs an offline dictionary attack against WPA/WPA2 handshakes captured in PCAP files. Supports aircrack-ng (default) and
-     Devices: Any WPA/WPA2 PSK network (captured handshake required)
-  16. PCAP Offline WPA3 Dragonblood Analysis
-     Path: generic/pcap/pcap_dragonblood.py
-     Analyzes WPA3 SAE (Dragonfly) handshakes in PCAP captures for Dragonblood vulnerabilities: CVE-2019-9494 (timing side-ch
-     CVEs: CVE-2019-9494, CVE-2019-9496
-     Devices: Any WPA3-SAE or WPA3-Transition mode network capture
-  17. PCAP WPA/WPA2 Handshake Extractor
-     Path: generic/pcap/pcap_handshake_extractor.py
-     Offline extraction of EAPOL 4-way handshakes from PCAP/PCAPNG captures. Exports usable handshakes to individual PCAP fil
-     Devices: Any 802.11 WPA/WPA2 wireless capture
 
 [SNMP] (1)
 ------------------------------
-  18. SNMP Trap Listener
+  5. SNMP Trap Listener
      Path: generic/snmp/snmp_trap_listener.py
      Operational validation module for SNMP trap reception over UDP.
      Devices: Routers, Switches, TAPs, FW, NGFW
 
 [UPNP] (1)
 ------------------------------
-  19. SSDP M-SEARCH Info Discovery
+  6. SSDP M-SEARCH Info Discovery
      Path: generic/upnp/ssdp_msearch.py
      Sends M-SEARCH request to target and retrieve information from UPnP enabled systems.
 
 [WORDLIST] (1)
 ------------------------------
-  20. Interactive Wordlist Generator
+  7. Interactive Wordlist Generator
      Path: generic/wordlist/wordlist_generator.py
      Generates custom password and username wordlists based on target profile (corporate or personal). Applies mutation rules
      Devices: Any target — wordlist generation is target-independent
@@ -1526,40 +981,85 @@ PAYLOADS (32)
      Path: payloads/x86/reverse_tcp.py
      Creates interactive tcp reverse shell for X86 architecture.
 
-CVE MASTER LIST (32)
+CVE MASTER LIST (77)
 ========================================
-  1. CVE-2001-0537 -> exploits/routers/cisco/ios_http_authorization_bypass.py
-  2. CVE-2008-0403 -> exploits/routers/belkin/g_plus_info_disclosure.py
-  3. CVE-2011-3315 -> exploits/routers/cisco/unified_multi_path_traversal.py
-  4. CVE-2012-2765 -> exploits/routers/belkin/g_n150_password_disclosure.py
-  5. CVE-2013-3568 -> exploits/routers/linksys/wrt100_110_rce.py
-  6. CVE-2013-7030 -> exploits/routers/cisco/ucm_info_disclosure.py
-  7. CVE-2014-1635 -> exploits/routers/belkin/n750_rce.py
-  8. CVE-2014-6271 -> exploits/generic/shellshock.py
-  9. CVE-2014-6278 -> exploits/generic/shellshock.py
-  10. CVE-2014-7169 -> exploits/generic/shellshock.py
-  11. CVE-2014-8243 -> exploits/routers/linksys/smartwifi_password_disclosure.py
-  12. CVE-2014-9222 -> exploits/routers/multi/misfortune_cookie.py
-  13. CVE-2016-6433 -> exploits/routers/cisco/firepower_management60_rce.py
-  14. CVE-2016-6435 -> exploits/routers/cisco/firepower_management60_path_traversal.py
-  15. CVE-2017-11519 -> exploits/routers/tplink/archer_c9_admin_password_reset.py
-  16. CVE-2017-17215 -> exploits/routers/huawei/hg532_rce.py
-  17. CVE-2017-3881 -> exploits/routers/cisco/catalyst_2960_rocem.py
-  18. CVE-2017-5521 -> exploits/routers/netgear/multi_password_disclosure-2017-5521.py
-  19. CVE-2017-6077 -> exploits/routers/netgear/dgn2200_ping_cgi_rce.py
-  20. CVE-2017-6334 -> exploits/routers/netgear/dgn2200_dnslookup_cgi_rce.py
-  21. CVE-2017-7240 -> exploits/misc/miele/pg8528_path_traversal.py
-  22. CVE-2018-13379 -> scanners/routers/fortigate_sslvpn_scan.py
-  23. CVE-2018-5999 -> exploits/routers/asus/asuswrt_lan_rce.py
-  24. CVE-2018-6000 -> exploits/routers/asus/asuswrt_lan_rce.py
-  25. CVE-2019-1652 -> exploits/routers/cisco/rv320_command_injection.py
-  26. CVE-2019-16920 -> exploits/routers/dlink/dir_655_866_652_rce.py
-  27. CVE-2019-9494 -> generic/pcap/pcap_dragonblood.py
-  28. CVE-2019-9496 -> generic/pcap/pcap_dragonblood.py
-  29. CVE-2022-40684 -> scanners/routers/fortigate_sslvpn_scan.py
-  30. CVE-2023-27997 -> scanners/routers/fortigate_sslvpn_scan.py
-  31. CVE-2024-21762 -> scanners/routers/fortigate_sslvpn_scan.py
-  32. CVE-2025-59718 -> scanners/routers/fortigate_sslvpn_scan.py
+  1. CVE-2011-3315 -> exploits/perimeter/cisco/unified_multi_path_traversal.py
+  2. CVE-2013-7030 -> exploits/perimeter/cisco/ucm_info_disclosure.py
+  3. CVE-2014-3413 -> exploits/perimeter/fortinet/fortigate_os_backdoor.py
+  4. CVE-2014-6271 -> exploits/perimeter/generic/shellshock.py, exploits/perimeter/sonicwall/sslvpn_shellshock_rce_visualdoor.py
+  5. CVE-2014-6278 -> exploits/perimeter/generic/shellshock.py
+  6. CVE-2014-7169 -> exploits/perimeter/generic/shellshock.py
+  7. CVE-2016-6433 -> exploits/perimeter/cisco/firepower_management60_rce.py
+  8. CVE-2016-6435 -> exploits/perimeter/cisco/firepower_management60_path_traversal.py
+  9. CVE-2017-6026 -> exploits/perimeter/schneider/connexium_ssh_hardcoded_cve_2017_6026.py
+  10. CVE-2018-0101 -> exploits/perimeter/cisco/isa3000_asa_rce_cve_2018_0101.py
+  11. CVE-2018-13379 -> exploits/perimeter/fortinet/fortios_sslvpn_path_traversal_cve_2018_13379.py, scanners/vpn/fortinet/fortigate_sslvpn_scan.py
+  12. CVE-2019-11510 -> exploits/vpn/pulsesecure/sslvpn_arbitrary_file_read_cve_2019_11510.py
+  13. CVE-2019-19781 -> exploits/vpn/citrix/adc_rce_cve_2019_19781.py
+  14. CVE-2020-12271 -> exploits/perimeter/sophos/xg_sqli_asnarok_cve_2020_12271.py
+  15. CVE-2020-14500 -> exploits/vpn/secomea/gatemanager_rce_cve_2020_14500.py
+  16. CVE-2020-2021 -> exploits/perimeter/paloalto/panos_saml_auth_bypass_cve_2020_2021.py
+  17. CVE-2020-3452 -> exploits/perimeter/cisco/asa_ftd_path_traversal_cve_2020_3452.py
+  18. CVE-2020-5135 -> exploits/perimeter/sonicwall/sonicos_vpn_buffer_overflow_cve_2020_5135.py
+  19. CVE-2020-5902 -> exploits/lb/f5/bigip_tmui_lfi_cve_2020_5902.py
+  20. CVE-2020-6994 -> exploits/perimeter/hirschmann/eagle_auth_bypass_cve_2020_6994.py
+  21. CVE-2021-20016 -> exploits/perimeter/sonicwall/sma100_sqli_cve_2021_20016.py
+  22. CVE-2021-20034 -> exploits/perimeter/sonicwall/sma_password_reset_cve_2021_20034.py
+  23. CVE-2021-22986 -> exploits/lb/f5/bigip_icontrol_rest_rce_cve_2021_22986.py
+  24. CVE-2022-1040 -> exploits/perimeter/sophos/xg_auth_bypass_cve_2022_1040.py
+  25. CVE-2022-1388 -> exploits/lb/f5/bigip_icontrol_auth_bypass_cve_2022_1388.py
+  26. CVE-2022-23176 -> exploits/perimeter/watchguard/firebox_cyclops_blink_cve_2022_23176.py
+  27. CVE-2022-30525 -> exploits/perimeter/zyxel/usg_flex_cmd_injection_cve_2022_30525.py
+  28. CVE-2022-31814 -> exploits/perimeter/pfsense/pfblockerng_rce_cve_2022_31814.py
+  29. CVE-2022-32257 -> exploits/perimeter/siemens/sinema_rc_path_traversal_cve_2022_32257.py
+  30. CVE-2022-3236 -> exploits/perimeter/sophos/firewall_code_injection_cve_2022_3236.py
+  31. CVE-2022-40684 -> exploits/perimeter/fortinet/fortios_auth_bypass_cve_2022_40684.py, scanners/vpn/fortinet/fortigate_sslvpn_scan.py
+  32. CVE-2022-42475 -> exploits/perimeter/fortinet/fortios_sslvpn_heap_rce_cve_2022_42475.py
+  33. CVE-2023-20198 -> exploits/perimeter/cisco/ios_xe_webui_privesc_cve_2023_20198.py
+  34. CVE-2023-20269 -> exploits/perimeter/cisco/asa_vpn_bruteforce_cve_2023_20269.py
+  35. CVE-2023-24845 -> exploits/perimeter/siemens/ruggedcom_web_rce_cve_2023_24845.py
+  36. CVE-2023-25594 -> exploits/nac/aruba/clearpass_unauth_rce_cve_2023_25594.py
+  37. CVE-2023-27100 -> exploits/perimeter/pfsense/antibruteforce_bypass_cve_2023_27100.py
+  38. CVE-2023-27997 -> exploits/perimeter/fortinet/fortios_sslvpn_preauth_rce_cve_2023_27997.py, scanners/vpn/fortinet/fortigate_sslvpn_scan.py
+  39. CVE-2023-2868 -> exploits/waf/barracuda/esg_cmd_injection_cve_2023_2868.py
+  40. CVE-2023-28771 -> exploits/perimeter/zyxel/ike_cmd_injection_cve_2023_28771.py
+  41. CVE-2023-33009 -> exploits/perimeter/zyxel/buffer_overflow_cve_2023_33009.py
+  42. CVE-2023-3519 -> exploits/vpn/citrix/netscaler_rce_cve_2023_3519.py
+  43. CVE-2023-36845 -> exploits/perimeter/juniper/jweb_php_rce_cve_2023_36845.py
+  44. CVE-2023-42326 -> exploits/perimeter/pfsense/interfaces_cmd_injection_cve_2023_42326.py
+  45. CVE-2023-44373 -> exploits/perimeter/siemens/scalance_cmd_injection_cve_2023_44373.py
+  46. CVE-2023-46747 -> exploits/lb/f5/bigip_config_rce_cve_2023_46747.py
+  47. CVE-2023-46805 -> exploits/vpn/ivanti/connect_secure_auth_rce_cve_2023_46805.py
+  48. CVE-2023-48788 -> exploits/perimeter/fortinet/forticlientems_sqli_rce_cve_2023_48788.py
+  49. CVE-2023-4966 -> exploits/vpn/citrix/netscaler_citrixbleed_cve_2023_4966.py
+  50. CVE-2023-7102 -> exploits/waf/barracuda/esg_spreadsheet_rce_cve_2023_7102.py
+  51. CVE-2024-0012 -> exploits/perimeter/paloalto/panos_mgmt_auth_bypass_cve_2024_0012.py, exploits/perimeter/paloalto/panos_privesc_cve_2024_9474.py
+  52. CVE-2024-21591 -> exploits/perimeter/juniper/jweb_oob_write_rce_cve_2024_21591.py
+  53. CVE-2024-21762 -> exploits/perimeter/fortinet/fortios_sslvpn_rce_cve_2024_21762.py, scanners/vpn/fortinet/fortigate_sslvpn_scan.py
+  54. CVE-2024-21887 -> exploits/vpn/ivanti/connect_secure_auth_rce_cve_2023_46805.py
+  55. CVE-2024-24919 -> exploits/perimeter/checkpoint/gateway_info_disclosure_cve_2024_24919.py
+  56. CVE-2024-3400 -> exploits/perimeter/paloalto/globalprotect_cmd_injection_cve_2024_3400.py
+  57. CVE-2024-40766 -> exploits/perimeter/sonicwall/sonicos_sslvpn_access_cve_2024_40766.py
+  58. CVE-2024-43386 -> exploits/perimeter/phoenix/mguard_cmd_injection_cve_2024_43386.py
+  59. CVE-2024-47575 -> exploits/perimeter/fortinet/fortimanager_fortijump_cve_2024_47575.py
+  60. CVE-2024-50562 -> exploits/perimeter/fortinet/fortios_sslvpn_session_reuse_cve_2024_50562.py
+  61. CVE-2024-53704 -> exploits/perimeter/sonicwall/sonicos_sslvpn_auth_bypass_cve_2024_53704.py
+  62. CVE-2024-55591 -> exploits/perimeter/fortinet/fortios_websocket_auth_bypass_cve_2024_55591.py
+  63. CVE-2024-9137 -> exploits/perimeter/moxa/edr_g_jwt_hardcoded_cve_2024_9137.py
+  64. CVE-2024-9138 -> exploits/perimeter/moxa/edr_cmd_injection_cve_2024_9138.py
+  65. CVE-2024-9474 -> exploits/perimeter/paloalto/panos_mgmt_auth_bypass_cve_2024_0012.py, exploits/perimeter/paloalto/panos_privesc_cve_2024_9474.py
+  66. CVE-2025-0108 -> exploits/perimeter/paloalto/panos_auth_bypass_cve_2025_0108.py
+  67. CVE-2025-0282 -> exploits/vpn/ivanti/ics_buffer_overflow_rce_cve_2025_0282.py
+  68. CVE-2025-20333 -> exploits/perimeter/cisco/cisco_asa_ftd_firestarter_chain_cve_2025_20362_20333.py
+  69. CVE-2025-20362 -> exploits/perimeter/cisco/cisco_asa_ftd_firestarter_chain_cve_2025_20362_20333.py
+  70. CVE-2025-25257 -> exploits/perimeter/fortinet/fortiweb/fortiweb_auth_bypass_rce_cve_2025_25257.py
+  71. CVE-2025-53521 -> exploits/lb/f5/bigip_apm_buffer_overflow_cve_2025_53521.py
+  72. CVE-2025-59718 -> scanners/vpn/fortinet/fortigate_sslvpn_scan.py
+  73. CVE-2025-64446 -> exploits/perimeter/fortinet/fortiweb/fortiweb_admin_rce_cve_2025_64446.py
+  74. CVE-2026-0257 -> exploits/perimeter/paloalto/globalprotect_auth_bypass_cve_2026_0257.py
+  75. CVE-2026-24858 -> exploits/perimeter/fortinet/forticloud_sso_auth_bypass_cve_2026_24858.py
+  76. CVE-2026-25823 -> exploits/vpn/ewon/cosy_unauth_rce_cve_2026_25823.py
+  77. CVE-2026-35616 -> exploits/perimeter/fortinet/forticlient_ems_preauth_api_bypass_cve_2026_35616.py
 
 
 --- Generated by tools/generate_full_catalog.py ---
