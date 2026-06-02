@@ -19,6 +19,43 @@ All notable changes to FirewallXPL-Forge are documented here.
 
 ---
 
+
+## [2.1.1] - 2026-06-02
+
+### Added
+
+**Fortinet FortiWeb - CVE-2025-25257 (Critical, CVSS 9.8)**
+- `exploits/perimeter/fortinet/fortiweb/fortiweb_auth_bypass_rce_cve_2025_25257.py`
+  - Authentication bypass in FortiWeb WAF management interface leads to RCE
+  - Crafted HTTP headers bypass session validation on the management REST API
+  - Post-exploitation: WAF rule enumeration, OS command injection via configuration endpoint
+  - Affects FortiWeb 6.4.x < 6.4.4, 7.0.x < 7.0.4, 7.2.x < 7.2.2
+
+**Fortinet FortiWeb - CVE-2025-64446 (Critical, CVSS 9.8)**
+- `exploits/perimeter/fortinet/fortiweb/fortiweb_admin_rce_cve_2025_64446.py`
+  - OS command injection in FortiWeb admin REST API endpoint
+  - Unsanitized `name` parameter passed to internal shell call in admin provisioning
+  - Unauthenticated or low-privileged attacker can achieve arbitrary OS command execution
+  - Affects FortiWeb 7.2.x < 7.2.5, 7.4.x < 7.4.1
+
+**Aruba ClearPass Policy Manager - CVE-2023-25594 (Critical, CVSS 9.8)**
+- `exploits/nac/aruba/clearpass_unauth_rce_cve_2023_25594.py`
+  - Unauthenticated RCE via guest provisioning API command injection
+  - Pre-auth path injects into internal shell account resolution, executes as root
+  - Affects ClearPass 6.10.x < 6.10.8, 6.11.x < 6.11.2
+
+### Changed
+
+- `firewallxpl/modules/exploits/perimeter/fortinet/fortiweb/` folder created as new sub-namespace
+- `setup.py`: version bumped to 2.1.1
+
+### Documentation
+
+- `docs/wiki/ANEXO-INDICE-MODULOS.md`: regenerated with 172 modules
+- `docs/COVERAGE_MATRIX.md` / `COVERAGE_MATRIX.txt`: updated coverage matrix
+- `docs/FULL_CATALOG.md` / `FULL_CATALOG.txt`: updated full catalog (172 modules, 77 CVEs)
+
+---
 ## [2.1.0] - 2026-05-28
 
 ### Added

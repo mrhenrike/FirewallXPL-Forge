@@ -144,3 +144,41 @@
 - Python 3.8-3.13
 - Windows: D:\Projetos-SafeLabs\submodules\IoT\FirewallXPL-Forge
 - Linux: /mnt/predator/Projetos-SafeLabs/submodules/IoT/FirewallXPL-Forge
+
+## [2026-06-02 02:10] - FortiWeb exploits, ClearPass RCE, docs regen, v2.1.1
+
+### Estado ao encerrar
+- Criados 3 novos modulos de exploit: CVE-2025-25257, CVE-2025-64446 (FortiWeb), CVE-2023-25594 (ClearPass)
+- Nova pasta `firewallxpl/modules/exploits/perimeter/fortinet/fortiweb/` com __init__.py e 2 modulos
+- Modulo NAC adicionado: `firewallxpl/modules/exploits/nac/aruba/clearpass_unauth_rce_cve_2023_25594.py`
+- Documentacao regenerada: ANEXO-INDICE-MODULOS.md (172 modules), COVERAGE_MATRIX.md, FULL_CATALOG.md (77 CVEs)
+- Versao bumped para 2.1.1 em pyproject.toml e setup.py
+- CHANGELOG.md atualizado com entrada [2.1.1]
+- Commit e push realizados
+
+### Arquivos modificados
+- `firewallxpl/modules/exploits/perimeter/fortinet/fortiweb/__init__.py` (novo)
+- `firewallxpl/modules/exploits/perimeter/fortinet/fortiweb/fortiweb_auth_bypass_rce_cve_2025_25257.py` (novo)
+- `firewallxpl/modules/exploits/perimeter/fortinet/fortiweb/fortiweb_admin_rce_cve_2025_64446.py` (novo)
+- `firewallxpl/modules/exploits/nac/aruba/clearpass_unauth_rce_cve_2023_25594.py` (novo)
+- `setup.py` (2.0.0 -> 2.1.1)
+- `CHANGELOG.md`
+- `docs/wiki/ANEXO-INDICE-MODULOS.md`
+- `docs/COVERAGE_MATRIX.md`, `docs/COVERAGE_MATRIX.txt`
+- `docs/FULL_CATALOG.md`, `docs/FULL_CATALOG.txt`
+
+### Proximo passo imediato
+- Nenhuma pendencia critica; proxima expansao pode cobrir FortiSIEM ou Palo Alto PAN-OS modulos adicionais
+
+### Pendencias conhecidas
+- [ ] Expandir fortiweb/ com modulos adicionais quando novos CVEs forem publicados
+- [ ] Considerar adicionar NSE scripts correspondentes para os novos CVEs
+
+### Ambiente necessario
+- Python 3.8+
+- Dependencias: ver requirements.txt / pyproject.toml
+- Sem servicos externos necessarios para build/doc
+
+### Paths importantes
+- Windows: `D:\Projetos-SafeLabs\submodules\IoT\FirewallXPL-Forge`
+- Linux: `/mnt/predator/Projetos-SafeLabs/submodules/IoT/FirewallXPL-Forge`
