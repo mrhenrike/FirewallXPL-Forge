@@ -4,25 +4,15 @@ All notable changes to FirewallXPL-Forge are documented here.
 
 ---
 
-## [2.1.1] - 2026-06-01
+## [2.1.1] - 2026-06-02
 
-### Added - CVE-2026-0257 PAN-OS GlobalProtect Authentication Override Cookie Bypass
+### Added
 
-**CVE-2026-0257 (CVSS 7.8 HIGH, CISA KEV 2026-05-29)**
+**PAN-OS GlobalProtect - CVE-2026-0257 (High, CVSS 7.8, CISA KEV 2026-05-29)**
 - `exploits/perimeter/paloalto/globalprotect_auth_bypass_cve_2026_0257.py`
   - Full E2E: TLS cert extraction -> RSA-PKCS1v15 cookie forge -> pre-auth VPN bypass
   - CISA KEV deadline: 2026-06-19 | Active exploitation from 2026-05-17
   - Affects PAN-OS 10.2/11.1/11.2/12.1 and Prisma Access (pre-fix versions)
-
-**Catalog**
-- `cve_extended_catalog.json`: +1 entry (CVE-2026-0257), count 145->146
-
----
-
-
-## [2.1.1] - 2026-06-02
-
-### Added
 
 **Fortinet FortiWeb - CVE-2025-25257 (Critical, CVSS 9.8)**
 - `exploits/perimeter/fortinet/fortiweb/fortiweb_auth_bypass_rce_cve_2025_25257.py`
@@ -44,16 +34,33 @@ All notable changes to FirewallXPL-Forge are documented here.
   - Pre-auth path injects into internal shell account resolution, executes as root
   - Affects ClearPass 6.10.x < 6.10.8, 6.11.x < 6.11.2
 
+**Nmap NSE Scripts**
+- `fxf-firewall-fingerprint.nse`: passive fingerprinting for 11 firewall vendors
+- `fxf-globalprotect-detect.nse`: GlobalProtect portal detection
+- `fxf-globalprotect-auth-bypass-cve-2026-0257.nse`: passive TLS cert check
+- `fxf-fortios-detect.nse`: FortiOS detection
+- `fxf-cisco-asa-detect.nse`: Cisco ASA detection
+- `nse_installer.py`: cross-platform NSE installer with auto nmap detection
+
 ### Changed
 
-- `firewallxpl/modules/exploits/perimeter/fortinet/fortiweb/` folder created as new sub-namespace
+- `firewallxpl/modules/exploits/perimeter/fortinet/fortiweb/` created as new sub-namespace
+- `pyproject.toml`: version bumped to 2.1.1
 - `setup.py`: version bumped to 2.1.1
+- `firewallxpl/core/cve/cve_db.py`: CVE-2026-0257 entry added
+- `firewallxpl/interpreter.py`: `install-nse` command added
 
 ### Documentation
 
 - `docs/wiki/ANEXO-INDICE-MODULOS.md`: regenerated with 172 modules
 - `docs/COVERAGE_MATRIX.md` / `COVERAGE_MATRIX.txt`: updated coverage matrix
 - `docs/FULL_CATALOG.md` / `FULL_CATALOG.txt`: updated full catalog (172 modules, 77 CVEs)
+- All 11 wiki pages rewritten in EN-US and PT-BR with typed parameter tables
+- New wiki page 12 in both languages covering NSE installer and scripts
+- `README.md` and `README.pt-BR.md`: NSE installer section, CVE-2026-0257 vendor table
+
+**Catalog**
+- `cve_extended_catalog.json`: +1 entry (CVE-2026-0257), count 145->146
 
 ---
 ## [2.1.0] - 2026-05-28
