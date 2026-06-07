@@ -1,0 +1,54 @@
+title: Fortinet FortiGate Superadminprofilechange
+id: 3b4b5804-6a45-57c3-a904-9961077b7a0f
+status: stable
+description: Detects Fortinet FortiGate Superadminprofilechange based on behavioral
+  indicators.
+references:
+- https://docs.fortinet.com/document/fortigate/7.6.1/fortios-log-message-reference
+- https://attack.mitre.org/
+- https://sigmahq.io/
+author: Andre Santos (@mrhenrike on X, LinkedIn)
+date: 2026/03/13
+tags:
+- attack.persistence
+- attack.t1098
+logsource:
+  product: fortigate
+  service: system
+  category: firewall
+detection:
+  selection_core:
+    type: event
+    subtype: system
+    logid|contains:
+    - '0100044560'
+    - '0100044547'
+  selection_context:
+    msg|contains: super_admin
+  filter_expected_admin:
+    user: admin
+    ui|contains: GUI(204.216.179.29)
+  condition: selection_core and selection_context and not 1 of filter_*
+falsepositives:
+- Approved RBAC change during controlled maintenance
+level: critical
+fields:
+- event.provider
+- event.code
+- source.ip
+- destination.ip
+- user.name
+- event.action
+- event.reason
+- message
+- fortigate.logid
+- fortigate.subtype
+- fortigate.vdom
+labels:
+  rule_aggregation: use_case_aggregated
+  rule_confidence: medium
+  test_sample_log: D:\Projetos-SafeLabs\dev\attack-detection-arsenal\datasets\raw-logs\fortigate\memory-event-system-2026-03-12_09-16.log
+  fortigate_logids: 0100044560,0100044547
+  datasources_required: fortigate_system_event,fortigate_admin_audit
+x_description_ptbr: Detecta Fortinet FortiGate Superadminprofilechange com base em
+  indicadores comportamentais.

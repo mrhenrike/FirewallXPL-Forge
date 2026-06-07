@@ -1,0 +1,52 @@
+title: Fortinet FortiGate Apiusercreatedorchanged
+id: 3e0aaba5-fe22-5473-9731-3e50721100a7
+status: stable
+description: Detects Fortinet FortiGate Apiusercreatedorchanged based on behavioral
+  indicators.
+references:
+- https://docs.fortinet.com/document/fortigate/7.6.1/fortios-log-message-reference
+- https://attack.mitre.org/
+- https://sigmahq.io/
+author: Andre Santos (@mrhenrike on X, LinkedIn)
+date: 2026/03/13
+tags:
+- attack.persistence
+- attack.t1136
+logsource:
+  product: fortigate
+  service: system
+  category: firewall
+detection:
+  selection_core:
+    type: event
+    subtype: system
+    logid: '0100044547'
+    cfgpath: system.api-user
+  selection_context:
+    action|contains:
+    - Add
+    - Edit
+  condition: selection_core and selection_context
+falsepositives:
+- Planned API account lifecycle operations
+level: high
+fields:
+- event.provider
+- event.code
+- source.ip
+- destination.ip
+- user.name
+- event.action
+- event.reason
+- message
+- fortigate.logid
+- fortigate.subtype
+- fortigate.vdom
+labels:
+  rule_aggregation: use_case_aggregated
+  rule_confidence: medium
+  test_sample_log: D:\Projetos-SafeLabs\dev\attack-detection-arsenal\datasets\raw-logs\fortigate\memory-event-system-2026-03-12_09-16.log
+  fortigate_logids: '0100044547'
+  datasources_required: fortigate_admin_audit
+x_description_ptbr: Detecta Fortinet FortiGate Apiusercreatedorchanged com base em
+  indicadores comportamentais.
