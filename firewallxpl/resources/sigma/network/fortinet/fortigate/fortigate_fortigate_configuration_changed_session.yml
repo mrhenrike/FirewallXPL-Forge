@@ -1,0 +1,49 @@
+title: Fortinet FortiGate Configurationchanged Adminsession
+id: fa995c33-475e-5947-8e59-64d15ec9c6c9
+status: stable
+description: Detects Fortinet FortiGate Configurationchanged Adminsession based on
+  behavioral indicators.
+references:
+- https://docs.fortinet.com/document/fortigate/7.6.1/fortios-log-message-reference
+- https://attack.mitre.org/
+- https://sigmahq.io/
+author: Andre Santos (@mrhenrike on X, LinkedIn)
+date: 2026/03/13
+tags:
+- attack.defense-evasion
+- attack.t1562
+logsource:
+  product: fortigate
+  service: system
+  category: firewall
+detection:
+  selection_core:
+    type: event
+    subtype: system
+    logid: '0100032102'
+  selection_context:
+    msg|contains: Configuration is changed in the admin session
+  condition: selection_core and selection_context
+falsepositives:
+- Legitimate configuration changes by authorized admins
+level: medium
+fields:
+- event.provider
+- event.code
+- source.ip
+- destination.ip
+- user.name
+- event.action
+- event.reason
+- message
+- fortigate.logid
+- fortigate.subtype
+- fortigate.vdom
+labels:
+  rule_aggregation: use_case_aggregated
+  rule_confidence: medium
+  test_sample_log: D:\Projetos-SafeLabs\dev\attack-detection-arsenal\datasets\raw-logs\fortigate\memory-event-system-2026-03-12_09-16.log
+  fortigate_logids: '0100032102'
+  datasources_required: fortigate_system_event,fortigate_admin_audit
+x_description_ptbr: Detecta Fortinet FortiGate Configurationchanged Adminsession com
+  base em indicadores comportamentais.
