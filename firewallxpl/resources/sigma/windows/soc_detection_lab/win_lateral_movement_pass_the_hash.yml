@@ -1,0 +1,40 @@
+title: Pass-the-Hash Lateral Movement via NTLMv2 Logon
+id: a3f2c1d4-9b6e-4e8a-b7c5-2d1f0e3a5b9c
+status: test
+description: |
+  Detects NTLMv2 network logon events (LogonType 3) with explicit
+  credentials that indicate Pass-the-Hash lateral movement attempts.
+  Common in post-exploitation scenarios within Windows Active Directory
+  environments such as the SOC Detection Lab (DetectionLab).
+references:
+  - https://attack.mitre.org/techniques/T1550/002/
+  - https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4624
+author: André Henrique (@mrhenrike) | União Geek
+date: 2026-06-07
+tags:
+  - attack.lateral_movement
+  - attack.credential_access
+  - attack.t1550.002
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4624
+    LogonType: 3
+    AuthenticationPackageName: NTLM
+    KeyLength: 0
+  filter_local:
+    SubjectUserSid: 'S-1-5-18'
+  filter_anonymous:
+    SubjectUserName: 'ANONYMOUS LOGON'
+  condition: selection and not 1 of filter_*
+falsepositives:
+  - Legitimate NTLM network logons in environments without Kerberos (legacy systems)
+  - File shares accessed by service accounts using NTLM
+level: medium
+fields:
+  - SubjectUserName
+  - TargetUserName
+  - IpAddress
+  - WorkstationName

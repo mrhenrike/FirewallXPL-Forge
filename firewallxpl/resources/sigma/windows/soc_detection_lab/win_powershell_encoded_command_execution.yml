@@ -1,0 +1,48 @@
+title: PowerShell Encoded Command Execution
+id: f2b7c6d9-4a1e-4d3f-e0b8-7a6c5b8f1e4d
+status: test
+description: |
+  Detects PowerShell processes launched with encoded command arguments
+  (-EncodedCommand, -enc, -e). A common technique used to obfuscate
+  malicious payloads in fileless attacks, post-exploitation frameworks
+  (Cobalt Strike, Empire, Metasploit), and RAT stagers.
+  SOC Detection Lab generates this pattern via adversary emulation scripts.
+references:
+  - https://attack.mitre.org/techniques/T1059/001/
+  - https://attack.mitre.org/techniques/T1027/
+author: André Henrique (@mrhenrike) | União Geek
+date: 2026-06-07
+tags:
+  - attack.execution
+  - attack.defense_evasion
+  - attack.t1059.001
+  - attack.t1027
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection_powershell:
+    Image|endswith:
+      - '\powershell.exe'
+      - '\pwsh.exe'
+  selection_encoded:
+    CommandLine|contains:
+      - ' -EncodedCommand '
+      - ' -encodedcommand '
+      - ' -enc '
+      - ' -EC '
+      - ' -e '
+  filter_short_e:
+    CommandLine|re: '.*-e\s+[^A-Za-z0-9+/=].*'
+  condition: selection_powershell and selection_encoded and not filter_short_e
+falsepositives:
+  - Legitimate software installers using encoded PowerShell for configuration
+  - Group Policy scripts using encoded commands for compatibility
+  - Some security tools that use encoded PowerShell for payload delivery tests
+level: medium
+fields:
+  - Image
+  - CommandLine
+  - ParentImage
+  - ParentCommandLine
+  - User

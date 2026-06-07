@@ -1,0 +1,48 @@
+title: Suspicious Scheduled Task Created via schtasks or API
+id: c9e4f3a6-1d8b-4a0c-b7e5-4f3d2e5c8b1a
+status: test
+description: |
+  Detects suspicious scheduled task creation that may indicate persistence
+  establishment by an attacker. Focuses on tasks created from unusual parent
+  processes, non-standard paths, or with encoded command-line arguments.
+  Relevant to SOC Detection Lab adversary simulation scenarios.
+references:
+  - https://attack.mitre.org/techniques/T1053/005/
+  - https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/schtasks
+author: André Henrique (@mrhenrike) | União Geek
+date: 2026-06-07
+tags:
+  - attack.persistence
+  - attack.privilege_escalation
+  - attack.t1053.005
+logsource:
+  product: windows
+  service: security
+detection:
+  selection_event:
+    EventID: 4698
+  selection_suspicious_actions:
+    TaskContent|contains:
+      - 'powershell'
+      - 'cmd.exe'
+      - 'wscript'
+      - 'cscript'
+      - 'mshta'
+      - 'regsvr32'
+      - 'rundll32'
+      - 'certutil'
+      - 'bitsadmin'
+      - 'Base64'
+      - 'EncodedCommand'
+      - '-enc '
+      - '-e '
+  condition: selection_event and selection_suspicious_actions
+falsepositives:
+  - Legitimate software installation that creates scheduled tasks with PowerShell
+  - System administration scripts using scheduled tasks
+  - Endpoint management platforms
+level: medium
+fields:
+  - SubjectUserName
+  - TaskName
+  - TaskContent

@@ -1,0 +1,42 @@
+title: Internal Host Initiating Outbound Port Scan Behavior
+id: d0f5a4b7-2e9c-4b1d-c8f6-5e4a3f6d9c2b
+status: test
+description: |
+  Detects Windows hosts generating an unusually high volume of failed TCP
+  connection attempts to multiple unique destination ports, consistent with
+  port scanning activity originating from a compromised internal host.
+  Relevant to SOC Detection Lab lateral movement and reconnaissance phases.
+references:
+  - https://attack.mitre.org/techniques/T1046/
+author: André Henrique (@mrhenrike) | União Geek
+date: 2026-06-07
+tags:
+  - attack.discovery
+  - attack.t1046
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 5156
+    Direction: '%%14593'
+  filter_wellknown:
+    DestPort:
+      - 80
+      - 443
+      - 53
+      - 8080
+      - 8443
+  condition: selection and not filter_wellknown
+falsepositives:
+  - Network management software performing legitimate host discovery
+  - Vulnerability scanners run by authorized IT personnel
+  - Monitoring agents scanning for available services
+level: low
+fields:
+  - SourceAddress
+  - SourcePort
+  - DestAddress
+  - DestPort
+  - ProcessId
+  - Application

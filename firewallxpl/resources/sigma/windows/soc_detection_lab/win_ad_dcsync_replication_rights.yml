@@ -1,0 +1,43 @@
+title: DCSync Attack via Directory Replication Service Rights
+id: e1a6b5c8-3f0d-4c2e-d9a7-6f5b4a7e0d3c
+status: test
+description: |
+  Detects DCSync attacks where an account outside Domain Controllers
+  requests directory replication using DS-Replication-Get-Changes-All
+  rights. This allows dumping all password hashes from Active Directory
+  without accessing LSASS on a DC. Common in lab environments using
+  Mimikatz lsadump::dcsync.
+references:
+  - https://attack.mitre.org/techniques/T1003/006/
+  - https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4662
+author: André Henrique (@mrhenrike) | União Geek
+date: 2026-06-07
+tags:
+  - attack.credential_access
+  - attack.t1003.006
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4662
+    ObjectType: '%{19195a5b-6da0-11d0-afd3-00c04fd930c9}'
+    AccessMask: '0x100'
+    Properties|contains:
+      - '1131f6aa-9c07-11d1-f79f-00c04fc2dcd2'
+      - '1131f6ad-9c07-11d1-f79f-00c04fc2dcd2'
+      - '89e95b76-444d-4c62-991a-0facbeda640c'
+  filter_dc_accounts:
+    SubjectUserName|endswith: '$'
+  condition: selection and not filter_dc_accounts
+falsepositives:
+  - Azure AD Connect replication accounts
+  - Legitimate DRSR-based monitoring solutions
+  - SIEM agents with AD replication access
+level: high
+fields:
+  - SubjectUserName
+  - SubjectUserSid
+  - ObjectName
+  - AccessMask
+  - Properties
