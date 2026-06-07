@@ -43,6 +43,7 @@ _SEV_ORDER = {"informational": 0, "low": 1, "medium": 2, "high": 3, "critical": 
 _PERIMETER_LOGSOURCE_CATS = frozenset([
     "firewall", "dns", "proxy", "network",
     "cisco", "fortinet", "paloalto", "juniper", "huawei",
+    "windows",
 ])
 
 
@@ -354,8 +355,33 @@ class Exploit(Exploit):
     dry_run = OptBool(False, "Load and count rules without matching")
 
     def _find_sigma_dir(self) -> Optional[Path]:
+        """Locate the Sigma rules directory.
+
+        Searches in order:
+        1. Packaged resources (firewallxpl/resources/sigma/), including
+           the windows/ subdirectory.
+        2. FraudDetection sigma submodule (legacy path).
+        3. Harpia purple-sigma-rules (superproject path).
+
+        Returns:
+            Path to a sigma rules directory, or None if not found.
+        """
+        # Packaged resources: resources/sigma/ is shipped with FXF
+        pkg_sigma = Path(__file__).resolve().parents[2] / "resources" / "sigma"
+        if pkg_sigma.is_dir():
+            return pkg_sigma
+
+        # Packaged resources fallback: one more level up (installed egg layout)
+        pkg_sigma2 = Path(__file__).resolve().parents[3] / "resources" / "sigma"
+        if pkg_sigma2.is_dir():
+            return pkg_sigma2
+
         fxf_root = Path(__file__).resolve().parents[5]
         for candidate in [
+            # Harpia purple-sigma-rules (superproject layout)
+            fxf_root.parent / "Safelabs-Harpia" / "purple-sigma-rules" / "sigma",
+            fxf_root / "Safelabs-Harpia" / "purple-sigma-rules" / "sigma",
+            # Legacy FraudDetection path
             fxf_root / "FraudDetection" / "sigma" / "rules" / "network",
             fxf_root.parent / "FraudDetection" / "sigma" / "rules" / "network",
         ]:
