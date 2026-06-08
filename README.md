@@ -237,6 +237,28 @@ See [docs/wiki/en-US/12-nse-scripts.md](docs/wiki/en-US/12-nse-scripts.md) for t
 
 ---
 
+## Security Modules (BLOCO J)
+
+New attack category modules added in BLOCO J expansion:
+
+### Routing Attacks
+
+| Module | Path | Impact | Description |
+|--------|------|--------|-------------|
+| `rip_v1_poison` | `exploits/routing/` | HIGH | RIPv1 routing table poison (CVE-1999-0111). Sends spoofed RIPv1 Response claiming default route via attacker. No authentication in RIPv1. |
+| `vrrp_hijack` | `exploits/routing/` | HIGH | VRRP active router takeover via priority 255 Advertisement. Target master yields; attacker becomes active router for the virtual IP. Requires Scapy. |
+
+### MiTM Proxies
+
+| Module | Path | Impact | Description |
+|--------|------|--------|-------------|
+| `ssl_strip_embedded` | `exploits/mitm/` | HIGH | SSL strip MiTM proxy for embedded device admin panels. Strips HTTPS redirects, removes HSTS headers, logs credentials in plaintext. Requires ARP poisoning and iptables redirect. |
+| `tr069_mitm_proxy` | `exploits/mitm/` | CRITICAL | TR-069 CWMP session interception proxy. Intercepts CPE-ACS traffic and injects firmware Download RPC or SetParameterValues commands. Requires ARP poisoning. |
+
+All modules default to `simulate=True`. Live execution requires `destructive=True` set explicitly.
+
+---
+
 ## Governance
 
 | English (default) | Português (pt-BR) |
