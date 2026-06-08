@@ -182,3 +182,42 @@
 ### Paths importantes
 - Windows: `D:\Projetos-SafeLabs\submodules\IoT\FirewallXPL-Forge`
 - Linux: `/mnt/predator/Projetos-SafeLabs/submodules/IoT/FirewallXPL-Forge`
+
+## [2026-06-07 02:43] -- Add perimeter auth bruteforce + WAF evasion generator
+
+### Estado ao encerrar
+- Criados 3 modulos nativos (zero dependencia dos repos fonte)
+- FirewallXPL: perimeter_auth_bruteforce.py + waf_evasion_generator.py
+- EmbedXPL: perimeter_auth_bruteforce.py
+- Sintaxe verificada com ast.parse -- todos OK
+- Commits: FirewallXPL a80a8e2, EmbedXPL 79a2664a
+
+### Proximo passo imediato
+- Abrir PR feat/bruteforce-waf-evasion -> master no FirewallXPL-Forge
+
+### Pendencias conhecidas
+- [ ] PR FirewallXPL-Forge: feat/bruteforce-waf-evasion -> master
+
+### Paths importantes
+- Windows: D:\Projetos-SafeLabs\submodules\Uniao-Geek\FirewallXPL-Forge\firewallxpl\modules
+- Linux: /mnt/predator/Projetos-SafeLabs/submodules/Uniao-Geek/FirewallXPL-Forge/firewallxpl/modules
+
+## [2026-06-07 02:55] -- Windows Sigma rules + perimeter validator expansion
+
+### Estado ao encerrar
+- Copiadas 32 regras Windows Sigma de Harpia purple-sigma-rules para firewallxpl/resources/sigma/windows/
+  - process_creation/: netsh firewall add/delete/disable/set, port-forwarding, UAC bypass, Defender disable (14 regras)
+  - powershell/: Defender tamper, firewall profile disable, AMSI bypass (7 regras)
+  - registry/: disable Defender firewall, UAC bypass EventViewer/DelegateExecute, AMSI disable, credential guard (11 regras)
+- sigma_perimeter_validator.py: _PERIMETER_LOGSOURCE_CATS expandido com 'windows'; _find_sigma_dir() reescrito para encontrar resources/sigma/ empacotado e fallback Harpia
+- Commit: 5a2df4c -- pushed em feat/ngfw-parsers-sigma-expansion
+
+### Proximo passo imediato
+- Testar carga das regras Windows em dry_run mode
+
+### Pendencias conhecidas
+- [ ] Adicionar regras network_connection e dns_query para cobertura de endpoint
+
+### Paths importantes
+- Windows: D:\Projetos-SafeLabs\submodules\Uniao-Geek\FirewallXPL-Forge
+- Linux: /mnt/predator/Projetos-SafeLabs/submodules/Uniao-Geek/FirewallXPL-Forge
