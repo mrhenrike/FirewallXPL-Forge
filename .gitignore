@@ -1,3 +1,6 @@
+# IDE / editor local
+.cursor/
+
 # IntelliJ project files
 .idea
 out
