@@ -4,6 +4,13 @@ All notable changes to FirewallXPL-Forge are documented here.
 
 ---
 
+## [2.2.1] - 2026-06-25
+
+### Added
+- Global CLI flags via `tools/xpl_cli.py`: `-h`/`--help`, `-V`/`--version`, `-i`/`--interactive`, `--doctor`/`--check`
+
+---
+
 ## [2.1.1] - 2026-06-02
 
 ### Added

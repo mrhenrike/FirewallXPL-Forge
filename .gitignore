@@ -70,6 +70,16 @@ target/
 
 # virtualenv
 venv/
+.venv/
+
+# === Local runtime / lab artifacts (never commit) ===
+temp/
+temps/
+tmp/
+examples/
+labs/
+samples/
+HANDOFF-AUDIT.md
 
 # macOS
 .DS_Store
