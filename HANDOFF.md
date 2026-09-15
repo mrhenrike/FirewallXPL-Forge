@@ -237,3 +237,25 @@
 ### Paths importantes
 - Windows: `D:\Projetos-SafeLabs\submodules\Uniao-Geek\`
 - Linux: `/mnt/predator/Projetos-SafeLabs/submodules/Uniao-Geek/`
+
+## [2026-09-14] TupaXPL-Forge - Sugestao de evolucao upstream
+
+### Origem
+TupaXPL-Forge usa FXF para ataques de perimetro (NGFW, WAF).
+Bridge FXF: offsecforge/intel/firewallxpl_bridge.py (a implementar)
+
+### Pendencias para PR
+- [ ] Bridge FXF para campanhas TupaXPL
+- [ ] Abrir issue: "feat: TupaXPL orchestration bridge"
+
+## [2026-09-15 17:40] -- Sync com SuiteXPL Sprint 4
+
+### Estado
+- Firewall modules integrados ao EmbedXPL MSF bridge (Fortinet, SonicWall, CheckPoint, PaloAlto)
+- MSF bridge modules: firewalls/fortinet/, firewalls/sonicwall/, firewalls/paloalto/
+- forge ics-attack inclui detecção de malware + exploits IXF
+- Todos os sprints do plano CVE 2024-2026 concluidos
+
+### Proximos passos
+- Nenhuma pendencia critica
+- Evolucao via wave seguinte do embedxpl_full_sync
