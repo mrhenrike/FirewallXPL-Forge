@@ -1,3 +1,22 @@
+<p align="center">
+  <img src="docs/img/firewallxpl-forge-banner_16x9.png" alt="FirewallXPL-Forge Banner" width="100%"/>
+</p>
+
+<p align="center">
+  [![Python](https://img.shields.io/badge/Python-3.8%2B-blue?style=flat-square&logo=python)](https://python.org)
+  [![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20macOS%20%7C%20Windows-informational?style=flat-square)](README.md#compatibility)
+  [![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
+  [![XPL Suite](https://img.shields.io/badge/XPL--Forge-Suite-red?style=flat-square)](https://github.com/mrhenrike)
+  [![Issues](https://img.shields.io/github/issues/mrhenrike/FirewallXPL-Forge?style=flat-square)](https://github.com/mrhenrike/FirewallXPL-Forge/issues)
+  [![Last Commit](https://img.shields.io/github/last-commit/mrhenrike/FirewallXPL-Forge?style=flat-square)](https://github.com/mrhenrike/FirewallXPL-Forge/commits)
+</p>
+
+---
+
+> **Platform Note:** This framework is designed and tested primarily on **Linux** (Debian/Ubuntu/Kali). Most hardware-dependent modules (wireless adapters, USB devices, raw socket access, firmware tools) require Linux. Running on Windows or macOS may cause errors or limited functionality in many modules. Linux is strongly recommended for maximum compatibility.
+
+---
+
 # FirewallXPL-Forge
 
 > **⚠ MIGRATION NOTICE — v2.1.0 (Final Release)**
@@ -22,10 +41,6 @@
 **Author:** André Henrique ([@mrhenrike](https://github.com/mrhenrike)) \| [União Geek](https://github.com/Uniao-Geek)
 
 **Language:** **English (en-US)** — default. **Português (pt-BR):** [README.pt-BR.md](README.pt-BR.md)
-
-[![Python 3.9–3.13](https://img.shields.io/badge/Python-3.9--3.13-blue.svg)](https://www.python.org/downloads/)
-[![CI](https://github.com/mrhenrike/FirewallXPL-Forge/actions/workflows/compat-matrix.yml/badge.svg)](https://github.com/mrhenrike/FirewallXPL-Forge/actions)
-[![PyPI](https://img.shields.io/pypi/v/firewallxpl.svg)](https://pypi.org/project/firewallxpl/)
 
 ---
 
