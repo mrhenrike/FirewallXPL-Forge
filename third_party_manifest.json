@@ -1,0 +1,8 @@
+{
+  "schema_version": "1.0.0",
+  "product": "FirewallXPL-Forge",
+  "focus": "firewalls, NGFW, UTM, VPN gateways",
+  "generated": "2026-09-18",
+  "phase": "0-analysis",
+  "components": []
+}
