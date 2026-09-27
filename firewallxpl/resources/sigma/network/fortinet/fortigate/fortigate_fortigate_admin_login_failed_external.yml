@@ -1,0 +1,65 @@
+title: Fortinet FortiGate Admin Login Failed Externalsource
+id: d08e627c-36da-5b0d-b8f8-66a3860ed282
+status: stable
+description: Detects Fortinet FortiGate Admin Login Failed Externalsource based on
+  behavioral indicators.
+references:
+- https://docs.fortinet.com/document/fortigate/7.6.1/fortios-log-message-reference
+- https://attack.mitre.org/
+- https://sigmahq.io/
+author: Andre Santos (@mrhenrike on X, LinkedIn)
+date: 2026/03/13
+tags:
+- attack.credential-access
+- attack.t1110
+logsource:
+  product: fortigate
+  service: system
+  category: firewall
+detection:
+  selection_core:
+    type: event
+    subtype: system
+    logid: '0100032002'
+    action: login
+    status: failed
+  selection_context:
+    method|contains:
+    - ssh
+    - https
+    - http
+  filter_internal_sources:
+    srcip|startswith:
+    - '10.'
+    - 192.168.
+    - 172.16.
+    - 172.17.
+    - 172.18.
+    - 172.19.
+    - '172.2'
+    - 172.30.
+    - 172.31.
+  condition: selection_core and selection_context and not 1 of filter_*
+falsepositives:
+- Admin typos from approved external bastion IPs
+level: high
+fields:
+- event.provider
+- event.code
+- source.ip
+- destination.ip
+- user.name
+- event.action
+- event.reason
+- message
+- fortigate.logid
+- fortigate.subtype
+- fortigate.vdom
+labels:
+  rule_aggregation: use_case_aggregated
+  rule_confidence: medium
+  test_sample_log: D:\Projetos-SafeLabs\dev\attack-detection-arsenal\datasets\raw-logs\fortigate\memory-event-system-2026-03-12_09-16.log
+  fortigate_logids: '0100032002'
+  datasources_required: fortigate_system_event
+x_description_ptbr: Detecta Fortinet FortiGate Admin Login Failed Externalsource com
+  base em indicadores comportamentais.

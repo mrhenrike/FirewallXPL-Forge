@@ -1,0 +1,19 @@
+# SNMP community strings for security appliances
+# Format: one community string per line
+# Author: André Henrique (@mrhenrike) | União Geek
+# Sources: ISF icssploit/wordlists/snmp.txt + generic
+public
+private
+CISCO
+cisco
+community
+SNMP
+snmp
+default
+monitor
+manager
+admin
+security
+secret
+write
+test

@@ -1,0 +1,5 @@
+# Phoenix Contact mGuard default credentials
+# Author: André Henrique (@mrhenrike) | União Geek
+admin:mGuard
+root:root
+admin:admin

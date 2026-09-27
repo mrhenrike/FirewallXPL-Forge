@@ -1,0 +1,8 @@
+# Siemens SCALANCE/SINEMA/RUGGEDCOM default credentials
+# Author: André Henrique (@mrhenrike) | União Geek
+admin:admin
+admin:
+admin:scalance
+admin:siemens
+service:service
+user:user

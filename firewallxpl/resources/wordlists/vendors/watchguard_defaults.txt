@@ -1,0 +1,7 @@
+# WatchGuard Fireware / XCS / XTM default credentials
+# Format: user:pass
+# Author: André Henrique (@mrhenrike) | União Geek
+# Sources: SecLists default-passwords.csv
+admin:readwrite
+status:readonly
+admin:admin

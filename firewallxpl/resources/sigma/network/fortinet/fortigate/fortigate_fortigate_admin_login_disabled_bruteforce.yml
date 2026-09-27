@@ -1,0 +1,52 @@
+title: Fortinet FortiGate Admin Login Disabled Brute Force Lockout
+id: 71355944-8fa1-5554-bac2-04455bf1a5ed
+status: stable
+description: Detects Fortinet FortiGate Admin Login Disabled Brute Force Lockout based
+  on behavioral indicators.
+references:
+- https://docs.fortinet.com/document/fortigate/7.6.1/fortios-log-message-reference
+- https://attack.mitre.org/
+- https://sigmahq.io/
+author: Andre Santos (@mrhenrike on X, LinkedIn)
+date: 2026/03/13
+tags:
+- attack.credential-access
+- attack.t1110
+logsource:
+  product: fortigate
+  service: system
+  category: firewall
+detection:
+  selection_core:
+    type: event
+    subtype: system
+    logid: '0100032021'
+    action: login
+    status: failed
+    reason: exceed_limit
+  selection_context:
+    msg|contains: Login disabled from IP
+  condition: selection_core and selection_context
+falsepositives:
+- Short-lived lockout from intentional security testing
+level: high
+fields:
+- event.provider
+- event.code
+- source.ip
+- destination.ip
+- user.name
+- event.action
+- event.reason
+- message
+- fortigate.logid
+- fortigate.subtype
+- fortigate.vdom
+labels:
+  rule_aggregation: use_case_aggregated
+  rule_confidence: medium
+  test_sample_log: D:\Projetos-SafeLabs\dev\attack-detection-arsenal\datasets\raw-logs\fortigate\memory-event-system-2026-03-12_09-16.log
+  fortigate_logids: '0100032021'
+  datasources_required: fortigate_system_event
+x_description_ptbr: Detecta Fortinet FortiGate Admin Login Disabled Brute Force Lockout
+  com base em indicadores comportamentais.

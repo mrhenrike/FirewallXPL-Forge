@@ -1,0 +1,7 @@
+# Moxa EDR/EDS industrial router/switch default credentials
+# Author: André Henrique (@mrhenrike) | União Geek
+admin:
+admin:admin
+admin:moxa
+root:root
+root:moxa

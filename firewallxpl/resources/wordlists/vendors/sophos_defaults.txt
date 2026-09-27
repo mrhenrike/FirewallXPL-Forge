@@ -1,0 +1,4 @@
+# Sophos XG / UTM / Cyberoam default credentials
+# Format: user:pass
+# Author: André Henrique (@mrhenrike) | União Geek
+admin:admin

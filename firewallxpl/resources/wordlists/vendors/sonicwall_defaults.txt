@@ -1,0 +1,6 @@
+# SonicWall TZ / NSA / SMA default credentials
+# Format: user:pass
+# Author: André Henrique (@mrhenrike) | União Geek
+# Sources: SecLists sonicwall_default-*
+admin:password
+admin:admin

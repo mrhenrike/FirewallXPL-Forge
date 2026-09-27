@@ -1,0 +1,6 @@
+# Hirschmann/Belden EAGLE industrial firewall default credentials
+# Author: André Henrique (@mrhenrike) | União Geek
+admin:private
+admin:admin
+admin:public
+user:user

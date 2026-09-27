@@ -1,0 +1,7 @@
+# pfSense / Netgate default credentials
+# Format: user:pass
+# Author: André Henrique (@mrhenrike) | União Geek
+# Sources: hardcoded + SecLists netgate_default-*
+admin:pfsense
+admin:admin
+root:pfsense

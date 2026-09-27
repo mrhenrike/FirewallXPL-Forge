@@ -1,0 +1,53 @@
+title: Fortinet FortiGate Syslogforwardingconfigchange
+id: 89310027-7868-5b35-a134-afda92ecb63c
+status: stable
+description: Detects Fortinet FortiGate Syslogforwardingconfigchange based on behavioral
+  indicators.
+references:
+- https://docs.fortinet.com/document/fortigate/7.6.1/fortios-log-message-reference
+- https://attack.mitre.org/
+- https://sigmahq.io/
+author: Andre Santos (@mrhenrike on X, LinkedIn)
+date: 2026/03/13
+tags:
+- attack.defense-evasion
+- attack.t1562.001
+logsource:
+  product: fortigate
+  service: system
+  category: firewall
+detection:
+  selection_core:
+    type: event
+    subtype: system
+    logid|contains:
+    - '0100044546'
+    - 0100022905
+  selection_context:
+    cfgpath|contains:
+    - log.syslogd.setting
+    - log.setting
+  condition: selection_core and selection_context
+falsepositives:
+- Approved logging pipeline maintenance with ticket
+level: critical
+fields:
+- event.provider
+- event.code
+- source.ip
+- destination.ip
+- user.name
+- event.action
+- event.reason
+- message
+- fortigate.logid
+- fortigate.subtype
+- fortigate.vdom
+labels:
+  rule_aggregation: use_case_aggregated
+  rule_confidence: medium
+  test_sample_log: D:\Projetos-SafeLabs\dev\attack-detection-arsenal\datasets\raw-logs\fortigate\memory-event-system-2026-03-12_09-16.log
+  fortigate_logids: 0100044546,0100022905
+  datasources_required: fortigate_admin_audit,fortigate_system_event
+x_description_ptbr: Detecta Fortinet FortiGate Syslogforwardingconfigchange com base
+  em indicadores comportamentais.

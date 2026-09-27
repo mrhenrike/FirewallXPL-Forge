@@ -1,0 +1,10 @@
+# Fortinet FortiGate / FortiOS default credentials
+# Format: user:pass (one pair per line, empty pass = blank)
+# Author: André Henrique (@mrhenrike) | União Geek
+admin:
+maintainer:bcpb+serial#
+maintainer:admin
+admin:admin
+admin:fortinet
+admin:fortigate
+admin:password
