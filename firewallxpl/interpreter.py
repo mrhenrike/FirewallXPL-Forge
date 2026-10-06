@@ -159,12 +159,16 @@ class BaseInterpreter:
             print_info("stdin is not a TTY. Ensure `stdin_open` and `tty` are set")
             sys.exit(1)
         
-        print_info(self.banner)
-
-          # AUTHORIZED USE ONLY — See DISCLAIMER.md
-          print_warning("FOR AUTHORIZED PENETRATION TESTING AND SECURITY RESEARCH ONLY.")
-          print_warning("Unauthorized use is illegal. Operator assumes full responsibility.")
-          print_warning("simulate=True enforced. Use 'set simulate false' to execute for real.")
+        # Banner figlet com stats em tempo real
+        try:
+            from embedxpl.core.banner import show_banner
+            show_banner("firewallxpl", version="v5.0.0")
+        except Exception:
+            if self.banner:
+                print_info(self.banner)
+        print_warning("FOR AUTHORIZED PENETRATION TESTING AND SECURITY RESEARCH ONLY.")
+        print_warning("Unauthorized use is illegal. Operator assumes full responsibility.")
+        print_warning("simulate=True enforced. Use 'set simulate false' to execute for real.")
         printer_queue.join()
         
         while True:
