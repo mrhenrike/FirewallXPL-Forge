@@ -4,6 +4,11 @@ All notable changes to FirewallXPL-Forge are documented here.
 
 ---
 
+## [2.5.1] — 2026-10-06
+
+### Changed
+- Release alignment: package version synced to 2.5.1 for GitHub Release + PyPI (HEAD beyond v2.5.0).
+
 ## [2.4.0] — 2026-09-26
 
 ### Added — Critical CVEs (CVSS 10.0)
